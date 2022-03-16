@@ -190,7 +190,7 @@
         <img src="/" alt="" class="img-fluid">
       </div>
 
-      <input class="form-control form-control-lg" type="text" placeholder="Search still on work!!" aria-label=".form-control-lg example">
+      <input class="form-control form-control-lg" type="text" placeholder="Click nio lng yung search!" aria-label=".form-control-lg example">
 <br>
 
       <div class="intro-info">    
