@@ -228,11 +228,55 @@
     }
   ?>
         <header class="section-header">
-          <h3>Try guys clicking only the buttons HAHA</h3>
-        </header>
+
+<!----------------- Filtering Section ---------------------->
+
+          <ul class="list-inline" style="padding-left: 40px;" id="filtering">
+            <li class="list-inline-item" >
+              <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort by Relevance 
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Sort by Relevance</a></li>
+                <li><a class="dropdown-item" href="#">Sort by Most Views</a></li>
+                <li><a class="dropdown-item" href="#">Sorth by Citation Count</a></li>
+              </ul>
+            </div>
+            </li>
+
+            <li class="list-inline-item" id="fil_study">
+              <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Field of Study 
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+            </li>
+
+            <li class="list-inline-item" id="fil_date">
+              <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Date Published 
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+            </li>
+
+          </ul>
+<!-------------------- End of Filtering Section ---------------------------->
+        </header><br>
 
         <div class="row">
-
+<!--=============================== Search Result Section ===============================-->
           <table id="table_id" class="display">
             <tbody>
               <tr>
@@ -284,7 +328,7 @@
               </tr>
             </tbody>
           </table>
-
+<!--======================== End of Result Section ===========================-->
         </div>
 
       </div>

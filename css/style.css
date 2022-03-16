@@ -228,7 +228,7 @@ h6 {
   color: #fff;
 }
 
-#intro .intro-info .btn-get-started {
+#intro  .intro-info .btn-get-started {
   background: #007bff;
   border: 2px solid #007bff;
   color: #fff;
@@ -740,6 +740,10 @@ h6 {
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   color: #cce5ff;
+}
+
+li {
+  color: #007BFF;
 }
 
 /* Portfolio Section
