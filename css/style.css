@@ -182,7 +182,7 @@ h6 {
 # Intro Section
 --------------------------------------------------------------*/
 
-#intro, #introresult{
+#intro {
  
   width: 100%;
   position: relative;
@@ -192,30 +192,30 @@ h6 {
   
 }
 
-#intro #introresult .intro-img {
+#intro .intro-img {
   width: 50%;
   float: right;
 }
 
-#intro #introresult .intro-info {
+#intro .intro-info {
   width: 50%;
   float: left;
 }
 
-#intro #introresult .intro-info h2 {
+#intro .intro-info h2 {
   color: #fff;
   margin-bottom: 40px;
   font-size: 48px;
   font-weight: 700;
 }
 
-#intro #introresult .intro-info h2 span {
+#intro .intro-info h2 span {
   color: #74b5fc;
   text-decoration: underline;
 }
 
-#intro #introresult .intro-info .btn-get-started,
-#intro #introresult .intro-info .btn-services {
+#intro .intro-info .btn-get-started,
+#intro .intro-info .btn-services {
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -228,23 +228,23 @@ h6 {
   color: #fff;
 }
 
-#intro  #introresult .intro-info .btn-get-started {
+#intro .intro-info .btn-get-started {
   background: #007bff;
   border: 2px solid #007bff;
   color: #fff;
 }
 
-#intro #introresult .intro-info .btn-get-started:hover {
+#intro .intro-info .btn-get-started:hover {
   background: none;
   border-color: #fff;
   color: #fff;
 }
 
-#intro #introresult .intro-info .btn-services {
+#intro .intro-info .btn-services {
   border: 2px solid #fff;
 }
 
-#intro #introresult .intro-info .btn-services:hover {
+#intro .intro-info .btn-services:hover {
   background: #007bff;
   border-color: #007bff;
   color: #fff;
@@ -256,10 +256,10 @@ h6 {
 
 /* Desktop Navigation */
 
-/* .main-nav {
-  Drop Down
-  Deep Drop Down
-} */
+.main-nav {
+  /* Drop Down */
+  /* Deep Drop Down */
+}
 
 .main-nav,
 .main-nav * {
@@ -598,7 +598,7 @@ h6 {
   color: #283d50;
 }
 
-#about .about-container .icon-box .description .list-inline {
+#about .about-container .icon-box .description {
   margin-left: 80px;
   line-height: 24px;
   font-size: 14px;
@@ -630,7 +630,6 @@ h6 {
   background: #fff;
   box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1);
   transition: all 0.3s ease-in-out;
-  width: 100%;
 }
 
 #services .box:hover {
@@ -665,7 +664,7 @@ h6 {
   color: #007bff;
 }
 
-#services #list-inline .description {
+#services .description {
   font-size: 14px;
   margin-left: 40px;
   line-height: 24px;

@@ -34,8 +34,8 @@
 
 <body>
 <?php
-      include("../CustomLandingPage/accounts/api/post_signup.php");
-      include_once ("../CustomLandingPage/login/api/login_api_authenticate.php");
+      include("./accounts/api/post_signup.php");
+      include_once ("./login/api/login_api_authenticate.php");
 ?>
 
   <!--==========================
@@ -51,8 +51,13 @@
       </div>
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
+          <li class="active"><a href="#intro">Home</a></li>
+          <li><a href="#accountmanagement">Account Management</a></li>
+          <li><a href="#portfolio">Research Management</a></li>
+       
+          
           <li><a href="" class="signin" data-toggle="modal" data-target="#signinPage">Sign in</a></li>
-          <li><a href="" class="signup" data-toggle="modal" data-target="#signupPage">Sign up</a></li>
+          <li>  <a href="" class="signup" data-toggle="modal" data-target="#signupPage">Sign up</a></li>
 
          
          
@@ -198,8 +203,9 @@
       <div class="intro-info">    
         <h2>Arellano Research <span> Portal <span></h2>
         <div>
-          <a href="#mainsearch" class="btn-get-started scrollto">Search</a>   
-          <a href="#signup" class="btn-services scrollto" data-toggle="modal" data-target="#signinPage"> Login</a>
+          <a href="#about" class="btn-get-started scrollto">Search</a>   
+       
+          <a href="#services" class="btn-services scrollto"> Login</a>
         </div>
       </div>
 
@@ -217,12 +223,62 @@
       <div class="container">
 
         <header class="section-header">
-
+          <h3>Create Account</h3>
+          <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus.</p>
         </header>
+
+        <div class="row">
+
+          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
+              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-bookmarks-outline" style="color: #e9bf06;"></i></div>
+              <h4 class="title"><a href="">Dolor Sitema</a></h4>
+              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
+              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
+              <h4 class="title"><a href="">Magni Dolores</a></h4>
+              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-world-outline" style="color: #d6ff22;"></i></div>
+              <h4 class="title"><a href="">Nemo Enim</a></h4>
+              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-clock-outline" style="color: #4680ff;"></i></div>
+              <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+              <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+            </div>
+          </div>
+
+        </div>
 
       </div>
     </section>
-    
+
   </main>
 
 
