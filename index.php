@@ -51,20 +51,13 @@
       </div>
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
-          <li class="active"><a href="#intro">Home</a></li>
-          <li><a href="#accountmanagement">Account Management</a></li>
-          <li><a href="#portfolio">Research Management</a></li>
-       
           
-          <li><a href="" class="signin" data-toggle="modal" data-target="#signinPage">Sign in</a></li>
-          <li>  <a href="" class="signup" data-toggle="modal" data-target="#signupPage">Sign up</a></li>
+          <li><a href="" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li>
+          <li>  <a href="#aboutus">About Us</a></li>
 
-         
-         
         </ul>
       </nav><!-- .main-nav -->
-      
-     
+
       
     </div>
     
@@ -203,9 +196,8 @@
       <div class="intro-info">    
         <h2>Arellano Research <span> Portal <span></h2>
         <div>
-          <a href="#about" class="btn-get-started scrollto">Search</a>   
-       
-          <a href="#services" class="btn-services scrollto"> Login</a>
+          <a href="#about" class="btn-get-started scrollto" >Search</a>   
+          <a href="" class="btn-services scrollto" data-toggle="modal" data-target="#signupPage"> Login</a>
         </div>
       </div>
 
@@ -217,67 +209,38 @@
   <main id="main">
 
     <!--==========================
-      Services Section
+      Result Section
     ============================-->
     <section id="services" class="section-bg">
       <div class="container">
 
         <header class="section-header">
-          <h3>Create Account</h3>
-          <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus.</p>
+        
         </header>
 
         <div class="row">
 
-          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-duration="1.4s">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-bookmarks-outline" style="color: #e9bf06;"></i></div>
-              <h4 class="title"><a href="">Dolor Sitema</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-world-outline" style="color: #d6ff22;"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-clock-outline" style="color: #4680ff;"></i></div>
-              <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-              <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-            </div>
-          </div>
+          <table id="table_id">
+            <tbody>
+              <tr>
+                  <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="box">
+                      <h4 class="title"><a href="">Title</a></h4>
+                      <p class="description"><span>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</span></p>
+                    </div>
+                  </div>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
 
       </div>
     </section>
+
+<!--==========================
+    View all Section
+  ============================-->
 
   </main>
 
@@ -345,6 +308,9 @@
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
+  <!-- Tables CDN -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
@@ -358,10 +324,16 @@
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
   <script src="lib/lightbox/js/lightbox.min.js"></script>
+
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
+  <script>
+  $(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+  </script>
   <script src="js/main.js"></script>
 
 </body>
