@@ -8,16 +8,16 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="./img//favicon.png" rel="icon">
+  <link href="./img//apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
   <!-- Bootstrap CSS File -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/mdb.min.css">
+  <link rel="stylesheet" href="../CustomLandingPage//css//bootstrap.min.css">
+	<link rel="stylesheet" href="../CustomLandingPage//css//mdb.min.css">
 
   <!-- Libraries CSS Files -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -27,8 +27,8 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/addons.css" rel="stylesheet">
+  <link href="./css//style.css" rel="stylesheet">
+  <link href="./css//addons.css" rel="stylesheet">
 
 </head>
 
