@@ -53,7 +53,7 @@
         <ul>
           
           <li><a href="" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li>
-          <li>  <a href="#aboutus">About Us</a></li>
+          <li>  <a href="#footer">About Us</a></li>
 
         </ul>
       </nav><!-- .main-nav -->
@@ -190,7 +190,7 @@
         <img src="/" alt="" class="img-fluid">
       </div>
 
-      <input class="form-control form-control-lg" type="text" placeholder="Search 205,289,363 papers from all fields of science" aria-label=".form-control-lg example">
+      <input class="form-control form-control-lg" type="text" placeholder="Search still on work!!" aria-label=".form-control-lg example">
 <br>
 
       <div class="intro-info">    
@@ -215,18 +215,57 @@
       <div class="container">
 
         <header class="section-header">
-        
+          <h3>Try guys clicking only the buttons HAHA</h3>
         </header>
 
         <div class="row">
 
-          <table id="table_id">
+          <table id="table_id" class="display">
             <tbody>
               <tr>
                   <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
                     <div class="box">
-                      <h4 class="title"><a href="">Title</a></h4>
-                      <p class="description"><span>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</span></p>
+                      <h4 class="title"><a href="https://www.jite.org/documents/Vol17/JITEv17IIPp163-179Rodafinos4907.pdf">A FULLY ONLINE RESEARCH PORTAL FOR RESEARCH 
+                        STUDENTS AND RESEARCHERS</a></h4>
+                      <p class="description"><span>This paper describes the context, development, implementation, and the potential transferability of an integrated online research environment that allows its 
+                        users to conduct all aspects of research online.</span></p>
+                      <ul class="list-inline" style="padding-left: 40px;">
+                        <li class="list-inline-item"><b>Views: 05</b></li>
+                        <li class="list-inline-item"><b>Cites: 04</b></li>
+                      </ul>
+                    </div>
+                  </div>
+              </tr>
+
+              <tr>
+                  <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="box">
+                      <h4 class="title"><a href="https://arxiv.org/pdf/1804.08891">A multi-level collaborative filtering method that improves
+                        recommendations</a></h4>
+                      <p class="description"><span>Collaborative filtering is one of the most used approaches for providing recommendations in various online
+                          environments. Even though collaborative recommendation methods have been widely utilized due to their
+                          simplicity and ease of use, accuracy is still an issue. In this paper we propose a multi-level recommendation
+                          method with its main purpose being to assist users in decision making by providing recommendations of
+                          better quality</span></p>
+                      <ul class="list-inline" style="padding-left: 40px;">
+                        <li class="list-inline-item"><b>Views: 11</b></li>
+                        <li class="list-inline-item"><b>Cites: 08</b></li>
+                      </ul>
+                    </div>
+                  </div>
+              </tr>
+
+              <tr>
+                  <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="box">
+                      <h4 class="title"><a href="https://www.jite.org/documents/Vol17/JITEv17IIPp163-179Rodafinos4907.pdf">A FULLY ONLINE RESEARCH PORTAL FOR RESEARCH 
+                        STUDENTS AND RESEARCHERS</a></h4>
+                      <p class="description"><span>This paper describes the context, development, implementation, and the potential transferability of an integrated online research environment that allows its 
+                        users to conduct all aspects of research online.</span></p>
+                      <ul class="list-inline" style="padding-left: 40px;">
+                        <li class="list-inline-item"><b>Views: 05</b></li>
+                        <li class="list-inline-item"><b>Cites: 04</b></li>
+                      </ul>
                     </div>
                   </div>
               </tr>
@@ -309,8 +348,7 @@
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
   <!-- Tables CDN -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+  <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
@@ -326,6 +364,7 @@
   <script src="lib/lightbox/js/lightbox.min.js"></script>
 
   <!-- Contact Form JavaScript File -->
+  <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
   <script src="contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
