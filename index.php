@@ -189,20 +189,19 @@
       <div class="intro-img">
         <img src="/" alt="" class="img-fluid">
       </div>
-
-      <input class="form-control form-control-lg" type="text" placeholder="Click nio lng yung search!" aria-label=".form-control-lg example">
-<br>
-
-      <div class="intro-info">    
-        <h2>Arellano Research <span> Portal <span></h2>
-        <div>
-          <a href="./Result/result.php" class="btn-get-started scrollto" >Search</a>   
-          <a href="" class="btn-services scrollto" data-toggle="modal" data-target="#signupPage"> Login</a>
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+      <input name="mainsearch" class="form-control form-control-lg" type="text" placeholder="Click nio lng yung search!" aria-label=".form-control-lg example"><br>
+        <div class="intro-info">    
+          <h2>Arellano Research <span> Portal <span></h2>
+          <div>
+            <a href="" class="btn-get-started scrollto" >Search</a>   
+      </form>
+            <a href="" class="btn-services scrollto" data-toggle="modal" data-target="#signupPage"> Login</a>
+          </div>
         </div>
-      </div>
-
     </div>
   </section>
+  
   <!-- #intro -->
   
 
@@ -213,7 +212,21 @@
     ============================-->
     <section id="services" class="section-bg">
       <div class="container">
+  <?php
+  function test_input($data)
+  {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
 
+    if($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+      echo "Hello World";
+      $search_keyword = test_input($_POST("name"));
+    }
+  ?>
         <header class="section-header">
           <h3>Try guys clicking only the buttons HAHA</h3>
         </header>
