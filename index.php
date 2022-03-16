@@ -196,7 +196,7 @@
       <div class="intro-info">    
         <h2>Arellano Research <span> Portal <span></h2>
         <div>
-          <a href="../CustomLandingPage//Result//index.html" class="btn-get-started scrollto" >Search</a>   
+          <a href="../CustomLandingPage/Result/index.html" class="btn-get-started scrollto" >Search</a>   
           <a href="" class="btn-services scrollto" data-toggle="modal" data-target="#signupPage"> Login</a>
         </div>
       </div>
