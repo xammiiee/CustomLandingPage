@@ -16,8 +16,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
   <!-- Bootstrap CSS File -->
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-	<link rel="stylesheet" href="../css/mdb.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/mdb.min.css">
 
   <!-- Libraries CSS Files -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -27,8 +27,8 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="../css/style.css" rel="stylesheet">
-  <link href="../css/addons.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/addons.css" rel="stylesheet">
 
 </head>
 
@@ -43,141 +43,21 @@
   ============================-->
   <header id="header" class="fixed-top">
     <div class="container">
-  
       <div class="logo float-left">
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+        <a href="#intro" class="scrollto"><img src="../img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
-          
-          <li><a href="" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li>
-          <li>  <a href="#footer">About Us</a></li>
+          <li class="active"><a href="../admin/research/research.php">Research Management</a></li>
+          <li class="active"><a href="#intro">About Us</a></li>
 
         </ul>
       </nav><!-- .main-nav -->
-
-      
     </div>
-    
   </header><!-- #header -->
   
-  
-  <!-- #sign up modal -->
-  <div class="modal fade" id="signupPage">
-
-    
-    <div class="modal-dialog">
-      <div class="modal-content">
-        
-        <div class="modal-header text-center">
-          <h4 class="modal-title text-center w-100 font-weight-bold" style="color: #007bff;">Sign Up</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
-        </div>
-
-        <form action="" method="POST">
-        <div class="modal-body mx-3" style="margin: 0;padding: 0;">
-          <div class="md-form mb-5">
-            <input type="text" class="form-control validate"
-            id="fname"
-            name="fname"
-            placeholder="First Name">
-            <label data-error="wrong" data-success="right"></label>
-          </div>
-
-          <div class="md-form mb-5">
-            <input type="text" class="form-control validate" 
-            id="lname"
-            name="lname"
-            placeholder="Last Name">
-            <label data-error="wrong" data-success="right"></label>
-          </div>
-
-          <div class="md-form mb-5">
-            
-            <input type="email" class="form-control validate"
-            id="email"
-            name="email"
-            placeholder="email@example.com">
-            <label data-error="wrong" data-success="right"></label>
-          </div>
-          <div class="md-form mb-5">
-            <input type="password" class="form-control validate  
-            id="password"
-            name="password"
-            placeholder="Your Password"">
-            <label data-error="wrong" data-success="right"></label>
-          </div>
-
-          <div class="md-form mb-5">
-            <select 
-            id="aumember"
-            class="form-control"
-            name="aumember"
-            value=" ">
-            <option selected  data-error="wrong" data-success="right">Are you a member of Arellano Community?</option>
-            <option value="Yes">Yes
-            <option value="No">No
-          </select>
-          </div>
-        </div>
-        <div class="modal-footer d-flex justify-content-center">
-          <button class="btn btn-primary" id="submit" name="btnsubmit" >Sign up</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-<!-- #sign in modal -->
-
-<div class="modal fade" id="signinPage">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      
-      <div class="modal-header text-center">
-        <h3 class="modal-title w-100 dark-grey-text font-weight-bold" style="color: #007bff;">Sign In</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
-      </div>
-
-        <form action="" method="POST">
-          <div class="modal-body mx-4">
-            <div class="md-form">
-              <input type="email" class="form-control validate"  
-              id="txt_uemail"
-              name="txt_email"
-              placeholder="Your Email">
-              <label data-error="wrong" data-success="right"></label>
-            </div>
-
-            <div class="md-form">
-              <input type="password" class="form-control validate"
-              id="txt_upwd"
-              name="txt_pwd"
-              placeholder="Your Password">
-              <label data-error="wrong" data-success="right"></label>
-
-              <p class="font-small blue-text d-flex justify-content-end">Forgot<a href="#" class="blue-text ml-1">Password?</a></p>
-            </div>
-
-          <div class="text-center mb-3">
-            <button type="button" class="btn btn-primary btn-block z-depth-1a" id="but_submit" name="but_submit" >Sign in</button>
-          </div>
-        </form>
-        
-
-
-        <p class="font-small dark-grey-text d-flex justify-content-center">or sign in with:</p>
-        <div class="row my-3 justify-content-center">
-          <button type="button" class="btn btn-primary z-depth-1a"><i class="fab fa-facebook-f text-center"></i></button>
-          <button type="button" class="btn btn-purple z-depth-1a"><i class="fab fa-twitter text-center"></i></button>
-          <button type="button" class="btn btn-red z-depth-1a"><i class="fab fa-google-plus-g text-center"></i></button>
-        </div>
-      </div>
-    </div>
-    </div> 
-</div>
 
 
   <!--==========================
@@ -185,10 +65,16 @@
   ============================-->
   <section id="intro" class="clearfix">
     <div class="container">
-      <div class="intro-info">   
-          <h2>Research Management</h2>
-    </div>
-    
+
+      <div class="intro-img">
+        <img src="../" alt="" class="img-fluid">
+      </div>
+      <div class="intro-info">    
+          <h2>Arellano Research <span> Portal <span></h2>
+          <div>
+
+          </div>
+        </div>
     </div>
   </section>
   
@@ -196,18 +82,28 @@
   
 
   <main id="main">
+
     <!--==========================
       Result Section
     ============================-->
     <section id="services" class="section-bg">
       <div class="container">
+
         <header class="section-header">
+
+        </header><br>
+
+        <div class="row">
+
+        </div>
+
       </div>
     </section>
 
 <!--==========================
     View all Section
   ============================-->
+
   </main>
 
 
@@ -266,7 +162,6 @@
 
         </div>
       </div>
-      <center><h4>Malindog Group</h4></center>
     </div>
 
   </footer><!-- #footer -->
@@ -292,7 +187,7 @@
 
   <!-- Contact Form JavaScript File -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <script src="contactform/contactform.js"></script>
+  <script src="../contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
   <script>
@@ -300,7 +195,7 @@
     $('#table_id').DataTable();
 } );
   </script>
-  <script src="js/main.js"></script>
+  <script src="../js/main.js"></script>
 
 </body>
 </html>

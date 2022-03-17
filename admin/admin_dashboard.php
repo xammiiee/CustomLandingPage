@@ -43,67 +43,67 @@
   ============================-->
   <header id="header" class="fixed-top">
     <div class="container">
-  
       <div class="logo float-left">
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+        <a href="#intro" class="scrollto"><img src="../img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
       <nav class="main-nav float-right d-none d-lg-block">
-        <!-- <ul>
-          <li class="active"><a href="#account">Accounts</a></li>
-          <li class="active"><a href="#article">Articles</a></li>
-          <li class="active"><a href="#authors">Authors</a></li>
-          <li class="active"><a href="#events">Events</a></li>
-          <li class="active"><a href="#journal">Journal</a></li>
-          <li class="active"><a href="#program">Program</a></li>
-          <li class="active"><a href="#research">Research</a></li>
-          <li class="active"><a href="#profiler">Profile</a></li>
-          <li class="active"><a href="#footer">About Us</a></li>
-        </ul> -->
+        <ul>
+          <li class="active"><a href="/admin//research//research.php">Research Management</a></li>
+          <li class="active"><a href="#intro">About Us</a></li>
 
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Accounts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Articles</a>
-            </li>
-  
         </ul>
       </nav><!-- .main-nav -->
     </div>
-    
   </header><!-- #header -->
+  
+
 
   <!--==========================
     Intro Section
   ============================-->
   <section id="intro" class="clearfix">
-    <!-- <div class="container">
-      <div class="intro-info">   
-          <h2>Research Management</h2>
-    </div> -->
-    
+    <div class="container">
+
+      <div class="intro-img">
+        <img src="../" alt="" class="img-fluid">
+      </div>
+      <div class="intro-info">    
+          <h2>Arellano Research <span> Portal <span></h2>
+          <div>
+
+          </div>
+        </div>
     </div>
   </section>
- 
+  
   <!-- #intro -->
   
 
   <main id="main">
+
     <!--==========================
       Result Section
     ============================-->
     <section id="services" class="section-bg">
       <div class="container">
+
         <header class="section-header">
+
+        </header><br>
+
+        <div class="row">
+
+        </div>
+
       </div>
     </section>
 
 <!--==========================
     View all Section
   ============================-->
+
   </main>
 
 
@@ -162,7 +162,6 @@
 
         </div>
       </div>
-      <center><h4>Malindog Group</h4></center>
     </div>
 
   </footer><!-- #footer -->
@@ -188,7 +187,7 @@
 
   <!-- Contact Form JavaScript File -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <script src="contactform/contactform.js"></script>
+  <script src="../contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
   <script>
@@ -196,7 +195,7 @@
     $('#table_id').DataTable();
 } );
   </script>
-  <script src="js/main.js"></script>
+  <script src="../js/main.js"></script>
 
 </body>
 </html>
