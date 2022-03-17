@@ -196,7 +196,7 @@
           <div>
             <a href="" class="btn-get-started scrollto" >Search</a>   
       </form>
-            <a href="" class="btn-services scrollto" data-toggle="modal" data-target="#signupPage"> Login</a>
+            <a href="" class="btn-services scrollto" data-toggle="modal" data-target="#signinPage"> Login</a>
           </div>
         </div>
     </div>
@@ -282,8 +282,13 @@
               <tr>
                   <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
                     <div class="box">
+                    
                       <h4 class="title"><a href="https://www.jite.org/documents/Vol17/JITEv17IIPp163-179Rodafinos4907.pdf">A FULLY ONLINE RESEARCH PORTAL FOR RESEARCH 
                         STUDENTS AND RESEARCHERS</a></h4>
+                        <ul class="list-inline" style="padding-left: 40px;">
+                        <li class="list-inline-item"><b>Author</b></li>
+                        <li class="list-inline-item"><b>Field of study</b></li>
+                      </ul>
                       <p class="description"><span>This paper describes the context, development, implementation, and the potential transferability of an integrated online research environment that allows its 
                         users to conduct all aspects of research online.</span></p>
                       <ul class="list-inline" style="padding-left: 40px;">
@@ -396,9 +401,9 @@
 
         </div>
       </div>
+      <center><h4>Malindog Group</h4></center>
     </div>
 
-  
   </footer><!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
