@@ -8,7 +8,7 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="../img/favicon.png" rel="icon">
+  <link href="./img/favicon.png" rel="icon">
   <link href="../img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -16,8 +16,9 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
   <!-- Bootstrap CSS File -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/mdb.min.css">
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/mdb.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
   <!-- Libraries CSS Files -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -27,8 +28,8 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="/css/style.css" rel="stylesheet">
-  <link href="/css/addons.css" rel="stylesheet">
+  <link href="../../css/style.css" rel="stylesheet">
+  <link href="../../css/addons.css" rel="stylesheet">
 
 </head>
 
@@ -71,9 +72,6 @@
       </div>
       <div class="intro-info">    
           <h2>Arellano Research <span> Portal <span></h2>
-          <div>
-
-          </div>
         </div>
     </div>
   </section>
@@ -94,8 +92,55 @@
         </header><br>
 
         <div class="row">
+          <div class="col" id="container-form" style="width:100%";>
+            <form style="margin: auto;">
+              <div class="form-group">
+                <label class="label">Title *</label>
+                <textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control"></textarea>
+              </div>
 
+              <div class="form-row">
+                <div class="col">
+                  <label class="label">Main Author *</label>
+                  <select class="form-control" searchable="Search here..">
+                    <option value="" disabled selected>Choose Main Author</option>
+                    <?php
+                      include "../research/api/authordropdownlist.php";
+                      foreach($result as $row)
+                      {
+                        echo "<option value=".$row['fullname'].">".$row['fullname']."</option>";
+                      }
+                    ?>
+                  </select>
+                </div>
+                <div class="col">
+                  <label class="label">Co-Authors *</label>
+                  <div class="row">
+                    <div class="col">
+                  <select class="form-control" searchable="Search here..">
+                    <option value="" disabled selected>Choose Co-Author</option>
+                    <?php
+                      include "../research/api/authordropdownlist.php";
+                      foreach($result as $row)
+                      {
+                        echo "<option value=".$row['fullname'].">".$row['fullname']."</option>";
+                      }
+                    ?>
+                  </select>
+                    </div>
+                    <div class="col">
+                    <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col">
+            
+          </div>
         </div>
+        
 
       </div>
     </section>
@@ -184,6 +229,7 @@
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
   <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
   <!-- Contact Form JavaScript File -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
@@ -193,6 +239,7 @@
   <script>
   $(document).ready( function () {
     $('#table_id').DataTable();
+    $('.mdb-select').materialSelect();
 } );
   </script>
   <script src="../js/main.js"></script>

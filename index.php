@@ -186,7 +186,7 @@
         <img src="/" alt="" class="img-fluid">
       </div>
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-      <input name="mainsearch" class="form-control form-control-lg" type="text" placeholder="Click nio lng yung search!" aria-label=".form-control-lg example"><br>
+      <input name="mainsearch" class="form-control form-control-lg" type="text" placeholder="Search Here!" aria-label=".form-control-lg example"><br>
         <div class="intro-info">    
           <h2>Arellano Research <span> Portal <span></h2>
           <div>
