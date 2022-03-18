@@ -43,15 +43,11 @@
   ============================-->
   <header id="header" class="fixed-top">
     <div class="container">
-  
       <div class="logo float-left">
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+       <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
-      <nav class="main-nav float-right d-none d-lg-block">
+      <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-          
           <li><a href="" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li>
           <li>  <a href="#footer">About Us</a></li>
 
