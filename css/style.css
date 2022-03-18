@@ -193,9 +193,9 @@ h6 {
   
 }
 
-#intro .intro-img {
+#intro .intro-img .card{
   width: 50%;
-  float: right;
+  float: left;
 }
 
 #intro .intro-info {

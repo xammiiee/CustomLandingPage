@@ -230,7 +230,7 @@
           <ul class="list-inline" style="padding-left: 40px;" id="filtering">
             <li class="list-inline-item" >
               <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-primary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Sort by Relevance 
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -243,7 +243,7 @@
 
             <li class="list-inline-item" id="fil_study">
               <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-primary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Field of Study 
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -256,7 +256,7 @@
 
             <li class="list-inline-item" id="fil_date">
               <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-primary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Date Published 
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

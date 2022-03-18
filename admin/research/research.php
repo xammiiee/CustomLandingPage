@@ -75,12 +75,19 @@
 
       <div class="intro-info">    
           <h2>Research Management </h2>
-      </div><br>
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card">
+              <div class="card-content">
+                <p class="category"><strong>Visits</strong></p>
+                <h3 class="card-title">70,340</h3>
+              </div>
 
-    </div>
-      <div class="card" style="width: 30%;">
-        <h1>Jaren </h1>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
     
   </section>
       
@@ -212,8 +219,16 @@
                   ?>
                 </select>
                 <div class="input-group-append">
-                  <button class="btn" type="button" id="add-co-author">Add</button>
+                  <button class="btn btn-default" type="button" id="add-co-author">Add</button>
                 </div>
+                <script type="">
+                  $(document).ready(functio(){
+                    
+                      $("#co-author-list").hide();
+                      console.log("clicked!");
+                   
+                  })
+                </script>
                 </div>
 
                 <div class="col">
@@ -259,7 +274,7 @@
                   <option value="3">Three</option>
                 </select>
                 <div class="input-group-append">
-                  <button class="btn" type="button">Add</button>
+                  <button class="btn btn-default" type="button">Add</button>
                 </div>
                 </div>
 
@@ -369,17 +384,17 @@
   <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
   <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/mobile-nav/mobile-nav.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="lib/counterup/counterup.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <script src="../../lib/jquery/jquery.min.js"></script>
+  <script src="../../lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../lib/easing/easing.min.js"></script>
+  <script src="../../lib/mobile-nav/mobile-nav.js"></script>
+  <script src="../../lib/wow/wow.min.js"></script>
+  <script src="../../lib/waypoints/waypoints.min.js"></script>
+  <script src="../../lib/counterup/counterup.min.js"></script>
+  <script src="../../lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="../../lib/lightbox/js/lightbox.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
   <!-- Contact Form JavaScript File -->
@@ -398,10 +413,7 @@
     });
 
 
-    $('#inputGroupSelect04').click(function(){
-      $("#co-author-list").hide();
-      console.log("clicked!");
-    });
+    
 } );
   </script>
   <script src="../js/main.js"></script>
