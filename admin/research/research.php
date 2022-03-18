@@ -42,9 +42,9 @@
     //   include_once ("./login/api/login_api_authenticate.php");
 ?>
 
-  <!--==========================
-  Header
-  ============================-->
+<!--===============================================================================================
+                                          START HEADER
+=================================================================================================-->
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
@@ -60,13 +60,16 @@
         </ul>
       </nav><!-- .main-nav -->
     </div>
-  </header><!-- #header -->
+  </header>
+  <!--================================================================================================ 
+                                              END HEADER 
+  ====================================================================================================-->
   
 
 
-<!--==================================================================================
-    Intro Section
-======================================================================================-->
+<!--==================================================================================================
+                                          START BODY SECTION
+====================================================================================================-->
   <section id="intro" class="clearfix">
     <div class="container">
       <div class="intro-img">
@@ -103,25 +106,19 @@
           
         </div>
       </div>
-    
   </section>
-      
-  
-  <!-- #intro -->
-  
 
   <main id="main">
-
 <!--=============================================================================================
-      Result Section
+                                        Result Section
 ===============================================================================================-->
 <section id="services" class="section-bg">
   <div class="container">
-        <header class="section-header">
-  
-        </header><br>
+  <header class="section-header"> 
 
-<!--============================ Table List =================================-->
+  </header><br>
+
+<!--==================================== Table List =============================================-->
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
       <div class="box">
@@ -165,8 +162,9 @@
       </div>
     </div>
   </div>
+<!--=========================================== END ================================================-->
 
-<!--======================== Modal Adding Form ==============================-->
+<!--================================== MODAL ADDING RESEARCH =======================================-->
 <div class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -190,17 +188,19 @@
     <div class="box">
     <center><h1>Add New Research Paper</h1></center>
       <form style="margin: auto;">
-    
+
+      <!-- TITLE -->
       <div class="form-group">
         <label class="label">Title *</label>
         <textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control"></textarea>
       </div>
+
+      <!-- MAIN AUTHOR -->
       <div class="form-group">
         <label class="label">Main Author *</label>
         <select class="custom-select" id="inputGroupSelect04">
           <option selected>Choose...</option>
           <?php
-          
             include "../research/api/mainauthorlist.php";
             foreach($result as $row)
             {
@@ -209,6 +209,8 @@
           ?>
         </select>
       </div>
+
+      <!-- CO-AUTHOR -->
       <div class="row">
         <label class="label">Co-Author(s) *</label><br>
         <div class="col">
@@ -241,36 +243,45 @@
           </ul>
         </div>
       </div>
+
+      <!-- ABSTRACT -->
       <div class="form-group">
         <label class="label">Abstract *</label>
         <textarea rows="5" cols="60" type="text "name="abstract" id="title" class="form-control"></textarea>
       </div>
+
       <div class="row">
+        <!-- DATE PUBLISH -->
         <div class="col">
           <div class="form-group">
-        <label>Date Publish</label>
-        <input type="date" name="dpub" id="dpub" class="form-control" />
-      </div>
+            <label>Date Publish</label>
+            <input type="date" name="dpub" id="dpub" class="form-control" />
+          </div>
         </div>
+
+        <!-- FIELD OF STUDY -->
         <div class="col">
           <div class="form-group">
-          <label>Field of Study</label>
-          <input type="text" name="fstudy" id="fstudy" class="form-control" />
-        </div>
+            <label>Field of Study</label>
+            <input type="text" name="fstudy" id="fstudy" class="form-control" />
+          </div>
         </div>
       </div>
+
       <div class="row">
+
+        <!-- TAGS -->
         <label class="label">Tag(s) *</label>
         <div class="col">
           <select class="custom-select" id="inputGroupSelect04">
-          <option selected>Choose...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-        <div class="input-group-append">
-          <button class="btn btn-default" type="button">Add</button>
-        </div>
+            <option selected>Choose...</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-default" type="button">Add</button>
+          </div>
         </div>
         <div class="col">
           <ul class="list-group">
@@ -294,24 +305,21 @@
       </form>
     </div>
   </div>
-  <div class="row">
-  
-  </div>
-</div>  
-      </div>
-    </section>
+</div>
+ <!--========================================== END  ===============================================-->
+</div>
+</section>
 
-<!--==========================
-    View all Section
-  ============================-->
-
-  </main>
+<!--===================================================================================================
+                                          END OF BODY SECTION
+  ====================================================================================================-->
+  </main> 
 
 
   
-  <!--==========================
-    Footer
-  ============================-->
+  <!--================================================================================================
+                                              FOOTER
+  ==================================================================================================-->
   <footer id="footer">
     <div class="footer-top">
       <div class="container">
@@ -366,11 +374,14 @@
     </div>
 
   </footer>
-<!-- #footer -->
-
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <!-- Uncomment below i you want to use a preloader -->
-  <!-- <div id="preloader"></div> -->
+<!--================================================================================================
+  END FOOTER 
+====================================================================================================-->
+</body>
+</html>
+<!-- ===============================================================================================
+                                      LIBRARIES AND SCRIPT
+ ==================================================================================================-->
 
  <!-- JavaScript Libraries -->
   <script src="../../js/jquery.min.js"></script>
@@ -385,11 +396,9 @@
   <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
   <script src="../../lib/lightbox/js/lightbox.min.js"></script>
 
-
    <!-- Contact Form JavaScript File -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
   <script src="../../contactform/contactform.js"></script>
-
 
   <script>
   $(document).ready( function () {
@@ -398,5 +407,3 @@
   </script>
   <script src="../../js/main.js"></script>
 
-</body>
-</html>
