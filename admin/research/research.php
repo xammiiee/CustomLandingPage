@@ -97,6 +97,7 @@
         <div class="row">
           <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
             <div class="box">
+            <center><h1>Add New Research Paper</h1></center>
               <form style="margin: auto;">
             
               <div class="form-group">
@@ -104,24 +105,94 @@
                 <textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control"></textarea>
               </div>
 
-              <div class="row">
-                <div class="col-md-3" >
-                  <div class="input-group">
-  <select class="custom-select" id="inputGroupSelect04">
-    <option selected>Choose...</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-  </select>
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button">Button</button>
-  </div>
-</div>
-                </div>
-                </div>
-                <div class="col"></div>
+              <div class="form-group">
+                <label class="label">Main Author *</label>
+                <select class="custom-select" id="inputGroupSelect04">
+                  <option selected>Choose...</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
               </div>
 
+              <div class="row">
+                <label class="label">Co-Author(s) *</label>
+                <div class="col">
+                  <select class="custom-select" id="inputGroupSelect04">
+                  <option selected>Choose...</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                <div class="input-group-append">
+                  <button class="btn" type="button">Add</button>
+                </div>
+                </div>
+
+                <div class="col">
+                  
+                  <ul class="list-group">
+                  <label>--Co-Authors Added--</label>
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                  </ul>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                <label class="label">Abstract *</label>
+                <textarea rows="5" cols="60" type="text "name="abstract" id="title" class="form-control"></textarea>
+              </div>
+
+              <div class="row">
+
+                <div class="col">
+                  <div class="form-group">
+                <label>Date Publish</label>
+                <input type="date" name="dpub" id="dpub" class="form-control" />
+              </div>
+                </div>
+
+                <div class="col">
+                  <div class="form-group">
+                  <label>Field of Study</label>
+                  <input type="text" name="fstudy" id="fstudy" class="form-control" />
+                </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <label class="label">Tag(s) *</label>
+                <div class="col">
+                  <select class="custom-select" id="inputGroupSelect04">
+                  <option selected>Choose...</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                <div class="input-group-append">
+                  <button class="btn" type="button">Add</button>
+                </div>
+                </div>
+
+                <div class="col">
+                  <ul class="list-group">
+                  <labe>--Tags Added--</labe>
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                  </ul>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                <div class="mb-3">
+                <label for="formFileSm" class="form-label">File Pdf *</label>
+                <input class="form-control form-control-md" id="formFileSm" type="file">
+              </div>
+              </div>
               </form>
             </div>
           </div>
