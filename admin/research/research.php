@@ -1,3 +1,6 @@
+<?php
+  // include "../research/api/submitpost.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,9 +64,9 @@
   
 
 
-  <!--==========================
+<!--==================================================================================
     Intro Section
-  ============================-->
+======================================================================================-->
   <section id="intro" class="clearfix">
     <div class="container">
       <div class="intro-img">
@@ -84,7 +87,7 @@
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card">
               <div class="card-content">
-                <p class="category"><strong>Total </strong></p>
+                <p class="category"><strong>Total  </strong></p>
                 <h3 class="card-title">70,340</h3>
               </div>
             </div>
@@ -97,14 +100,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card">
-              <div class="card-content">
-                <p class="category"><strong>Visits</strong></p>
-                <h3 class="card-title">70,340</h3>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     
@@ -116,60 +112,59 @@
 
   <main id="main">
 
-    <!--==========================
+<!--=============================================================================================
       Result Section
-    ============================-->
-    <section id="services" class="section-bg">
-      <div class="container">
+===============================================================================================-->
+<section id="services" class="section-bg">
+  <div class="container">
         <header class="section-header">
   
         </header><br>
 
 <!--============================ Table List =================================-->
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
+      <div class="box">
+      <table class="table table-striped table-responsive-md" id="firstTable" >
+        <thead class="bg-primary text-white" id="firstThead"">
+          <th> Title </th>
+          <th> Author </th>
+          <th> Date Publish </th>
+          <th> Field of Study </th>
+          <th> Views </th>
+          <th> Cited </th>
+          <th colspan="3"> Action </th>
+        </thead>
+        <tbody>
+          <?php
+          include "../research/api/displayallresearch.php";
 
-<div class="row">
-  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
-    <div class="box">
-    <table class="table table-striped table-responsive-md" id="firstTable" >
-      <thead class="bg-primary text-white" id="firstThead"">
-        <th> Title </th>
-        <th> Author </th>
-        <th> Date Publish </th>
-        <th> Field of Study </th>
-        <th> Views </th>
-        <th> Cited </th>
-        <th colspan="3"> Action </th>
-      </thead>
-      <tbody>
-        <?php
-        include "../research/api/displayallresearch.php";
-
-          foreach($result as $rs)
-          { ?>
-            <tr id="result">
-              <td><?php echo $rs['title']; ?> </td>
-              <td><?php echo $rs['authors']; ?> </td>
-              <td><?php echo $rs['date_publish']; ?> </td>
-              <td><?php echo $rs['field_of_study']; ?> </td>
-              <td><?php echo $rs['views']; ?> </td>
-              <td><?php echo $rs['cites']; ?> </td>
-              <td>
-                <a href="admin_dashboard.php?view=<?php echo $rs['id']?>"><input type="submit" class="btn btn-primary btn-sm" id="btn_edit1" value="View" >
-                </input></a>
-                <a href="#editresearch"><input type="submit" class="btn btn-warning btn-sm" id="btn_edit" value="Edit" data-bs-toggle="modal" data-bs-target="#editresearch">
+            foreach($result as $rs)
+            { ?>
+              <tr id="result">
+                <td><?php echo $rs['title']; ?> </td>
+                <td><?php echo $rs['authors']; ?> </td>
+                <td><?php echo $rs['date_publish']; ?> </td>
+                <td><?php echo $rs['field_of_study']; ?> </td>
+                <td><?php echo $rs['views']; ?> </td>
+                <td><?php echo $rs['cites']; ?> </td>
+                <td>
+                  <a href="admin_dashboard.php?view=<?php echo $rs['id']?>"><input type="submit" class="btn btn-primary btn-sm" id="btn_edit1" value="View" >
                   </input></a>
-                <a href="admin_dashboard.php?rsdelete=<?php echo $rs['id'];?>"><input type="submit" class="btn btn-danger btn-sm" id="btn_deleteresearch" value="Delete">
-                  </input></a>
-              </td>
-            </tr>
-            <?php
-          }
-        ?>
-      </tbody>
-    </table>
+                  <a href="#editresearch"><input type="submit" class="btn btn-warning btn-sm" id="btn_edit" value="Edit" data-bs-toggle="modal" data-bs-target="#editresearch">
+                    </input></a>
+                  <a href="admin_dashboard.php?rsdelete=<?php echo $rs['id'];?>"><input type="submit" class="btn btn-danger btn-sm" id="btn_deleteresearch" value="Delete">
+                    </input></a>
+                </td>
+              </tr>
+              <?php
+            }
+          ?>
+        </tbody>
+      </table>
+      </div>
     </div>
   </div>
-</div>
 
 <!--======================== Modal Adding Form ==============================-->
 <div class="modal" tabindex="-1" role="dialog">
@@ -190,142 +185,119 @@
 </div>
 
 
-
-
-        <div class="row">
-          <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
-            <div class="box">
-            <center><h1>Add New Research Paper</h1></center>
-              <form style="margin: auto;">
-            
-              <div class="form-group">
-                <label class="label">Title *</label>
-                <textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control"></textarea>
-              </div>
-
-              <div class="form-group">
-                <label class="label">Main Author *</label>
-                <select class="custom-select" id="inputGroupSelect04">
-                  <option selected>Choose...</option>
-                  <?php
-                  
-                    include "../research/api/mainauthorlist.php";
-
-                    foreach($result as $row)
-                    {
-                      echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
-                    }
-                  ?>
-                </select>
-              </div>
-
-              <div class="row">
-                <label class="label">Co-Author(s) *</label><br>
-                <div class="col">
-                  <select class="custom-select" id="inputGroupSelect04">
-                  <option selected>Choose...</option>
-                  <?php
-                  
-                    include "../research/api/co_authorlsit.php";
-
-                    foreach($result as $row)
-                    {
-                      echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
-                    }
-                  ?>
-                </select>
-                <div class="input-group-append">
-                  <button class="btn btn-default" type="button" id="add-co-author">Add</button>
-                </div>
-                <script>
-
-                </script>
-                </div>
-
-                <div class="col">
-                  <ul class="list-group" id="co-author-list">
-                  <label>--Co-Authors Added--</label>
-                    <?php
-                  
-                    include "../research/api/co_authorlsit.php";
-                    $a="list-group-item";
-                    foreach($result as $row)
-                    {
-                      echo  "<li class ='list-group-item'>".$row['fullname']."</li>";
-                    }
-                  ?>
-                  </ul>
-                </div>
-
-              </div>
-
-              <div class="form-group">
-                <label class="label">Abstract *</label>
-                <textarea rows="5" cols="60" type="text "name="abstract" id="title" class="form-control"></textarea>
-              </div>
-
-              <div class="row">
-
-                <div class="col">
-                  <div class="form-group">
-                <label>Date Publish</label>
-                <input type="date" name="dpub" id="dpub" class="form-control" />
-              </div>
-                </div>
-
-                <div class="col">
-                  <div class="form-group">
-                  <label>Field of Study</label>
-                  <input type="text" name="fstudy" id="fstudy" class="form-control" />
-                </div>
-                </div>
-
-              </div>
-
-              <div class="row">
-                <label class="label">Tag(s) *</label>
-                <div class="col">
-                  <select class="custom-select" id="inputGroupSelect04">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-                <div class="input-group-append">
-                  <button class="btn btn-default" type="button">Add</button>
-                </div>
-                </div>
-
-                <div class="col">
-                  <ul class="list-group">
-                  <labe>--Tags Added--</labe>
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                  </ul>
-                </div>
-
-              </div>
-
-              <div class="form-group">
-                <div class="mb-3">
-                <label for="formFileSm" class="form-label">File Pdf *</label>
-                <input class="form-control form-control-md" id="formFileSm" type="file">
-              </div>
-              </div>
-
-              <div class="form-group">
-                <button type="submit" class="btn btn-info" id="submit" name="btnsubmit" >
-                    Submit
-                  </button>
-              </div>
-              </form>
-            </div>
-          </div>
-
-          <div class="row">
+<div class="row">
+  <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+    <div class="box">
+    <center><h1>Add New Research Paper</h1></center>
+      <form style="margin: auto;">
+    
+      <div class="form-group">
+        <label class="label">Title *</label>
+        <textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="label">Main Author *</label>
+        <select class="custom-select" id="inputGroupSelect04">
+          <option selected>Choose...</option>
+          <?php
           
-          </div>
-        </div>  
+            include "../research/api/mainauthorlist.php";
+            foreach($result as $row)
+            {
+              echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
+            }
+          ?>
+        </select>
+      </div>
+      <div class="row">
+        <label class="label">Co-Author(s) *</label><br>
+        <div class="col">
+          <select class="custom-select" id="inputGroupSelect04">
+          <option selected>Choose...</option>
+          <?php
+          
+            include "../research/api/co_authorlsit.php";
+            foreach($result as $row)
+            {
+              echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
+            }
+          ?>
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-default" type="button" id="add-co-author">Add</button>
+        </div>
+        </div>
+        <div class="col">
+          <ul class="list-group" id="co-author-list">
+          <label>--Co-Authors Added--</label>
+            <?php
+            include "../research/api/co_authorlsit.php";
+            $a="list-group-item";
+            foreach($result as $row)
+            {
+              echo  "<li class ='list-group-item'>".$row['fullname']."</li>";
+            }
+          ?>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label">Abstract *</label>
+        <textarea rows="5" cols="60" type="text "name="abstract" id="title" class="form-control"></textarea>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+        <label>Date Publish</label>
+        <input type="date" name="dpub" id="dpub" class="form-control" />
+      </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+          <label>Field of Study</label>
+          <input type="text" name="fstudy" id="fstudy" class="form-control" />
+        </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="label">Tag(s) *</label>
+        <div class="col">
+          <select class="custom-select" id="inputGroupSelect04">
+          <option selected>Choose...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-default" type="button">Add</button>
+        </div>
+        </div>
+        <div class="col">
+          <ul class="list-group">
+          <labe>--Tags Added--</labe>
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="mb-3">
+        <label for="formFileSm" class="form-label">File Pdf *</label>
+        <input class="form-control form-control-md" id="formFileSm" type="file">
+      </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-info" id="submit" name="btnsubmit" >
+            Submit
+          </button>
+      </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+  
+  </div>
+</div>  
       </div>
     </section>
 
