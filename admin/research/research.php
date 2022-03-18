@@ -165,8 +165,7 @@
                 </div>
 
                 <div class="col">
-                  
-                  <ul class="list-group">
+                  <ul class="list-group" id="co-author-list">
                   <label>--Co-Authors Added--</label>
                     <li class="list-group-item">Cras justo odio</li>
                     <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -347,8 +346,9 @@
     });
 
 
-    $("#add-co-author").click(function(){
-      $("#")
+    $('#inputGroupSelect04').click(function(){
+      $("#co-author-list").hide();
+      console.log("clicked!");
     });
 } );
   </script>
