@@ -1,5 +1,6 @@
 <?php
   // include "../research/api/submitpost.php";
+  include "../research/api/co_authorlsit.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,15 +96,6 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card">
-              <div class="card-content">
-                <p class="category"><strong>Visits</strong></p>
-                <h3 class="card-title">70,340</h3>
-              </div>
-            </div>
-          </div>
-          
         </div>
       </div>
   </section>
@@ -182,69 +174,64 @@
   </div>
 </div>
 
-
 <div class="row">
-  <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
     <div class="box">
     <center><h1>Add New Research Paper</h1></center>
-      <form style="margin: auto;">
+      <form action="">
+        <!-- TITLE -->
+        <div class="form-group">
+          <label class="label">Title *</label>
+          <textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control"></textarea>
+        </div>
 
-      <!-- TITLE -->
-      <div class="form-group">
-        <label class="label">Title *</label>
-        <textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control"></textarea>
-      </div>
-
-      <!-- MAIN AUTHOR -->
-      <div class="form-group">
-        <label class="label">Main Author *</label>
-        <select class="custom-select" id="inputGroupSelect04">
-          <option selected>Choose...</option>
-          <?php
-            include "../research/api/mainauthorlist.php";
-            foreach($result as $row)
-            {
-              echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
-            }
-          ?>
-        </select>
-      </div>
-
-      <!-- CO-AUTHOR -->
-      <div class="row">
-        <label class="label">Co-Author(s) *</label><br>
-        <div class="col">
+        <!-- MAIN AUTHOR -->
+        <div class="form-group">
+          <label class="label">Main Author *</label>
+          <select class="custom-select" id="inputGroupSelect04">
+            <option selected>Choose...</option>
+            <?php
+              include "../research/api/mainauthorlist.php";
+              foreach($result as $row)
+              {
+                echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
+              }
+            ?>
+          </select>
+        </div>
+        
+        <!-- CO AUTHOR -->
+        <div class="row">
+          <div class="col">
+          <label class="label">Co-Author(s) *</label><br>
           <select class="custom-select" id="inputGroupSelect04">
           <option selected>Choose...</option>
           <?php
-          
-            include "../research/api/co_authorlsit.php";
             foreach($result as $row)
             {
               echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
             }
           ?>
-        </select>
-        <div class="input-group-append">
-          <button class="btn btn-default" type="button" id="add-co-author">Add</button>
-        </div>
-        </div>
-        <div class="col">
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-info" type="button" id="add-co-author">Add</button>
+          </div>
+          </div>
+          <div class="col">
           <ul class="list-group" id="co-author-list">
           <label>--Co-Authors Added--</label>
             <?php
-            include "../research/api/co_authorlsit.php";
-            $a="list-group-item";
-            foreach($result as $row)
-            {
-              echo  "<li class ='list-group-item'>".$row['fullname']."</li>";
-            }
-          ?>
+              $a="list-group-item";
+              foreach($result as $row)
+              {
+                echo  "<li class ='list-group-item'>".$row['fullname']."</li>";
+              }
+            ?>
           </ul>
+          </div>
         </div>
-      </div>
 
-      <!-- ABSTRACT -->
+        <!-- ABSTRACT -->
       <div class="form-group">
         <label class="label">Abstract *</label>
         <textarea rows="5" cols="60" type="text "name="abstract" id="title" class="form-control"></textarea>
@@ -262,8 +249,15 @@
         <!-- FIELD OF STUDY -->
         <div class="col">
           <div class="form-group">
-            <label>Field of Study</label>
-            <input type="text" name="fstudy" id="fstudy" class="form-control" />
+            <label class="label">Field of Study *</label><br>
+            <select class="custom-select" id="inputGroupSelect04">
+            <option selected>Choose...</option>
+            <option value="Accounting and Finance">Accounting and Finance</option>
+            <option value="Business and Economics">Business and Economics</option>
+            <option value="Computer Studies">Computer Studies</option>
+            <option value="Hospitality">Hospitality</option>
+            <option value="Nursing">Nursing</option>
+            </select>
           </div>
         </div>
       </div>
@@ -271,8 +265,8 @@
       <div class="row">
 
         <!-- TAGS -->
-        <label class="label">Tag(s) *</label>
         <div class="col">
+          <label class="label">Tag(s) *</label>
           <select class="custom-select" id="inputGroupSelect04">
             <option selected>Choose...</option>
             <option value="1">One</option>
@@ -280,7 +274,7 @@
             <option value="3">Three</option>
           </select>
           <div class="input-group-append">
-            <button class="btn btn-default" type="button">Add</button>
+            <button class="btn btn-info" type="button">Add</button>
           </div>
         </div>
         <div class="col">
@@ -372,7 +366,6 @@
         </div>
       </div>
     </div>
-
   </footer>
 <!--================================================================================================
   END FOOTER 

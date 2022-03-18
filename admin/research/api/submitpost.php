@@ -1,7 +1,7 @@
 <?php
     $con = mysqli_connect("localhost","root","","research_portal");
 
-    if(isset($_POST['btnsubmit']))
+    if(isset($_POST['']))
 {
     //check if empty and post method
     $has_title = isset($_POST['title']) && $_POST['title']!="";
