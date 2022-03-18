@@ -8,17 +8,14 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="./img/favicon.png" rel="icon">
-  <link href="../img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../../img/favicon.png" rel="icon">
+  <link href="../../img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
   <!-- Bootstrap CSS File -->
-  <link href="../../lib/bootstrap-5/bootstrap.min.css" rel="stylesheet" />
-  <script src="../../lib/bootstrap-5/bootstrap.bundle.min.js"></script>
-  <script src="../../lib/dselect.js"></script>
   <link rel="stylesheet" href="../../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../css/mdb.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
@@ -50,11 +47,11 @@
       <div class="logo float-left">
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="../img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+        <a href="#intro" class="scrollto"><img src="../../img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
-          <li class="active"><a href="../admin/research/research.php">Research Management</a></li>
+          <li class="active"><a href="../research/research.php">Research Management</a></li>
           <li class="active"><a href="#intro">About Us</a></li>
 
         </ul>
@@ -74,20 +71,42 @@
       </div>
 
       <div class="intro-info">    
-          <h2>Research Management </h2>
+          <h2>Research Management </h2><br><br>
         <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card">
+              <div class="card-content">
+                <p class="category"><strong>Total Researches</strong></p>
+                <h3 class="card-title">70,340</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card">
+              <div class="card-content">
+                <p class="category"><strong>Total </strong></p>
+                <h3 class="card-title">70,340</h3>
+              </div>
+            </div>
+          </div>
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card">
               <div class="card-content">
                 <p class="category"><strong>Visits</strong></p>
                 <h3 class="card-title">70,340</h3>
               </div>
-
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card">
+              <div class="card-content">
+                <p class="category"><strong>Visits</strong></p>
+                <h3 class="card-title">70,340</h3>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     
   </section>
       
@@ -204,7 +223,7 @@
               </div>
 
               <div class="row">
-                <label class="label">Co-Author(s) *</label>
+                <label class="label">Co-Author(s) *</label><br>
                 <div class="col">
                   <select class="custom-select" id="inputGroupSelect04">
                   <option selected>Choose...</option>
@@ -221,21 +240,23 @@
                 <div class="input-group-append">
                   <button class="btn btn-default" type="button" id="add-co-author">Add</button>
                 </div>
-                <script type="">
-                  $(document).ready(functio(){
-                    
-                      $("#co-author-list").hide();
-                      console.log("clicked!");
-                   
-                  })
+                <script>
+
                 </script>
                 </div>
 
                 <div class="col">
                   <ul class="list-group" id="co-author-list">
                   <label>--Co-Authors Added--</label>
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <?php
+                  
+                    include "../research/api/co_authorlsit.php";
+                    $a="list-group-item";
+                    foreach($result as $row)
+                    {
+                      echo  "<li class ='list-group-item'>".$row['fullname']."</li>";
+                    }
+                  ?>
                   </ul>
                 </div>
 
@@ -375,16 +396,15 @@
       </div>
     </div>
 
-  </footer><!-- #footer -->
+  </footer>
+<!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
-  <!-- Tables CDN -->
-  <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
-  <!-- JavaScript Libraries -->
-  <script src="../../lib/jquery/jquery.min.js"></script>
+ <!-- JavaScript Libraries -->
+  <script src="../../js/jquery.min.js"></script>
   <script src="../../lib/jquery/jquery-migrate.min.js"></script>
   <script src="../../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../../lib/easing/easing.min.js"></script>
@@ -395,28 +415,19 @@
   <script src="../../lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
   <script src="../../lib/lightbox/js/lightbox.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
-  <!-- Contact Form JavaScript File -->
+
+   <!-- Contact Form JavaScript File -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <script src="../contactform/contactform.js"></script>
+  <script src="../../contactform/contactform.js"></script>
 
-  <!-- Template Main Javascript File -->
+
   <script>
   $(document).ready( function () {
-    $('#table_id').DataTable();
-    $('.mdb-select').materialSelect();
-
-    var select_box_element = document.querySelector('#select_box');
-    dselect(select_box_element, {
-        search: true
-    });
-
-
-    
-} );
+    console.log("Heloo pooooooo");
+  } );
   </script>
-  <script src="../js/main.js"></script>
+  <script src="../../js/main.js"></script>
 
 </body>
 </html>

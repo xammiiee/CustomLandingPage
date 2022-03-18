@@ -8,7 +8,7 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-@import '~mdb-ui-kit/css/mdb.min.css';
+
 
 @font-face {
   font-family: THWACK;
@@ -193,30 +193,32 @@ h6 {
   
 }
 
-#intro .intro-img .card{
+#intro .intro-img {
   width: 50%;
   float: left;
 }
 
 #intro .intro-info {
-  width: 50%;
+  width: 100%;
   float: left;
+  /* background: #000; */
 }
 
-#intro .intro-info h2 {
+#intro  h2 {
   color: #fff;
   margin-bottom: 40px;
   font-size: 48px;
   font-weight: 700;
+
 }
 
-#intro .intro-info h2 span {
+#intro  h2 span {
   color: #74b5fc;
   text-decoration: underline;
 }
 
-#intro .intro-info .btn-get-started,
-#intro .intro-info .btn-services {
+#intro  .btn-get-started,
+#intro  .btn-services {
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -229,23 +231,23 @@ h6 {
   color: #fff;
 }
 
-#intro  .intro-info .btn-get-started {
+#intro   .btn-get-started {
   background: #007bff;
   border: 2px solid #007bff;
   color: #fff;
 }
 
-#intro .intro-info .btn-get-started:hover {
+#intro  .btn-get-started:hover {
   background: none;
   border-color: #fff;
   color: #fff;
 }
 
-#intro .intro-info .btn-services {
+#intro  .btn-services {
   border: 2px solid #fff;
 }
 
-#intro .intro-info .btn-services:hover {
+#intro  .btn-services:hover {
   background: #007bff;
   border-color: #007bff;
   color: #fff;
@@ -620,7 +622,9 @@ h6 {
 
 /* Services Section
 --------------------------------*/
-
+.category, .card-title{
+  text-align: center;
+}
 #services {
   padding: 60px 0 40px 0;
   box-shadow: inset 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
@@ -1401,7 +1405,7 @@ li {
     margin: 0 auto 25px auto;
   }
 
-  #intro .intro-info {
+  #intro  {
     width: 80%;
     float: none;
     margin: auto;
@@ -1414,17 +1418,20 @@ li {
 }
 
 @media (max-width: 768px) {
-  .back-to-top {
+  .back-to-top{
     bottom: 15px;
   }
 }
 
-@media (max-width: 767px) {
-  #intro .intro-info {
+@media (max-width: 967px) {
+  #intro .intro-info .card{
     width: 100%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+
   }
 
-  #intro .intro-info h2 {
+  #intro h2 {
     font-size: 34px;
     margin-bottom: 30px;
   }
