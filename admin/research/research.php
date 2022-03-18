@@ -93,7 +93,30 @@
 
         </header><br>
 
-<!--======================== adding form ==============================-->
+<!--======================== Modal Adding Form ==============================-->
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New Research Book</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
         <div class="row">
           <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
             <div class="box">
@@ -109,9 +132,15 @@
                 <label class="label">Main Author *</label>
                 <select class="custom-select" id="inputGroupSelect04">
                   <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <?php
+                  
+                    include "../research/api/mainauthorlist.php";
+
+                    foreach($result as $row)
+                    {
+                      echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
+                    }
+                  ?>
                 </select>
               </div>
 
@@ -120,12 +149,18 @@
                 <div class="col">
                   <select class="custom-select" id="inputGroupSelect04">
                   <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <?php
+                  
+                    include "../research/api/co_authorlsit.php";
+
+                    foreach($result as $row)
+                    {
+                      echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
+                    }
+                  ?>
                 </select>
                 <div class="input-group-append">
-                  <button class="btn" type="button">Add</button>
+                  <button class="btn" type="button" id="add-co-author">Add</button>
                 </div>
                 </div>
 
@@ -307,9 +342,13 @@
     $('.mdb-select').materialSelect();
 
     var select_box_element = document.querySelector('#select_box');
-
     dselect(select_box_element, {
         search: true
+    });
+
+
+    $("#add-co-author").click(function(){
+      $("#")
     });
 } );
   </script>
