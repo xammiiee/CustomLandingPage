@@ -214,11 +214,11 @@
           ?>
           </select>
           <div class="input-group-append">
-            <button class="btn btn-info" type="button" id="add-co-author">Add</button>
+            <button class="btn btn-info" type="button" id="btn-co-author">Add</button>
           </div>
           </div>
-          <div class="col">
-          <ul class="list-group" id="co-author-list">
+          <div class="col" id="co-author-list">
+          <ul class="list-group" >
           <label>--Co-Authors Added--</label>
             <?php
               $a="list-group-item";
@@ -274,10 +274,10 @@
             <option value="3">Three</option>
           </select>
           <div class="input-group-append">
-            <button class="btn btn-info" type="button">Add</button>
+            <button class="btn btn-info" type="button" id="btn-tags">Add</button>
           </div>
         </div>
-        <div class="col">
+        <div class="col" id="tags-list">
           <ul class="list-group">
           <labe>--Tags Added--</labe>
             <li class="list-group-item">Cras justo odio</li>
@@ -395,8 +395,19 @@
 
   <script>
   $(document).ready( function () {
-    console.log("Heloo pooooooo");
-  } );
+    $("#co-author-list").hide();
+    $("#tags-list").hide();
+  
+    $("#co-author-list").click(function(){
+        $("#co-author-list").show();
+      });
+  
+      $("#tags-list").click(function(){
+        $("#tags-list").show();
+      });
+  });
+  
+
   </script>
   <script src="../../js/main.js"></script>
 
