@@ -16,16 +16,19 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
   <!-- Bootstrap CSS File -->
+  <link href="../../lib/bootstrap-5/bootstrap.min.css" rel="stylesheet" />
+  <script src="../../lib/bootstrap-5/bootstrap.bundle.min.js"></script>
+  <script src="../../lib/dselect.js"></script>
   <link rel="stylesheet" href="../../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../css/mdb.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
   <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="../../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
   <link href="../../css/style.css" rel="stylesheet">
@@ -86,62 +89,43 @@
     ============================-->
     <section id="services" class="section-bg">
       <div class="container">
-
         <header class="section-header">
 
         </header><br>
 
+<!--======================== adding form ==============================-->
         <div class="row">
-          <div class="col" id="container-form" style="width:100%";>
-            <form style="margin: auto;">
+          <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+            <div class="box">
+              <form style="margin: auto;">
+            
               <div class="form-group">
                 <label class="label">Title *</label>
                 <textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control"></textarea>
               </div>
 
-              <div class="form-row">
-                <div class="col">
-                  <label class="label">Main Author *</label>
-                  <select class="form-control" searchable="Search here..">
-                    <option value="" disabled selected>Choose Main Author</option>
-                    <?php
-                      include "../research/api/authordropdownlist.php";
-                      foreach($result as $row)
-                      {
-                        echo "<option value=".$row['fullname'].">".$row['fullname']."</option>";
-                      }
-                    ?>
-                  </select>
+              <div class="row">
+                <div class="col-md-3" >
+                  <div class="input-group">
+  <select class="custom-select" id="inputGroupSelect04">
+    <option selected>Choose...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button">Button</button>
+  </div>
+</div>
                 </div>
-                <div class="col">
-                  <label class="label">Co-Authors *</label>
-                  <div class="row">
-                    <div class="col">
-                  <select class="form-control" searchable="Search here..">
-                    <option value="" disabled selected>Choose Co-Author</option>
-                    <?php
-                      include "../research/api/authordropdownlist.php";
-                      foreach($result as $row)
-                      {
-                        echo "<option value=".$row['fullname'].">".$row['fullname']."</option>";
-                      }
-                    ?>
-                  </select>
-                    </div>
-                    <div class="col">
-                    <button type="button" class="btn btn-primary">Add</button>
-                    </div>
-                  </div>
                 </div>
+                <div class="col"></div>
               </div>
-            </form>
-          </div>
-          <div class="col">
-            
-          </div>
-        </div>
-        
 
+              </form>
+            </div>
+          </div>
+        </div>  
       </div>
     </section>
 
@@ -240,6 +224,12 @@
   $(document).ready( function () {
     $('#table_id').DataTable();
     $('.mdb-select').materialSelect();
+
+    var select_box_element = document.querySelector('#select_box');
+
+    dselect(select_box_element, {
+        search: true
+    });
 } );
   </script>
   <script src="../js/main.js"></script>

@@ -8,6 +8,8 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@import '~mdb-ui-kit/css/mdb.min.css';
+
 @font-face {
   font-family: THWACK;
   src: url(THWACK.TTF);
