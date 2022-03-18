@@ -192,9 +192,6 @@
 
 
 
-
-
-
         <div class="row">
           <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
             <div class="box">
