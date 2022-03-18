@@ -193,8 +193,18 @@
                 <input class="form-control form-control-md" id="formFileSm" type="file">
               </div>
               </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-info" id="submit" name="btnsubmit" >
+                    Submit
+                  </button>
+              </div>
               </form>
             </div>
+          </div>
+
+          <div class="row">
+          
           </div>
         </div>  
       </div>
