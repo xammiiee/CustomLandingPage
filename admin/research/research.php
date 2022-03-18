@@ -1,6 +1,7 @@
 <?php
   // include "../research/api/submitpost.php";
   include "../research/api/co_authorlsit.php";
+  include "../research/api/displayallresearch.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,14 +85,14 @@
             <div class="card">
               <div class="card-content">
                 <p class="category"><strong>Total Researches</strong></p>
-                <h3 class="card-title">70,340</h3>
+                <h3 class="card-title"><?php echo"$result_count"; ?></h3>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card">
               <div class="card-content">
-                <p class="category"><strong>Total  </strong></p>
+                <p class="category"><strong>Total </strong></p>
                 <h3 class="card-title">70,340</h3>
               </div>
             </div>
@@ -178,7 +179,7 @@
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
     <div class="box">
     <center><h1>Add New Research Paper</h1></center>
-      <form action="">
+      <form action="" method="POST" onclick="authentication()" name="form">
         <!-- TITLE -->
         <div class="form-group">
           <label class="label">Title *</label>
@@ -194,7 +195,7 @@
               include "../research/api/mainauthorlist.php";
               foreach($result as $row)
               {
-                echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
+                echo  "<option value=".$row['id'].">".$row['fullname']."</option>";
               }
             ?>
           </select>
@@ -209,7 +210,7 @@
           <?php
             foreach($result as $row)
             {
-              echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
+              echo  "<option value=".$row['id'].">".$row['fullname']."</option>";
             }
           ?>
           </select>
@@ -241,7 +242,7 @@
         <!-- DATE PUBLISH -->
         <div class="col">
           <div class="form-group">
-            <label>Date Publish</label>
+            <label>Date Publish *</label>
             <input type="date" name="dpub" id="dpub" class="form-control" />
           </div>
         </div>

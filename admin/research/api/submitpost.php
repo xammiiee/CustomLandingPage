@@ -1,7 +1,15 @@
 <?php
     $con = mysqli_connect("localhost","root","","research_portal");
 
-    if(isset($_POST['']))
+    function submiting($con, $data)
+    {
+        $query ="SELECT * FROM tblresearch";
+
+        $result = $con->query($query);
+        $query = mysqli_query($con, $query);
+        $result_count = mysqli_num_rows($query);
+    }
+if(isset($_POST['btnsubmit']))
 {
     //check if empty and post method
     $has_title = isset($_POST['title']) && $_POST['title']!="";
@@ -15,12 +23,10 @@
         $id = date("YmdHis");
         $title = $_POST['title'];
         $abs = $_POST['abstract'];
-        $comment = $_POST['comment'];
         $tags = $_POST['tags'];
         $aut =$_POST['author'];
         $dpub =$_POST['dpub'];
         $fstudy = $_POST['fstudy'];
-        $email = $_POST['email'];
         $pdf_file = $_POST['pdffile'];
     
         //for logs
@@ -28,7 +34,7 @@
         $time1 = date("G:m:s");
         
         // Uploaded file
-            $result = mysqli_query($con, "INSERT INTO tblresearch (`id`, `title`, `abstract`, `comment`, `authors`, `email`, `date_publish`, `field_of_study`, `department`, `pdf_file`, `views`, `cites`, `downloads`, `tagging`) VALUES  ('$id', '$title', '$abs', '$comment','$aut','$email','$dpub','$fstudy','','$pdf_file','','','','$tags')");
+            $result = mysqli_query($con, "INSERT INTO tblresearch (`id`, `title`, `abstract`, `authors`, `email`, `date_publish`, `field_of_study`, `department`, `pdf_file`, `views`, `cites`, `downloads`, `tagging`) VALUES  ('$id', '$title', '$abs', '$comment','$aut','$email','$dpub','$fstudy','','$pdf_file','','','','$tags')");
             if($result > 0)
             {?>
                 <div class="alert alert-success" role="alert">
