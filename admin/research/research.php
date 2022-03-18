@@ -69,15 +69,21 @@
   ============================-->
   <section id="intro" class="clearfix">
     <div class="container">
-
       <div class="intro-img">
         <img src="../" alt="" class="img-fluid">
       </div>
+
       <div class="intro-info">    
-          <h2>Arellano Research <span> Portal <span></h2>
-        </div>
+          <h2>Research Management </h2>
+      </div><br>
+
     </div>
+      <div class="card" style="width: 30%;">
+        <h1>Jaren </h1>
+      </div>
+    
   </section>
+      
   
   <!-- #intro -->
   
@@ -90,8 +96,54 @@
     <section id="services" class="section-bg">
       <div class="container">
         <header class="section-header">
-
+  
         </header><br>
+
+<!--============================ Table List =================================-->
+
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
+    <div class="box">
+    <table class="table table-striped table-responsive-md" id="firstTable" >
+      <thead class="bg-primary text-white" id="firstThead"">
+        <th> Title </th>
+        <th> Author </th>
+        <th> Date Publish </th>
+        <th> Field of Study </th>
+        <th> Views </th>
+        <th> Cited </th>
+        <th colspan="3"> Action </th>
+      </thead>
+      <tbody>
+        <?php
+        include "../research/api/displayallresearch.php";
+
+          foreach($result as $rs)
+          { ?>
+            <tr id="result">
+              <td><?php echo $rs['title']; ?> </td>
+              <td><?php echo $rs['authors']; ?> </td>
+              <td><?php echo $rs['date_publish']; ?> </td>
+              <td><?php echo $rs['field_of_study']; ?> </td>
+              <td><?php echo $rs['views']; ?> </td>
+              <td><?php echo $rs['cites']; ?> </td>
+              <td>
+                <a href="admin_dashboard.php?view=<?php echo $rs['id']?>"><input type="submit" class="btn btn-primary btn-sm" id="btn_edit1" value="View" >
+                </input></a>
+                <a href="#editresearch"><input type="submit" class="btn btn-warning btn-sm" id="btn_edit" value="Edit" data-bs-toggle="modal" data-bs-target="#editresearch">
+                  </input></a>
+                <a href="admin_dashboard.php?rsdelete=<?php echo $rs['id'];?>"><input type="submit" class="btn btn-danger btn-sm" id="btn_deleteresearch" value="Delete">
+                  </input></a>
+              </td>
+            </tr>
+            <?php
+          }
+        ?>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
 
 <!--======================== Modal Adding Form ==============================-->
 <div class="modal" tabindex="-1" role="dialog">
