@@ -213,7 +213,7 @@
           <div class="col">
           <label class="label">Co-Author(s) *</label><br>
           <select class="custom-select" id="txtco-authors">
-          <option selected disabled>Choose...</option>
+          <option selected disabled> </option>
           <?php
             foreach($result as $row)
             {
@@ -258,8 +258,8 @@
         <div class="col">
           <div class="form-group">
             <label class="label">Field of Study *</label><br>
-            <select class="custom-select" id="inputGroupSelect04">
-            <option selected>Choose...</option>
+            <select class="custom-select" id="fstudy">
+            <option selected> </option>
             <option value="Accounting and Finance">Accounting and Finance</option>
             <option value="Business and Economics">Business and Economics</option>
             <option value="Computer Studies">Computer Studies</option>
@@ -276,10 +276,10 @@
         <div class="col">
           <label class="label">Tag(s) *</label>
           <select class="custom-select" id="drop-tags">
-            <option selected disabled>Choose...</option>
+            <option selected disabled> </option>
             <option value="Computer" id="Computer">Computer</option>
-            <option value="Web Design" id="WebDesign">Web Design</option>
-            <option value="Internet Security" id="InternetSecurity">Internet Security</option>
+            <option value="WebDesign" id="WebDesign">Web Design</option>
+            <option value="InternetSecurity" id="InternetSecurity">Internet Security</option>
           </select>
           <div class="input-group-append">
             <button class="btn btn-info" type="button" id="btn-tags">Add</button>
@@ -401,18 +401,21 @@
 
   <script>
   $(document).ready( function () {
+    
+    // ADDING NEW RESEARCH
     $("#co-list").toggle();
     $("#tags-list").toggle();
 
-
+    // CO-AUTHORS
     $("#btn-co-author").click(function () {
       $("#co-list").show();
 
       var value1 = $('#txtco-authors').val();
       var val_id = $("#txtco-authors").attr('id')
       $('#tags-list').append('<li class ="list-group-item">'+ value1 +'</li>');
-
-      $("#"+ value1+"").remove();
+      
+      var remove_space = value1.replace(/ /g,'');
+      $("#"+ remove_space+"").remove();
     })
 
     // TAGS
@@ -421,11 +424,43 @@
       
       var value = $('#drop-tags').val();
       $('#tags-list').append('<li class="list-group-item" id="'+value+'">' + value + '</li>');
+
+      $("#"+value+"").remove();
+
       
-      var trimStr = $.trim(value);
-      console.log(trimStr);
-      $("#"+trimStr+"").remove();
     })
+
+    // GET ALL VALUES
+    
+    // TITLE
+    var title = $("#title").text();
+    
+    // MAIN AUTHORS
+    var main_author = $("#txtmain-author").val();
+
+    // CO-AUTHORS
+    var co_author = $("#co-list").text();
+    
+    // ABSTRACT
+    var abstract = $("#abstract").text();
+
+    // DATE PUBLISH
+    var dpub = $("#dpub").val();
+
+    // FIELD OF STUDY
+    var fstudy = $("#fstudy").val();
+    
+    // TAGS
+    var tags = $("#tags-list").text();
+    // FILE PDF 
+
+      // console.log(title);
+      // console.log(main_author);
+      // console.log(co-author);
+      // console.log(abstract);
+      // console.log(dpub);
+      // console.log(fstudy);
+      // console.log(tags);
   });
   
 
