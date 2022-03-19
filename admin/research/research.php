@@ -56,7 +56,7 @@
       </div>
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
-          <li class="active"><a href="../research/research.php">Research Management</a></li>
+          <li class="" ><a href="../research/research.php" id="aurespor">Research Management</a></li>
           <li class="active" id=aboutus><a href="#intro">About Us</a></li>
 
         </ul>
@@ -73,12 +73,12 @@
                                           START BODY SECTION
 ====================================================================================================-->
   <section id="intro" class="clearfix">
-    <div class="container">
+    <div class="container" >
       <div class="intro-img">
         <img src="../" alt="" class="img-fluid">
       </div>
 
-      <div class="intro-info">    
+      <div class="intro-info" style="background-color: black;">    
           <h2>Research Management </h2><br><br>
         <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
@@ -119,20 +119,21 @@
         <tr>
           <td><button class="btn btn-info" type="button" id="btn-add-research">Add Research Book</button></td>
           <td>
-          
+          <input id="txtsearch_title" type="search" class="form-control" placeholder="Search Title" style="float: right; width: 25%">
           </td>
         </tr>
       <table class="table table-striped table-responsive-md" id="firstTable" >
         <thead class="bg-primary text-white" id="firstThead"">
           <th> Title </th>
-          <th> Author </th>
+          <th> Main Author </th>
+          <th> Co-Author(s) </th>
           <th> Date Publish </th>
           <th> Field of Study </th>
           <th> Views </th>
           <th> Cited </th>
           <th colspan="3"> Action </th>
         </thead>
-        <tbody>
+        <tbody id="myTable" style="width:100%">
           <?php
           include "../research/api/displayallresearch.php";
 
@@ -140,17 +141,18 @@
             { ?>
               <tr id="result">
                 <td><?php echo $rs['title']; ?> </td>
-                <td><?php echo $rs['authors']; ?> </td>
+                <td><?php echo $rs['main_author']; ?> </td>
+                <td><?php echo $rs['co_authors']; ?> </td>
                 <td><?php echo $rs['date_publish']; ?> </td>
                 <td><?php echo $rs['field_of_study']; ?> </td>
                 <td><?php echo $rs['views']; ?> </td>
                 <td><?php echo $rs['cites']; ?> </td>
-                <td>
-                  <a href="admin_dashboard.php?view=<?php echo $rs['id']?>"><input type="submit" class="btn btn-primary btn-sm" id="btn_edit1" value="View" >
+                <td style="text-align:left;">
+                  <a href="view.php?view=<?php echo $rs['id']?>"><input type="submit" class="btn btn-primary btn-sm" id="btn_edit1" value="View" >
                   </input></a>
                   <a href="#editresearch"><input type="submit" class="btn btn-warning btn-sm" id="btn_edit" value="Edit" data-bs-toggle="modal" data-bs-target="#editresearch">
                     </input></a>
-                  <a href="admin_dashboard.php?rsdelete=<?php echo $rs['id'];?>"><input type="submit" class="btn btn-danger btn-sm" id="btn_deleteresearch" value="Delete">
+                  <a href="research.php?rsdelete=<?php echo $rs['id'];?>"><input type="submit" class="btn btn-danger btn-sm" id="btn_deleteresearch" value="Delete">
                     </input></a>
                 </td>
               </tr>
@@ -187,6 +189,7 @@
     <div class="box">
     <center><h1>Add New Research Paper</h1></center>
       <form action="" method="POST" name="form" enctype="multipart/form-data">
+        
         <!-- TITLE -->
         <div class="form-group">
           <label class="label">Title *</label>
@@ -429,44 +432,40 @@
       $('#tags-list').append('<li class="list-group-item" id="'+value+'">' + value + '</li>');
 
       $("#"+value+"").remove();
-
-      
     })
 
+    // SUBMIT
+    $("#btnsubmit").click(function(){
+      // INITIALIZE
+      var title = $("#title").val();
+      var main_author = $("#txtmain-author").val();
+      var co_author = $("#co-list").text();
+      var abstract = $("#abstract").text();
+      var dpub = $("#dpub").val();
+      var fstudy = $("#fstudy").val();
+      var tags = $("#tags-list").text();
+
+      // VALIDATE IF EMPTY
+      if(title =="" && main_author =="" && co_author =="" && abstract == "" && dpub =="" && fstudy =="" && tags =="")
+      {
+        alert("Fill all Fields");
+      }
+    });
     // GET ALL VALUES
-    
-    // TITLE
-    var title = $("#title").val();
-      
-    // MAIN AUTHORS
-    var main_author = $("#txtmain-author").val();
-    console.log(main_author);
-    // CO-AUTHORS
-    var co_author = $("#co-list").text();
-    
-    // ABSTRACT
-    var abstract = $("#abstract").text();
 
-    // DATE PUBLISH
-    var dpub = $("#dpub").val();
-
-    // FIELD OF STUDY
-    var fstudy = $("#fstudy").val();
+    // INITIALIZE THE FORM
     
-    // TAGS
-    var tags = $("#tags-list").text();
-    // FILE PDF 
 
-      // console.log(title);
-      // console.log(main_author);
-      // console.log(co-author);
-      // console.log(abstract);
-      // console.log(dpub);
-      // console.log(fstudy);
-      // console.log(tags);
+
+    // FILTERING BY SEARCHING
+    $("#txtsearch_title").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+
   });
-  
-
   </script>
   <script src="../../js/main.js"></script>
 
