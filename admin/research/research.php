@@ -186,7 +186,7 @@
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
     <div class="box">
     <center><h1>Add New Research Paper</h1></center>
-      <form action="" method="POST" onclick="authentication()" name="form" enctype="multipart/form-data">
+      <form action="" method="POST" name="form" enctype="multipart/form-data">
         <!-- TITLE -->
         <div class="form-group">
           <label class="label">Title *</label>
@@ -197,7 +197,7 @@
         <div class="form-group">
           <label class="label">Main Author *</label>
           <select class="custom-select" id="txtmain-author">
-            <option selected disabled>Choose...</option>
+            <option selected disabled> </option>
             <?php
               include "../research/api/mainauthorlist.php";
               foreach($result as $row)
@@ -410,6 +410,8 @@
     // CO-AUTHORS
     $("#btn-co-author").click(function () {
       $("#co-list").show();
+      var main_author = $("#txtmain-author").text();
+    console.log(main_author);
 
       var value1 = $('#txtco-authors').val();
       var val_id = $("#txtco-authors").attr('id')
@@ -434,11 +436,11 @@
     // GET ALL VALUES
     
     // TITLE
-    var title = $("#title").text();
-    
+    var title = $("#title").val();
+      
     // MAIN AUTHORS
     var main_author = $("#txtmain-author").val();
-
+    console.log(main_author);
     // CO-AUTHORS
     var co_author = $("#co-list").text();
     
