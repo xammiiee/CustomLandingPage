@@ -98,6 +98,7 @@
             </div>
           </div>
         </div>
+
       </div>
   </section>
 
@@ -111,10 +112,16 @@
 
   </header><br>
 
-<!--==================================== Table List =============================================-->
-  <div class="row">
+<!--==================================== Table List =============================================-->  
+<div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
       <div class="box">
+        <tr>
+          <td><button class="btn btn-info" type="button" id="btn-add-research">Add Research Book</button></td>
+          <td>
+          
+          </td>
+        </tr>
       <table class="table table-striped table-responsive-md" id="firstTable" >
         <thead class="bg-primary text-white" id="firstThead"">
           <th> Title </th>

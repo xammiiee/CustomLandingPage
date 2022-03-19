@@ -1,15 +1,10 @@
 <?php
     $con = mysqli_connect("localhost","root","","research_portal");
 
-    function submiting($con, $data)
-    {
-        $query ="SELECT * FROM tblresearch";
+// THE IDEA OF SAVING OF THE LIST OF AUTHOR IS BY SAVING THE RESEARCH ID TO THE DATA TABLE OF THE AUTHORS.
 
-        $result = $con->query($query);
-        $query = mysqli_query($con, $query);
-        $result_count = mysqli_num_rows($query);
-    }
-if(isset($_POST['btnsubmit']))
+
+    if(isset($_POST['btnsubmit']))
 {
     //check if empty and post method
     $has_title = isset($_POST['title']) && $_POST['title']!="";
@@ -17,30 +12,35 @@ if(isset($_POST['btnsubmit']))
     $has_dpub = isset($_POST['dpub']) && $_POST['dpub']!="";
     $has_fstudy = isset($_POST['fstudy']) && $_POST['fstudy']!="";
 
+    // INITIALIZE THE ID
+    $id = date("YmdHis");
+    $date1 = date("Y/m/d");
+    $time1 = date("G:m:s");
+
+
+    // GET VALUE OF MAIN AUTHOR AND CO AUTHORS
+    
+    // VERIFY IF THE METHODS ARE POST
     if ($has_title && $has_abs && $has_dpub && $has_fstudy)
     {
         //value from db
-        $id = date("YmdHis");
         $title = $_POST['title'];
         $abs = $_POST['abstract'];
-        $tags = $_POST['tags'];
-        $aut =$_POST['author'];
         $dpub =$_POST['dpub'];
         $fstudy = $_POST['fstudy'];
-        $pdf_file = $_POST['pdffile'];
     
         //for logs
-        $date1 = date("Y/m/d");
-        $time1 = date("G:m:s");
         
-        // Uploaded file
-            $result = mysqli_query($con, "INSERT INTO tblresearch (`id`, `title`, `abstract`, `authors`, `email`, `date_publish`, `field_of_study`, `department`, `pdf_file`, `views`, `cites`, `downloads`, `tagging`) VALUES  ('$id', '$title', '$abs', '$comment','$aut','$email','$dpub','$fstudy','','$pdf_file','','','','$tags')");
+        
+        // UPLOAD TO TBLRESEARCH
+            $result = mysqli_query($con, "INSERT INTO tblresearch (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `department`, `pdf_file`, `views`, `cites`, `tagging`) VALUES  ('$id', '$title', '$abs', '','','$dpub','$fstudy','','$pdf_file','','','$tags')");
             if($result > 0)
             {?>
                 <div class="alert alert-success" role="alert">
                 Research paper <?php $id ?> successfully added!
                 </div>
                 <?php
+                // LOGS
                 mysqli_query($con, "INSERT INTO tbllogs (`date`, `time`, `action`, `management`, `account`) VALUES ('$date1','$time1', 'Uploaded New Book $title with ','CMS by','Admin')");
                 header("Location: ../admin/admin_dashboard.php");
             }
@@ -51,6 +51,8 @@ if(isset($_POST['btnsubmit']))
                 </div>
                 <?php
             }
+            // UPLOAD TO TBLAUTHORS
+            $result1 = mysqli_query($con, "UPDATE tblauthor set pdf")
     } 
     else
     {?>
@@ -59,5 +61,8 @@ if(isset($_POST['btnsubmit']))
         </div>
     <?php
     }
+
+    // ADDING TO THE AUTHOR TABLE
+
 }
 ?>
