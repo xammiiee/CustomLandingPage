@@ -57,7 +57,7 @@
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
           <li class="active"><a href="../research/research.php">Research Management</a></li>
-          <li class="active"><a href="#intro">About Us</a></li>
+          <li class="active" id=aboutus><a href="#intro">About Us</a></li>
 
         </ul>
       </nav><!-- .main-nav -->
@@ -196,8 +196,8 @@
         <!-- MAIN AUTHOR -->
         <div class="form-group">
           <label class="label">Main Author *</label>
-          <select class="custom-select" id="inputGroupSelect04">
-            <option selected>Choose...</option>
+          <select class="custom-select" id="txtmain-author">
+            <option selected disabled>Choose...</option>
             <?php
               include "../research/api/mainauthorlist.php";
               foreach($result as $row)
@@ -212,12 +212,12 @@
         <div class="row">
           <div class="col">
           <label class="label">Co-Author(s) *</label><br>
-          <select class="custom-select" id="inputGroupSelect04">
-          <option selected>Choose...</option>
+          <select class="custom-select" id="txtco-authors">
+          <option selected disabled>Choose...</option>
           <?php
             foreach($result as $row)
             {
-              echo  "<option value=".$row['id'].">".$row['fullname']."</option>";
+              echo  "<option value=".$row['id']." id=".$row['fullname'].">".$row['fullname']."</option>";
             }
           ?>
           </select>
@@ -226,8 +226,8 @@
           </div>
           </div>
           <div class="col" id="co-author-list">
-          <ul class="list-group" >
-          <label>--Co-Authors Added--</label>
+            <label>--Co-Authors Added--</label>
+          <ul class="list-group" id='co-list'>
             <?php
               $a="list-group-item";
               foreach($result as $row)
@@ -275,21 +275,19 @@
         <!-- TAGS -->
         <div class="col">
           <label class="label">Tag(s) *</label>
-          <select class="custom-select" id="inputGroupSelect04">
-            <option selected>Choose...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <select class="custom-select" id="drop-tags">
+            <option selected disabled>Choose...</option>
+            <option value="Computer" id="Computer">Computer</option>
+            <option value="Web Design" id="WebDesign">Web Design</option>
+            <option value="Internet Security" id="InternetSecurity">Internet Security</option>
           </select>
           <div class="input-group-append">
             <button class="btn btn-info" type="button" id="btn-tags">Add</button>
           </div>
         </div>
-        <div class="col" id="tags-list">
-          <ul class="list-group">
-          <labe>--Tags Added--</labe>
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
+        <div class="col">
+          <label>--Tags Added--</label>
+          <ul class="list-group" id="tags-list">
           </ul>
         </div>
       </div>
@@ -403,16 +401,31 @@
 
   <script>
   $(document).ready( function () {
-    $("#co-author-list").hide();
-    $("#tags-list").hide();
-  
-    $("#co-author-list").click(function(){
-        $("#co-author-list").show();
-      });
-  
-      $("#tags-list").click(function(){
-        $("#tags-list").show();
-      });
+    $("#co-list").toggle();
+    $("#tags-list").toggle();
+
+
+    $("#btn-co-author").click(function () {
+      $("#co-list").show();
+
+      var value1 = $('#txtco-authors').val();
+      var val_id = $("#txtco-authors").attr('id')
+      $('#tags-list').append('<li class ="list-group-item">'+ value1 +'</li>');
+
+      $("#"+ value1+"").remove();
+    })
+
+    // TAGS
+    $("#btn-tags").click(function () {
+      $("#tags-list").show();
+      
+      var value = $('#drop-tags').val();
+      $('#tags-list').append('<li class="list-group-item" id="'+value+'">' + value + '</li>');
+      
+      var trimStr = $.trim(value);
+      console.log(trimStr);
+      $("#"+trimStr+"").remove();
+    })
   });
   
 

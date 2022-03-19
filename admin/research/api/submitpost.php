@@ -19,7 +19,7 @@
 
 
     // GET VALUE OF MAIN AUTHOR AND CO AUTHORS
-    
+
     // VERIFY IF THE METHODS ARE POST
     if ($has_title && $has_abs && $has_dpub && $has_fstudy)
     {
@@ -32,7 +32,7 @@
         //for logs
         
         
-        // UPLOAD TO TBLRESEARCH
+        // UPLOAD TO TBL-RESEARCH
             $result = mysqli_query($con, "INSERT INTO tblresearch (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `department`, `pdf_file`, `views`, `cites`, `tagging`) VALUES  ('$id', '$title', '$abs', '','','$dpub','$fstudy','','$pdf_file','','','$tags')");
             if($result > 0)
             {?>
@@ -42,7 +42,7 @@
                 <?php
                 // LOGS
                 mysqli_query($con, "INSERT INTO tbllogs (`date`, `time`, `action`, `management`, `account`) VALUES ('$date1','$time1', 'Uploaded New Book $title with ','CMS by','Admin')");
-                header("Location: ../admin/admin_dashboard.php");
+                header("Location: ##");
             }
             else
                 {?>
@@ -51,8 +51,12 @@
                 </div>
                 <?php
             }
-            // UPLOAD TO TBLAUTHORS
-            $result1 = mysqli_query($con, "UPDATE tblauthor set pdf")
+            // UPLOAD TO TBL-AUTHORS
+            $result1 = mysqli_query($con, "UPDATE tblauthor set pdf_file WHERE id = ".$id."");
+            if($result1 > 0 )
+            {
+                // 
+            }
     } 
     else
     {?>
