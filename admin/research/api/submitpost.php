@@ -28,12 +28,14 @@
         $abs = $_POST['abstract'];
         $dpub =$_POST['dpub'];
         $fstudy = $_POST['fstudy'];
+        $m_author = $_POST['main_author'];
+        $fs = $_POST['fstudy'];
     
         // UPLOADING PDF FILE
         if( isset( $_FILES['pdfFile'] ) ) {
             if ($_FILES['pdfFile']['type'] == "application/pdf") {
                 $source_file = $_FILES['pdfFile']['tmp_name'];
-                $dest_file = "../uploads/".$_FILES['pdfFile']['name'];
+                $dest_file = "../uploads".$_FILES['pdfFile']['name'];
                 if (file_exists($dest_file)) {
                     print "The PDF file name already exists!!";
                 }
@@ -58,8 +60,9 @@
                 }
             }
         }
-        
+
         // UPLOAD TO TBL-RESEARCH
+            $pdf_file ="../uploads/".$_FILES['pdfFile']['name']."";
             $result = mysqli_query($con, "INSERT INTO tblresearch (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `department`, `pdf_file`, `views`, `cites`, `tagging`) VALUES  ('$id', '$title', '$abs', '','','$dpub','$fstudy','','$pdf_file','','','$tags')");
             if($result > 0)
             {?>

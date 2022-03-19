@@ -40,8 +40,8 @@
 
 <body>
 <?php
-    //   include("./accounts/api/post_signup.php");
-    //   include_once ("./login/api/login_api_authenticate.php");
+  session_start();
+  include ("../research/api/submitpost.php");
 ?>
 
 <!--===============================================================================================
@@ -78,7 +78,7 @@
         <img src="../" alt="" class="img-fluid">
       </div>
 
-      <div class="intro-info" style="background-color: black;">    
+      <div class="intro-info" >    
           <h2>Research Management </h2><br><br>
         <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
@@ -152,7 +152,7 @@
                   </input></a>
                   <a href="#editresearch"><input type="submit" class="btn btn-warning btn-sm" id="btn_edit" value="Edit" data-bs-toggle="modal" data-bs-target="#editresearch">
                     </input></a>
-                  <a href="research.php?rsdelete=<?php echo $rs['id'];?>"><input type="submit" class="btn btn-danger btn-sm" id="btn_deleteresearch" value="Delete">
+                  <a href="../research/api/action.php?id=<?php echo $rs['id'];?>"><input type="submit" class="btn btn-danger btn-sm" id="btn_deleteresearch" value="Delete">
                     </input></a>
                 </td>
               </tr>
@@ -198,8 +198,8 @@
 
         <!-- MAIN AUTHOR -->
         <div class="form-group">
-          <label class="label">Main Author *</label>
-          <select class="custom-select" id="txtmain-author">
+          <label class="label">Main Author *</label><br>
+          <select class="custom-select" id="txtmain-author" name="main-author">
             <option selected disabled> </option>
             <?php
               include "../research/api/mainauthorlist.php";
@@ -209,13 +209,14 @@
               }
             ?>
           </select>
+          
         </div>
         
         <!-- CO AUTHOR -->
         <div class="row">
           <div class="col">
           <label class="label">Co-Author(s) *</label><br>
-          <select class="custom-select" id="txtco-authors">
+          <select class="custom-select" id="txtco-authors" name="co-author">
           <option selected disabled> </option>
           <?php
             foreach($result as $row)
@@ -261,7 +262,7 @@
         <div class="col">
           <div class="form-group">
             <label class="label">Field of Study *</label><br>
-            <select class="custom-select" id="fstudy">
+            <select class="custom-select" id="fstudy" name="fstudy">
             <option selected> </option>
             <option value="Accounting and Finance">Accounting and Finance</option>
             <option value="Business and Economics">Business and Economics</option>
@@ -387,6 +388,7 @@
  ==================================================================================================-->
 
  <!-- JavaScript Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="../../js/jquery.min.js"></script>
   <script src="../../lib/jquery/jquery-migrate.min.js"></script>
   <script src="../../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -402,70 +404,6 @@
    <!-- Contact Form JavaScript File -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
   <script src="../../contactform/contactform.js"></script>
-
-  <script>
-  $(document).ready( function () {
-    
-    // ADDING NEW RESEARCH
-    $("#co-list").toggle();
-    $("#tags-list").toggle();
-
-    // CO-AUTHORS
-    $("#btn-co-author").click(function () {
-      $("#co-list").show();
-      var main_author = $("#txtmain-author").text();
-    console.log(main_author);
-
-      var value1 = $('#txtco-authors').val();
-      var val_id = $("#txtco-authors").attr('id')
-      $('#tags-list').append('<li class ="list-group-item">'+ value1 +'</li>');
-      
-      var remove_space = value1.replace(/ /g,'');
-      $("#"+ remove_space+"").remove();
-    })
-
-    // TAGS
-    $("#btn-tags").click(function () {
-      $("#tags-list").show();
-      
-      var value = $('#drop-tags').val();
-      $('#tags-list').append('<li class="list-group-item" id="'+value+'">' + value + '</li>');
-
-      $("#"+value+"").remove();
-    })
-
-    // SUBMIT
-    $("#btnsubmit").click(function(){
-      // INITIALIZE
-      var title = $("#title").val();
-      var main_author = $("#txtmain-author").val();
-      var co_author = $("#co-list").text();
-      var abstract = $("#abstract").text();
-      var dpub = $("#dpub").val();
-      var fstudy = $("#fstudy").val();
-      var tags = $("#tags-list").text();
-
-      // VALIDATE IF EMPTY
-      if(title =="" && main_author =="" && co_author =="" && abstract == "" && dpub =="" && fstudy =="" && tags =="")
-      {
-        alert("Fill all Fields");
-      }
-    });
-    // GET ALL VALUES
-
-    // INITIALIZE THE FORM
-    
-
-
-    // FILTERING BY SEARCHING
-    $("#txtsearch_title").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#myTable tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-
-  });
-  </script>
+  <script src="../research/script/main.js"></script>
   <script src="../../js/main.js"></script>
 
