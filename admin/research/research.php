@@ -186,7 +186,7 @@
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
     <div class="box">
     <center><h1>Add New Research Paper</h1></center>
-      <form action="" method="POST" onclick="authentication()" name="form">
+      <form action="" method="POST" onclick="authentication()" name="form" enctype="multipart/form-data">
         <!-- TITLE -->
         <div class="form-group">
           <label class="label">Title *</label>
@@ -290,17 +290,18 @@
           <ul class="list-group" id="tags-list">
           </ul>
         </div>
-      </div>
+      </div><br>
       <div class="form-group">
-        <div class="mb-3">
-        <label for="formFileSm" class="form-label">File Pdf *</label>
-        <input class="form-control form-control-md" id="formFileSm" type="file">
-      </div>
+      <label for="" class="form-label">File Pdf *</label><br>
+        <div style="padding: 10px; border: 1px solid #999">
+          <input type="hidden" name="MAX_FILE_SIZE" value="20000000"/><input
+            type="file" name="pdfFile">
+        </div>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-info" id="submit" name="btnsubmit" >
             Submit
-          </button>
+        </button>
       </div>
       </form>
     </div>
