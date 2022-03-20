@@ -400,9 +400,7 @@
   <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
   <script src="../../lib/lightbox/js/lightbox.min.js"></script>
 
-   <!-- Contact Form JavaScript File -->
-  <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <script src="../../contactform/contactform.js"></script>
+
   <script src="../research/script/main.js"></script>
   <script src="../../js/main.js"></script>
 

@@ -374,9 +374,11 @@ h6 {
 #container-form 
 {
  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+ border-radius: 10px;
  transition: 0.3s;
- background-color:#fafafa;
+ background-color:#ffffff;
  padding-top: 20px;
+ width: 100%;
 }
 
 /*==================================================================================================================== 

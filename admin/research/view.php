@@ -27,7 +27,8 @@
   <link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 ../../
   <!-- Main Stylesheet File -->
-  <link href="../../css/style.css" rel="stylesheet">
+  <link href="../../css/management.css" rel="stylesheet">
+  <!-- <link href="../../css/style.css" rel="stylesheet"> -->
   <link href="../../css/addons.css" rel="stylesheet">
 
 </head>
@@ -62,10 +63,10 @@
                                                          INTRO SECTION
   ===================================================================================================================-->
   <section id="intro" class="clearfix">
-    <div class="container">
+    <div class="container" id="container-form">
       <div class="intro-img">
-        <img src="/" alt="" class="img-fluid">
       </div>
+      
     </div>
   </section>
   
@@ -168,17 +169,8 @@
   <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
   <script src="../../lib/lightbox/js/lightbox.min.js"></script>
 
-  <!-- Contact Form JavaScript File -->
-  <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <script src="contactform/contactform.js"></script>
-
   <!-- Template Main Javascript File -->
-  <script>
-  $(document).ready( function () {
-    $('#table_id').DataTable();
-} );
-  </script>
-  <script src="js/main.js"></script>
+  <script src="../../js/main.js"></script>
 
 </body>
 </html>
