@@ -117,7 +117,7 @@
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
       <div class="box">
         <tr>
-          <td><button class="btn btn-info" type="button" id="btn-add-research">Add Research Book</button></td>
+          <td><button class="btn btn-info" type="button" id="btn-add-research" data-toggle="modal" data-target="#adding-research">Add Research Book</button></td>
           <td>
           <input id="txtsearch_title" type="search" class="form-control" placeholder="Search Title" style="float: right; width: 25%">
           </td>
@@ -167,19 +167,17 @@
 <!--=========================================== END ================================================-->
 
 <!--================================== MODAL ADDING RESEARCH =======================================-->
-<div class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
+<div class="modal fadeInDown  adding-research-lg " id="adding-research" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add New Research Book</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        
+
       </div>
-      <div class="modal-footer"></div>
     </div>
   </div>
 </div>
@@ -205,7 +203,7 @@
               include "../research/api/mainauthorlist.php";
               foreach($result as $row)
               {
-                echo  "<option value=".$row['id'].">".$row['fullname']."</option>";
+                echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
               }
             ?>
             </select>

@@ -82,12 +82,133 @@
       <div class="container">
         <header class="section-header">
         
-       </header><br>
-        <div class="row">
-          <div class="col">
-            
-          </div>
-        </div>
+      </header><br>
+      <div class="row">
+         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
+            <div class="box">
+            <center><h1>Add New Research Paper</h1></center>
+               <form action="" method="POST" name="form" enctype="multipart/form-data">
+               
+               <!-- TITLE -->
+               <div class="form-group">
+                  <label class="label">Title *</label>
+                  <textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control"></textarea>
+               </div>
+
+               <!-- MAIN AUTHOR -->
+               <div class="form-group">
+                     <label class="label">Main Author *</label><br>
+                     <select class="custom-select" id="txtmain-author" name="txtmain-author">
+                     <option selected> </option>
+                     <?php
+                     include "../research/api/mainauthorlist.php";
+                     foreach($result as $row)
+                     {
+                        echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
+                     }
+                     ?>
+                     </select>
+                  </div>
+               
+               <!-- CO AUTHOR -->
+               <div class="row">
+                  <div class="col">
+                  <label class="label">Co-Author(s) *</label><br>
+                  <select class="custom-select" id="txtco-authors" name="co-author">
+                  <option selected disabled> </option>
+                  <?php
+                     foreach($result as $row)
+                     {
+                     echo  "<option value=".$row['id']." id=".$row['fullname'].">".$row['fullname']."</option>";
+                     }
+                  ?>
+                  </select>
+                  <div class="input-group-append">
+                     <button class="btn btn-info" type="button" id="btn-co-author">Add</button>
+                  </div>
+                  </div>
+                  <div class="col" id="co-author-list" >
+                     <label>--Co-Authors Added--</label>
+                  <ul class="list-group" id='co-list'>
+                     <?php
+                     $a="list-group-item";
+                     foreach($result as $row)
+                     {
+                        echo  "<li class ='list-group-item' value='".$row['id']."' id='".$row['fullname']."'>".$row['fullname']."</li>";
+                     }
+                     ?>
+                  </ul>
+                  </div>
+               </div>
+
+               <!-- ABSTRACT -->
+               <div class="form-group">
+               <label class="label">Abstract *</label>
+               <textarea rows="5" cols="60" type="text "name="abstract" id="title" class="form-control"></textarea>
+               </div>
+
+               <div class="row">
+               <!-- DATE PUBLISH -->
+               <div class="col">
+                  <div class="form-group">
+                     <label>Date Publish *</label>
+                     <input type="date" name="dpub" id="dpub" class="form-control" />
+                  </div>
+               </div>
+
+               <!-- FIELD OF STUDY -->
+               <div class="col">
+                  <div class="form-group">
+                     <label class="label">Field of Study *</label><br>
+                     <select class="custom-select" id="fstudy" name="fstudy">
+                     <option selected> </option>
+                     <option value="Accounting and Finance">Accounting and Finance</option>
+                     <option value="Business and Economics">Business and Economics</option>
+                     <option value="Computer Studies">Computer Studies</option>
+                     <option value="Hospitality">Hospitality</option>
+                     <option value="Nursing">Nursing</option>
+                     </select>
+                  </div>
+               </div>
+               </div>
+
+               <div class="row">
+
+               <!-- TAGS -->
+               <div class="col">
+                  <label class="label">Tag(s) *</label>
+                  <select class="custom-select" id="drop-tags">
+                     <option selected disabled> </option>
+                     <option value="Computer" id="Computer">Computer</option>
+                     <option value="WebDesign" id="WebDesign">Web Design</option>
+                     <option value="InternetSecurity" id="InternetSecurity">Internet Security</option>
+                  </select>
+                  <div class="input-group-append">
+                     <button class="btn btn-info" type="button" id="btn-tags">Add</button>
+                  </div>
+               </div>
+               <div class="col">
+                  <label>--Tags Added--</label>
+                  <ul class="list-group" id="tags-list">
+                  </ul>
+               </div>
+               </div><br>
+               <div class="form-group">
+               <label for="" class="form-label">File Pdf *</label><br>
+               <div style="padding: 10px; border: 1px solid #999">
+                  <input type="hidden" name="MAX_FILE_SIZE" value="20000000"/><input
+                     type="file" name="pdfFile">
+               </div>
+               </div>
+               <div class="form-group">
+               <button type="submit" class="btn btn-info" id="submit" name="btnsubmit" >
+                     Submit
+               </button>
+               </div>
+               </form>
+            </div>
+         </div>
+      </div>
     </section>
 <!--==================================================================================================================
                                                            END
