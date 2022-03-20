@@ -1,6 +1,7 @@
 <?php
     // $con = mysqli_connect("localhost","root","","research_portal");
     include ("/xampp/htdocs/CustomLandingPage/config/db.php");
+    // include ("/xampp/htdocs/CustomLandingPage/uploadfiles");
 
 // THE IDEA OF SAVING OF THE LIST OF AUTHOR IS BY SAVING THE RESEARCH ID TO THE DATA TABLE OF THE AUTHORS.
 
@@ -33,12 +34,12 @@
         $c_author = $_POST['co_author'];
         $fs = $_POST['fstudy'];
         $tags= $_POST['tags'];
-    
+
         // UPLOADING PDF FILE
         if( isset( $_FILES['pdfFile'] ) ) {
             if ($_FILES['pdfFile']['type'] == "application/pdf") {
                 $source_file = $_FILES['pdfFile']['tmp_name'];
-                $dest_file = "../uploads".$_FILES['pdfFile']['name'];
+                $dest_file = "/xampp/htdocs/CustomLandingPage/uploadfiles/".$_FILES['pdfFile']['name'];
                 if (file_exists($dest_file)) {
                     print "The PDF file name already exists!!";
                 }
@@ -51,7 +52,7 @@
                 <input hidden type="text" name="pdffile" id="pdffile" class="form-control" value="<?php echo "../papers/uploads/".$_FILES['pdfFile']['name']?> " >
                 <?php
                 echo "File Name : ".$_FILES['pdfFile']['name']."<br.>"."<br/>";
-                        echo "File location : ../uploads/".$_FILES['pdfFile']['name']."<br/>";
+                        echo "File location : /xampp/htdocs/CustomLandingPage/uploadfiles".$_FILES['pdfFile']['name']."<br/>";
                     }
                 }
             }

@@ -1,7 +1,7 @@
 <?php
 $con = mysqli_connect("localhost","root","","research_portal");
 
-// DELETE
+// DELETE =============================================================================
 if(isset($_GET['id']))
 {
     $id = $_GET['id'];
@@ -15,8 +15,9 @@ if(isset($_GET['id']))
     }
 }
 
-// VIEW
-if(isset($_GET['view'])){
+// VIEW ===============================================================================
+if(isset($_GET['view']))
+{
     // $status = $_GET[''];
     $id =$_GET['view'];
 
@@ -40,4 +41,27 @@ if(isset($_GET['view'])){
         <?php
     }
 }
+
+// EDIT ==================================================================================
+
+if(isset($_GET['edit']))
+    {
+        $id = $_GET['edit'];
+
+        $sql = "UPDATE research set title ='$fname',lname=''$lname', email='$email', pass='$pass', ucategory='$categ' WHERE id = '$id'";
+        $result = mysqli_query($con,$sql);
+        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+        $count = mysqli_num_rows($result);
+        // check email if exist
+            if($count == 1) 
+            {
+                $fname = $row['fname'];
+                $lname = $row['lname'];
+                $email = $row['email'];
+                $pass= $row['pass'];
+                $categ = $row['ucategory'];
+                
+                echo "<script>alert('Account Edited.');</script>";
+            }
+    }
 ?>

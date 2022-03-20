@@ -1,11 +1,10 @@
 $(document).ready(function () {
- $(document).ready( function () {
     
   // ADDING NEW RESEARCH
   $("#co-list").toggle();
   $("#tags-list").toggle();
 
-  // CO-AUTHORS
+  // CO-AUTHORS =======================================================================================
   $("#btn-co-author").click(function () {
     $("#co-list").show();
     
@@ -19,7 +18,7 @@ $(document).ready(function () {
     $("#"+ remove_space+"").remove();
   })
 
-  // TAGS
+  // TAGS =============================================================================================
   $("#btn-tags").click(function () {
     $("#tags-list").show();
     
@@ -28,7 +27,7 @@ $(document).ready(function () {
     $("#"+value+"").remove();
   })
 
-  // SUBMIT FORM
+  // SUBMIT FORM ======================================================================================
   $("#btnsubmit").click(function(){
     // INITIALIZE
     var title = $("#title").val();
@@ -72,15 +71,13 @@ $(document).ready(function () {
     }
   });
 
-  // DELETE
+  // DELETE =========================================================================================
   $("#btn_deleteresearch").click(function () {
    
    alert("Research Deleted");
   })
-
-  // INITIALIZE THE FORM
   
-  // FILTERING BY SEARCHING
+  // FILTERING BY SEARCHING =========================================================================
   $("#txtsearch_title").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $("#myTable tr").filter(function() {
@@ -88,5 +85,4 @@ $(document).ready(function () {
     });
   });
 
-});
 });
