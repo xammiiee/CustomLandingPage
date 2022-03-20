@@ -198,9 +198,9 @@
 
         <!-- MAIN AUTHOR -->
         <div class="form-group">
-          <label class="label">Main Author *</label><br>
-          <select class="custom-select" id="txtmain-author" name="main-author">
-            <option selected disabled> </option>
+            <label class="label">Main Author *</label><br>
+            <select class="custom-select" id="txtmain-author" name="txtmain-author">
+            <option selected> </option>
             <?php
               include "../research/api/mainauthorlist.php";
               foreach($result as $row)
@@ -208,9 +208,8 @@
                 echo  "<option value=".$row['id'].">".$row['fullname']."</option>";
               }
             ?>
-          </select>
-          
-        </div>
+            </select>
+          </div>
         
         <!-- CO AUTHOR -->
         <div class="row">
@@ -229,14 +228,14 @@
             <button class="btn btn-info" type="button" id="btn-co-author">Add</button>
           </div>
           </div>
-          <div class="col" id="co-author-list">
+          <div class="col" id="co-author-list" >
             <label>--Co-Authors Added--</label>
           <ul class="list-group" id='co-list'>
             <?php
               $a="list-group-item";
               foreach($result as $row)
               {
-                echo  "<li class ='list-group-item'>".$row['fullname']."</li>";
+                echo  "<li class ='list-group-item' value='".$row['id']."' id='".$row['fullname']."'>".$row['fullname']."</li>";
               }
             ?>
           </ul>

@@ -1,5 +1,6 @@
 <?php
-    $con = mysqli_connect("localhost","root","","research_portal");
+    // $con = mysqli_connect("localhost","root","","research_portal");
+    include ("/xampp/htdocs/CustomLandingPage/config/db.php");
 
 // THE IDEA OF SAVING OF THE LIST OF AUTHOR IS BY SAVING THE RESEARCH ID TO THE DATA TABLE OF THE AUTHORS.
 
@@ -29,7 +30,9 @@
         $dpub =$_POST['dpub'];
         $fstudy = $_POST['fstudy'];
         $m_author = $_POST['main_author'];
+        $c_author = $_POST['co_author'];
         $fs = $_POST['fstudy'];
+        $tags= $_POST['tags'];
     
         // UPLOADING PDF FILE
         if( isset( $_FILES['pdfFile'] ) ) {

@@ -8,9 +8,9 @@ $(document).ready(function () {
   // CO-AUTHORS
   $("#btn-co-author").click(function () {
     $("#co-list").show();
-    var main_author = $("#txtmain-author").text();
-  console.log(main_author);
-
+    
+    var main_author = $("#txtmain-author").val();
+    console.log(main_author);
     var value1 = $('#txtco-authors').val();
     var val_id = $("#txtco-authors").attr('id')
     $('#tags-list').append('<li class ="list-group-item">'+ value1 +'</li>');
@@ -23,7 +23,6 @@ $(document).ready(function () {
   $("#btn-tags").click(function () {
     $("#tags-list").show();
     
-    var value = $('#drop-tags').val();
     $('#tags-list').append('<li class="list-group-item" id="'+value+'">' + value + '</li>');
 
     $("#"+value+"").remove();
@@ -69,6 +68,7 @@ $(document).ready(function () {
     else
     {
       alert("Fill all Fields");
+      return false;
     }
   });
 
