@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2022 at 11:29 AM
+-- Generation Time: Mar 20, 2022 at 07:12 AM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,6 +53,30 @@ INSERT INTO `tblaccount` (`id`, `fname`, `lname`, `email`, `pass`, `status`, `uc
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tblauthor`
+--
+
+CREATE TABLE `tblauthor` (
+  `id` varchar(20) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `lname` varchar(100) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `pdf_file` varchar(100) NOT NULL,
+  `detect` varchar(10) NOT NULL,
+  `get-selected` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblauthor`
+--
+
+INSERT INTO `tblauthor` (`id`, `fname`, `lname`, `fullname`, `email`, `pdf_file`, `detect`, `get-selected`) VALUES
+('1', 'jaren', 'heruela', 'jaren heruela', 'jaren@gmail.com', '', '', 'Yes');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbllogs`
 --
 
@@ -89,7 +113,10 @@ INSERT INTO `tbllogs` (`date`, `time`, `action`, `management`, `account`) VALUES
 ('2022/03/11', '10:03:28', 'Uploaded New Book dfghjkl with ', 'CMS by', 'Admin'),
 ('2022/03/11', '11:03:02', 'Uploaded New Book pohgfd with ', 'CMS by', 'Admin'),
 ('2022/03/11', '11:03:05', 'Uploaded New Book pojhgfds with ', 'CMS by', 'Admin'),
-('2022/03/11', '11:03:48', 'Uploaded New Book ergonomics with ', 'CMS by', 'Admin');
+('2022/03/11', '11:03:48', 'Uploaded New Book ergonomics with ', 'CMS by', 'Admin'),
+('2022/03/19', '20:03:33', 'Uploaded New Book ertyui with ', 'CMS by', 'Admin'),
+('2022/03/19', '20:03:44', 'Uploaded New Book K-Nearest Neighbours with ', 'CMS by', 'Admin'),
+('2022/03/20', '3:03:47', 'Uploaded New Book A Study On Online Search By People Using Search Engine with ', 'CMS by', 'Admin');
 
 -- --------------------------------------------------------
 
@@ -101,16 +128,14 @@ CREATE TABLE `tblresearch` (
   `id` varchar(100) NOT NULL,
   `title` varchar(200) NOT NULL,
   `abstract` longtext NOT NULL,
-  `comment` longtext NOT NULL,
-  `authors` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `main_author` varchar(100) NOT NULL,
+  `co_authors` varchar(100) NOT NULL,
   `date_publish` varchar(100) NOT NULL,
   `field_of_study` varchar(100) NOT NULL,
   `department` varchar(100) NOT NULL,
   `pdf_file` longtext NOT NULL,
   `views` varchar(100) NOT NULL,
   `cites` varchar(100) NOT NULL,
-  `downloads` varchar(100) NOT NULL,
   `tagging` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -118,10 +143,10 @@ CREATE TABLE `tblresearch` (
 -- Dumping data for table `tblresearch`
 --
 
-INSERT INTO `tblresearch` (`id`, `title`, `abstract`, `comment`, `authors`, `email`, `date_publish`, `field_of_study`, `department`, `pdf_file`, `views`, `cites`, `downloads`, `tagging`) VALUES
-('20220311102839', 'qwertyuio', 'poiuytrewqdfghjkmnbvcx ertyuigh dfghj', 'poiuytre', 'jaren', 'anton-gramm-324@gmail.com', '2022-01-12', 'Computer Technology', '', '../papers/uploads/pmrf_012020.pdf ', '', '', '', 'Computer Science'),
-('20220311103528', 'dfghjkl', 'ertyhjkl', 'kjhgfds', 'jh', 'nbvcxz', '2022-03-02', 'Computer Technology', '', '../papers/uploads/doc.pdf ', '', '', '', 'Computer Science'),
-('20220311110502', 'pohgfd', 'nbvcxz', 'kjhgfd', 'hgfd', 'lbvd', '2022-03-09', 'Computer Technology', '', '../papers/uploads/4_ACE Review Center Exam Reviewer (Around 900 Items With Answers).pdf ', '', '', '', 'Computer Science');
+INSERT INTO `tblresearch` (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `department`, `pdf_file`, `views`, `cites`, `tagging`) VALUES
+('1', 'A Graph-Based Text Similarity Algorithm', 'This paper is trying to research a text similarity \r\nalgorithm which based on graph theory. A text is mapped into a \r\ngraph which consists of terms as its nodes and term sequences as \r\nits undirected edges. The Maximum Common Subgraph (MCS) \r\nof two graphs is useful for analyzing their similarity and the \r\nsimilarity of two texts is divided into two parts: nodes similarity \r\nand edges similarity. Each part is calculated respectively and text \r\nsimilarity is the sum of two parts.', 'Zuoguo Liu', 'Xiaorong Chen', 'January 24, 2017', 'Computer', '', '', '', '', 'Computer Algorithm'),
+('2', 'The Use of Internet and Social Networks as \r\nMethodological Tools in The School Environment', 'This work addresses the integration of the Internet and Social Networks to the teaching-learning processes in \r\nthe school environment, using the computer as an intermediate tool between student and teacher. The use of \r\nthese technologies is transforming human relationships in all their dimensions: economic, social, and \r\neducational. The cognitive development of these students is being mediated by these technological resources, \r\nwhere these new information and communication technologies will expand their potential. The objective of this \r\nstudy was to understand the importance of using the internet and social networks in the teaching-learning \r\nprocess in the school environment as a methodological resource and to what extent it is favorable to the \r\nstudent\'s intellectual development', 'Fabiano Battemarco da Silva Martins', 'Queli Cristiane dos Santos Souza; Marcio Antônio \r\nde Oliveira', 'August 1, 2020', 'Education', '', '', '', '', 'Technology'),
+('20220320033447', 'A Study On Online Search By People Using Search Engine', 'Purpose– Thepurpose of this study is to understand how users search for online information \r\nfrom search engine through their own experience using the Internet.', '', '', '2022-03-03', 'Computer Studies', '', '../uploads/OnlineSearch.pdf', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -155,6 +180,12 @@ INSERT INTO `transactions` (`order_id`, `amount`, `response_code`, `response_des
 -- Indexes for table `tblaccount`
 --
 ALTER TABLE `tblaccount`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tblauthor`
+--
+ALTER TABLE `tblauthor`
   ADD PRIMARY KEY (`id`);
 
 --
