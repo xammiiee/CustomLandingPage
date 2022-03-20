@@ -48,7 +48,7 @@ if(isset($_GET['edit']))
     {
         $id = $_GET['edit'];
 
-        $sql = "UPDATE research set title ='$fname',lname=''$lname', email='$email', pass='$pass', ucategory='$categ' WHERE id = '$id'";
+        $sql = "UPDATE research set  WHERE id = '$id'";
         $result = mysqli_query($con,$sql);
         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
         $count = mysqli_num_rows($result);

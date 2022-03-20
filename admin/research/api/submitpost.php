@@ -67,7 +67,7 @@
 
         // UPLOAD TO TBL-RESEARCH
             $pdf_file ="../uploads/".$_FILES['pdfFile']['name']."";
-            $result = mysqli_query($con, "INSERT INTO tblresearch (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `department`, `pdf_file`, `views`, `cites`, `tagging`) VALUES  ('$id', '$title', '$abs', '','','$dpub','$fstudy','','$pdf_file','','','$tags')");
+            $result = mysqli_query($con, "INSERT INTO tblresearch (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `status`, `pdf_file`, `views`, `cites`, `tagging`) VALUES  ('$id', '$title', '$abs', '','','$dpub','$fstudy','Pending','$pdf_file','','','$tags')");
             if($result > 0)
             {?>
                 <div class="alert alert-success" role="alert">

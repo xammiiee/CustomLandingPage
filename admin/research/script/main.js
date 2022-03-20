@@ -11,7 +11,6 @@ $(document).ready(function () {
     var main_author = $("#txtmain-author").val();
     console.log(main_author);
     var value1 = $('#txtco-authors').val();
-    var val_id = $("#txtco-authors").attr('id')
     $('#tags-list').append('<li class ="list-group-item">'+ value1 +'</li>');
     
     var remove_space = value1.replace(/ /g,'');
@@ -22,6 +21,7 @@ $(document).ready(function () {
   $("#btn-tags").click(function () {
     $("#tags-list").show();
     
+    var value = $("#drop-tags").val();
     $('#tags-list').append('<li class="list-group-item" id="'+value+'">' + value + '</li>');
 
     $("#"+value+"").remove();
@@ -76,7 +76,7 @@ $(document).ready(function () {
    
    alert("Research Deleted");
   })
-  
+
   // FILTERING BY SEARCHING =========================================================================
   $("#txtsearch_title").on("keyup", function() {
     var value = $(this).val().toLowerCase();
