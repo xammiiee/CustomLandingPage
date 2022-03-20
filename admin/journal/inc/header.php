@@ -64,7 +64,7 @@ include "core.php";
 
              
               <li class="nav-item active" >
-                <a class="nav-link" href="Journal/journal_dashboard.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="journal_dashboard.php">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item dropdown" >
               <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,8 +76,8 @@ include "core.php";
               </div>
               </li>
              
-                <li><a href="Journal/login.php" class="login" >Login</a></li>
-          <li><a href="Journal/signup.php" class="signup">Sign Up</a></li>
+                <li><a href="login.php" class="login" >Login</a></li>
+          <li><a href="signup.php" class="signup">Sign Up</a></li>
           
       
         </ul>
