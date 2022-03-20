@@ -50,7 +50,18 @@
       </div>
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
-          <li class="active"><a href="/admin//research//research.php">Research Management</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Management
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Account Management</a>
+            <a class="dropdown-item" href="#">Research Management</a>
+         
+            <a class="dropdown-item" href="#">Author Management</a>
+            <a class="dropdown-item" href="#">Article Journal Management</a>
+            <a class="dropdown-item" href="#">Events Management</a>
+            </li>
           <li class="active"><a href="#intro">About Us</a></li>
 
         </ul>

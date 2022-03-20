@@ -38,8 +38,8 @@
 
 <body>
 <?php
-      include("./accounts/api/post_signup.php");
-      include_once ("./login/api/login_api_authenticate.php");
+      // include("./accounts/api/post_signup.php");
+      // include_once ("./login/api/login_api_authenticate.php");
 ?>
 
   <!--==========================

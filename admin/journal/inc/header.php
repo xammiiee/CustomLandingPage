@@ -75,11 +75,6 @@ include "core.php";
                 <a class="dropdown-item" href="logout.php">Signout</a>
               </div>
               </li>
-             
-                <li><a href="Journal/login.php" class="login" >Login</a></li>
-          <li><a href="Journal/signup.php" class="signup">Sign Up</a></li>
-          
-      
         </ul>
       </nav><!-- .main-nav -->
     </div>
