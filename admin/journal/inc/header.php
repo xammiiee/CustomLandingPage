@@ -53,12 +53,12 @@ include "inc/core.php";
                   Management
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Account Management</a>
-                  <a class="dropdown-item" href="../../research/research.php">Research Management</a>
+                <a class="dropdown-item" href="../account/account.php">Account Management</a>
+                  <a class="dropdown-item" href="../research/research.php">Research Management</a>
                
                   <a class="dropdown-item" href="#">Author Management</a>
                   <a class="dropdown-item" href="#">Article Management</a>
-                  <a class="dropdown-item" href="../../journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="../journal/journal.php">Journal Management</a>
                   <a class="dropdown-item" href="#">Events Management</a>
               </li>
 

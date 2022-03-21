@@ -54,18 +54,15 @@ include "core.php";
                   Management
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Account Management</a>
-                  <a class="dropdown-item" href="#">Research Management</a>
+                <a class="dropdown-item" href="../account/account.php">Account Management</a>
+                  <a class="dropdown-item" href="../research/research.php">Research Management</a>
                
                   <a class="dropdown-item" href="#">Author Management</a>
-                  <a class="dropdown-item" href="#">Article Journal Management</a>
+                  <a class="dropdown-item" href="#">Article Management</a>
+                  <a class="dropdown-item" href="../journal/journal.php">Journal Management</a>
                   <a class="dropdown-item" href="#">Events Management</a>
                   </li>
 
-             
-              <li class="nav-item active" >
-                <a class="nav-link" href="journal_dashboard.php">Home <span class="sr-only">(current)</span></a>
-              </li>
               <li class="nav-item dropdown" >
               <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user"></i>&nbsp;</a>
@@ -75,11 +72,6 @@ include "core.php";
                 <a class="dropdown-item" href="logout.php">Signout</a>
               </div>
               </li>
-             
-                <li><a href="login.php" class="login" >Login</a></li>
-          <li><a href="signup.php" class="signup">Sign Up</a></li>
-          
-      
         </ul>
       </nav><!-- .main-nav -->
     </div>

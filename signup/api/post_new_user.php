@@ -1,7 +1,6 @@
 <?php
 
-//DB start connection
-    include "/xampp/htdocs/CustomLandingPage/config/db.php";
+include "/xampp/htdocs/ResearchPortal/config/db.php";
 if(isset($_POST['btnsubmit']))
 {
     //initiate the form
@@ -23,7 +22,7 @@ if(isset($_POST['btnsubmit']))
         
         $id = date("YmdHis");
 
-        if($aumember == "Are you a member of Arellano Community?")
+        if($aumember == "--Are you a member of Arellano Community?--")
         {?>
             <div class="alert alert-danger" role="alert">
             Select if your a member of AU Community?
@@ -52,7 +51,7 @@ if(isset($_POST['btnsubmit']))
                 if($result > 0)
                 {
                     echo "<script>alert('New account $email has successfully added.' );</script>";
-                    header("Location: index.php");
+                    header("Location: ../searchresult/search_no_account.php");
                 }
                 else
                 {

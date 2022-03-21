@@ -45,7 +45,7 @@ if (empty($_SESSION['id'])) {
 <button type="button" class="btn btn-outline-dark btn-md" data-toggle="modal" data-target="#create-project">
   Create New Account
 </button>
-<a href="journal_dashboard.php"><button type="button" class="btn btn-outline-dark btn-md">
+<a href="account.php"><button type="button" class="btn btn-outline-dark btn-md">
   Refresh
 </button>
 </a>

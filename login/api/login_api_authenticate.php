@@ -1,16 +1,8 @@
 <?php
-<<<<<<< HEAD
-    //Error on this line
-    include("/xampp/htdocs/CustomLandingPage/config/db.php");
-    // $con = mysqli_connect("localhost","root","","research_portal");
-   if($_SERVER["REQUEST_METHOD"] == "POST") 
-=======
-    // include("/xampp/htdocs/ResearchPortal/config/db.php");
     session_start();
     $con = mysqli_connect("localhost","root","","research_portal");
    
     if(isset($_POST['but_submit']))
->>>>>>> 9c23c18ddbc65f366e93399d119a9df6cadde0fc
    {
       // username and password sent from form 
       $email = mysqli_real_escape_string($con,$_POST['txt_email']);
