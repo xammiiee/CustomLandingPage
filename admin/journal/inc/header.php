@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "core.php";
+include "inc/core.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +19,8 @@ include "core.php";
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
   <!-- Bootstrap CSS File -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/mdb.min.css">
+  <link rel="stylesheet" href="./././css/bootstrap.min.css">
+	<link rel="stylesheet" href="./././css/mdb.min.css">
 
    <!-- Datatables -->
    <link href="assets/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -33,8 +33,8 @@ include "core.php";
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/addons.css" rel="stylesheet">
+  <link href="./././css/style.css" rel="stylesheet">
+  <link href="./././css/addons.css" rel="stylesheet">
 
 </head>
 <body>
