@@ -59,7 +59,7 @@ include "core.php";
                   <a class="dropdown-item" href="#">Author Management</a>
                   <a class="dropdown-item" href="#">Article Journal Management</a>
                   <a class="dropdown-item" href="#">Events Management</a>
-                  </li>
+              </li>
 
              
               <li class="nav-item active" >

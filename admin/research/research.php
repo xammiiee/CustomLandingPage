@@ -54,13 +54,32 @@
         <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
         <a href="../../index.php" class="scrollto"><img src="../../img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
-      <nav class="main-nav float-right d-none d-lg-block">
+      <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-          <li class="" ><a href="../research/research.php" id="aurespor">Research Management</a></li>
-          <li class="active" id=aboutus><a href="#intro">About Us</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Management
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Account Management</a>
+                  <a class="dropdown-item" href="#">Research Management</a>
+               
+                  <a class="dropdown-item" href="#">Author Management</a>
+                  <a class="dropdown-item" href="#">Article Journal Management</a>
+                  <a class="dropdown-item" href="#">Events Management</a>
+              </li>
 
+              <li class="nav-item dropdown" >
+              <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user"></i>&nbsp;</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#settings">Settings</a>
+                <a class="dropdown-item" href="#aboutus">About Us</a>
+                <a class="dropdown-item" href="logout.php">Signout</a>
+              </div>
+              </li>
         </ul>
-      </nav><!-- .main-nav -->
+      </nav>
     </div>
   </header>
   <!--================================================================================================ 
@@ -79,9 +98,10 @@
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body">
-                <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php echo "$result_count"; ?></h2>
+                <i class="fa fa-book fa-2x " style="color:#007bff"></i>
+                <h2 class="float-right" style="color: #007bff;"><?php echo "$result_count"; ?></h2>
                  <h5 class="card-title">All Journal</h5>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <p class="card-text"><small class="text-muted"><span>Last updated 3 mins ago</span> </small></p>
               </div>
             </div>
           </div>
@@ -160,8 +180,8 @@
                     <i class="fa fa-ellipsis-h"></i>
                   </button>
                   <div class="dropdown-menu" aria-labelledby="option">
-                    <a class="dropdown-item" href="project.php?id=<?php echo $data['id']?>">View</a>
-                    <a class="dropdown-item" href="project.php?edit=<?php echo $data['id']?>">Edit</a>
+                    <a class="dropdown-item" href="../research/view.php?view= echo $data['id']?>">View</a>
+                    <a class="dropdown-item" href="../research/edit.php?edit= echo $data['id']?>">Edit</a>
                     
                   </div>
                 </div>
@@ -310,133 +330,6 @@
       </form>
     </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
-    <div class="box">
-    <center><h1>Add New Research Paper</h1></center>
-      <form action="" method="POST" name="form" enctype="multipart/form-data">
-        
-        <!-- TITLE -->
-        <div class="form-group">
-          <label class="label">Title *</label>
-          <textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control"></textarea>
-        </div>
-
-        <!-- MAIN AUTHOR -->
-        <div class="form-group">
-            <label class="label">Main Author *</label><br>
-            <select class="custom-select" id="txtmain-author" name="txtmain-author">
-            <option selected> </option>
-            <?php
-              include "../research/api/mainauthorlist.php";
-              foreach($result as $row)
-              {
-                echo  "<option value=".$row['fullname'].">".$row['fullname']."</option>";
-              }
-            ?>
-            </select>
-          </div>
-        
-        <!-- CO AUTHOR -->
-        <div class="row">
-          <div class="col">
-          <label class="label">Co-Author(s) *</label><br>
-          <select class="custom-select" id="txtco-authors" name="co-author">
-          <option selected disabled> </option>
-          <?php
-            foreach($result as $row)
-            {
-              echo  "<option value=".$row['id']." id=".$row['fullname'].">".$row['fullname']."</option>";
-            }
-          ?>
-          </select>
-          <div class="input-group-append">
-            <button class="btn btn-info" type="button" id="btn-co-author">Add</button>
-          </div>
-          </div>
-          <div class="col" id="co-author-list" >
-            <label>--Co-Authors Added--</label>
-          <ul class="list-group" id='co-list'>
-            <?php
-              $a="list-group-item";
-              foreach($result as $row)
-              {
-                echo  "<li class ='list-group-item' value='".$row['id']."' id='".$row['fullname']."'>".$row['fullname']."</li>";
-              }
-            ?>
-          </ul>
-          </div>
-        </div>
-
-        <!-- ABSTRACT -->
-      <div class="form-group">
-        <label class="label">Abstract *</label>
-        <textarea rows="5" cols="60" type="text "name="abstract" id="title" class="form-control"></textarea>
-      </div>
-
-      <div class="row">
-        <!-- DATE PUBLISH -->
-        <div class="col">
-          <div class="form-group">
-            <label>Date Publish *</label>
-            <input type="date" name="dpub" id="dpub" class="form-control" />
-          </div>
-        </div>
-
-        <!-- FIELD OF STUDY -->
-        <div class="col">
-          <div class="form-group">
-            <label class="label">Field of Study *</label><br>
-            <select class="custom-select" id="fstudy" name="fstudy">
-            <option selected> </option>
-            <option value="Accounting and Finance">Accounting and Finance</option>
-            <option value="Business and Economics">Business and Economics</option>
-            <option value="Computer Studies">Computer Studies</option>
-            <option value="Hospitality">Hospitality</option>
-            <option value="Nursing">Nursing</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-
-        <!-- TAGS -->
-        <div class="col">
-          <label class="label">Tag(s) *</label>
-          <select class="custom-select" id="drop-tags">
-            <option selected disabled> </option>
-            <option value="Computer" id="Computer">Computer</option>
-            <option value="WebDesign" id="WebDesign">Web Design</option>
-            <option value="InternetSecurity" id="InternetSecurity">Internet Security</option>
-          </select>
-          <div class="input-group-append">
-            <button class="btn btn-info" type="button" id="btn-tags">Add</button>
-          </div>
-        </div>
-        <div class="col">
-          <label>--Tags Added--</label>
-          <ul class="list-group" id="tags-list">
-          </ul>
-        </div>
-      </div><br>
-      <div class="form-group">
-      <label for="" class="form-label">File Pdf *</label><br>
-        <div style="padding: 10px; border: 1px solid #999">
-          <input type="hidden" name="MAX_FILE_SIZE" value="20000000"/><input
-            type="file" name="pdfFile">
-        </div>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-info" id="submit" name="btnsubmit" >
-            Submit
-        </button>
-      </div>
-      </form>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <?php
-    // $con = mysqli_connect("localhost","root","","research_portal");
-    include ("/xampp/htdocs/CustomLandingPage/config/db.php");
+    $con = mysqli_connect("localhost","root","","research_portal");
+    // include ("/xampp/htdocs/CustomLandingPage/config/db.php");
     // include ("/xampp/htdocs/CustomLandingPage/uploadfiles");
 
 // THE IDEA OF SAVING OF THE LIST OF AUTHOR IS BY SAVING THE RESEARCH ID TO THE DATA TABLE OF THE AUTHORS.
@@ -30,10 +30,10 @@
         $abs = $_POST['abstract'];
         $dpub =$_POST['dpub'];
         $fstudy = $_POST['fstudy'];
-        $m_author = $_POST['main_author'];
-        $c_author = $_POST['co_author'];
+        $m_author = $_POST['txtmain-author'];
+        $c_author = $_POST['co-author'];
         $fs = $_POST['fstudy'];
-        $tags= $_POST['tags'];
+        $tags= $_POST['drop-tags'];
 
         // UPLOADING PDF FILE
         if( isset( $_FILES['pdfFile'] ) ) {
@@ -67,16 +67,14 @@
 
         // UPLOAD TO TBL-RESEARCH
             $pdf_file ="../uploads/".$_FILES['pdfFile']['name']."";
-            $result = mysqli_query($con, "INSERT INTO tblresearch (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `status`, `pdf_file`, `views`, `cites`, `tagging`) VALUES  ('$id', '$title', '$abs', '','','$dpub','$fstudy','Pending','$pdf_file','','','$tags')");
+            $result = mysqli_query($con, "INSERT INTO tblresearch (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `status`, `pdf_file`, `views`, `cites`, `tagging`) VALUES  ('$id', '$title', '$abs', '$m_author','$c_author','$dpub','$fstudy','Pending','$pdf_file','','','$tags')");
             if($result > 0)
             {?>
                 <div class="alert alert-success" role="alert">
                 Research paper <?php $id ?> successfully added!
                 </div>
                 <?php
-                // LOGS
-                mysqli_query($con, "INSERT INTO tbllogs (`date`, `time`, `action`, `management`, `account`) VALUES ('$date1','$time1', 'Uploaded New Book $title with ','CMS by','Admin')");
-                header("Location: ##");
+                
             }
             else
                 {?>
@@ -91,6 +89,7 @@
             {
                 // 
             }
+            header("Location: ../research.php");
     } 
     else
     {?>
