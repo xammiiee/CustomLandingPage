@@ -1,6 +1,5 @@
 <?php
-  
-  
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,16 +52,36 @@
         <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
         <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
-      <nav class="main-nav float-right d-none d-lg-block">
+      <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-          <li class="active"><a href="#intro">Home</a></li>
-          <li><a href="#accountmanagement">Account Management</a></li>
-          <li><a href="#portfolio">Research Management</a></li>
-       
-          
-          <li><a href="" class="signin" data-toggle="modal" data-target="#signinPage">Sign in</a></li>
-          <li>  <a href="" class="signup" data-toggle="modal" data-target="#signupPage">Sign up</a></li>
-  </ul>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Management
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Account Management</a>
+                  <a class="dropdown-item" href="../CustomLandingPage/admin/research/research.php">Research Management</a>
+               
+                  <a class="dropdown-item" href="#">Author Management</a>
+                  <a class="dropdown-item" href="#">Article Management</a>
+                  <a class="dropdown-item" href="/admin/journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="#">Events Management</a>
+              </li>
+
+             
+              <li class="nav-item active" >
+                <a class="nav-link" href="Journal/journal_dashboard.php">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item dropdown" >
+              <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user"></i>&nbsp;</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#settings">Settings</a>
+                <a class="dropdown-item" href="#aboutus">About Us</a>
+                <a class="dropdown-item" href="logout.php">Signout</a>
+              </div>
+              </li>
+        </ul>
       </nav><!-- .main-nav -->
     </div>
   </header><!-- #header -->

@@ -44,7 +44,7 @@ include "core.php";
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+       <a href="../../admin_dashboard.php" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
@@ -54,10 +54,11 @@ include "core.php";
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#">Account Management</a>
-                  <a class="dropdown-item" href="#">Research Management</a>
+                  <a class="dropdown-item" href="../../research/research.php">Research Management</a>
                
                   <a class="dropdown-item" href="#">Author Management</a>
-                  <a class="dropdown-item" href="#">Article Journal Management</a>
+                  <a class="dropdown-item" href="#">Article Management</a>
+                  <a class="dropdown-item" href="../../journal/journal.php">Journal Management</a>
                   <a class="dropdown-item" href="#">Events Management</a>
               </li>
 
