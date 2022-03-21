@@ -116,7 +116,7 @@ function create_project($connect,$author,$title,$creator,$datepub,$created){
 
 function update_project($connect,$author,$title,$datepub,$id){
 
-	$sql = "UPDATE projects SET name='$author',title='$title',datepub='$deadline' WHERE id=$id";
+	$sql = "UPDATE projects SET name='$author',title='$title',datepub='$datepub' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

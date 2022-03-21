@@ -147,10 +147,10 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <td><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
        <td><?php echo date("Y-m-d",strtotime($data['created']));?></td>
        <td align="center"><div class="dropdown">
-         <button class="btn btn-light" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <button class="btn btn-light btn-sm"  type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
          </button>
-         <div class="dropdown-menu" aria-labelledby="option">
+         <div class="dropdown-menu btn-sm" aria-labelledby="option" >
            <a class="dropdown-item" href="project.php?id=<?php echo $data['id']?>">View</a>
            <a class="dropdown-item" href="project.php?edit=<?php echo $data['id']?>">Edit</a>
            <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
