@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    $con = mysqli_connect("localhost","root","","research_portal");
+    include ("../../config/db.php");
+    // $con = mysqli_connect("localhost","root","","research_portal");
    
-    if(isset($_POST['but_submit']))
+    if(isset($_POST['btn-login']))
    {
       // username and password sent from form 
       $email = mysqli_real_escape_string($con,$_POST['txt_email']);
@@ -19,14 +19,26 @@
         $pass= $row['pass'];
         $status = $row['status'];
         $fname = $row['fname'];
+        $categ = $row['ucategory'];
+        
         if( $email == $em && $password == $pass)
         {
             if($status == "Active")
             {
-                // session_register("myusername");
-                $_SESSION['login_user'] = $email;
-                $_SESSION['fname'] = $fname;
-                header("location: index.php");
+                if($categ == "Administrator")
+                {
+                    // session_register("myusername");
+                    $_SESSION['login_user'] = $email;
+                    $_SESSION['fname'] = $fname;
+                    header("location: ../CustomLandingPage/admin/admin_dashboard.php");
+                }
+                else
+                {
+                    // session_register("myusername");
+                    $_SESSION['login_user'] = $email;
+                    $_SESSION['fname'] = $fname;
+                    header("location: ../CustomLandingPage/admin/admin_dashboard.php");
+                }
             }
             else
             {?>

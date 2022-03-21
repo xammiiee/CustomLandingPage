@@ -156,7 +156,7 @@
 
 
           <div class="text-center mb-3">
-            <button type="button" class="btn btn-primary btn-block z-depth-1a" id="but_submit" name="but_submit" >Sign in</button>
+            <button type="button" class="btn btn-primary btn-block z-depth-1a" id="but_submit" name="btn-login" >Sign in</button>
           </div>
         </form>
         
@@ -424,11 +424,6 @@
   <script src="contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
-  <script>
-  $(document).ready(function(){
-    $("#result-tbl").hide();
-  });
-  </script>
   <script src="js/main.js"></script>
 
 </body>
