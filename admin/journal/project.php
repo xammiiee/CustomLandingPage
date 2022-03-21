@@ -9,17 +9,17 @@ if (empty($_SESSION['id'])) {
 <?php 
 
 if (isset($_POST['id'])) {
- 		$result = update_project($connect,$_POST['author'],$_POST['title'],$_POST['datepub'],$_POST['id']);
+ 		$result = update_project($connect,$_POST['id'],$_POST['fname'],$_POST['lname'],$_POST['email'],$_POST['pass'],$_POST['status'],$_POST['ucategory'],$_POST['au_member'],$_POST['subscribe'],$_POST['datesub_start'],$_POST['datesub_end']);
  		if ($result == "1") {
- 			message("Journal updated successfully!",1);
+ 			message("Account updated successfully!",1);
  		}
  	}
 
  if (isset($_GET['del'])) {
- 	$result = delete_project($connect,$_GET['del']);
+ 	$result = delete_account($connect,$_GET['del']);
  	if ($result =="1") {
- 		header("Location: journal_dashboard.php");
- 		message("Journal deleted successfully!","1");
+ 		header("Location: account_mng.php");
+ 		message("Account deleted successfully!","1");
  	}
  }
 
@@ -31,7 +31,7 @@ if (isset($_GET['edit'])) {
 			<thead class="thead-dark">
 				<tr>
 					<th scope="cols" colspan="3" class="p-0">
-						<h5> <a href="project.php?id=<?php echo $data['id'];?>&ref=projects"><button class="btn btn-dark">← Back to project</button></a> </h5>
+						<h5> <a href="project.php?id=<?php echo $data['id'];?>&ref=projects"><button class="btn btn-dark">← Back to accounts</button></a> </h5>
 					</th>
 				</tr>
 			</thead>
@@ -40,22 +40,37 @@ if (isset($_GET['edit'])) {
 				<tr>
 					<td>
 						<div class="form-group">
-							<label for="author">Project Name</label>
-							<input type="text" class="form-control" id="author" name="author" value="<?php echo $data['name'];?>">
+							<label for="fname">First Name</label>
+							<input type="text" class="form-control" id="fname" name="fname" value="<?php echo $data['fname'];?>">
 							<div class="form-group">
-								<label for="title">Description</label>
-								<input class="form-control" id="title" name="title" value="<?php echo $data['title'];?>">
+								<label for="lname">Last Name</label>
+								<input class="form-control" id="lname" name="lname" value="<?php echo $data['lname'];?>">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="datepub">Deadline</label>
-							<input type="date" class="form-control" id="datepub" name="datepub" value="<?php echo $data['datepub'];?>">
+							<label for="email">Email</label>
+							<input type="text" class="form-control" id="email" name="email" value="<?php echo $data['email'];?>">
 						</div>
-
+						<div class="form-group">
+							<label for="pass">Password</label>
+							<input type="password" class="form-control" id="pass" name="pass" value="<?php echo $data['pass'];?>">
+						</div>
+						<div class="form-group">
+							<label for="status">Status</label>
+							<input type="text" class="form-control" id="status" name="status" value="<?php echo $data['status'];?>">
+						</div>
+						<div class="form-group">
+							<label for="ucategory">Category</label>
+							<input type="text" class="form-control" id="ucategory" name="ucategory" value="<?php echo $data['ucategory'];?>">
+						</div>
+						<div class="form-group">
+							<label for="au_member">Emaik</label>
+							<input type="text" class="form-control" id="au_member" name="au_member" value="<?php echo $data['au_member'];?>">
+						</div>
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">
 
 						<div class="form-group" align="right">
-							<button class="btn btn-primary">Save Project</button> <a class="btn btn-dark" href="/project.php?id=<?php echo $data['id'];?>&ref=projects">Cancel</a>
+							<button class="btn btn-primary">Save Account</button> <a class="btn btn-dark" href="/project.php?id=<?php echo $data['id'];?>&ref=projects">Cancel</a>
 						</div>
 					</td>
 
@@ -345,5 +360,4 @@ if (!empty($_GET['id'])) {
 				$("#restart").hide();
 			}
 		});
-
 	</script>

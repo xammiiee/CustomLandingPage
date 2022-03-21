@@ -1,5 +1,6 @@
 <?php
-    include("/xampp/htdocs/ResearchPortal/config/db.php");
+    //Error on this line
+    include("/xampp/htdocs/CustomLandingPage/config/db.php");
     // $con = mysqli_connect("localhost","root","","research_portal");
    if($_SERVER["REQUEST_METHOD"] == "POST") 
    {

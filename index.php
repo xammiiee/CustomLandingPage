@@ -31,7 +31,7 @@
   <link href="css/addons.css" rel="stylesheet">
 
 </head>
-
+<!-- Try lng mag push -->
 <body>
 <?php
       include("./accounts/api/post_signup.php");
