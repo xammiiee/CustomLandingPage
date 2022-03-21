@@ -1,9 +1,7 @@
 <?php
 include "inc/header.php";
 if (empty($_SESSION['id'])) {
- 
 }
-
 ?>
 <!-- #Journal-->
 <section id="intro" class="clearfix">
