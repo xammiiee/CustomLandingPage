@@ -38,9 +38,9 @@
       include_once ("./login/api/login_api_authenticate.php");
 ?>
 
-  <!--==========================
+  <!--======================================================================================================================
   Header
-  ============================-->
+  ========================================================================================================================-->
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
@@ -52,15 +52,13 @@
           <li>  <a href="#footer">About Us</a></li>
 
         </ul>
-      </nav><!-- .main-nav -->
-
-      
+      </nav>
     </div>
-    
-  </header><!-- #header -->
+  </header>
+  <!--========================================================== #header ===================================================-->
   
   
-  <!-- #sign up modal -->
+  <!--================================================ SIGN UP MODAL ======================================================-->
   <div class="modal fade" id="signupPage">
 
     
@@ -126,7 +124,7 @@
     </div>
   </div>
 
-<!-- #sign in modal -->
+<!--=============================================== SIGN IN MODAL ============================================================-->
 
 <div class="modal fade" id="signinPage">
   <div class="modal-dialog">
@@ -271,12 +269,12 @@
 <!-------------------- End of Filtering Section ---------------------------->
         </header><br>
 
-        <div class="row">
+        <div class="row" id="rseult-tbl">
 <!--=============================== Search Result Section ===============================-->
           <table id="table_id" class="display">
-            <tbody>
+            <tbody id="tblresult">
               <tr>
-                  <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+                  <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.5s">
                     <div class="box">
                     
                       <h4 class="title"><a href="https://www.jite.org/documents/Vol17/JITEv17IIPp163-179Rodafinos4907.pdf">A FULLY ONLINE RESEARCH PORTAL FOR RESEARCH 
@@ -427,9 +425,9 @@
 
   <!-- Template Main Javascript File -->
   <script>
-  $(document).ready( function () {
-    $('#table_id').DataTable();
-} );
+  $(document).ready(function(){
+    $("#result-tbl").hide();
+  });
   </script>
   <script src="js/main.js"></script>
 
