@@ -52,15 +52,34 @@
       <div class="logo float-left">
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="../../img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+        <a href="../../index.php" class="scrollto"><img src="../../img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
-      <nav class="main-nav float-right d-none d-lg-block">
+      <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-          <li class="" ><a href="../research/research.php" id="aurespor">Research Management</a></li>
-          <li class="active" id=aboutus><a href="#intro">About Us</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Management
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Account Management</a>
+                  <a class="dropdown-item" href="#">Research Management</a>
+               
+                  <a class="dropdown-item" href="#">Author Management</a>
+                  <a class="dropdown-item" href="#">Article Journal Management</a>
+                  <a class="dropdown-item" href="#">Events Management</a>
+              </li>
 
+              <li class="nav-item dropdown" >
+              <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user"></i>&nbsp;</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#settings">Settings</a>
+                <a class="dropdown-item" href="#aboutus">About Us</a>
+                <a class="dropdown-item" href="logout.php">Signout</a>
+              </div>
+              </li>
         </ul>
-      </nav><!-- .main-nav -->
+      </nav>
     </div>
   </header>
   <!--================================================================================================ 
@@ -73,33 +92,40 @@
                                           START BODY SECTION
 ====================================================================================================-->
   <section id="intro" class="clearfix">
-    <div class="container" >
-      <div class="intro-img">
-        <img src="../" alt="" class="img-fluid">
-      </div>
-
-      <div class="intro-info" >    
-          <h2>Research Management </h2><br><br>
-        <div class="row">
-          <div class="col-lg-3 col-md-6 col-sm-6">
+  <div class="container">
+  <h3 style="color:#fff;">&nbsp;<b> Research Management </b></h3>
+    <div class="card-group">
+          <div class="col-md-3 col-sm-5">
             <div class="card">
-              <div class="card-content">
-                <p class="category"><strong>Total Researches</strong></p>
-                <h3 class="card-title"><?php echo"$result_count"; ?></h3>
+              <div class="card-body">
+                <i class="fa fa-book fa-2x " style="color:#007bff"></i>
+                <h2 class="float-right" style="color: #007bff;"><?php echo "$result_count"; ?></h2>
+                 <h5 class="card-title">All Journal</h5>
+                <p class="card-text"><small class="text-muted"><span>Last updated 3 mins ago</span> </small></p>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="col-md-3 col-sm-5">
             <div class="card">
-              <div class="card-content">
-                <p class="category"><strong>Total </strong></p>
-                <h3 class="card-title">70,340</h3>
+              <div class="card-body"> 
+               <i class="fa fa-upload fa-2x" style="color:#007bff"></i>
+                <h5 class="card-title">Recent upload</h5>     
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>
           </div>
-        </div>
-
+          <div class="col-md-3 col-sm-5">
+            <div class="card">
+              <div class="card-body">
+               <i class="fa fa-user-plus fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php ?></h2>
+                <h5 class="card-title">All Creator</h5>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              
+              </div>
+            </div>
+          </div>
       </div>
+    </div>
   </section>
 
   <main id="main">
@@ -108,22 +134,24 @@
 ===============================================================================================-->
 <section id="services" class="section-bg">
   <div class="container">
-  <header class="section-header"> 
-
-  </header><br>
 
 <!--==================================== Table List =============================================-->  
-<div class="row">
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
-      <div class="box">
+<!-- <div class="row"> -->
+    <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block"> -->
+      <div class="table-responsive-lg" id="a">
         <tr>
-          <td><button class="btn btn-info" type="button" id="btn-add-research" data-toggle="modal" data-target="#adding-research">Add Research Book</button></td>
+        <button type="button" class="btn btn-outline-lightblue btn-md" data-toggle="modal" data-target="#adding-research" id = "btnadd">
+          Create New Research
+        </button>
+        <a href="research.php #a"><button type="button" class="btn btn-outline-lightblue btn-md">
+          Refresh
+        </button></a>
           <td>
           <input id="txtsearch_title" type="search" class="form-control" placeholder="Search Title" style="float: right; width: 25%">
           </td>
         </tr>
-      <table class="table table-striped table-responsive-md" id="firstTable" >
-        <thead class="bg-primary text-white" id="firstThead"">
+      <table class="table table-hover table-responsive-md" id="firstTable" >
+        <thead id="firstThead"">
           <th> Title </th>
           <th> Main Author </th>
           <th> Co-Author(s) </th>
@@ -147,14 +175,17 @@
                 <td><?php echo $rs['field_of_study']; ?> </td>
                 <td><?php echo $rs['views']; ?> </td>
                 <td><?php echo $rs['cites']; ?> </td>
-                <td style="text-align:left;">
-                  <a href="view.php?view=<?php echo $rs['id']?>"><input type="submit" class="btn btn-primary btn-sm" id="btn_edit1" value="View" >
-                  </input></a>
-                  <a href="#editresearch"><input type="submit" class="btn btn-warning btn-sm" id="btn_edit" value="Edit" data-bs-toggle="modal" data-bs-target="#editresearch">
-                    </input></a>
-                  <a href="../research/api/action.php?id=<?php echo $rs['id'];?>"><input type="submit" class="btn btn-danger btn-sm" id="btn_deleteresearch" value="Delete">
-                    </input></a>
-                </td>
+                <td align="center"><div class="dropdown">
+                  <button class="btn btn-light" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-ellipsis-h"></i>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="option">
+                    <a class="dropdown-item" href="../research/view.php?view= echo $data['id']?>">View</a>
+                    <a class="dropdown-item" href="../research/edit.php?edit= echo $data['id']?>">Edit</a>
+                    
+                  </div>
+                </div>
+              </td>
               </tr>
               <?php
             }
@@ -162,8 +193,8 @@
         </tbody>
       </table>
       </div>
-    </div>
-  </div>
+    <!-- </div> -->
+  <!-- </div> -->
 <!--=========================================== END ================================================-->
 
 <!--================================== MODAL ADDING RESEARCH =======================================-->
@@ -176,15 +207,7 @@
         </button>
       </div>
       <div class="modal-body">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
-    <div class="box">
+      <div class="box">
     <center><h1>Add New Research Paper</h1></center>
       <form action="" method="POST" name="form" enctype="multipart/form-data">
         
@@ -305,6 +328,8 @@
         </button>
       </div>
       </form>
+    </div>
+      </div>
     </div>
   </div>
 </div>
