@@ -155,6 +155,7 @@
               <p class="font-small blue-text d-flex justify-content-end">Forgot<a href="#" class="blue-text ml-1">Password?</a></p>
             </div>
 
+            
           <div class="text-center mb-3">
             <button type="button" class="btn btn-primary btn-block z-depth-1a" id="but_submit" name="but_submit" >Sign in</button>
           </div>
