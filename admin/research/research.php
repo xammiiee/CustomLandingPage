@@ -74,7 +74,7 @@
               <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user"></i>&nbsp;</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#settings">Settings</a>
+                <a class="dropdown-item" href="#profile">Profile</a>
                 <a class="dropdown-item" href="#aboutus">About Us</a>
                 <a class="dropdown-item" href="logout.php">Signout</a>
               </div>
