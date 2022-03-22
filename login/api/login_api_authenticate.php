@@ -37,7 +37,7 @@
                     // session_register("myusername");
                     $_SESSION['login_user'] = $email;
                     $_SESSION['fname'] = $fname;
-                    header("location: ../CustomLandingPage/admin/admin_dashboard.php");
+                    header("location: ../CustomLandingPage/user/index.php");
                 }
             }
             else
