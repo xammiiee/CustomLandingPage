@@ -1,12 +1,12 @@
 <?php
-    include ("../../config/db.php");
+    include ("/xampp/htdocs/CustomLandingPage/config/db.php");
     // $con = mysqli_connect("localhost","root","","research_portal");
    
-    if(isset($_POST['btn-login']))
+    if(isset($_GET['btn_login']))
    {
       // username and password sent from form 
-      $email = mysqli_real_escape_string($con,$_POST['txt_email']);
-      $password = mysqli_real_escape_string($con,$_POST['txt_pwd']); 
+      $email = mysqli_real_escape_string($con,$_POST['email']);
+      $password = mysqli_real_escape_string($con,$_POST['pass']); 
       
       $sql = "SELECT * FROM tblaccount WHERE email = '$email'";
       $result = mysqli_query($con,$sql);

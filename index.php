@@ -34,8 +34,8 @@
 <!-- Try lng mag push -->
 <body>
 <?php
-      include ("../CustomLandingPage/signup/api/post_new_user.php");
-      include ("../CustomLandingPage/login/api/login_api_authenticate.php");
+      include_once ("/xampp/htdocs/CustomLandingPage/login/api/login_api_authenticate.php");
+      include_once ("/xampp/htdocs/CustomLandingPage/signup/api/post_new_user.php");
 ?>
 
   <!--======================================================================================================================
@@ -59,8 +59,6 @@
   
   <!--================================================ SIGN UP MODAL ======================================================-->
   <div class="modal fade" id="signupPage">
-
-    
     <div class="modal-dialog">
       <div class="modal-content">
         
@@ -154,20 +152,19 @@
               <p class="font-small blue-text d-flex justify-content-end">Forgot<a href="#" class="blue-text ml-1">Password?</a></p>
             </div>
 
-
-          <div class="text-center mb-3">
-            <button type="button" class="btn btn-primary btn-block z-depth-1a" id="but_submit" name="btn-login" >Sign in</button>
-          </div>
+            <div class="text-center mb-3">
+              <button type="button" class="btn btn-primary btn-block z-depth-1a" id="but_submit" name="btn_login" >Sign in</button>
+            </div>
         </form>
         
 
 
-        <p class="font-small dark-grey-text d-flex justify-content-center">or sign in with:</p>
+        <!-- <p class="font-small dark-grey-text d-flex justify-content-center">or sign in with:</p>
         <div class="row my-3 justify-content-center">
           <button type="button" class="btn btn-primary z-depth-1a"><i class="fab fa-facebook-f text-center"></i></button>
           <button type="button" class="btn btn-purple z-depth-1a"><i class="fab fa-twitter text-center"></i></button>
           <button type="button" class="btn btn-red z-depth-1a"><i class="fab fa-google-plus-g text-center"></i></button>
-        </div>
+        </div> -->
       </div>
     </div>
     </div> 
@@ -424,6 +421,7 @@
   <script src="contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
+  <script src="../CustomLandingPage/login/script/main.js"></script>
   <script src="js/main.js"></script>
 
 </body>

@@ -1,7 +1,6 @@
 <?php
-    $con = mysqli_connect("localhost","root","","research_portal");
-    // include ("/xampp/htdocs/CustomLandingPage/config/db.php");
-    // include ("/xampp/htdocs/CustomLandingPage/uploadfiles");
+    include ("/xampp/htdocs/CustomLandingPage/config/db.php");
+    include ("/xampp/htdocs/CustomLandingPage/session_checker/checker.php");
 
 // THE IDEA OF SAVING OF THE LIST OF AUTHOR IS BY SAVING THE RESEARCH ID TO THE DATA TABLE OF THE AUTHORS.
 
