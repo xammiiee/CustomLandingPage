@@ -69,7 +69,7 @@ include("{$_SERVER['DOCUMENT_ROOT']}/CustomLandingPage/admin/journal/core.php");
                   </li>
                   <?php if ($_SESSION['role']==1 || $_SESSION['role']==2 || $_SESSION['role']==3) { ?>
                   <li class="nav-item active" >
-                    <a class="nav-link" href="Journal/journal_dashboard.php">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../../index.php">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <?php } ?>
                   <li class="nav-item dropdown" >
@@ -79,7 +79,7 @@ include("{$_SERVER['DOCUMENT_ROOT']}/CustomLandingPage/admin/journal/core.php");
                     <a class="dropdown-item" href="#settings">Settings</a>
                     <a class="dropdown-item" href="#aboutus">About Us</a>
                    
-                    <a class="dropdown-item" href="logout.php">Signout</a>
+                    <a class="dropdown-item" href="/CustomLandingPage/admin/journal/api/logout.php">Signout</a>
                   </div>
                   </li>
                   <?php } else { ?>
