@@ -57,8 +57,8 @@
             <tr> 
 				<td>time</td>
 				<td>
-				<div class='input-group date' id='datetimepicker2'>
-                     <input type='text' class="form-control"name=time />
+				<div class='input-group date' id=''>
+                     <input type='time' class="form-control"name=time />
                      <span class="input-group-addon">
                      <span class="glyphicon glyphicon-calendar"></span>
                      </span>

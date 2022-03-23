@@ -1,9 +1,4 @@
 <?php
-/**
-* Simple PHP CRUD Script
-* Developed by TutorialsClass.com
-* URL:  http://tutorialsclass.com/code/php-simple-crud-application
-**/
 
 // Create database connection using config file
 include_once("/xampp/htdocs/researchportal/news/config.php");
@@ -35,12 +30,9 @@ $events = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
   <link rel="stylesheet" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/mdb.min.css">
 
-  <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
 
   <!-- Main Stylesheet File -->
   <link href="../css/style.css" rel="stylesheet">
@@ -48,7 +40,7 @@ $events = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
 
 </head>
 
-<body>
+
 <?php
     //   include("./accounts/api/post_signup.php");
     //   include_once ("./login/api/login_api_authenticate.php");
@@ -66,7 +58,7 @@ $events = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
       </div>
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
-        <li class="active"><a href="/researchportal/news/index.php">News Management</a></li>
+        <li class="active"><a href="/customlandingpage/news/index.php">News Management</a></li>
           <li class="active"><a href="">Events Management</a></li>
           <li class="active"><a href="#intro">About Us</a></li>
 
@@ -101,8 +93,37 @@ $events = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
   <main id="main">
   <body>
 
-    
 
+<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Events Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+  
 <section id="research"> 
 <div class="container" id="researchdiv">
 <table>
@@ -126,9 +147,8 @@ $events = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
       
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block">
           <table class="table table-striped" id="firstTable" >
-            
-  
-              <thead class="bg-primary text-white" id="firstThead"">
+
+              <thead class="bg-primary text-white" id="firstThead">
                   <th> Events </th>
                   <th> Description  </th>
                   <th> Date </th>
@@ -141,6 +161,7 @@ $events = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
               <tr>
 
 </tr>
+
 <?php  
 while($user_data = mysqli_fetch_array($events)) {         
   echo "<tr>";
@@ -149,9 +170,11 @@ while($user_data = mysqli_fetch_array($events)) {
   echo "<td>".$user_data['date']."</td>";    
   echo "<td>".$user_data['time']."</td>";    
     echo "<td>
-    <a href='viewevents.php?id=$user_data[id]'>View</a> |
-    <a href='editevents.php?id=$user_data[id]'>Edit</a> | 
-    <a href='deleteevents.php?id=$user_data[id]'>Delete</a>
+   
+    <a href='viewevents.php?id=$user_data[id]' <button type='button' class='btn btn-info btn-sm'></button> View </a>
+    <a href='editevents.php?id=$user_data[id]' <button type='button' class='btn btn-warning btn-sm'></button> Edit </a>
+    <a href='deleteevents.php?id=$user_data[id]' <button type='button' class='btn btn-danger btn-sm'></button> Delete </a>
+ 
     </td>
 </tr>";        
 }
@@ -168,43 +191,6 @@ while($user_data = mysqli_fetch_array($events)) {
 
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--==========================
-      Result Section
-    ============================-->
-    <section id="services" class="section-bg">
-      <div class="container">
-
-        <header class="section-header">
-    
-        </header><br>
-
-        <div class="row">
-
-        </div>
-
-      </div>
-    </section>
-
 
 
   </main>
@@ -305,3 +291,15 @@ while($user_data = mysqli_fetch_array($events)) {
 
 </body>
 </html>
+
+<script>
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+ });
+</script>
+
+<script>
+  $(function () {
+    $('#datetimepicker2').datetimepicker();
+ });
+</script>

@@ -13,7 +13,7 @@ if(isset($_POST['update']))
 		
 	// update user data
 	$result = mysqli_query($mysqli, "UPDATE tblevents SET event_name='$event_name',event_description='$event_description',$date='$date' WHERE id=$id");
-	
+
 	// Redirect to homepage to display updated user in list
 	header("Location: index.php");
 }
@@ -52,7 +52,7 @@ while($user_data = mysqli_fetch_array($result))
 	<br/><br/>
 	
 	<form name="update_user" method="post" action="editevents.php">
-		<table border="0">
+		<table>
 			<tr> 
 				<td>event_name</td>
 				<td><input type="text" name="name" value=<?php echo $event_name;?>></td>

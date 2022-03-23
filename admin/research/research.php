@@ -150,6 +150,7 @@
           </td>
         </tr>
         <tr>
+          <!-- filtering section -->
         <nav class="navbar">
           <form class="form-inline">
             <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-all">All</button>

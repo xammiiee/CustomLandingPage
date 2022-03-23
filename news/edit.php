@@ -45,7 +45,7 @@ while($user_data = mysqli_fetch_array($result))
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-	<title>Edit User Data</title>
+	<title>Edit News Data</title>
 </head>
 
 <body>
@@ -53,7 +53,7 @@ while($user_data = mysqli_fetch_array($result))
 	<br/><br/>
 	
 	<form name="update_user" method="post" action="edit.php">
-		<table border="0">
+		<table>
 			<tr> 
 				<td>Headlines</td>
 				<td><input type="text" name="name" value=<?php echo $name;?>></td>
