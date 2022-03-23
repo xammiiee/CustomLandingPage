@@ -12,7 +12,7 @@ if (empty($_SESSION['id'])) {
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body">
-                <i class="fa fa-users fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php echo get_users($connect)->num_rows;?></h2>
+                <!-- <i class="fa fa-users fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php echo get_users($connect)->num_rows;?></h2> -->
                  <h5 class="card-title">All Account</h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
@@ -21,7 +21,7 @@ if (empty($_SESSION['id'])) {
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body"> 
-               <i class="fa fa-eyefa fa-upload fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php echo get_activeaccounts($connect)->num_rows;?></h2>
+               <!-- <i class="fa fa-eyefa fa-upload fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php echo get_activeaccounts($connect)->num_rows;?></h2> -->
                 <h5 class="card-title">Active</h5>     
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
@@ -30,7 +30,7 @@ if (empty($_SESSION['id'])) {
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body"> 
-               <i class="fa fa-power-off fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php echo get_inactiveaccounts($connect)->num_rows;?></h2>
+               <!-- <i class="fa fa-power-off fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php echo get_inactiveaccounts($connect)->num_rows;?></h2> -->
                 <h5 class="card-title">Inactive</h5>     
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
@@ -90,6 +90,18 @@ if (empty($_SESSION['id'])) {
    </div>
  </div>
 </div>
+
+<nav class="navbar">
+          <form class="form-inline">
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-all">All</button>
+            <input id="txtsearch_title" type="search" class="form-control" placeholder="Search" style=" width: 250px">
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-title">Title</button>
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-author">Author</button>
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-fstudy">Field of Study</button>
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-mostview">Most View</button>
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-mostcited">Most Cited</button>
+          </form>
+        </nav>
 
 <!--Projects-->
 <div class="table-responsive-lg">

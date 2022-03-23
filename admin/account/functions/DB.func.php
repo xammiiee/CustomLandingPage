@@ -49,13 +49,13 @@ function delete_data($query,$connect,$message){
 }
 
 
-function get_users($connect){
-	$sql = "SELECT * FROM tblaccount ORDER BY id ASC";
-	$result = $connect->query($sql);
-	if ($result->num_rows > 0) {
-		return $result;
-	}
-}
+// function get_users($connect){
+// 	$sql = "SELECT * FROM tblaccount ORDER BY id ASC";
+// 	$result = $connect->query($sql);
+// 	if ($result->num_rows > 0) {
+// 		return $result;
+// 	}
+// }
 
 function get_user_data($connect,$id){
 	$sql = "SELECT * FROM tblaccount WHERE id=$id";
