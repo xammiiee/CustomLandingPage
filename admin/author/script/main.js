@@ -1,32 +1,4 @@
 $(document).ready(function () {
-    
-  // ADDING NEW RESEARCH
-  $("#co-list").toggle();
-  $("#tags-list").toggle();
-
-  // CO-AUTHORS =======================================================================================
-  $("#btn-co-author").click(function () {
-    $("#co-list").show();
-    
-    var main_author = $("#txtmain-author").val();
-    console.log(main_author);
-    var value1 = $('#txtco-authors').val();
-    $('#tags-list').append('<li class ="list-group-item">'+ value1 +'</li>');
-    
-    var remove_space = value1.replace(/ /g,'');
-    $("#"+ remove_space+"").remove();
-  })
-
-  // TAGS =============================================================================================
-  $("#btn-tags").click(function () {
-    $("#tags-list").show();
-    
-    var value = $("#drop-tags").val();
-    $('#tags-list').append('<li class="list-group-item" id="'+value+'">' + value + '</li>');
-
-    $("#"+value+"").remove();
-  })
-
   // DELETE =========================================================================================
   $("#btn_deleteresearch").click(function () {
    
@@ -35,8 +7,9 @@ $(document).ready(function () {
 
   // FILTERING BY SEARCHING =========================================================================
   // title
-  var value = $(this).val().toLowerCase();
-    $("#res-fullname td").filter(function() {
+  $("#filter-title  ").click(function () {
+    var value = $(this).val().toLowerCase();
+    $("#res-title td").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   
