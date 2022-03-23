@@ -247,6 +247,7 @@
         
         <!-- CO AUTHOR -->
         <div class="row">
+          
           <div class="col">
           <label class="label">Co-Author(s) *</label><br>
           <select class="custom-select" id="txtco-authors" name="co-author">
@@ -262,6 +263,7 @@
             <button class="btn btn-info" type="button" id="btn-co-author">Add</button>
           </div>
           </div>
+
           <div class="col" id="co-author-list" >
             <label>--Co-Authors Added--</label>
           <ul class="list-group" id='co-list'>

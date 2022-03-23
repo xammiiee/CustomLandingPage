@@ -195,47 +195,42 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-      <div class="box">
-    <center><h1>Add New Author</h1></center>
-      <form action="" method="POST" name="form" enctype="multipart/form-data">
 
-        <!-- FIRST NAME -->
-        <div class="form-group">
+      <div class="modal-body">
+        <div class="box">
+        <center><h1>Add New Author</h1></center>
+        <form action="" method="POST" name="form">
+        
+        <div class="row">
+          
+          <div class="col">
             <label class="label">First Name *</label><br>
             <input type="text" class="form-control" id="fname" name="fname">
-        </div>
-        
-        <!-- LAST NAME -->
-        <div class="row">
+          </div>
+          
           <div class="col">
-          <label class="label">Last Name *</label><br>
-          <input type="text" class="form-control" id="lname" name="lname">
-
-        </div>
+            <label class="label">Last Name *</label><br>
+            <input type="text" class="form-control" id="lname" name="lname">
+          </div>
+        </div><br>
 
         <!-- EMAIL -->
-      <div class="form-group">
-        <label class="label">Email *</label>
-        <input type="text" class="form-control" id="email" name="email">
-      </div>
+        <div class="form-group">
+          <label class="label">Email *</label>
+          <input type="text" class="form-control" id="email" name="email">
+        </div>
 
-      <br><br>
-
-      <div class="form-group">
-        <button type="submit" class="btn btn-info" id="submit" name="btnsubmit" >
-            Submit
-        </button>
-      </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-info" id="submit" name="btnsubmit">Submit</button>
+        </div>
       </form>
       </div>
       </div>
+      </div>
     </div>
-          </div>
     </div>
-    </div>
-  </div>
 </div>
+
  <!--========================================== END  ===============================================-->
   </div>
   <!--==================================== MODAL DELETE NOTIF ======================================-->
