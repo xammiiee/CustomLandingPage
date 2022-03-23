@@ -6,12 +6,12 @@ if(isset($_GET['id']))
 {
     $id = $_GET['id'];
 
-    $sql = "DELETE FROM tblresearch WHERE id = '$id'";
+    $sql = "DELETE FROM tblauthor WHERE id = '$id'";
     $result = mysqli_query($con,$sql);
     if($result > 0) 
     {
-        echo "<script>alert('Research Deleted!');</script>";
-        header("Location: ../research.php");
+        echo "<script>alert('Author Deleted!');</script>";
+        header("Location: ../author.php");
     }
 }
 
@@ -21,7 +21,7 @@ if(isset($_GET['view']))
     // $status = $_GET[''];
     $id =$_GET['view'];
 
-    $sql = "SELECT * FROM tblresearch WHERE id = '$id'";
+    $sql = "SELECT * FROM tblauthor WHERE id = '$id'";
     $result = mysqli_query($con,$sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
@@ -29,7 +29,7 @@ if(isset($_GET['view']))
     {?>
         <center><div style="height: 900px; width: 80%;">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Research Viewer</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Author Viewer</h5>
             <a href="../admin/admin_dashboard.php"><button type="button" class="btn-close"></button></a>
             </div>
             <div class="body">
@@ -48,7 +48,7 @@ if(isset($_GET['edit']))
     {
         $id = $_GET['edit'];
 
-        $sql = "UPDATE research set  WHERE id = '$id'";
+        $sql = "UPDATE author set  WHERE id = '$id'";
         $result = mysqli_query($con,$sql);
         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
         $count = mysqli_num_rows($result);
@@ -61,7 +61,7 @@ if(isset($_GET['edit']))
                 $pass= $row['pass'];
                 $categ = $row['ucategory'];
                 
-                echo "<script>alert('Account Edited.');</script>";
+                echo "<script>alert('Author Edited.');</script>";
             }
     }
 ?>

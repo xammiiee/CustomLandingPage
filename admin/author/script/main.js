@@ -27,50 +27,6 @@ $(document).ready(function () {
     $("#"+value+"").remove();
   })
 
-  // SUBMIT FORM ======================================================================================
-  $("#btnsubmit").click(function(){
-    // INITIALIZE
-    var title = $("#title").val();
-    var main_author = $("#txtmain-author").val();
-    var co_author = $("#co-list").text();
-    var abstract = $("#abstract").text();
-    var dpub = $("#dpub").val();
-    var fstudy = $("#fstudy").val();
-    var tags = $("#tags-list").text();
-
-    // VALIDATE IF EMPTY
-    if(title !="" && main_author != "" && co_author !="" && abstract != "" && dpub !="" && fstudy !="" && tags !="")
-    {
-      var values = 
-      {
-        title: title,
-        main_author: main_author,
-        co_author: co_author,
-        abstract: abstract,
-        dpub: dpub,
-        fstudy: fstudy,
-        tags: tags
-      }
-      $.ajax({
-        type: "POST",
-        url: "../submitpost.php",
-        data: values,
-        cache: false,
-        success: function(data) {
-        alert(data);
-        },
-        error: function(xhr, status, error) {
-        console.error(xhr);
-        }
-        });
-    }
-    else
-    {
-      alert("Fill all Fields");
-      return false;
-    }
-  });
-
   // DELETE =========================================================================================
   $("#btn_deleteresearch").click(function () {
    
@@ -79,12 +35,10 @@ $(document).ready(function () {
 
   // FILTERING BY SEARCHING =========================================================================
   // title
-  $("#filter-title").click(function () {
-    var value = $(this).val().toLowerCase();
-    $("#res-title td").filter(function() {
+  var value = $(this).val().toLowerCase();
+    $("#res-fullname td").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
-  })
   
   $("#filter-author").click(function () {
     var col = "#filter-author";
