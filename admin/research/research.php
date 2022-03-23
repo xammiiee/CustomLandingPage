@@ -41,7 +41,7 @@
 <body>
 <?php
   session_start();
-  include ("../research/api/submitpost.php");
+  // include ("../research/api/submitpost.php");
 ?>
 
 <!--===============================================================================================
@@ -101,7 +101,7 @@
               <div class="card-body">
                 <i class="fa fa-book fa-2x " style="color:#007bff"></i>
                 <h2 class="float-right" style="color: #007bff;"><?php echo "$result_count"; ?></h2>
-                 <h5 class="card-title">All Journal</h5>
+                 <h5 class="card-title">All Research</h5>
                 <p class="card-text"><small class="text-muted"><span>Last updated 3 mins ago</span> </small></p>
               </div>
             </div>
@@ -141,15 +141,27 @@
     <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block"> -->
       <div class="table-responsive-lg" id="a">
         <tr>
-        <button type="button" class="btn btn-outline-lightblue btn-md" data-toggle="modal" data-target="#adding-research" id = "btnadd">
-          Create New Research
-        </button>
+        <button type="button" class="btn btn-outline-lightblue btn-md" data-toggle="modal" data-target="#adding-research" id = "btnadd">Add Research</button>
         <a href="research.php #a"><button type="button" class="btn btn-outline-lightblue btn-md">
           Refresh
         </button></a>
           <td>
-          <input id="txtsearch_title" type="search" class="form-control" placeholder="Search Title" style="float: right; width: 25%">
+          
           </td>
+        </tr>
+        <tr>
+          <!-- filtering section -->
+        <nav class="navbar">
+          <form class="form-inline">
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-all">All</button>
+            <input id="txtsearch_title" type="search" class="form-control" placeholder="Search" style=" width: 250px">
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-title">Title</button>
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-author">Author</button>
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-fstudy">Field of Study</button>
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-mostview">Most View</button>
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-mostcited">Most Cited</button>
+          </form>
+        </nav>
         </tr>
       <table class="table table-hover table-responsive-md" id="firstTable" >
         <thead id="firstThead"">
@@ -169,13 +181,13 @@
             foreach($result as $rs)
             { ?>
               <tr id="result">
-                <td><?php echo $rs['title']; ?> </td>
-                <td><?php echo $rs['main_author']; ?> </td>
-                <td><?php echo $rs['co_authors']; ?> </td>
-                <td><?php echo $rs['date_publish']; ?> </td>
-                <td><?php echo $rs['field_of_study']; ?> </td>
-                <td><?php echo $rs['views']; ?> </td>
-                <td><?php echo $rs['cites']; ?> </td>
+                <td id="res-title"><?php echo $rs['title']; ?> </td>
+                <td id="res-main-author"><?php echo $rs['main_author']; ?> </td>
+                <td id="res-co-author"><?php echo $rs['co_authors']; ?> </td>
+                <td id="res-datepub"><?php echo $rs['date_publish']; ?> </td>
+                <td id="res-fstudy"><?php echo $rs['field_of_study']; ?> </td>
+                <td id="res-views"><?php echo $rs['views']; ?> </td>
+                <td id="res-cite"><?php echo $rs['cites']; ?> </td>
                 <td align="center"><div class="dropdown">
                   <button class="btn btn-light" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-ellipsis-h"></i>
@@ -183,7 +195,7 @@
                   <div class="dropdown-menu" aria-labelledby="option">
                     <a class="dropdown-item" href="../research/view.php?view= echo $data['id']?>">View</a>
                     <a class="dropdown-item" href="../research/edit.php?edit= echo $data['id']?>">Edit</a>
-                    
+                    <a class="dropdown-item" href="" data-toggle="modal" data-target="#modaldelete">Delete</a>
                   </div>
                 </div>
               </td>
@@ -335,6 +347,25 @@
   </div>
 </div>
  <!--========================================== END  ===============================================-->
+  </div>
+  <!--==================================== MODAL DELETE NOTIF ======================================-->
+  <div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div><h4>Do you want to Delete?</h4></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default">Yes</button>
+      </div>
+    </div>
+  </div>
 </div>
 </section>
 
