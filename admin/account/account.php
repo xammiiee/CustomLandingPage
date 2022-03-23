@@ -1,27 +1,116 @@
 <?php
-include "inc/header.php";
-if (empty($_SESSION['id'])) {
-}
+  // include "../research/api/submitpost.php";
+  include "../account/api/displayallresearch.php";
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Arellano University</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="../../img/favicon.png" rel="icon">
+  <link href="../../img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+  <!-- Bootstrap CSS File -->
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/mdb.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+  <!-- Libraries CSS Files -->
+  <link href="../../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="../../css/style.css" rel="stylesheet">
+  <link href="../../css/addons.css" rel="stylesheet">
+
+</head>
+
+<body>
+<?php
+  session_start();
+  // include ("../research/api/submitpost.php");
 ?>
 
-<!-- #Account-->
-<section id="intro" class="clearfix">
+<!--===============================================================================================
+                                          START HEADER
+=================================================================================================-->
+  <header id="header" class="fixed-top">
+    <div class="container">
+      <div class="logo float-left">
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+        <a href="../../index.php" class="scrollto"><img src="../../img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+      </div>
+      <nav class="main-nav float-right d-none d-lg-block" >
+        <ul>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Management
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="../account/account.php">Account Management</a>
+                  <a class="dropdown-item" href="../research/research.php">Research Management</a>
+               
+                  <a class="dropdown-item" href="#">Author Management</a>
+                  <a class="dropdown-item" href="#">Article Management</a>
+                  <a class="dropdown-item" href="../journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="#">Events Management</a>
+              </li>
+
+              <li class="nav-item dropdown" >
+              <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user"></i>&nbsp;</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#profile">Profile</a>
+                <a class="dropdown-item" href="#aboutus">About Us</a>
+                <a class="dropdown-item" href="logout.php">Signout</a>
+              </div>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!--================================================================================================ 
+                                              END HEADER 
+  ====================================================================================================-->
+  
+
+
+<!--==================================================================================================
+                                          START BODY SECTION
+====================================================================================================-->
+  <section id="intro" class="clearfix">
   <div class="container">
   <h3 style="color:#fff;">&nbsp;<b> Account Management </b></h3>
     <div class="card-group">
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body">
-                <!-- <i class="fa fa-users fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php echo get_users($connect)->num_rows;?></h2> -->
+                <i class="fa fa-book fa-2x " style="color:#007bff"></i>
+                <h2 class="float-right" style="color: #007bff;"><?php echo "$result_count"; ?></h2>
                  <h5 class="card-title">All Account</h5>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <p class="card-text"><small class="text-muted"><span>Last updated 3 mins ago</span> </small></p>
               </div>
             </div>
           </div>
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body"> 
-               <!-- <i class="fa fa-eyefa fa-upload fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php echo get_activeaccounts($connect)->num_rows;?></h2> -->
+               <i class="fa fa-upload fa-2x" style="color:#007bff"></i>
+               <h2 class="float-right" style="color: #007bff;"><?php echo "$activeresult_count"; ?></h2>
                 <h5 class="card-title">Active</h5>     
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
@@ -30,203 +119,212 @@ if (empty($_SESSION['id'])) {
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body"> 
-               <!-- <i class="fa fa-power-off fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php echo get_inactiveaccounts($connect)->num_rows;?></h2> -->
+               <i class="fa fa-upload fa-2x" style="color:#007bff"></i>
+               <h2 class="float-right" style="color: #007bff;"><?php echo "$inactiveresult_count"; ?></h2>
                 <h5 class="card-title">Inactive</h5>     
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-5">
+            <div class="card">
+              <div class="card-body"> 
+               <i class="fa fa-upload fa-2x" style="color:#007bff"></i>
+                <h5 class="card-title">Recent upload</h5>     
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>
           </div>
       </div>
     </div>
-</section>
+  </section>
 
-<div class="container">
-<!-- Create task button -->
-<button type="button" class="btn btn-outline-dark btn-md" data-toggle="modal" data-target="#create-project">
-  Create New Account
-</button>
-<a href="account.php"><button type="button" class="btn btn-outline-dark btn-md">
-  Refresh
-</button>
-</a>
+  <main id="main">
+<!--=============================================================================================
+                                        Result Section
+===============================================================================================-->
+<section id="services" class="section-bg">
+  <div class="container">
 
-<br/>
-<br/>
-
-<!-- Create New Projects -->
-
-<div class="modal fade" id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered " role="document">
-   <div class="modal-content">
-     <form method="post" action="account_mng.php">
-       <div class="modal-header">
-         
-         <h5 class="modal-title" id="create-project-label">Create Account</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-       <div class="modal-body">
-         <div class="form-group">
-           <label for="fname">First Name</label>
-           <input type="text" class="form-control" id="fname" name="fname">
-           </div>
-           <div class="form-group">
-             <label for="lname">Last Name</label>
-             <input type="text" class="form-control" id="lname" name="lname">
-           </div>
-           <div class="form-group">
-             <label for="email">Email</label>
-             <input type="text" class="form-control" id="email" name="email">
-           </div>
-       </div>
-       <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
-       <input type="hidden" name="create" value="create"/>
-       <div class="modal-footer">
-         <button class="btn btn-primary">Save</button>
-         <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-       </div>
-     </form>
-   </div>
- </div>
-</div>
-
-<nav class="navbar">
+<!--==================================== Table List =============================================-->  
+<!-- <div class="row"> -->
+    <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto d-block"> -->
+      <div class="table-responsive-lg" id="a">
+        <tr>
+        <button type="button" class="btn btn-outline-lightblue btn-md" data-toggle="modal" data-target="#adding-research" id = "btnadd">Add Account</button>
+        <a href="research.php #a"><button type="button" class="btn btn-outline-lightblue btn-md">
+          Refresh
+        </button></a>
+          <td>
+          
+          </td>
+        </tr>
+        <tr>
+          <!-- filtering section -->
+        <nav class="navbar">
           <form class="form-inline">
             <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-all">All</button>
             <input id="txtsearch_title" type="search" class="form-control" placeholder="Search" style=" width: 250px">
-            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-title">Title</button>
-            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-author">Author</button>
-            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-fstudy">Field of Study</button>
-            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-mostview">Most View</button>
-            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-mostcited">Most Cited</button>
+            <button class="btn btn-outline-lightblue btn-md" type="button" id="filter-account">Account</button>
           </form>
         </nav>
+        </tr>
+      <table class="table table-hover table-responsive-md" id="firstTable" >
+        <thead id="firstThead">
+          <th> Id </th>
+          <th> First name </th>
+          <th> Last name </th>
+          <th> Email </th>
+          <th> Password </th>
+          <th> Status </th>
+          <th> Category </th>
+          <th colspan="3"> Action </th>
+        </thead>
+        <tbody id="myTable" style="width:100%">
+          <?php
+          include "../account/api/displayallresearch.php";
 
-<!--Projects-->
-<div class="table-responsive-lg">
- <table id="projects" class="table table-hover">
-   <thead>
-     <tr>
-       <th scope="col" class="d-none">Default Sort Fixer</th>
-       <th scope="col">ID</th>
-       <th scope="col">First name</th>
-       <th scope="col">Last name</th>
-       <th scope="col">Email</th>
-       <th scope="col">Password</th>
-       <th scope="col">Status</th>
-       <th scope="col">Category</th>
-       <th scope="col">Member</th>
-     </tr>
-   </thead>
-   <tbody>
-     <?php
-     $result = get_users($connect);
-     if ($result->num_rows>0) {
-     while ($data = mysqli_fetch_array($result)) {
-       ?>
-       <tr>
-         <td><?php echo $data['id']?></td>
-         <td><?php echo $data['fname']?></a></td>
-         <td><?php echo $data['lname']?></a></td>
-         <td><?php echo $data['email']?></a></td>
-         <td><?php echo $data['pass']?></a></td>
-         <td><?php echo $data['status']?></a></td>
-         <td><?php echo $data['ucategory']?></a></td>
-         <td><?php echo $data['au_member']?></a></td>
-       <td align="center"><div class="dropdown">
-         <button class="btn btn-light" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <i class="fa fa-ellipsis-h"></i>
-         </button>
-         <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="project.php?id=<?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="project.php?edit=<?php echo $data['id']?>">Edit</a>
-           <?php if ($_SESSION['id']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
-         </div>
-       </div>
-     </td>
-   </tr>
+            foreach($result as $rs)
+            { ?>
+              <tr id="result">
+                <td id="res-id"><?php echo $rs['id']; ?> </td>
+                <td id="res-fname"><?php echo $rs['fname']; ?> </td>
+                <td id="res-lname"><?php echo $rs['lname']; ?> </td>
+                <td id="res-email"><?php echo $rs['email']; ?> </td>
+                <td id="res-pass"><?php echo $rs['pass']; ?> </td>
+                <td id="res-status"><?php echo $rs['status']; ?> </td>
+                <td id="res-ucategory"><?php echo $rs['ucategory']; ?> </td>
+                <td align="center"><div class="dropdown">
+                  <button class="btn btn-light" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-ellipsis-h"></i>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="option">
+                    <a class="dropdown-item" href="../research/view.php?view= echo $data['id']?>">View</a>
+                    <a class="dropdown-item" href="../research/edit.php?edit= echo $data['id']?>">Edit</a>
+                    <a class="dropdown-item" href="" data-toggle="modal" data-target="#modaldelete">Delete</a>
+                  </div>
+                </div>
+              </td>
+              </tr>
+              <?php
+            }
+          ?>
+        </tbody>
+      </table>
+      </div>
+    <!-- </div> -->
+  <!-- </div> -->
+<!--=========================================== END ================================================-->
 
-<!-- Delete Popup -->
-<div style="margin-top: 200px;width: 30%;margin-left: 35%;margin-right: 35%;" class="modal fade" id="delete-<?php echo $data['id'];?>" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <h5 class="modal-title" id="deleteLabel">Delete Account</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-       <div class="modal-body">
-         Are you sure you want to delete?
-       </div>
-       <div class="modal-footer">
-         <a href="?del=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-       </div>
-     </div>
-   </div>
- </div>
-   <?php
- }
-}
- ?>
-</tbody>
-</table>
+<!--================================== MODAL ADDING RESEARCH =======================================-->
+<div class="modal fadeInDown  adding-research-lg " id="adding-research" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="box">
+    <center><h1>Add New Account</h1></center>
+      <form action="" method="POST" name="form" enctype="multipart/form-data">
+
+        <!-- FIRST NAME -->
+        <div class="form-group">
+            <label class="label">First Name *</label><br>
+            <input type="text" class="form-control" id="fname" name="fname">
+        </div>
+
+        <!-- LAST NAME -->
+        <div class="form-group">
+            <label class="label">Last Name *</label><br>
+            <input type="text" class="form-control" id="lname" name="lname">
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+            <label class="label">Email *</label><br>
+            <input type="text" class="form-control" id="email" name="email">
+        </div>
+        
+        <!-- PASSSWORD -->
+        <div class="form-group">
+            <label class="label">Password *</label><br>
+            <input type="text" class="form-control" id="pass" name="pass">
+        </div>
+
+        <!-- STATUS -->
+        <div class="col">
+          <div class="form-group">
+            <label class="label">Status *</label><br>
+            <select class="custom-select" id="status" name="status">
+            <option selected> </option>
+            <option value="Active">Active</option>
+            <option value="Inctive">Inactive</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- USER CATEGORY -->
+        <div class="col">
+          <div class="form-group">
+            <label class="label">Category *</label><br>
+            <select class="custom-select" id="ucategory" name="ucategory">
+            <option selected> </option>
+            <option value="User">User</option>
+            <option value="Administrator">Administrator</option>
+            </select>
+          </div>
+        </div>
+
+
+        
+      <div class="form-group">
+        <button type="submit" class="btn btn-info" id="submit" name="btnsubmit" >
+            Submit
+        </button>
+      </div>
+      </form>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
 </div>
+ <!--========================================== END  ===============================================-->
+  </div>
+  <!--==================================== MODAL DELETE NOTIF ======================================-->
+  <div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div><h4>Do you want to Delete?</h4></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default">Yes</button>
+      </div>
+    </div>
+  </div>
 </div>
+</section>
 
-<script src="assets/datatables.min.js"></script>
-<script>
- $(function() {
-   $('#projects').DataTable();
-   $(function() {
-     var table = $('#example').DataTable({
-       "columnDefs": [{
-         "visible": false,
-         "targets": 2
-       }],
-       "ordering": false,
-       "displayLength": 25,
-       "drawCallback": function(settings) {
-         var api = this.api();
-         var rows = api.rows({
-           page: 'current'
-         }).nodes();
-         var last = null;
-         api.column(2, {
-           page: 'current'
-         }).data().each(function(group, i) {
-           if (last !== group) {
-             $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-             last = group;
-           }
-         });
-       }
-     });
-           // Order by the grouping
-           $('#example tbody').on('click', 'tr.group', function() {
-             var currentOrder = table.order()[0];
-             if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-               table.order([2, 'desc']).draw();
-             } else {
-               table.order([2, 'asc']).draw();
-             }
-           });
-       });
- });
- $('#example23').DataTable({
-   dom: 'Bfrtip',
-   buttons: [
-   'copy', 'csv', 'excel', 'pdf', 'print'
-   ]
- });
- $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
-</script>
+<!--===================================================================================================
+                                          END OF BODY SECTION
+  ====================================================================================================-->
+  </main> 
 
-<!--==========================
-    Footer
-  ============================-->
+
+  
+  <!--================================================================================================
+                                              FOOTER
+  ==================================================================================================-->
   <footer id="footer">
     <div class="footer-top">
       <div class="container">
@@ -278,5 +376,32 @@ if (empty($_SESSION['id'])) {
 
         </div>
       </div>
-      
     </div>
+  </footer>
+<!--================================================================================================
+  END FOOTER 
+====================================================================================================-->
+</body>
+</html>
+<!-- ===============================================================================================
+                                      LIBRARIES AND SCRIPT
+ ==================================================================================================-->
+
+ <!-- JavaScript Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../lib/easing/easing.min.js"></script>
+  <script src="../../lib/mobile-nav/mobile-nav.js"></script>
+  <script src="../../lib/wow/wow.min.js"></script>
+  <script src="../../lib/waypoints/waypoints.min.js"></script>
+  <script src="../../lib/counterup/counterup.min.js"></script>
+  <script src="../../lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="../../lib/lightbox/js/lightbox.min.js"></script>
+
+
+  <script src="../research/script/main.js"></script>
+  <script src="../../js/main.js"></script>
+
