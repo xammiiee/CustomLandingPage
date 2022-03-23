@@ -98,7 +98,7 @@
 		$result = mysqli_query($mysqli, "INSERT INTO tblevents(event_name,event_description,date,time) VALUES('$event_name','$event_description','$date','$time')");
 		
 		// Show message when user added
-		echo "User added successfully. <a href='index.php'>View Users</a>";
+		echo "Events added successfully. <a href='index.php'>View Events</a>";
 	}
 	?>
 </body>

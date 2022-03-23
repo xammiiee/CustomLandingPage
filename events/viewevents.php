@@ -11,9 +11,6 @@ if(isset($_POST['update']))
 	$date=$_POST['date'];
 	$time = $_POST['time'];
 		
-	// update user data
-	$result = mysqli_query($mysqli, "UPDATE tblevents SET event_name='$event_name',event_description='$event_description',$date='$date' WHERE id=$id");
-
 	// Redirect to homepage to display updated user in list
 	header("Location: index.php");
 }
