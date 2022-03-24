@@ -1,67 +1,137 @@
 <?php
-$con = mysqli_connect("localhost","root","","research_portal");
-
-// DELETE =============================================================================
-if(isset($_GET['id']))
-{
-    $id = $_GET['id'];
-
-    $sql = "DELETE FROM tblresearch WHERE id = '$id'";
-    $result = mysqli_query($con,$sql);
-    if($result > 0) 
-    {
-        echo "<script>alert('Research Deleted!');</script>";
-        header("Location: ../research.php");
-    }
+include_once "inc/header.php";
+if (empty($_SESSION['id'])) {
+	header("Location: login.php");
 }
-
-// VIEW ===============================================================================
-if(isset($_GET['view']))
-{
-    // $status = $_GET[''];
-    $id =$_GET['view'];
-
-    $sql = "SELECT * FROM tblresearch WHERE id = '$id'";
-    $result = mysqli_query($con,$sql);
-    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-    $count = mysqli_num_rows($result);
-    if($count == 1)
-    {?>
-        <center><div style="height: 900px; width: 80%;">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Research Viewer</h5>
-            <a href="../admin/admin_dashboard.php"><button type="button" class="btn-close"></button></a>
-            </div>
-            <div class="body">
-                <?php $pdf_file = $row['pdf_file'];?>
-                <center><iframe src="<?php echo "$pdf_file"?>" width="80%" height="900px">
-                </iframe></center>
-            </div>
-        </div></center>
-        <?php
-    }
-}
-
-// EDIT ==================================================================================
-
-if(isset($_GET['edit']))
-    {
-        $id = $_GET['edit'];
-
-        $sql = "UPDATE research set  WHERE id = '$id'";
-        $result = mysqli_query($con,$sql);
-        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-        $count = mysqli_num_rows($result);
-        // check email if exist
-            if($count == 1) 
-            {
-                $fname = $row['fname'];
-                $lname = $row['lname'];
-                $email = $row['email'];
-                $pass= $row['pass'];
-                $categ = $row['ucategory'];
-                
-                echo "<script>alert('Account Edited.');</script>";
-            }
-    }
 ?>
+
+<!--View Journal-->
+<?php 
+//updating of journal
+if (isset($_POST['id'])) {
+ 		$result = update_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['datepub'],$_POST['description'],$_POST['id']);
+ 		if ($result == "1") {
+			echo'<div style="position:relative;top: 100px;"';
+ 			message("Journal updated successfully!",1);
+ 		}
+ 	}
+// deleting of journal
+ if (isset($_GET['del'])) {
+ 	$result = delete_journalaction($connect,$_GET['del']);
+ 	if ($result =="1") {
+ 		header("Location: journal.php");
+ 		message("Journal deleted successfully!","1");
+ 	}
+ }
+
+// editing of journal
+if (isset($_GET['edit'])) {
+	$data = get_journalaction($connect,$_GET['edit']);
+	?>
+	<br><br><br><br>
+
+	<div class="container">
+		<table class="table table-bordered " >
+			<thead class="thead-dark">
+			
+				<tr>
+					<th scope="cols" colspan="3" class="p-0">
+						
+						<h5> <a href="action.php?id=<?php echo $data['id'];?>&ref=journal"><button class="btn btn-dark btn-sm">← Back to project</button></a> </h5>
+					</th>
+				</tr>
+			</thead>
+			<form method="post">
+			<tbody>
+				<tr>
+					<td>
+						<div class="form-group">
+							<label for="author">Author Name</label>
+							<input type="text" class="form-control" id="author" name="author" value="<?php echo $data['author'];?>">
+							<div class="form-group">
+								<label for="title">Title</label>
+								<input class="form-control" id="title" name="title" value="<?php echo $data['title'];?>">
+							</div>
+							<div class="form-group">
+								<label for="description">Description</label>
+								<textarea class="form-control" id="description" name="description" rows="10"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="datepub">Date Publish</label>
+							<input type="date" class="form-control" id="datepub" name="datepub" value="<?php echo $data['datepub'];?>">
+						</div>
+
+						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">
+
+						<div class="form-group" align="right">
+							<button class="btn btn-primary btn-sm">Save Project</button> <a class="btn btn-dark btn-sm" href="/project.php?id=<?php echo $data['id'];?>&ref=journal">Cancel</a>
+						</div>
+					</td>
+
+				</tr>
+			</tbody>
+		</form>
+		</table>
+		</div>
+		</div>
+
+<?php } ?>
+
+<?php 
+
+// Get journal id
+if (!empty($_GET['id'])) {
+	$data = get_journal($connect,$_GET['id']);
+	?>
+<br><br><br><br>
+	<!--View Journal-->
+	<div class="container">
+	<div class="card">
+		<div class="card-body">
+		<div style="line-height: 20px;">
+		<style>
+			h2,p{
+				padding:0;
+				margin:0;
+			}
+			.card{
+
+			}
+		</style>
+					<div class="badge badge-info text-wrap" style="width: 4rem;padding:5px;" >
+					<span >Journal</span>
+					</div>
+					<h2 class="text-left" style="margin-top:10px;" ><?php echo $data['title']?></h2>
+						<button class="btn btn-primary btn-sm float-right" style="position:relative;bottom:40px;" ><i class="fa fa-download"> Download fulltext PDF&nbsp;</i></button>
+						<button class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" ><i class="fa fa-file-text"> Download fulltext PDF&nbsp;</i></button>
+							
+						
+
+					<p class="font-weight-normal text-left" style="width:50%;"><?php echo ($data['description']); ?></p>
+					<p class="font-weight-sm-light text-left" style="font-size: 15px;margin-top:10px;" ><?php echo date("Y-m-d",strtotime($data['datepub']));?></p>
+					<p style="margin-top:10px;"><b>Authors:</b></p>
+					<p style="margin-top:10px;"><a href=""><?php echo $data['author']?></a></p>
+					</div>
+					</div>
+					</div>
+	<br<br><br>
+	<div class="container">
+		<div id="result"></div>
+			<div class="modal-footer">
+				<a href="journal.php"><button class="btn btn-dark btn-sm">Back</button></a>
+					<div class="dropdown">
+						<button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-ellipsis-h"></i>
+						</button>
+						
+						<div class="dropdown-menu" aria-labelledby="option">
+							<a class="dropdown-item" href="action.php?edit=<?php echo $data['id']?>">Edit</a>
+							<a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete">Delete</a>
+						</div>
+					</div>		
+			</div>	
+		</div>
+	
+<?php } ?>
+
