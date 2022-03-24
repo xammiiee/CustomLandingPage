@@ -163,21 +163,21 @@
 </tr>
 
 <?php  
-// while($user_data = mysqli_fetch_array($events)) {         
-//   echo "<tr>";
-//   echo "<td>".$user_data['event_name']."</td>";
-//   echo "<td>".$user_data['event_description']."</td>";
-//   echo "<td>".$user_data['date']."</td>";    
-//   echo "<td>".$user_data['time']."</td>";    
-//     echo "<td>
+while($user_data = mysqli_fetch_array($events)) {         
+  echo "<tr>";
+  echo "<td>".$user_data['event_name']."</td>";
+  echo "<td>".$user_data['event_description']."</td>";
+  echo "<td>".$user_data['date']."</td>";    
+  echo "<td>".$user_data['time']."</td>";    
+    echo "<td>
    
-//     <a href='viewevents.php?id=$user_data[id]' <button type='button' class='btn btn-info btn-sm'></button> View </a>
-//     <a href='editevents.php?id=$user_data[id]' <button type='button' class='btn btn-warning btn-sm'></button> Edit </a>
-//     <a href='deleteevents.php?id=$user_data[id]' <button type='button' class='btn btn-danger btn-sm'></button> Delete </a>
+    <a href='viewevents.php?id=$user_data[id]' <button type='button' class='btn btn-info btn-sm'></button> View </a>
+    <a href='editevents.php?id=$user_data[id]' <button type='button' class='btn btn-warning btn-sm'></button> Edit </a>
+    <a href='deleteevents.php?id=$user_data[id]' <button type='button' class='btn btn-danger btn-sm'></button> Delete </a>
  
-//     </td>
-// </tr>";        
-// }
+    </td>
+</tr>";        
+}
 ?>
           </table>
       </div>
