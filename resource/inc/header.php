@@ -58,7 +58,7 @@ include ("/xampp/htdocs/CustomLandingPage/resource/core.php");
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="#intro" class="scrollto"><img src="../../../COPYCUT/resource/img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+       <a href="#intro" class="scrollto"><img src="../img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
       <div class="col-<?php if(isset($_SESSION['id'])){if($_SESSION['role'] == 1) { echo"6";}elseif($_SESSION['role'] == 2){echo"6";}else{echo"9";}}else{echo"10";}?>"></div>
       <nav class="main-nav float-right d-none d-lg-block" >
@@ -70,16 +70,16 @@ include ("/xampp/htdocs/CustomLandingPage/resource/core.php");
                 </a>
                 <?php } ?>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Account Management</a>
+                  <a class="dropdown-item" href="/admin/account/acount.php">Account Management</a>
                   <?php if ($_SESSION['role'] ==1 || $_SESSION['role'] ==2) { ?>
-                  <a class="dropdown-item" href="#">Research Management</a>
+                  <a class="dropdown-item" href="/admin/research/research.php">Research Management</a>
                   <?php } ?>
-                  <a class="dropdown-item" href="#">Author Management</a>
+                  <a class="dropdown-item" href="/admin/author/author.php">Author Management</a>
                   <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
-                  <a class="dropdown-item" href="journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="/admin/journal/journal.php">Journal Management</a>
                   <?php } ?>
                   <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
-                  <a class="dropdown-item" href="article.php">Article Management</a>
+                  <a class="dropdown-item" href="/admin/article/article.php">Article Management</a>
                   <?php } ?>
                   <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
                   <a class="dropdown-item" href="#">Author Management</a>

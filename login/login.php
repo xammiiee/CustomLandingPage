@@ -1,5 +1,6 @@
 <?php
 include "/xampp/htdocs/CustomLandingPage/resource/inc/header.php";
+
 if (isset($_POST['email']) && isset($_POST['password'])) {
 $query ="SELECT * FROM tblaccount WHERE email='".$_POST['email']."' AND password='".$_POST['password']."'";
 $result = select_data($query,$connect);
