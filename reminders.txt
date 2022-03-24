@@ -1,3 +1,0 @@
-03/21/22
-* ni rename ko yung file sa journal folder from JOURNAL_DASHBOARD into JOURNAL only.
-* kung yung gawa mo xam eh yung ADMINDASHBOOARD, palipat nalng sa folder na admin > account.
