@@ -13,7 +13,7 @@ function add_data($query,$connect,$message){
 }
 
 //Check if data and return result
-function select_data($query,$connect){
+function select_data($query, $connect){
 	$result = $connect->query($query);
 	return $result;
 }

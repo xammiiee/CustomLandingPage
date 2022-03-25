@@ -102,8 +102,8 @@ include ("/xampp/htdocs/CustomLandingPage/signup/inc/core.php");
                   </div>
                   </li>
                   <?php } else { ?>
-                <li><a href="/login/login.php">Login</a></li>
-                <li><a href="/signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
+                <li><a href="../login/login.php">Login</a></li>
+                <li><a href="../signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
           
           <?php } ?>
         </ul>

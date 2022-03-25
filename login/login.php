@@ -2,27 +2,33 @@
 include_once ("/xampp/htdocs/CustomLandingPage/login/inc/header.php");
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
-$query ="SELECT * FROM tblaccount WHERE email='".$_POST['email']."' AND password='".$_POST['password']."'";
-$result = select_data($query,$connect);
+$email = $_POST['email'];
+$pass = $_POST['password'];
+
+  $query ="SELECT * FROM `tblaccount` WHERE email='.$email.' AND pass='.$pass.'";
+$result = $connect->query($query);
 
 if ($result->num_rows > 0) {
 while($row = $result->fetch_assoc()){
   $_SESSION['id'] = $row['id'];
-  $_SESSION['name'] = $row['name'];
-  $_SESSION['role'] = $row['role'];
+  $_SESSION['name'] = $row['fname'];
+  $_SESSION['role'] = $row['ucategory'];
+  $_SESSION['status'] = $row['status'];
 }
 } else {
   message("Your email/password was incorrect!","0");
 
 }
 }
+// include""
 if (isset($_SESSION['id'])) {
   //verification for user
-  if ($_SESSION['role']==3) {
-    header("location: ../signup/pending_user.php");
-  } else{
-  // header("Location: ../journal.php");
-}
+  if ($_SESSION['role']== "User") {
+    // header("location: ../signup/pending_user.php");
+  } else if($_SESSION['role']== "Administrator") {
+    // include("")
+  header("Location: ../admin/index.php");
+  }
 }
 ?>
 <section id="intro" class="clearfix">
@@ -76,7 +82,6 @@ if (isset($_SESSION['id'])) {
  <!--==========================
     Footer
   ============================-->
-  <!-- <link rel="stylesheet" href="../resource/css/style.css"> -->
   <footer id="footer">
     <div class="footer-top">
       <div class="container">
@@ -130,3 +135,4 @@ if (isset($_SESSION['id'])) {
       </div>
       
     </div>
+  </footer>

@@ -1,6 +1,9 @@
 <?php
 // session_start();
-include ("/xampp/htdocs/CustomLandingPage/login/inc/core.php");
+include "/xampp/htdocs/CustomLandingPage/login/inc/db.php";
+include "/xampp/htdocs/CustomLandingPage/login/functions/DB.func.php";
+include "/xampp/htdocs/CustomLandingPage/login/functions/Message.func.php";
+include "/xampp/htdocs/CustomLandingPage/login/functions/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,8 +105,8 @@ include ("/xampp/htdocs/CustomLandingPage/login/inc/core.php");
                   </div>
                   </li>
                   <?php } else { ?>
-                <li><a href="/login/login.php">Login</a></li>
-                <li><a href="/signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
+                <li><a href="../login/login.php">Login</a></li>
+                <li><a href="../signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
           
           <?php } ?>
         </ul>
