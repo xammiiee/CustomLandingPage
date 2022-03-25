@@ -102,9 +102,9 @@ if (!empty($_GET['id'])) {
 				padding:0;
 				margin:0;
 			}
-			.card{
+			/* .card{
 
-			}
+			} */
 		</style>
 					<div class="badge badge-info text-wrap" style="width: 4rem;padding:5px;" >
 					<!-- change to.. -->
