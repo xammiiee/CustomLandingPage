@@ -1,7 +1,7 @@
 <?php
-include "/xampp/htdocs/CustomLandingPage/resource/inc/header.php";
+include "/xampp/htdocs/CustomLandingPage/signup/inc/header.php";
 if (isset($_SESSION['id'])) {
-  // include "";
+  include "../";
   header("location: ../login/login.php");
 }
 if ($_SERVER['REQUEST_METHOD']=="POST") {
