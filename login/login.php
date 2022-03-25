@@ -1,5 +1,5 @@
 <?php
-include "../resource/inc/header.php";
+include_once ("/xampp/htdocs/CustomLandingPage/resource/inc/header.php");
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
 $query ="SELECT * FROM tblaccount WHERE email='".$_POST['email']."' AND password='".$_POST['password']."'";
@@ -76,6 +76,7 @@ if (isset($_SESSION['id'])) {
  <!--==========================
     Footer
   ============================-->
+  
   <footer id="footer">
     <div class="footer-top">
       <div class="container">

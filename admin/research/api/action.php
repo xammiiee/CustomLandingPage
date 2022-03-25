@@ -1,42 +1,47 @@
 <?php
-include_once "inc/header.php";
+include_once "./resource/inc/header.php";
 if (empty($_SESSION['id'])) {
-	header("Location: login.php");
+	// include""
+	header("Location: ./login/login.php");
 }
 ?>
 
-<!--View Journal-->
+<!--View Redearch-->
 <?php 
-//updating of journal
+//updating of Research
 if (isset($_POST['id'])) {
+	// change function to the designated function of your assign management
+	// also correct each string of the sql with your form
  		$result = update_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['datepub'],$_POST['description'],$_POST['id']);
  		if ($result == "1") {
 			echo'<div style="position:relative;top: 100px;"';
- 			message("Journal updated successfully!",1);
+ 			message("Research updated successfully!",1);
  		}
  	}
 // deleting of journal
  if (isset($_GET['del'])) {
+	//  change function to the designated function of your assign management
  	$result = delete_journalaction($connect,$_GET['del']);
  	if ($result =="1") {
- 		header("Location: journal.php");
- 		message("Journal deleted successfully!","1");
+		//  change location to the page of your assign mangement
+ 		header("Location: ./admin/research/research.php");
+ 		message("Research deleted successfully!","1");
  	}
  }
 
-// editing of journal
+// editing of Research
 if (isset($_GET['edit'])) {
+	// change function to the designated function of your assign management
 	$data = get_journalaction($connect,$_GET['edit']);
 	?>
 	<br><br><br><br>
-
 	<div class="container">
 		<table class="table table-bordered " >
 			<thead class="thead-dark">
 			
 				<tr>
 					<th scope="cols" colspan="3" class="p-0">
-						
+						<!--  -->
 						<h5> <a href="action.php?id=<?php echo $data['id'];?>&ref=journal"><button class="btn btn-dark btn-sm">← Back to project</button></a> </h5>
 					</th>
 				</tr>
@@ -45,6 +50,7 @@ if (isset($_GET['edit'])) {
 			<tbody>
 				<tr>
 					<td>
+						<!-- change this form to what must be edited to your assign management -->
 						<div class="form-group">
 							<label for="author">Author Name</label>
 							<input type="text" class="form-control" id="author" name="author" value="<?php echo $data['author'];?>">
@@ -80,12 +86,13 @@ if (isset($_GET['edit'])) {
 
 <?php 
 
-// Get journal id
+// Get Research id
 if (!empty($_GET['id'])) {
+	// change function to the designated function of your assign management
 	$data = get_journal($connect,$_GET['id']);
 	?>
 <br><br><br><br>
-	<!--View Journal-->
+	<!--View Research-->
 	<div class="container">
 	<div class="card">
 		<div class="card-body">
@@ -100,7 +107,8 @@ if (!empty($_GET['id'])) {
 			}
 		</style>
 					<div class="badge badge-info text-wrap" style="width: 4rem;padding:5px;" >
-					<span >Journal</span>
+					<!-- change to.. -->
+					<span >Research</span>
 					</div>
 					<h2 class="text-left" style="margin-top:10px;" ><?php echo $data['title']?></h2>
 						<button class="btn btn-primary btn-sm float-right" style="position:relative;bottom:40px;" ><i class="fa fa-download"> Download fulltext PDF&nbsp;</i></button>
@@ -119,7 +127,8 @@ if (!empty($_GET['id'])) {
 	<div class="container">
 		<div id="result"></div>
 			<div class="modal-footer">
-				<a href="journal.php"><button class="btn btn-dark btn-sm">Back</button></a>
+				<!-- change location of href..-->
+				<a href="./admin/research/research.php"><button class="btn btn-dark btn-sm">Back</button></a>
 					<div class="dropdown">
 						<button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i class="fa fa-ellipsis-h"></i>

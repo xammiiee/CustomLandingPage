@@ -1,5 +1,5 @@
 <?php
-include "../resource/inc/header.php";
+include "/xampp/htdocs/CustomLandingPage/resource/inc/header.php";
 if (isset($_SESSION['id'])) {
   // include "";
   header("location: ../login/login.php");

@@ -1,5 +1,5 @@
 <?php
-include "../resource/inc/header.php";
+include "/xampp/htdocs/CustomLandingPage/resource/inc/header.php";
 if (empty($_SESSION['id'])) {
  
 }
@@ -8,13 +8,15 @@ if (empty($_SESSION['id'])) {
 <!-- #Journal-->
 <section id="intro" class="clearfix">
   <div class="container">
-  <h3 style="color:#fff;">&nbsp;<b> Journal Management </b></h3>
+  <h3 style="color:#fff;">&nbsp;<b> Research Management </b></h3>
     <div class="card-group">
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body">
-                <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php echo get_journal($connect)->num_rows;?></h2>
-                 <h5 class="card-title">All Journal</h5>
+                <!-- change function to the designated function of your assign management -->
+                <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                // echo get_journal($connect)->num_rows;?></h2>
+                 <h5 class="card-title">All Research</h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>
@@ -31,7 +33,9 @@ if (empty($_SESSION['id'])) {
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body">
-               <i class="fa fa-user-plus fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php echo get_users($connect)->num_rows;?></h2>
+                <!-- change function to the designated function of your assign management -->
+               <i class="fa fa-user-plus fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php 
+              //  echo get_users($connect)->num_rows;?></h2>
                 <h5 class="card-title">All Creator</h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               
@@ -48,21 +52,25 @@ if (empty($_SESSION['id'])) {
     </header> -->
 <?php
 if (isset($_GET['del'])) {
+  // change function to the designated function of your assign management
   $result = delete_journalaction($connect,$_GET['del']);
   if ($result =="1") {
-    message("Project deleted successfully!","1");
+    message("Research deleted successfully!","1");
   }
 }
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
+    // change function to the designated function of your assign management
+    // also correct each string of the sql with your form
     $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$_POST['created']);
     if ($result == 1) {
-      message("Journal created successfully!",1);
+      message("Research created successfully!",1);
     } else {
       message("Could not create Journal!",0);
     }
   }
 }
+// upload file section
 if(isset($_FILES['files'])){
   $errors= array();
   $file_name_array = explode('.',$_FILES['files']['name']);
@@ -82,6 +90,7 @@ if(isset($_FILES['files'])){
   }
   
   if(empty($errors)==true){
+    // location
      move_uploaded_file($file_tmp,"uploads/".$_FILES['files']['name']);
   }else{
      print_r($errors);
@@ -96,7 +105,8 @@ if(isset($_FILES['files'])){
 <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-project">
 <i  class="fa fa-plus"></i>
 </button>
-<a href="journal.php"><button type="button" class="btn btn-outline-primary btn-sm">
+<!-- change location of href -->
+<a href="./research.php"><button type="button" class="btn btn-outline-primary btn-sm">
 <i class="fa fa-refresh" aria-hidden="true"></i>
 </button>
 </a>
@@ -104,19 +114,21 @@ if(isset($_FILES['files'])){
 <br/>
 <br/>
 
-<!-- Create New Journal -->
+<!-- Create New Research -->
 
 <div class="modal fade" id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
  <div class="modal-dialog modal-dialog-centered " role="document">
    <div class="modal-content">
-     <form method="post" action="journal.php" enctype="multipart/form-data">
+     <!-- change action location to your management -->
+     <form method="post" action="./research.php" enctype="multipart/form-data">
        <div class="modal-header">
-         <h5 class="modal-title" id="create-project-label">Create Journal</h5>
+         <h5 class="modal-title" id="create-project-label">Create Research</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
        <div class="modal-body">
+         <!-- change the form add based on your designated management -->
          <div class="form-group">
            <label for="author">Author Name</label>
            <input type="text" class="form-control" id="author" name="author" required>
@@ -153,7 +165,8 @@ if(isset($_FILES['files'])){
 
 <!--Journal-->
 <div class="table-responsive-lg">
- <table id="journal" class="table table-hover">
+  <!-- change table id based on your managemnet -->
+ <table id="research" class="table table-hover">
    <thead>
      <tr>
        <th scope="col" class="d-none">Default Sort Fixer</th>
@@ -231,7 +244,8 @@ if(isset($_FILES['files'])){
 <script src="assets/datatables.min.js"></script>
 <script>
  $(function() {
-   $('#journal').DataTable();
+  //  change id with the id of the table
+   $('#research').DataTable();
    $(function() {
      var table = $('#example').DataTable({
        "columnDefs": [{

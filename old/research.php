@@ -221,7 +221,7 @@
       </div>
       <div class="modal-body">
       <div class="box">
-    <center><h1>Add New Research Paper</h1></center>
+      <center><h1>Add New Research Paper</h1></center>
       <form action="" method="POST" name="form" enctype="multipart/form-data">
         
         <!-- TITLE -->

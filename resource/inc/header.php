@@ -58,7 +58,7 @@ include ("/xampp/htdocs/CustomLandingPage/resource/core.php");
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="#intro" class="scrollto"><img src="../img/logo1.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+       <a href="#intro" class="scrollto"><img src="./img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
       <div class="col-<?php if(isset($_SESSION['id'])){if($_SESSION['role'] == 1) { echo"6";}elseif($_SESSION['role'] == 2){echo"6";}else{echo"9";}}else{echo"10";}?>"></div>
       <nav class="main-nav float-right d-none d-lg-block" >
@@ -102,8 +102,8 @@ include ("/xampp/htdocs/CustomLandingPage/resource/core.php");
                   </div>
                   </li>
                   <?php } else { ?>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
+                <li><a href="/login/login.php">Login</a></li>
+                <li><a href="/signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
           
           <?php } ?>
         </ul>
@@ -113,8 +113,7 @@ include ("/xampp/htdocs/CustomLandingPage/resource/core.php");
 
 
 
-  
-</footer><!-- #footer -->
+<!-- #footer -->
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
