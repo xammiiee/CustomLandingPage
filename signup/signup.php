@@ -1,7 +1,8 @@
 <?php
-include "inc/header.php";
+include "../resource/inc/header.php";
 if (isset($_SESSION['id'])) {
-  header("location: login.php");
+  // include "";
+  header("location: ../login/login.php");
 }
 if ($_SERVER['REQUEST_METHOD']=="POST") {
   $query = "INSERT INTO tblaccount (name,email,password,role,aumember) VALUES ('".$_POST['name']."','".$_POST['email']."','".$_POST['password']."','3','".$_POST['aumember']."')";

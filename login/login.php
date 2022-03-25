@@ -56,7 +56,7 @@ if (isset($_SESSION['id'])) {
           <div class="text-center mb-3">
             <button type="submit" class="btn btn-primary btn-block z-depth-1a" id="but_submit" name="but_submit" >Sign in</button>
           </div>
-          <span>Don't have an account? <a href="signup.php" >Create a free account</span>
+          <span>Don't have an account? <a href="../signup/signup.php" >Create a free account</span>
         </form>
     
         <p class="font-small dark-grey-text d-flex justify-content-center">or sign in with:</p>

@@ -1,5 +1,5 @@
 <?php
-
+// ACCOUNT SECTION FUNCTION
 //Insert data into any table
 function add_data($query,$connect,$message){
 	$result = $connect->query($query);
@@ -48,7 +48,6 @@ function delete_data($query,$connect,$message){
 	message($message,$message1,$messagetype);
 }
 
-
 function get_users($connect){
 	$sql = "SELECT * FROM tblaccount ORDER BY id ASC";
 	$result = $connect->query($sql);
@@ -86,8 +85,7 @@ function get_role_name($connect,$id){
 	}
 }
 
-//journal
-
+// JOURNAL SECTION FUNCTION
 function get_journal($connect){
 	//ORDER BY deadline ASC
 	$sql = "SELECT * FROM projects WHERE status='' OR status=0 OR status=1";
@@ -106,7 +104,6 @@ function get_journalaction($connect,$id){
 }
 
 function create_journalaction($connect,$author,$title,$description,$datepub,$creator,$created){
-
 	$sql = "INSERT INTO projects VALUES ('','$author','$title','$description','$datepub','$creator','$created',0)";
 	$result = $connect->query($sql);
 	if ($result === true) {
@@ -117,7 +114,6 @@ function create_journalaction($connect,$author,$title,$description,$datepub,$cre
 }
 
 function update_journalaction($connect,$author,$title,$description,$datepub,$id){
-
 	$sql = "UPDATE projects SET author='$author',title='$title',description='$description',datepub='$datepub' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
@@ -147,8 +143,7 @@ function get_project_by_id($connect,$id){
 	}
 }
 
-//article
-
+// ARTICLE SECTION FUNCTION
 function get_articles($connect){
 	//ORDER BY deadline ASC
 	$sql = "SELECT * FROM article WHERE status='' OR status=0 OR status=1";
@@ -167,7 +162,6 @@ function get_article($connect,$id){
 }
 
 function create_article($connect,$aauthor,$atitle,$adescription,$adatepub,$creator,$atags){
-
 	$sql = "INSERT INTO article VALUES ('','$aauthor','$atitle','$adescription','$adatepub','$creator','$atags',0)";
 	$result = $connect->query($sql);
 	if ($result === true) {
@@ -178,7 +172,6 @@ function create_article($connect,$aauthor,$atitle,$adescription,$adatepub,$creat
 }
 
 function update_article($connect,$aauthor,$atitle,$adescription,$adatepub,$id){
-
 	$sql = "UPDATE article SET aauthor='$aauthor',atitle='$atitle',adescription='$adescription',adatepub='$adatepub' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
@@ -207,4 +200,10 @@ function get_article_by_id($connect,$id){
 		return "0";
 	}
 }
+
+// RESEARCH SECTION FUNCTION
+// AUTHOR SECTION FUNCTION
+// NEWS SECTION FUNCTION
+// PROGRAM SECTION FUNCTION
+
 
