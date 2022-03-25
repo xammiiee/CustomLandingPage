@@ -1,7 +1,8 @@
 <?php
-include "/xampp/htdocs/CustomLandingPage/resource/inc/header.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+// include "../../resource/"
 if (empty($_SESSION['id'])) {
- 
+// include ""
 }
 
 ?>
@@ -171,34 +172,40 @@ if(isset($_FILES['files'])){
      <tr>
        <th scope="col" class="d-none">Default Sort Fixer</th>
        <th scope="col">ID</th>
-       <th scope="col">Author</th>
        <th scope="col">Title</th>
-     
+       <th scope="col">Main Author</th>
+       <th scope="col">Co-Author(s)</th>
        <th scope="col">Date Published</th>
-       <th scope="col">Creator</th>
-       <th scope="col">Created</th>
-       <th scope="col" align="center">Option</th>
+       <th scope="col">Field of Study</th>
+       <th scope="col">Views</th>
+       <th scope="col">Cited</th>
+       <th scope="col" align="center">Action</th>
      </tr>
    </thead>
    <tbody>
      <?php
-     $result = get_journal($connect);
+     $result = get_research($connect);
      if ($result->num_rows>0) {
      while ($data = mysqli_fetch_array($result)) {
        ?>
        <tr>
          <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
          <td><?php echo $data['id']?></td>
-         <td><a href="action.php?id=<?php echo $data['id']?>&ref=journal"><?php echo $data['author']?></a></td>
-         <td><?php echo $data['title']?></a></td>
-         <td><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
+         <td><a href="action.php?id=<?php echo $data['id']?>&ref=research"><?php echo $data['title']?></a></td>
+         <td><?php echo $data['main_author']?></a></td>
+         <td><?php echo $data['co_authors']?></a></td>
+         <td><?php echo $data['date_publish']?></td>
+         <td><?php echo $data['field_of_study']?></td>
+         <td><?php echo $data['views']?></td>
+         <td><?php echo $data['cites']?></td>
          <td><?php
-         $user = get_user_data($connect,$data['creator']);
-         echo $user['name'];
+        //  $user = get_user_data($connect,$data['creator']);
+        //  echo $user['name'];
          ?>
        </td>
        
-       <td><?php echo date("Y-m-d",strtotime($data['created']));?></td>
+       <td><?php 
+      //  echo date("Y-m-d",strtotime($data['created']));?></td>
        <td align="center"><div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
