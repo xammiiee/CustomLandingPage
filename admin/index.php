@@ -34,8 +34,7 @@
 
 <body>
 <?php
-    //   include("./accounts/api/post_signup.php");
-    //   include_once ("./login/api/login_api_authenticate.php");
+  session_start();
 ?>
 
   <!--==========================
@@ -44,12 +43,12 @@
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="../img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+       <a href="#intro" class="scrollto"><img src="../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
-      <nav class="main-nav float-right d-none d-lg-block">
+      
+      <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
+<<<<<<< HEAD
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Managements
@@ -65,6 +64,57 @@
             </li>
           <li class="active"><a href="#intro">About Us</a></li>
 
+=======
+        <?php 
+        if (isset($_SESSION['id'])) 
+        { 
+          if ($_SESSION['role']== "Administrator") { ?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">
+                Management
+              </a>
+              <?php } ?>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/admin/account/acount.php">Account Management</a>
+                <?php if ($_SESSION['role'] ==1 || $_SESSION['role'] ==2) { ?>
+                <a class="dropdown-item" href="/admin/research/research.php">Research Management</a>
+                <?php } ?>
+                <a class="dropdown-item" href="/admin/author/author.php">Author Management</a>
+                <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
+                <a class="dropdown-item" href="/admin/journal/journal.php">Journal Management</a>
+                <?php } ?>
+                <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
+                <a class="dropdown-item" href="/admin/article/article.php">Article Management</a>
+                <?php } ?>
+                <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
+                <a class="dropdown-item" href="#">Author Management</a>
+                <?php } ?>
+                <a class="dropdown-item" href="#">Events Management</a>
+                </li>
+                <?php if ($_SESSION['role']==1 || $_SESSION['role']==2 || $_SESSION['role']==3) { ?>
+                <li class="nav-item active" >
+                  <a class="nav-link" href="/journal.php">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <?php } ?>
+                <li class="nav-item dropdown" >
+                <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user"></i>&nbsp;</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#settings">Settings</a>
+                  <a class="dropdown-item" href="#aboutus">About Us</a>
+                 
+                  <a class="dropdown-item" href="logout.php">Signout</a>
+                </div>
+                </li>
+                <?php 
+        } else 
+        { ?>
+          <li><a href="../login/login.php">Login</a></li>
+          <li><a href="../signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
+          
+        <?php 
+        } ?>
+>>>>>>> deeb977df5c145cc507e5643045231271dddf56e
         </ul>
       </nav><!-- .main-nav -->
     </div>
@@ -83,6 +133,7 @@
       </div>
       <div class="intro-info">    
           <h2>Arellano Research <span> Portal <span></h2>
+          <h2><?php echo "".$_SESSION['id']."";?></h2>
           <div>
 
           </div>

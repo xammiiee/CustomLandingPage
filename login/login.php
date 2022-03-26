@@ -5,31 +5,36 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 $email = $_POST['email'];
 $pass = $_POST['password'];
 
-  $query ="SELECT * FROM `tblaccount` WHERE email='.$email.' AND pass='.$pass.'";
-$result = $connect->query($query);
+  $sql ="SELECT * FROM tblaccount WHERE email='$email' AND pass='$pass'";
+  $result = $connect->query($sql);
 
-if ($result->num_rows > 0) {
-while($row = $result->fetch_assoc()){
-  $_SESSION['id'] = $row['id'];
-  $_SESSION['name'] = $row['fname'];
-  $_SESSION['role'] = $row['ucategory'];
-  $_SESSION['status'] = $row['status'];
-}
-} else {
+if ($result->num_rows > 0) 
+{
+  while($row = $result->fetch_assoc()){
+    $_SESSION['id'] = $row['id'];
+    $_SESSION['name'] = $row['fname'];
+    $_SESSION['role'] = $row['ucategory'];
+    $_SESSION['status'] = $row['status'];
+  }
+  if (isset($_SESSION['id'])) {
+    //verification for user
+    if ($_SESSION['role']== "User") 
+    {
+      // header("location: ../signup/pending_user.php");
+    } 
+    else if($_SESSION['role'] == "Administrator") 
+    {
+      header("Location: ../admin/index.php");
+    }
+  }
+} 
+else 
+{
   message("Your email/password was incorrect!","0");
-
 }
 }
 // include""
-if (isset($_SESSION['id'])) {
-  //verification for user
-  if ($_SESSION['role']== "User") {
-    // header("location: ../signup/pending_user.php");
-  } else if($_SESSION['role']== "Administrator") {
-    // include("")
-  header("Location: ../admin/index.php");
-  }
-}
+
 ?>
 <section id="intro" class="clearfix">
 <!-- #sign in -->
