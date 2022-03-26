@@ -160,7 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <th scope="col">ID</th>
        <th scope="col">Author</th>
        <th scope="col">Title</th>
-     
        <th scope="col">Date Published</th>
        <th scope="col">Creator</th>
        <th scope="col">Created</th>

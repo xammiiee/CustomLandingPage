@@ -1,5 +1,5 @@
 <?php
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+include "/xampp/htdocs/CustomLandingPage/admin/author/inc/header.php";
 // include "../../resource/"
 if (empty($_SESSION['id'])) {
 // include ""
@@ -17,7 +17,7 @@ if (empty($_SESSION['id'])) {
                 <!-- change function to the designated function of your assign management -->
                 <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
                 // echo get_journal($connect)->num_rows;?></h2>
-                 <h5 class="card-title">All Research</h5>
+                 <h5 class="card-title">All Author</h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>
@@ -131,28 +131,24 @@ if(isset($_FILES['files'])){
        <div class="modal-body">
          <!-- change the form add based on your designated management -->
          <div class="form-group">
-           <label for="author">Author Name</label>
-           <input type="text" class="form-control" id="author" name="author" required>
+           <label for="fname">First Name</label>
+           <input type="text" class="form-control" id="fname" name="fname" required>
            <div class="form-group">
-             <label for="title">Title</label>
-             <input type="text" class="form-control" id="title" name="title">
+             <label for="lname">Last Name</label>
+             <input type="text" class="form-control" id="lname" name="lname">
            </div>
            <div class="form-group">
-							<label for="description">Description</label>
-							<textarea class="form-control" id="description" name="description"></textarea>
+							<label for="fullname">Full Name</label>
+							<textarea class="form-control" id="fullname" name="fullname"></textarea>
 					</div>
          </div>
          <div class="form-group">
-           <label for="datepub">Date Published</label>
-           <input type="date" class="form-control" id="datepub" name="datepub">
+           <label for="email">Email</label>
+           <input type="date" class="form-control" id="email" name="email">
          </div>
-         <div class="form-group">
-          <label for="files">Add (pdf, txt or docs)</label>
-          <input type="file" class="form-control-file" id="files" name="files">
+         
         </div>
-       </div>
        
-       <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
        <input type="hidden" name="create" value="create"/>
        <div class="modal-footer">
          <button class="btn btn-primary">Save</button>
@@ -166,54 +162,44 @@ if(isset($_FILES['files'])){
 
 <!--Journal-->
 <div class="table-responsive-lg">
-  <!-- change table id based on your managemnet -->
- <table id="research" class="table table-hover">
+ <table id="journal" class="table table-hover">
    <thead>
      <tr>
        <th scope="col" class="d-none">Default Sort Fixer</th>
        <th scope="col">ID</th>
-       <th scope="col">Title</th>
-       <th scope="col">Main Author</th>
-       <th scope="col">Co-Author(s)</th>
-       <th scope="col">Date Published</th>
-       <th scope="col">Field of Study</th>
-       <th scope="col">Views</th>
-       <th scope="col">Cited</th>
-       <th scope="col" align="center">Action</th>
+       <th scope="col">First Name</th>
+       <th scope="col">Last Name</th>
+       <th scope="col">Full Name</th>
+       <th scope="col">Email</th>
+       <th scope="col" align="center">Option</th>
      </tr>
    </thead>
    <tbody>
      <?php
-     $result = get_research($connect);
+     $result = get_author($connect);
      if ($result->num_rows>0) {
      while ($data = mysqli_fetch_array($result)) {
        ?>
        <tr>
          <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
          <td><?php echo $data['id']?></td>
-         <td><a href="action.php?id=<?php echo $data['id']?>&ref=research"><?php echo $data['title']?></a></td>
-         <td><?php echo $data['main_author']?></a></td>
-         <td><?php echo $data['co_authors']?></a></td>
-         <td><?php echo $data['date_publish']?></td>
-         <td><?php echo $data['field_of_study']?></td>
-         <td><?php echo $data['views']?></td>
-         <td><?php echo $data['cites']?></td>
+         <td><?php echo $data['fname']?></a></td>
+         <td><?php echo $data['lname']?></a></td>
+         <td><?php echo $data['fullname']?></a></td>
+         <td><?php echo $data['email']?></a></td>
          <td><?php
         //  $user = get_user_data($connect,$data['creator']);
         //  echo $user['name'];
          ?>
        </td>
-       
-       <td><?php 
-      //  echo date("Y-m-d",strtotime($data['created']));?></td>
        <td align="center"><div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
          </button>
          <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="action.php?id=<?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="action.php?edit=<?php echo $data['id']?>">Edit</a>
-           <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
+           <a class="dropdown-item" href="../author/api/action.php?id= <?php echo $data['id']?>">View</a>
+           <a class="dropdown-item" href="../author/api/action.php?edit=<?php echo $data['id']?>">Edit</a>
+           <!-- <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?> -->
          </div>
        </div>
      </td>
@@ -224,7 +210,7 @@ if(isset($_FILES['files'])){
    <div class="modal-dialog" role="document">
      <div class="modal-content">
        <div class="modal-header">
-         <h5 class="modal-title" id="deleteLabel">Delete Journal</h5>
+         <h5 class="modal-title" id="deleteLabel">Delete Author</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
