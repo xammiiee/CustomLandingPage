@@ -1,13 +1,22 @@
 <?php
 include "/xampp/htdocs/CustomLandingPage/signup/inc/header.php";
-if (isset($_SESSION['id'])) {
-  include "../";
-  header("location: ../login/login.php");
-}
-if ($_SERVER['REQUEST_METHOD']=="POST") {
-  $query = "INSERT INTO tblaccount (name,email,password,role,aumember) VALUES ('".$_POST['name']."','".$_POST['email']."','".$_POST['password']."','3','".$_POST['aumember']."')";
 
-  add_data($query,$connect,"You are successfully registered!");
+if ($_SERVER['REQUEST_METHOD']=="POST") 
+{  
+  if(isset("btnsubmit"))
+  {
+    // add if not exist
+    $query = "INSERT INTO tblaccount (fname, email, pass,status, ucategory, au_member) VALUES ('".$_POST['name']."','".$_POST['email']."','".$_POST['password']."','Inactive','User','".$_POST['aumember']."')";
+    $result = $connect->query($query);
+    if ($result->num_rows > 0) {
+      add_data($query1,$connect,"You are successfully registered!");
+    }
+
+    if (isset($_SESSION['id'])) {
+      // include "../";
+      header("location: ../login/login.php");
+    }
+  }
 }
 ?>
 
@@ -18,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 	<div class="col-6">
             <div class="card">
             <div class="card-body" id="margin-top">
+              <?php echo "$query";?>
             <h5 class="card-title text-center">Signup</h5>
             <form action="" method="POST">
             <div class="form-group">
@@ -39,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
                   <option value="No">No</option>
                 </select>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
+                <button type="submit" class="btn btn-primary btn-block" name="btnsubmit">Register</button>
               <br>
               Are you already registered? <a href="login.php">Login Now</a>
           </form>

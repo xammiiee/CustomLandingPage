@@ -35,6 +35,8 @@
 <body>
 <?php
   session_start();
+
+
 ?>
 
   <!--==========================
@@ -68,46 +70,51 @@
         <?php 
         if (isset($_SESSION['id'])) 
         { 
-          if ($_SESSION['role']== "Administrator") { ?>
+          if ($_SESSION['role']== "Administrator") 
+          { ?>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">
                 Management
               </a>
-              <?php } ?>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/admin/account/acount.php">Account Management</a>
-                <?php if ($_SESSION['role'] ==1 || $_SESSION['role'] ==2) { ?>
-                <a class="dropdown-item" href="/admin/research/research.php">Research Management</a>
-                <?php } ?>
-                <a class="dropdown-item" href="/admin/author/author.php">Author Management</a>
-                <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
-                <a class="dropdown-item" href="/admin/journal/journal.php">Journal Management</a>
-                <?php } ?>
-                <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
-                <a class="dropdown-item" href="/admin/article/article.php">Article Management</a>
-                <?php } ?>
-                <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
+                <a class="dropdown-item" href="../admin/account/acount.php">Account Management</a>
+                <a class="dropdown-item" href="../admin/research/research.php">Research Management</a>
+                <a class="dropdown-item" href="../admin/author/author.php">Author Management</a>
+                <a class="dropdown-item" href="../admin/journal/journal.php">Journal Management</a>
+                <a class="dropdown-item" href="../admin/article/article.php">Article Management</a>
                 <a class="dropdown-item" href="#">Author Management</a>
-                <?php } ?>
                 <a class="dropdown-item" href="#">Events Management</a>
-                </li>
-                <?php if ($_SESSION['role']==1 || $_SESSION['role']==2 || $_SESSION['role']==3) { ?>
-                <li class="nav-item active" >
-                  <a class="nav-link" href="/journal.php">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <?php } ?>
-                <li class="nav-item dropdown" >
+            </li>
+            <li class="nav-item active" >
+              <a class="nav-link" href="/journal.php">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown" >
                 <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-user"></i>&nbsp;</a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <i class="fa fa-user"></i>&nbsp;</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#settings">Settings</a>
                   <a class="dropdown-item" href="#aboutus">About Us</a>
-                 
-                  <a class="dropdown-item" href="logout.php">Signout</a>
-                </div>
-                </li>
-                <?php 
-        } else 
+                
+                  <a class="dropdown-item" href="../signup/logout.php">Signout</a>
+              </div>
+            </li>
+        <?php 
+          }
+          else if($_SESSION['role']== "User")
+          {?>
+            <li class="nav-item dropdown" >
+              <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user"></i>&nbsp;</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#settings">Settings</a>
+                <a class="dropdown-item" href="#aboutus">About Us</a>
+              
+                <a class="dropdown-item" href="../signup/logout.php">Signout</a>
+              </div>
+          </li><?php
+          }  
+        } 
+        else 
         { ?>
           <li><a href="../login/login.php">Login</a></li>
           <li><a href="../signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
@@ -133,7 +140,7 @@
       </div>
       <div class="intro-info">    
           <h2>Arellano Research <span> Portal <span></h2>
-          <h2><?php echo "".$_SESSION['id']."";?></h2>
+          <h2>
           <div>
 
           </div>

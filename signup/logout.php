@@ -2,6 +2,6 @@
 session_start();
 session_destroy();
 if (isset($_SESSION['id'])) {
-    header("Location: ../../../login/login.php");
+    header("Location: ../login/login.php");
 }
 ?>
