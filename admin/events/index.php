@@ -3,7 +3,8 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
 
 // include "../../resource/"
 if (empty($_SESSION['id'])) {
-// include ""
+// include "";
+header("Location: ../../login/login.php");
 }
 
 // Create database connection using config file

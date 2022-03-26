@@ -53,7 +53,7 @@
         <?php 
         if (isset($_SESSION['id'])) 
         { 
-          if ($_SESSION['role']== "Administrator") 
+          if ($_SESSION['role'] == "Administrator") 
           { ?>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">

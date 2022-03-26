@@ -191,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          </button>
          <div class="dropdown-menu" aria-labelledby="option">
            <a class="dropdown-item" href="../journal/api/action.php?id= <?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="action.php?edit=<?php echo $data['id']?>">Edit</a>
+           <a class="dropdown-item" href="../journal/api/action.php?edit=<?php echo $data['id']?>">Edit</a>
            <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>

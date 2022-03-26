@@ -118,7 +118,7 @@ function create_journalaction($connect,$author,$title,$description,$datepub,$cre
 
 function update_journalaction($connect,$author,$title,$description,$datepub,$id){
 
-	$sql = "UPDATE projects SET author='$author',title='$title',description='$description',datepub='$datepub' WHERE id=$id";
+	$sql = "UPDATE tbljournal SET author='$author',title='$title',description='$description',date_pub='$datepub' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

@@ -114,7 +114,7 @@ if (!empty($_GET['id'])) {
 					<p style="margin-top:10px;"><a href=""><?php echo $data['author']?></a></p>
 					</div>
 					</div>
-					</div>
+					</div>	
 	<br<br><br>
 	<div class="container">
 		<div id="result"></div>
