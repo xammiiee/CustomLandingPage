@@ -59,7 +59,7 @@ if (isset($_GET['edit'])) {
 						</div>
 						<div class="form-group">
 							<label for="datepub">Date Publish</label>
-							<input type="date" class="form-control" id="datepub" name="datepub" value="<?php echo $data['datepub'];?>">
+							<input type="date" class="form-control" id="datepub" name="datepub" value="<?php echo $data['date_pub'];?>">
 						</div>
 
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">

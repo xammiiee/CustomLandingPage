@@ -1,5 +1,5 @@
 <?php
-include_once "./resource/inc/header.php";
+include_once "../api/header.php";
 if (empty($_SESSION['id'])) {
 	// include""
 	header("Location: ./login/login.php");

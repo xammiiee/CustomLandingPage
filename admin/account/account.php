@@ -1,5 +1,5 @@
 <?php
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+include "/xampp/htdocs/CustomLandingPage/admin/account/inc/header.php";
 // include "../../resource/"
 if (empty($_SESSION['id'])) {
 // include ""
@@ -9,7 +9,7 @@ if (empty($_SESSION['id'])) {
 <!-- #Journal-->
 <section id="intro" class="clearfix">
   <div class="container">
-  <h3 style="color:#fff;">&nbsp;<b> Research Management </b></h3>
+  <h3 style="color:#fff;">&nbsp;<b> Account Management </b></h3>
     <div class="card-group">
           <div class="col-md-3 col-sm-5">
             <div class="card">
@@ -17,7 +17,7 @@ if (empty($_SESSION['id'])) {
                 <!-- change function to the designated function of your assign management -->
                 <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
                 // echo get_journal($connect)->num_rows;?></h2>
-                 <h5 class="card-title">All Research</h5>
+                 <h5 class="card-title">All Account</h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>
@@ -28,18 +28,6 @@ if (empty($_SESSION['id'])) {
                <i class="fa fa-upload fa-2x" style="color:#007bff"></i>
                 <h5 class="card-title">Recent upload</h5>     
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-5">
-            <div class="card">
-              <div class="card-body">
-                <!-- change function to the designated function of your assign management -->
-               <i class="fa fa-user-plus fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php 
-              //  echo get_users($connect)->num_rows;?></h2>
-                <h5 class="card-title">All Creator</h5>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              
               </div>
             </div>
           </div>
@@ -56,48 +44,21 @@ if (isset($_GET['del'])) {
   // change function to the designated function of your assign management
   $result = delete_journalaction($connect,$_GET['del']);
   if ($result =="1") {
-    message("Research deleted successfully!","1");
+    message("Account deleted successfully!","1");
   }
 }
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$_POST['created']);
+    $result = create_accountaction($connect,$_POST['name'],$_POST['email'],$_POST['pass'],$_POST['ucategory'],$_POST['au_member']);
     if ($result == 1) {
-      message("Research created successfully!",1);
+      message("Account created successfully!",1);
     } else {
-      message("Could not create Journal!",0);
+      message("Could not create Account!",0);
     }
   }
 }
-// upload file section
-if(isset($_FILES['files'])){
-  $errors= array();
-  $file_name_array = explode('.',$_FILES['files']['name']);
-  $file_size =$_FILES['files']['size'];
-  $file_tmp =$_FILES['files']['tmp_name'];
-  $file_type=$_FILES['files']['type'];
-  $file_ext=strtolower(end($file_name_array));
-  
-  $extensions= array("pdf","txt","docx");
-  
-  if(in_array($file_ext,$extensions)=== false){
-     $errors[]="extension not allowed, please choose a PDF or DOCX file.";
-  }
-  
-  if($file_size > 2097152){
-     $errors[]='File size must be excately 2 MB';
-  }
-  
-  if(empty($errors)==true){
-    // location
-     move_uploaded_file($file_tmp,"uploads/".$_FILES['files']['name']);
-  }else{
-     print_r($errors);
-  }
-}
-
 
 ?>
 
@@ -107,7 +68,7 @@ if(isset($_FILES['files'])){
 <i  class="fa fa-plus"></i>
 </button>
 <!-- change location of href -->
-<a href="./research.php"><button type="button" class="btn btn-outline-primary btn-sm">
+<a href="./account.php"><button type="button" class="btn btn-outline-primary btn-sm">
 <i class="fa fa-refresh" aria-hidden="true"></i>
 </button>
 </a>
@@ -115,15 +76,15 @@ if(isset($_FILES['files'])){
 <br/>
 <br/>
 
-<!-- Create New Research -->
+<!-- Create New Account -->
 
 <div class="modal fade" id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
  <div class="modal-dialog modal-dialog-centered " role="document">
    <div class="modal-content">
      <!-- change action location to your management -->
-     <form method="post" action="./research.php" enctype="multipart/form-data">
+     <form method="post" action="./account.php" enctype="multipart/form-data">
        <div class="modal-header">
-         <h5 class="modal-title" id="create-project-label">Create Research</h5>
+         <h5 class="modal-title" id="create-project-label">Create Account</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
@@ -131,32 +92,46 @@ if(isset($_FILES['files'])){
        <div class="modal-body">
          <!-- change the form add based on your designated management -->
          <div class="form-group">
-           <label for="author">Author Name</label>
-           <input type="text" class="form-control" id="author" name="author" required>
+           <label for="name">Name</label>
+           <input type="text" class="form-control" id="name" name="name" required>
+         </div>
            <div class="form-group">
-             <label for="title">Title</label>
-             <input type="text" class="form-control" id="title" name="title">
+             <label for="email">Email</label>
+             <input type="text" class="form-control" id="email" name="email">
            </div>
            <div class="form-group">
-							<label for="description">Description</label>
-							<textarea class="form-control" id="description" name="description"></textarea>
+							<label for="pass">Password</label>
+							<textarea class="form-control" id="pass" name="pass"></textarea>
 					</div>
-         </div>
+
+          <div class="form-group">
+               <select class="browser-default custom-select"  id="aumember"
+                  class="form-control"
+                  name="aumember"
+                  value=" ">
+                  <option selected disabled>Category</option>
+                  <option value="User">User</option>
+                  <option value="Administrator">Administrator</option>
+                </select>
+                </div>
+
          <div class="form-group">
-           <label for="datepub">Date Published</label>
-           <input type="date" class="form-control" id="datepub" name="datepub">
-         </div>
-         <div class="form-group">
-          <label for="files">Add (pdf, txt or docs)</label>
-          <input type="file" class="form-control-file" id="files" name="files">
+               <select class="browser-default custom-select"  id="aumember"
+                  class="form-control"
+                  name="aumember"
+                  value=" ">
+                  <option selected disabled>Member of Arellano Community?</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+                </div>
         </div>
-       </div>
-       
-       <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
+      
        <input type="hidden" name="create" value="create"/>
        <div class="modal-footer">
          <button class="btn btn-primary">Save</button>
          <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+       </div>
        </div>
      </form>
    </div>
@@ -164,7 +139,7 @@ if(isset($_FILES['files'])){
 </div>
 
 
-<!--Journal-->
+<!--Account-->
 <div class="table-responsive-lg">
   <!-- change table id based on your managemnet -->
  <table id="research" class="table table-hover">
@@ -172,32 +147,29 @@ if(isset($_FILES['files'])){
      <tr>
        <th scope="col" class="d-none">Default Sort Fixer</th>
        <th scope="col">ID</th>
-       <th scope="col">Title</th>
-       <th scope="col">Main Author</th>
-       <th scope="col">Co-Author(s)</th>
-       <th scope="col">Date Published</th>
-       <th scope="col">Field of Study</th>
-       <th scope="col">Views</th>
-       <th scope="col">Cited</th>
+       <th scope="col">Name</th>
+       <th scope="col">Email</th>
+       <th scope="col">Password</th>
+       <th scope="col">Status</th>
+       <th scope="col">Category</th>
+       <th scope="col">Membership</th>
        <th scope="col" align="center">Action</th>
      </tr>
    </thead>
    <tbody>
      <?php
-     $result = get_research($connect);
+     $result = get_users($connect);
      if ($result->num_rows>0) {
      while ($data = mysqli_fetch_array($result)) {
        ?>
        <tr>
-         <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
          <td><?php echo $data['id']?></td>
-         <td><a href="action.php?id=<?php echo $data['id']?>&ref=research"><?php echo $data['title']?></a></td>
-         <td><?php echo $data['main_author']?></a></td>
-         <td><?php echo $data['co_authors']?></a></td>
-         <td><?php echo $data['date_publish']?></td>
-         <td><?php echo $data['field_of_study']?></td>
-         <td><?php echo $data['views']?></td>
-         <td><?php echo $data['cites']?></td>
+         <td><?php echo $data['name']?></a></td>
+         <td><?php echo $data['email']?></a></td>
+         <td><?php echo $data['pass']?></td>
+         <td><?php echo $data['status']?></td>
+         <td><?php echo $data['ucategory']?></td>
+         <td><?php echo $data['au_member']?></td>
          <td><?php
         //  $user = get_user_data($connect,$data['creator']);
         //  echo $user['name'];

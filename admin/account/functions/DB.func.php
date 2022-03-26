@@ -85,62 +85,14 @@ function get_role_name($connect,$id){
 	}
 }
 
-// ============================================JOURNAL SECTION FUNCTION============================================//
+function create_accountaction($connect,$name,$email,$password,$ucategory,$aumember){
 
-function get_research($connect){
-	//ORDER BY deadline ASC
-	$sql = "SELECT * FROM tblresearch";
-	$result = $connect->query($sql);
-		return $result;
-}
-
-function get_researchaction($connect,$id){
-	$sql = "SELECT * FROM tblresearch WHERE id='$id'";
-	$result = $connect->query($sql);
-	if ($result->num_rows > 0) {
-		return $result->fetch_assoc();
-	} else {
-		return "0";
-	}
-}
-
-function create_researchaction($connect,$title, $abstract, $main_author, $co_author, $datepub, $fstudy, $pdf_file, $views, $cite, $tagging){
-	$sql = "INSERT INTO tblresearch VALUES ('','$title','$abstract','$main_author','$co_author','$datepub','$fstudy','', '$pdf_file','$views','$cite', '$tagging')";
+	$sql = "INSERT INTO tblaccount VALUES ('','$name','$email','$password','Inactive','$ucategory','$aumember')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
 	} else {
 		return 0;
-	}
-}
-
-function update_researchaction($connect,$title, $abstract, $main_author, $co_author, $datepub, $fstudy, $pdf_file, $tagging,$id){
-	$sql = "UPDATE tblresearch SET title='$title',abstract='$abstract',main_author='$main_author',co_author='$co_author', date_publish='$datepub', field_of_study='$fstudy', tagging ='$tagging', pdf_file='$pdf_file' WHERE id=$id";
-	$result = $connect->query($sql);
-	if ($result === true) {
-		return 1;
-	} else {
-		return 0;
-	}
-}
-
-function delete_researchaction($connect,$id){
-	$sql = "DELETE FROM tblresearch WHERE id=$id";
-	$result = $connect->query($sql);
-	if ($result === true) {
-		return "1";
-	} else {
-		return "0";
-	}
-}
-
-function get_research_by_id($connect,$id){
-	$sql = "SELECT * FROM research WHERE id=$id";
-	$result = $connect->query($sql);
-	if ($result->num_rows > 0) {
-		return $result->fetch_assoc();
-	} else {
-		return "0";
 	}
 }
 
