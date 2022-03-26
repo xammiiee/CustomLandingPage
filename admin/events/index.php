@@ -1,15 +1,66 @@
 <?php
 include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+
 // include "../../resource/"
 if (empty($_SESSION['id'])) {
 // include ""
 }
 
+// Create database connection using config file
+include_once("config.php");
+
+// Fetch all users data from database
+$result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
+
 ?>
-<!-- #Journal-->
-<section id="intro" class="clearfix">
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Arellano University</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="../../resource/img/favicon.png" rel="icon">
+  <link href="../../resource/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+  <!-- Bootstrap CSS File -->
+  <link rel="stylesheet" href="../../resource/css/bootstrap.min.css"> 
+	<link rel="stylesheet" href="../../resource/css/mdb.min.css">
+
+  <!-- Libraries CSS Files -->
+  <link href="../../resource/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../resource/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../resource/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="../../resource/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../resource/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="../../resource/css/style.css" rel="stylesheet">
+  <link href="../../resource/css/addons.css" rel="stylesheet">
+
+</head>
+
+<body>
+<?php
+    //   include("./accounts/api/post_signup.php");
+    //   include_once ("./login/api/login_api_authenticate.php");
+?>
+
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro" class="clearfix">
   <div class="container">
-  <h3 style="color:#fff;">&nbsp;<b> Research Management </b></h3>
+  <h3 style="color:#fff;">&nbsp;<b> Event Management </b></h3>
     <div class="card-group">
           <div class="col-md-3 col-sm-5">
             <div class="card">
@@ -17,7 +68,7 @@ if (empty($_SESSION['id'])) {
                 <!-- change function to the designated function of your assign management -->
                 <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
                 // echo get_journal($connect)->num_rows;?></h2>
-                 <h5 class="card-title">All Research</h5>
+                 <h5 class="card-title">All Events </h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>
@@ -46,68 +97,21 @@ if (empty($_SESSION['id'])) {
       </div>
     </div>
 </section>
-          
-<br>
- <!--<header class="section-header">
-      <h3>Journal Management</h3>
-    </header> -->
-<?php
-if (isset($_GET['del'])) {
-  // change function to the designated function of your assign management
-  $result = delete_journalaction($connect,$_GET['del']);
-  if ($result =="1") {
-    message("Research deleted successfully!","1");
-  }
-}
-if ($_SERVER['REQUEST_METHOD'] =="POST") {
-  if (isset($_POST['create'])) {
-    // change function to the designated function of your assign management
-    // also correct each string of the sql with your form
-    $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$_POST['created']);
-    if ($result == 1) {
-      message("Research created successfully!",1);
-    } else {
-      message("Could not create Journal!",0);
-    }
-  }
-}
-// upload file section
-if(isset($_FILES['files'])){
-  $errors= array();
-  $file_name_array = explode('.',$_FILES['files']['name']);
-  $file_size =$_FILES['files']['size'];
-  $file_tmp =$_FILES['files']['tmp_name'];
-  $file_type=$_FILES['files']['type'];
-  $file_ext=strtolower(end($file_name_array));
   
-  $extensions= array("pdf","txt","docx");
+  <!-- #intro -->
   
-  if(in_array($file_ext,$extensions)=== false){
-     $errors[]="extension not allowed, please choose a PDF or DOCX file.";
-  }
-  
-  if($file_size > 2097152){
-     $errors[]='File size must be excately 2 MB';
-  }
-  
-  if(empty($errors)==true){
-    // location
-     move_uploaded_file($file_tmp,"uploads/".$_FILES['files']['name']);
-  }else{
-     print_r($errors);
-  }
-}
 
+  <main id="main">
+  <body>
 
-?>
-
-<div class="container">
+  <div class="container">
 <!-- Create task button -->
 <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-project">
 <i  class="fa fa-plus"></i>
 </button>
+
 <!-- change location of href -->
-<a href="./research.php"><button type="button" class="btn btn-outline-primary btn-sm">
+<a href="http://localhost/customlandingpage/admin/events/index.php"><button type="button" class="btn btn-outline-primary btn-sm">
 <i class="fa fa-refresh" aria-hidden="true"></i>
 </button>
 </a>
@@ -121,41 +125,39 @@ if(isset($_FILES['files'])){
  <div class="modal-dialog modal-dialog-centered " role="document">
    <div class="modal-content">
      <!-- change action location to your management -->
-     <form method="post" action="./research.php" enctype="multipart/form-data">
+     <form method="post" action="addevents.php" enctype="multipart/form-data">
        <div class="modal-header">
-         <h5 class="modal-title" id="create-project-label">Create Research</h5>
+         <h5 class="modal-title" id="create-project-label">Create Events</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
        <div class="modal-body">
+
          <!-- change the form add based on your designated management -->
          <div class="form-group">
-           <label for="author">Author Name</label>
-           <input type="text" class="form-control" id="author" name="author" required>
+           <label for="author">Event name</label>
+           <input type="text" class="form-control" id="name" name="event_name" required>
            <div class="form-group">
-             <label for="title">Title</label>
-             <input type="text" class="form-control" id="title" name="title">
+             <label for="title">Event Description</label>
+             <textarea type="text" class="form-control" rows="3" id="mobile" name="event_description"> </textarea>
            </div>
-           <div class="form-group">
-							<label for="description">Description</label>
-							<textarea class="form-control" id="description" name="description"></textarea>
-					</div>
+
          </div>
          <div class="form-group">
-           <label for="datepub">Date Published</label>
-           <input type="date" class="form-control" id="datepub" name="datepub">
+           <label for="datepub">Date </label>
+           <input type="date" class="form-control" id="email" name="time">
          </div>
          <div class="form-group">
-          <label for="files">Add (pdf, txt or docs)</label>
-          <input type="file" class="form-control-file" id="files" name="files">
-        </div>
+           <label for="datepub">Time </label>
+           <input type="date" class="form-control" id="email" name="date">
+         </div>
        </div>
-       
-       <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
+      
        <input type="hidden" name="create" value="create"/>
        <div class="modal-footer">
-         <button class="btn btn-primary">Save</button>
+  
+         <button  type="submit" name="Submit" class="btn btn-primary" value="Add">Save</button>
          <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
        </div>
      </form>
@@ -163,56 +165,47 @@ if(isset($_FILES['files'])){
  </div>
 </div>
 
-
-<!--Journal-->
+<!--News-->
 <div class="table-responsive-lg">
   <!-- change table id based on your managemnet -->
- <table id="research" class="table table-hover">
+ <table id="news" class="table table-hover">
    <thead>
      <tr>
        <th scope="col" class="d-none">Default Sort Fixer</th>
        <th scope="col">ID</th>
-       <th scope="col">Title</th>
-       <th scope="col">Main Author</th>
-       <th scope="col">Co-Author(s)</th>
-       <th scope="col">Date Published</th>
-       <th scope="col">Field of Study</th>
-       <th scope="col">Views</th>
-       <th scope="col">Cited</th>
+       <th scope="col">Event</th>
+       <th scope="col">Event Description</th>
+       <th scope="col">Date </th>
+       <th scope="col">Time </th>
        <th scope="col" align="center">Action</th>
      </tr>
    </thead>
    <tbody>
+
      <?php
-     $result = get_research($connect);
+     $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
      if ($result->num_rows>0) {
      while ($data = mysqli_fetch_array($result)) {
        ?>
        <tr>
-         <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
          <td><?php echo $data['id']?></td>
-         <td><a href="action.php?id=<?php echo $data['id']?>&ref=research"><?php echo $data['title']?></a></td>
-         <td><?php echo $data['main_author']?></a></td>
-         <td><?php echo $data['co_authors']?></a></td>
-         <td><?php echo $data['date_publish']?></td>
-         <td><?php echo $data['field_of_study']?></td>
-         <td><?php echo $data['views']?></td>
-         <td><?php echo $data['cites']?></td>
-         <td><?php
-        //  $user = get_user_data($connect,$data['creator']);
-        //  echo $user['name'];
-         ?>
-       </td>
-       
-       <td><?php 
-      //  echo date("Y-m-d",strtotime($data['created']));?></td>
-       <td align="center"><div class="dropdown">
+         <td><?php echo $data['event_name']?></a></td>   
+        <td><?php echo $data['event_description']?></a></td>   
+         <td><?php echo $data['date']?></a></td> 
+         <td><?php echo $data['time']?></a></td> 
+ <!-- ACTION BUTTON -->
+
+       <td align="center"> <div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <i class="fa fa-ellipsis-h"></i>
+           <i class="fa fa-ellipsis-h"> </i> 
          </button>
+
          <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="action.php?id=<?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="action.php?edit=<?php echo $data['id']?>">Edit</a>
+          
+         <a class="dropdown-item" href="view.php?id=<?php echo $data['id']?>">View</a>
+
+        <a class="dropdown-item" href="edit.php?edit=<?php echo $data['id']?>">Edit</a>
+
            <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
@@ -246,60 +239,40 @@ if(isset($_FILES['files'])){
 </tbody>
 </table>
 </div>
+
+
 </div>
 
-<script src="assets/datatables.min.js"></script>
-<script>
- $(function() {
-  //  change id with the id of the table
-   $('#research').DataTable();
-   $(function() {
-     var table = $('#example').DataTable({
-       "columnDefs": [{
-         "visible": false,
-         "targets": 2
-       }],
-       "ordering": false,
-       "displayLength": 25,
-       "drawCallback": function(settings) {
-         var api = this.api();
-         var rows = api.rows({
-           page: 'current'
-         }).nodes();
-         var last = null;
-         api.column(2, {
-           page: 'current'
-         }).data().each(function(group, i) {
-           if (last !== group) {
-             $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-             last = group;
-           }
-         });
-       }
-     });
-           // Order by the grouping
-           $('#example tbody').on('click', 'tr.group', function() {
-             var currentOrder = table.order()[0];
-             if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-               table.order([2, 'desc']).draw();
-             } else {
-               table.order([2, 'asc']).draw();
-             }
-           });
-       });
- });
- $('#example23').DataTable({
-   dom: 'Bfrtip',
-   buttons: [
-   'copy', 'csv', 'excel', 'pdf', 'print'
-   ]
- });
- $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
-</script>
+
+</section>
 
 
+    <!--==========================
+      Result Section
+    ============================-->
+    <section id="services" class="section-bg">
+      <div class="container">
 
+        <header class="section-header">
     
+        </header><br>
+
+        <div class="row">
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+  </main>
+
+<!--==========================
+    View all Section
+  ============================-->
+  
+  
   <!--==========================
     Footer
   ============================-->
@@ -354,8 +327,42 @@ if(isset($_FILES['files'])){
 
         </div>
       </div>
-      
     </div>
 
-  
+  </footer><!-- #footer -->
+
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below i you want to use a preloader -->
+  <!-- <div id="preloader"></div> -->
+  <!-- Tables CDN -->
+  <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+  <!-- JavaScript Libraries -->
+  <script src="../../resource/lib/jquery/jquery.min.js"></script>
+  <script src="../../resource/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../../resource/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../resource/lib/easing/easing.min.js"></script>
+  <script src="../../resource/lib/mobile-nav/mobile-nav.js"></script>
+  <script src="../../resource/lib/wow/wow.min.js"></script>
+  <script src="../../resource/lib/waypoints/waypoints.min.js"></script>
+  <script src="../../resource/lib/counterup/counterup.min.js"></script>
+  <script src="../../resource/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../../resource/lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="../../resource/lib/lightbox/js/lightbox.min.js"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+ 
+
+  <!-- Template Main Javascript File -->
+  <script>
+  $(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+  </script>
+  <script src="../../resource/js/main.js"></script>
+
+</body>
+</html>
 

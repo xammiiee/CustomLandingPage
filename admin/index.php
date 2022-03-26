@@ -61,6 +61,7 @@
             <a class="dropdown-item" href="#">Author Management</a>
             <a class="dropdown-item" href="#">Article Journal Management</a>
             <a class="dropdown-item" href="#">Events Management</a>
+            <a class="dropdown-item" href="../old/news/index2.php">News Management</a>
             </li>
           <li class="active"><a href="#intro">About Us</a></li>
 

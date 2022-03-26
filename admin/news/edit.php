@@ -21,7 +21,6 @@ if(isset($_POST['update']))
 
 // Display selected user data based on id
 // Getting id from url
-
 $id = $_GET['id'];
 
 // Fetech user data based on id
@@ -29,7 +28,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews WHERE id=$id");
 
 while($user_data = mysqli_fetch_array($result))
 {
-	
+	$id = $user_data['id'];
 	$name = $user_data['name'];
 	$email = $user_data['email'];
 	$mobile = $user_data['mobile'];
