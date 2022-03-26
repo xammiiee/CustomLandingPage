@@ -8,34 +8,34 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="./resource/img/favicon.png" rel="icon">
+  <link href="./resource/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
   <!-- Bootstrap CSS File -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/mdb.min.css">
+  <link rel="stylesheet" href="./resource/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./resource/css/mdb.min.css">
 
   <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="./resource/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="./resource/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="./resource/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="./resource/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="./resource/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/addons.css" rel="stylesheet">
+  <link href="./resource/css/style.css" rel="stylesheet">
+  <link href="./resource/css/addons.css" rel="stylesheet">
 
 </head>
 <!-- Try lng mag push -->
 <body>
 <?php
-      include_once ("/xampp/htdocs/CustomLandingPage/login/api/login_api_authenticate.php");
-      include_once ("/xampp/htdocs/CustomLandingPage/signup/api/post_new_user.php");
+      // include_once ("/xampp/htdocs/CustomLandingPage/login/api/login_api_authenticate.php");
+      // include_once ("/xampp/htdocs/CustomLandingPage/signup/api/post_new_user.php");
 ?>
 
   <!--======================================================================================================================
@@ -404,17 +404,17 @@
   <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
   <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/mobile-nav/mobile-nav.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="lib/counterup/counterup.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <script src="./resource/lib/jquery/jquery.min.js"></script>
+  <script src="./resource/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="./resource/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="./resource/lib/easing/easing.min.js"></script>
+  <script src="./resource/lib/mobile-nav/mobile-nav.js"></script>
+  <script src="./resource/lib/wow/wow.min.js"></script>
+  <script src="./resource/lib/waypoints/waypoints.min.js"></script>
+  <script src="./resource/lib/counterup/counterup.min.js"></script>
+  <script src="./resource/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="./resource/lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="./resource/lib/lightbox/js/lightbox.min.js"></script>
 
   <!-- Contact Form JavaScript File -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
@@ -422,7 +422,7 @@
 
   <!-- Template Main Javascript File -->
   <script src="../CustomLandingPage/login/script/main.js"></script>
-  <script src="js/main.js"></script>
+  <script src="./resource/js/main.js"></script>
 
 </body>
 </html>
