@@ -182,28 +182,27 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
      </tr>
    </thead>
    <tbody>
-
      <?php
-     $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
+     $result = mysqli_query($mysqli, "SELECT * FROM tblevents");
      if ($result->num_rows>0) {
      while ($data = mysqli_fetch_array($result)) {
        ?>
        <tr>
-         <td><?php echo $data['id']?></td>
-         <td><?php echo $data['event_name']?></a></td>   
+        <td><?php echo $data['id']?></td>
+        <td><?php echo $data['event_name']?></a></td>   
         <td><?php echo $data['event_description']?></a></td>   
-         <td><?php echo $data['date']?></a></td> 
-         <td><?php echo $data['time']?></a></td> 
- <!-- ACTION BUTTON -->
-
-       <td align="center"> <div class="dropdown">
-         <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <i class="fa fa-ellipsis-h"> </i> 
-         </button>
+        <td><?php echo $data['date']?></a></td> 
+        <td><?php echo $data['time']?></a></td> 
+ 
+         <!-- ACTION BUTTON -->
+        <td align="center"> <div class="dropdown">
+          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-ellipsis-h"> </i> 
+        </button>
 
          <div class="dropdown-menu" aria-labelledby="option">
-          <a class="dropdown-item" href="view.php?id=<?php echo $data['id']?>">View</a>
-          <a class="dropdown-item" href="edit.php?edit=<?php echo $data['id']?>">Edit</a>
+          <a class="dropdown-item" href="view.php?id=<?php echo $data['id'];?>">View</a>
+          <a class="dropdown-item" href="edit.php?edit=<?php echo $data['id'];?>">Edit</a>
           <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
