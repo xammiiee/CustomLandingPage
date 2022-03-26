@@ -6,7 +6,7 @@ if (empty($_SESSION['id'])) {
 }
 
 ?>
-<!-- #Journal-->
+<!-- #Research-->
 <section id="intro" class="clearfix">
   <div class="container">
   <h3 style="color:#fff;">&nbsp;<b> Research Management </b></h3>
@@ -103,7 +103,7 @@ if(isset($_FILES['files'])){
 
 <div class="container">
 <!-- Create task button -->
-<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-project">
+<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#adding-research">
 <i  class="fa fa-plus"></i>
 </button>
 <!-- change location of href -->
@@ -117,50 +117,153 @@ if(isset($_FILES['files'])){
 
 <!-- Create New Research -->
 
-<div class="modal fade" id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered " role="document">
-   <div class="modal-content">
-     <!-- change action location to your management -->
-     <form method="post" action="./research.php" enctype="multipart/form-data">
-       <div class="modal-header">
-         <h5 class="modal-title" id="create-project-label">Create Research</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-       <div class="modal-body">
-         <!-- change the form add based on your designated management -->
-         <div class="form-group">
-           <label for="author">Author Name</label>
-           <input type="text" class="form-control" id="author" name="author" required>
-           <div class="form-group">
-             <label for="title">Title</label>
-             <input type="text" class="form-control" id="title" name="title">
-           </div>
-           <div class="form-group">
-							<label for="description">Description</label>
-							<textarea class="form-control" id="description" name="description"></textarea>
-					</div>
-         </div>
-         <div class="form-group">
-           <label for="datepub">Date Published</label>
-           <input type="date" class="form-control" id="datepub" name="datepub">
-         </div>
-         <div class="form-group">
-          <label for="files">Add (pdf, txt or docs)</label>
-          <input type="file" class="form-control-file" id="files" name="files">
+<div class="modal fadeInDown  adding-research-lg " id="adding-research" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="box">
+      <center><h1>Add New Research Paper</h1></center>
+      <form action="" method="POST" name="form" enctype="multipart/form-data">
+
+        <!-- TITLE -->
+        <div class="form-group">
+          <label class="label">Title *</label>
+          <textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control"></textarea>
         </div>
-       </div>
-       
-       <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
-       <input type="hidden" name="create" value="create"/>
-       <div class="modal-footer">
-         <button class="btn btn-primary">Save</button>
-         <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-       </div>
-     </form>
-   </div>
- </div>
+
+        <!-- MAIN AUTHOR -->
+        <div class="form-group">
+            <label class="label">Main Author *</label><br>
+            <select class="custom-select" id="txtmain-author" name="txtmain-author">
+            <option selected> </option>
+            <?php
+            $result = get_author($connect);
+            if ($result->num_rows>0) 
+            {
+              while ($data = mysqli_fetch_array($result)) 
+              {
+                {
+                  echo  "<option value=".$data['fullname'].">".$data['fullname']."</option>";
+                }
+              }
+            }
+            ?>
+            </select>
+          </div>
+        
+        <!-- CO AUTHOR -->
+        <div class="row">
+          
+          <div class="col">
+          <label class="label">Co-Author(s) *</label><br>
+          <select class="custom-select" id="txtco-authors" name="co-author">
+          <option selected disabled> </option>
+          <?php
+          $result = get_author($connect);
+          if ($result->num_rows>0) 
+          {
+            while ($data = mysqli_fetch_array($result)) 
+            {
+              {
+                echo  "<option value=".$data['id']." id=".$data['fullname'].">".$data['fullname']."</option>";
+              }
+            }
+          }
+          ?>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-info" type="button" id="btn-co-author">Add</button>
+          </div>
+          </div>
+
+          <div class="col" id="co-author-list" >
+            <label>--Co-Authors Added--</label>
+          <ul class="list-group" id='co-list'>
+            <?php
+              $a="list-group-item";
+              foreach($result as $row)
+              {
+                echo  "<li class ='list-group-item' value='".$row['id']."' id='".$row['fullname']."'>".$row['fullname']."</li>";
+              }
+            ?>
+          </ul>
+          </div>
+        </div>
+
+        <!-- ABSTRACT -->
+      <div class="form-group">
+        <label class="label">Abstract *</label>
+        <textarea rows="5" cols="60" type="text "name="abstract" id="title" class="form-control"></textarea>
+      </div>
+
+      <div class="row">
+        <!-- DATE PUBLISH -->
+        <div class="col">
+          <div class="form-group">
+            <label>Date Publish *</label>
+            <input type="date" name="dpub" id="dpub" class="form-control" />
+          </div>
+        </div>
+
+        <!-- FIELD OF STUDY -->
+        <div class="col">
+          <div class="form-group">
+            <label class="label">Field of Study *</label><br>
+            <select class="custom-select" id="fstudy" name="fstudy">
+            <option selected> </option>
+            <option value="Accounting and Finance">Accounting and Finance</option>
+            <option value="Business and Economics">Business and Economics</option>
+            <option value="Computer Studies">Computer Studies</option>
+            <option value="Hospitality">Hospitality</option>
+            <option value="Nursing">Nursing</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <!-- TAGS -->
+        <div class="col">
+          <label class="label">Tag(s) *</label>
+          <select class="custom-select" id="drop-tags">
+            <option selected disabled> </option>
+            <option value="Computer" id="Computer">Computer</option>
+            <option value="WebDesign" id="WebDesign">Web Design</option>
+            <option value="InternetSecurity" id="InternetSecurity">Internet Security</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-info" type="button" id="btn-tags">Add</button>
+          </div>
+        </div>
+        <div class="col">
+          <label>--Tags Added--</label>
+          <ul class="list-group" id="tags-list">
+          </ul>
+        </div>
+      </div><br>
+      <div class="form-group">
+      <label for="" class="form-label">File Pdf *</label><br>
+        <div style="padding: 10px; border: 1px solid #999">
+          <input type="hidden" name="MAX_FILE_SIZE" value="20000000"/><input
+            type="file" name="pdfFile">
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-info" id="submit" name="btnsubmit" >
+            Submit
+        </button>
+      </div>
+      </form>
+    </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -206,6 +309,7 @@ if(isset($_FILES['files'])){
        
        <td><?php 
       //  echo date("Y-m-d",strtotime($data['created']));?></td>
+       <!-- Action Column -->
        <td align="center"><div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
@@ -249,6 +353,7 @@ if(isset($_FILES['files'])){
 </div>
 
 <script src="assets/datatables.min.js"></script>
+<script src="./script/main.js"></script>
 <script>
  $(function() {
   //  change id with the id of the table

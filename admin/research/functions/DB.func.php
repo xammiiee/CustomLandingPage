@@ -144,6 +144,13 @@ function get_research_by_id($connect,$id){
 	}
 }
 
+// AUTHOR
+function get_author($connect){
+	//ORDER BY deadline ASC
+	$sql = "SELECT * FROM tblauthor";
+	$result = $connect->query($sql);
+		return $result;
+}
 ?>
 
 
