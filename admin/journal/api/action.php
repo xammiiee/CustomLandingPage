@@ -1,8 +1,8 @@
 <?php
-include_once "inc/header.php";
-if (empty($_SESSION['id'])) {
-	header("Location: login.php");
-}
+include_once "../api/header.php";
+// if (empty($_SESSION['id'])) {
+// 	header("Location: ../../../login/login.php");
+// }
 ?>
 
 <!--View Journal-->
@@ -82,7 +82,7 @@ if (isset($_GET['edit'])) {
 
 // Get journal id
 if (!empty($_GET['id'])) {
-	$data = get_journal($connect,$_GET['id']);
+	$data = get_journalaction($connect,$_GET['id']);
 	?>
 <br><br><br><br>
 	<!--View Journal-->
@@ -109,7 +109,7 @@ if (!empty($_GET['id'])) {
 						
 
 					<p class="font-weight-normal text-left" style="width:50%;"><?php echo ($data['description']); ?></p>
-					<p class="font-weight-sm-light text-left" style="font-size: 15px;margin-top:10px;" ><?php echo date("Y-m-d",strtotime($data['datepub']));?></p>
+					<p class="font-weight-sm-light text-left" style="font-size: 15px;margin-top:10px;" ><?php echo $data['date_pub'];?></p>
 					<p style="margin-top:10px;"><b>Authors:</b></p>
 					<p style="margin-top:10px;"><a href=""><?php echo $data['author']?></a></p>
 					</div>
@@ -119,7 +119,7 @@ if (!empty($_GET['id'])) {
 	<div class="container">
 		<div id="result"></div>
 			<div class="modal-footer">
-				<a href="journal.php"><button class="btn btn-dark btn-sm">Back</button></a>
+				<a href="../journal.php"><button class="btn btn-dark btn-sm">Back</button></a>
 					<div class="dropdown">
 						<button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i class="fa fa-ellipsis-h"></i>

@@ -76,7 +76,7 @@ function get_roles($connect){
 }
 
 function get_role_name($connect,$id){
-	$sql = "SELECT * FROM roles WHERE id=$id";
+	$sql = "SELECT * FROM roles  WHERE id=$id";
 	$rslt = $connect->query($sql);
 	$result = $rslt->fetch_assoc();
 	if ($rslt->num_rows > 0) {
@@ -90,13 +90,13 @@ function get_role_name($connect,$id){
 
 function get_journal($connect){
 	//ORDER BY deadline ASC
-	$sql = "SELECT * FROM projects WHERE status='' OR status=0 OR status=1";
+	$sql = "SELECT * FROM tbljournal";
 	$result = $connect->query($sql);
 		return $result;
 }
 
 function get_journalaction($connect,$id){
-	$sql = "SELECT * FROM projects WHERE id='$id'";
+	$sql = "SELECT * FROM tbljournal WHERE id='$id'";
 	$result = $connect->query($sql);
 	if ($result->num_rows > 0) {
 		return $result->fetch_assoc();
@@ -105,9 +105,9 @@ function get_journalaction($connect,$id){
 	}
 }
 
-function create_journalaction($connect,$author,$title,$description,$datepub,$creator,$created){
+function create_journalaction($connect,$author,$title,$description,$datepub,$creator,$filelocation){
 
-	$sql = "INSERT INTO projects VALUES ('','$author','$title','$description','$datepub','$creator','$created',0)";
+	$sql = "INSERT INTO tbljournal VALUES ('','$title','$description','$author','$datepub','$creator','0','$filelocation')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

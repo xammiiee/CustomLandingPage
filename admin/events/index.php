@@ -201,12 +201,9 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
          </button>
 
          <div class="dropdown-menu" aria-labelledby="option">
-          
-         <a class="dropdown-item" href="view.php?id=<?php echo $data['id']?>">View</a>
-
-        <a class="dropdown-item" href="edit.php?edit=<?php echo $data['id']?>">Edit</a>
-
-           <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
+          <a class="dropdown-item" href="view.php?id=<?php echo $data['id']?>">View</a>
+          <a class="dropdown-item" href="edit.php?edit=<?php echo $data['id']?>">Edit</a>
+          <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
      </td>

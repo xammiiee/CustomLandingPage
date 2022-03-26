@@ -2,21 +2,19 @@
 include "/xampp/htdocs/CustomLandingPage/signup/inc/header.php";
 
 if ($_SERVER['REQUEST_METHOD']=="POST") 
-{  
-  if(isset("btnsubmit"))
-  {
+{ 
     // add if not exist
-    $query = "INSERT INTO tblaccount (fname, email, pass,status, ucategory, au_member) VALUES ('".$_POST['name']."','".$_POST['email']."','".$_POST['password']."','Inactive','User','".$_POST['aumember']."')";
+    $query = "INSERT INTO tblaccount (name, email, pass,status, ucategory, au_member) VALUES ('".$_POST['name']."','".$_POST['email']."','".$_POST['password']."','Inactive','User','".$_POST['aumember']."')";
     $result = $connect->query($query);
     if ($result->num_rows > 0) {
       add_data($query1,$connect,"You are successfully registered!");
+      header("location: ../login/login.php");
     }
 
     if (isset($_SESSION['id'])) {
       // include "../";
-      header("location: ../login/login.php");
+      
     }
-  }
 }
 ?>
 
@@ -27,7 +25,9 @@ if ($_SERVER['REQUEST_METHOD']=="POST")
 	<div class="col-6">
             <div class="card">
             <div class="card-body" id="margin-top">
-              <?php echo "$query";?>
+              <?php 
+              // echo "$query";
+              ?>
             <h5 class="card-title text-center">Signup</h5>
             <form action="" method="POST">
             <div class="form-group">
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST")
                   class="form-control"
                   name="aumember"
                   value=" ">
-                  <option selected>Are you a member of Arellano Community?</option>
+                  <option selected disabled>Are you a member of Arellano Community?</option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
                 </select>

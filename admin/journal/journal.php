@@ -51,16 +51,6 @@ if (isset($_GET['del'])) {
     message("Project deleted successfully!","1");
   }
 }
-if ($_SERVER['REQUEST_METHOD'] =="POST") {
-  if (isset($_POST['create'])) {
-    $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$_POST['created']);
-    if ($result == 1) {
-      message("Journal created successfully!",1);
-    } else {
-      message("Could not create Journal!",0);
-    }
-  }
-}
 if(isset($_FILES['files'])){
   $errors= array();
   $file_name_array = explode('.',$_FILES['files']['name']);
@@ -79,14 +69,26 @@ if(isset($_FILES['files'])){
      $errors[]='File size must be excately 2 MB';
   }
   
-  if(empty($errors)==true){
+  if(empty($errors)==true)
+  {
      move_uploaded_file($file_tmp,"uploads/".$_FILES['files']['name']);
-  }else{
+     $filelocation = "uploads/".$_FILES['files']['name']."";
+  }
+  else{
      print_r($errors);
   }
 }
 
-
+if ($_SERVER['REQUEST_METHOD'] =="POST") {
+  if (isset($_POST['create'])) {
+    $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$filelocation,"0");
+    if ($result == 1) {
+      message("Journal created successfully!",1);
+    } else {
+      message("Could not create Journal!",0);
+    }
+  }
+}
 ?>
 
 <div class="container">
@@ -176,20 +178,19 @@ if(isset($_FILES['files'])){
          <td><?php echo $data['id']?></td>
          <td><a href="action.php?id=<?php echo $data['id']?>&ref=journal"><?php echo $data['author']?></a></td>
          <td><?php echo $data['title']?></a></td>
-         <td><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
+         <td><?php echo $data['date_pub'];?></td>
          <td><?php
-         $user = get_user_data($connect,$data['creator']);
-         echo $user['name'];
+        //  $user = get_user_data($connect,$data['creator']);
+        //  echo $user['name'];
          ?>
        </td>
-       
-       <td><?php echo date("Y-m-d",strtotime($data['created']));?></td>
+       <td><?php echo $data['creator'];?></td>
        <td align="center"><div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
          </button>
          <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="action.php?id=<?php echo $data['id']?>">View</a>
+           <a class="dropdown-item" href="../journal/api/action.php?id= <?php echo $data['id']?>">View</a>
            <a class="dropdown-item" href="action.php?edit=<?php echo $data['id']?>">Edit</a>
            <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
