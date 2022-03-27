@@ -1,43 +1,46 @@
 <?php
 include "/xampp/htdocs/CustomLandingPage/signup/inc/header.php";
-if (isset($_POST['btnsubmit'])) {
-
-  $name=$_POST['name'];
-  $email=$_POST['email'];
-
-  $query = "SELECT * FROM tblaccount WHERE email = '$email'";
-  $result = $connect->query($query);
-  if($result->num_rows>0)
-  {
-    message("Already exits",0);
-  }
-  else{
-
-      if ($_SERVER['REQUEST_METHOD']=="POST") 
-      { 
-          // add if not exist
-          $query = "INSERT INTO tblaccount (name, email, pass,status, ucategory, au_member) VALUES ('".$_POST['name']."','".$_POST['email']."','".$_POST['password']."','Inactive','User','".$_POST['aumember']."')";
-          $result = $connect->query($query);
-          if ($result->num_rows > 0) {
-            add_data($query1,$connect,"You are successfully registered!");
-            header("location: ../login/login.php");
-          }
-
-          if (isset($_SESSION['id'])) {
-            // include "../";
-            
-          }
-      }
-    }
-    }
 ?>
 
 <section id="intro" class="clearfix">
 <div class="container">
 <div class="row">
 	<div class="col-3"></div>
-	<div class="col-6">
-            <div class="card">
+	 <div class="col-6">
+    <div class="card">
+          <?php
+          if (isset($_POST['btnsubmit'])) {
+
+            $name=$_POST['name'];
+            $email=$_POST['email'];
+
+            $query = "SELECT * FROM tblaccount WHERE email = '$email'";
+            $result = $connect->query($query);
+            if($result->num_rows>0)
+            {
+              message("Already exits",0);
+            }
+            else{
+
+                if ($_SERVER['REQUEST_METHOD']=="POST") 
+                { 
+                    // add if not exist
+                    $query = "INSERT INTO tblaccount (name, email, pass,status, ucategory, au_member) VALUES ('".$_POST['name']."','".$_POST['email']."','".$_POST['password']."','Inactive','User','".$_POST['aumember']."')";
+                    $result = $connect->query($query);
+                    if ($result->num_rows > 0) {
+                      add_data($query1,$connect,"You are successfully registered!");
+                      header("location: ../login/login.php");
+                    }
+
+                    if (isset($_SESSION['id'])) {
+                      // include "../";
+                      
+                    }
+                }
+              }
+              }
+              ?>
+            <h5 class="card-header  text-center lead text-muted">Join us! Find your study here.</h5>
             <div class="card-body" id="margin-top">
               <?php 
               // echo "$query";
