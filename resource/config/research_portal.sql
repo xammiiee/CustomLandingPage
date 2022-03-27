@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2022 at 05:55 PM
+-- Generation Time: Mar 27, 2022 at 06:29 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -47,6 +47,30 @@ CREATE TABLE `tblaccount` (
 INSERT INTO `tblaccount` (`id`, `name`, `email`, `pass`, `status`, `ucategory`, `au_member`, `subcribe`, `datesub_start`, `datesub_end`) VALUES
 (1, 'Jaren Heruela', 'jaren@gmail.com', 'admin', 'Active', 'Administrator', 'Yes', '', '', ''),
 (2, 'trylang', 'anton-gramm-324@haebom.ga', 'admin', 'Active', 'User', 'No', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblarticle`
+--
+
+CREATE TABLE `tblarticle` (
+  `id` int(100) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `description` longtext NOT NULL,
+  `author` varchar(100) NOT NULL,
+  `date_pub` varchar(20) NOT NULL,
+  `created_by` varchar(100) NOT NULL,
+  `tagging` varchar(100) NOT NULL,
+  `status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblarticle`
+--
+
+INSERT INTO `tblarticle` (`id`, `title`, `description`, `author`, `date_pub`, `created_by`, `tagging`, `status`) VALUES
+(3, 'sample 1', 'tile1', 'wertyuiojhgfdcvbnm', '2022-03-03', '1', 'computer, science', '0');
 
 -- --------------------------------------------------------
 
@@ -108,10 +132,8 @@ CREATE TABLE `tbljournal` (
 --
 
 INSERT INTO `tbljournal` (`id`, `title`, `description`, `author`, `date_pub`, `creator`, `status`, `pdf_file`) VALUES
-(1, 'sample1', '2022-03-03', 'sample1', 'wertyuivbnhgfdghjdcv xrdgfchv5etwrdxtfcghvby gfdzx', '', '', ''),
-(2, 'sample 2', 'sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2', 'jaren', '1', '2022-03-18', '0', 'uploads/Cluster Algorithm for Search Engine Collator.pdf'),
-(3, 'sample 2', 'sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2', 'jaren', '1', '2022-03-18', '0', 'uploads/Cluster Algorithm for Search Engine Collator.pdf'),
-(4, 'sample 2', 'sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2', 'jaren', '1', '2022-03-18', '0', 'uploads/A multi-level collaborative filtering method that improves recommendations.pdf');
+(4, 'sample 2', 'sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2', 'jaren', '1', '2022-03-18', '0', 'uploads/A multi-level collaborative filtering method that improves recommendations.pdf'),
+(5, 'sample2', 'sample2sample2sample2sample2sample2sample2sample2sample2sample2sample2', 'jaren', '1', '2022-03-09', '0', 'uploads/Afully ol rs for research student and researchers.pdf');
 
 -- --------------------------------------------------------
 
@@ -179,6 +201,12 @@ ALTER TABLE `tblaccount`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tblarticle`
+--
+ALTER TABLE `tblarticle`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tblauthor`
 --
 ALTER TABLE `tblauthor`
@@ -219,6 +247,12 @@ ALTER TABLE `tblaccount`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `tblarticle`
+--
+ALTER TABLE `tblarticle`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tblevents`
 --
 ALTER TABLE `tblevents`
@@ -228,7 +262,7 @@ ALTER TABLE `tblevents`
 -- AUTO_INCREMENT for table `tbljournal`
 --
 ALTER TABLE `tbljournal`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tblnews`
