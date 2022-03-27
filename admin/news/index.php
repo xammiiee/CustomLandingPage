@@ -1,5 +1,6 @@
 <?php
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+// include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+
 
 // include "../../resource/"
 if (empty($_SESSION['id'])) {

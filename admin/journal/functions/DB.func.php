@@ -128,7 +128,7 @@ function update_journalaction($connect,$author,$title,$description,$datepub,$id)
 }
 
 function delete_journalaction($connect,$id){
-	$sql = "DELETE FROM projects WHERE id=$id";
+	$sql = "DELETE FROM tbljournal WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return "1";
@@ -151,13 +151,13 @@ function get_project_by_id($connect,$id){
 
 function get_articles($connect){
 	//ORDER BY deadline ASC
-	$sql = "SELECT * FROM article WHERE status='' OR status=0 OR status=1";
+	$sql = "SELECT * FROM tblarticle";
 	$result = $connect->query($sql);
 		return $result;
 }
 
 function get_article($connect,$id){
-	$sql = "SELECT * FROM article WHERE id='$id'";
+	$sql = "SELECT * FROM tblarticle WHERE id='$id'";
 	$result = $connect->query($sql);
 	if ($result->num_rows > 0) {
 		return $result->fetch_assoc();
@@ -168,7 +168,7 @@ function get_article($connect,$id){
 
 function create_article($connect,$aauthor,$atitle,$adescription,$adatepub,$creator,$atags){
 
-	$sql = "INSERT INTO article VALUES ('','$aauthor','$atitle','$adescription','$adatepub','$creator','$atags',0)";
+	$sql = "INSERT INTO tblarticle VALUES ('','$aauthor','$atitle','$adescription','$adatepub','$creator','$atags',0)";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -179,7 +179,7 @@ function create_article($connect,$aauthor,$atitle,$adescription,$adatepub,$creat
 
 function update_article($connect,$aauthor,$atitle,$adescription,$adatepub,$id){
 
-	$sql = "UPDATE article SET aauthor='$aauthor',atitle='$atitle',adescription='$adescription',adatepub='$adatepub' WHERE id=$id";
+	$sql = "UPDATE tblarticle SET aauthor='$aauthor',atitle='$atitle',adescription='$adescription',adatepub='$adatepub' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -189,7 +189,7 @@ function update_article($connect,$aauthor,$atitle,$adescription,$adatepub,$id){
 }
 
 function delete_article($connect,$id){
-	$sql = "DELETE FROM article WHERE id=$id";
+	$sql = "DELETE FROM tblarticle WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return "1";
@@ -199,7 +199,7 @@ function delete_article($connect,$id){
 }
 
 function get_article_by_id($connect,$id){
-	$sql = "SELECT * FROM projects WHERE id=$id";
+	$sql = "SELECT * FROM tblarticle WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result->num_rows > 0) {
 		return $result->fetch_assoc();

@@ -1,10 +1,9 @@
 <?php
-include_once "inc/header.php";
+include_once "/xampp/htdocs/CustomLandingPage/admin/journal/inc/header_1.php";
 if (empty($_SESSION['id'])) {
-	header("Location: login.php");
+	// header("Location: login.php");
 }
 ?>
-
 <!--View Article-->
 <?php 
 
@@ -29,6 +28,7 @@ if (isset($_GET['edit'])) {
 	$data = get_article($connect,$_GET['edit']);
 	?>
 	<br><br><br><br>
+	
 	<section id="intro" class="clearfix">
 	<div class="container">
 		<table class="table table-bordered " >
@@ -45,10 +45,10 @@ if (isset($_GET['edit'])) {
 					<td>
 						<div class="form-group">
 							<label for="aauthor">Author</label>
-							<input type="text" class="form-control" id="aauthor" name="aauthor" value="<?php echo $data['aauthor'];?>">
+							<input type="text" class="form-control" id="aauthor" name="aauthor" value="<?php echo $data['author'];?>">
 							<div class="form-group">
 								<label for="atitle">Title</label>
-								<input class="form-control" id="atitle" name="atitle" value="<?php echo $data['atitle'];?>">
+								<input class="form-control" id="atitle" name="atitle" value="<?php echo $data['title'];?>">
 							</div>
 							<div class="form-group">
 								<label for="adescription">Description</label>
@@ -57,7 +57,7 @@ if (isset($_GET['edit'])) {
 						</div>
 						<div class="form-group">
 							<label for="adatepub">Date Publish</label>
-							<input type="date" class="form-control" id="adatepub" name="adatepub" value="<?php echo $data['adatepub'];?>">
+							<input type="date" class="form-control" id="adatepub" name="adatepub" value="<?php echo $data['date_pub'];?>">
 						</div>
 
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">
@@ -101,13 +101,13 @@ if (!empty($_GET['id'])) {
 					<span >Article</span>
 					</div>
 					<br>	<br>
-					<span class="text-left" style="font-size:22px;font-weight:800px;"><?php echo $data['atitle']?></span>
-					<p class="font-weight-normal text-left" style="width:60%;margin-top:10px;"><?php echo ($data['adescription']); ?></p>
-					<p class="font-weight-sm-light text-left" style="font-size: 15px;margin-top:10px;" ><?php echo date("Y-m-d",strtotime($data['adatepub']));?></p>
+					<span class="text-left" style="font-size:22px;font-weight:800px;"><?php echo $data['title']?></span>
+					<p class="font-weight-normal text-left" style="width:60%;margin-top:10px;"><?php echo ($data['description']); ?></p>
+					<p class="font-weight-sm-light text-left" style="font-size: 15px;margin-top:10px;" ><?php echo date("Y-m-d",strtotime($data['date_pub']));?></p>
 					<p style="margin-top:10px;"><b>Authors:</b></p>
-					<p style="margin-bottom:5px;"><a href=""><?php echo $data['aauthor']?></a></p>
+					<p style="margin-bottom:5px;"><a href=""><?php echo $data['author']?></a></p>
 					<p style="margin-top:10px;font-size:13px;">Tags:</p>
-					<div class="badge badge-muted  bg-dark" style="width: 3rem;padding:2px;" ><?php echo $data['atags']?></div>
+					<div class="badge badge-muted  bg-dark" style="width: 3rem;padding:2px;" ><?php echo $data['tagging']?></div>
 				</div>
 					<button class="btn btn-success btn-sm float-right lowercase" style="position:relative;bottom:250px;font-size:12px;margin-right:20px;" ><i class="fa fa-download">&nbsp;fulltext PDF</i></button>
 					<button class="btn btn-outline-success btn-sm float-right" style="clear:both;position:relative;bottom:250px;margin-right:20px;"><i class="fa fa-file-text"> &nbsp;Read here</i></button>

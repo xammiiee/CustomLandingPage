@@ -1,58 +1,61 @@
 <?php
 include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
 // include "../../resource/"
-if (empty($_SESSION['id'])) {
-// include ""
-header("Location: ../../login/login.php");
+if (empty($_SESSION['id'])) 
+{
+  // include ""
+  header("Location: ../../login/login.php");
 }
-
-?>
-<!-- #Research-->
-<section id="intro" class="clearfix">
-  <div class="container">
-  <h3 style="color:#fff;">&nbsp;<b> Research Management </b></h3>
-    <div class="card-group">
-          <div class="col-md-3 col-sm-5">
-            <div class="card">
-              <div class="card-body">
-                <!-- change function to the designated function of your assign management -->
-                <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
-                // echo get_journal($connect)->num_rows;?></h2>
-                 <h5 class="card-title">All Research</h5>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+else
+{
+  ?>
+  <!-- #Research-->
+  <section id="intro" class="clearfix">
+    <div class="container">
+    <h3 style="color:#fff;">&nbsp;<b> Research Management </b></h3>
+      <div class="card-group">
+            <div class="col-md-3 col-sm-5">
+              <div class="card">
+                <div class="card-body">
+                  <!-- change function to the designated function of your assign management -->
+                  <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                  // echo get_journal($connect)->num_rows;?></h2>
+                   <h5 class="card-title">All Research</h5>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-3 col-sm-5">
-            <div class="card">
-              <div class="card-body"> 
-               <i class="fa fa-upload fa-2x" style="color:#007bff"></i>
-                <h5 class="card-title">Recent upload</h5>     
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <div class="col-md-3 col-sm-5">
+              <div class="card">
+                <div class="card-body"> 
+                 <i class="fa fa-upload fa-2x" style="color:#007bff"></i>
+                  <h5 class="card-title">Recent upload</h5>     
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-3 col-sm-5">
-            <div class="card">
-              <div class="card-body">
-                <!-- change function to the designated function of your assign management -->
-               <i class="fa fa-user-plus fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php 
-              //  echo get_users($connect)->num_rows;?></h2>
-                <h5 class="card-title">All Creator</h5>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              
+            <div class="col-md-3 col-sm-5">
+              <div class="card">
+                <div class="card-body">
+                  <!-- change function to the designated function of your assign management -->
+                 <i class="fa fa-user-plus fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php 
+                //  echo get_users($connect)->num_rows;?></h2>
+                  <h5 class="card-title">All Creator</h5>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                
+                </div>
               </div>
             </div>
-          </div>
+        </div>
       </div>
-    </div>
-</section>
-          
-<br>
- <!--<header class="section-header">
-      <h3>Journal Management</h3>
-    </header> -->
+  </section>
+            
+  <br>
 <?php
+}
+//  <!--<header class="section-header">
+//       <h3>Journal Management</h3>
+//     </header> -->
 if (isset($_GET['del'])) {
   // change function to the designated function of your assign management
   $result = delete_journalaction($connect,$_GET['del']);

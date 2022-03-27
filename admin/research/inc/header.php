@@ -90,12 +90,12 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
             ?>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="../account/account.php">Account Management</a>
-                  <a class="dropdown-item" href="/admin/research/research.php">Research Management</a>
-                  <a class="dropdown-item" href="/admin/author/author.php">Author Management</a>
-                  <a class="dropdown-item" href="/admin/journal/journal.php">Journal Management</a>
-                  <a class="dropdown-item" href="/admin/article/article.php">Article Management</a>
-                  <a class="dropdown-item" href="/admin/news//index.php">News Management</a>
-                  <a class="dropdown-item" href="/admin/events/index.php">Events Management</a>
+                  <a class="dropdown-item" href="../research/research.php">Research Management</a>
+                  <a class="dropdown-item" href="../author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="../article/article.php">Article Management</a>
+                  <a class="dropdown-item" href="../news//index.php">News Management</a>
+                  <a class="dropdown-item" href="../events/index.php">Events Management</a>
                 </li>
                   <li class="nav-item dropdown" >
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

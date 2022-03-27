@@ -63,10 +63,10 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.ph
       <div class="logo float-left">
        <a href="#intro" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
-      <div class="col-<?php if(isset($_SESSION['id'])){if($_SESSION['role'] == 1) { echo"6";}elseif($_SESSION['role'] == 2){echo"6";}else{echo"9";}}else{echo"10";}?>"></div>
+      
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-        <?php if (isset($_SESSION['id'])) { if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
+        <?php if (isset($_SESSION['id'])) { if ($_SESSION['role']=="Administrator") { ?>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Management
@@ -101,7 +101,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.ph
                     <a class="dropdown-item" href="#settings">Settings</a>
                     <a class="dropdown-item" href="#aboutus">About Us</a>
                    
-                    <a class="dropdown-item" href="logout.php">Signout</a>
+                    <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
                   </div>
                   </li>
                   <?php } else { ?>
@@ -142,9 +142,11 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.ph
   <!-- Template Main Javascript File -->
   <script>
   $(document).ready( function () {
-    $('#table_id').DataTable();
-    } );
+  } );
   </script>
+  <script language="javascript" type="text/javascript">
+  window.history.forward();
+</script>
   <script src="../../resource/js/main.js"></script>
   </body>
 </html>

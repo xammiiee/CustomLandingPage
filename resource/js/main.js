@@ -1,4 +1,6 @@
 (function ($) {
+  window.history.forward();
+  
   "use strict";
 
   // Preloader (if the #preloader div exists)

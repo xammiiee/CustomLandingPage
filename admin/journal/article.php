@@ -1,10 +1,12 @@
 <?php
-include "inc/header.php";
+include "/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php";
 if (empty($_SESSION['id'])) {
   header("Location: login.php");
 }
 
 ?>
+<link rel="stylesheet" href="../../resource/css/style.css">;
+<link rel="stylesheet" href="../../resource/css/bootstrap.min.css">;
 <!-- #Journal-->
 <section id="intro" class="clearfix">
   <div class="container">
@@ -50,7 +52,7 @@ if (empty($_SESSION['id'])) {
 if (isset($_GET['del'])) {
   $result = delete_article($connect,$_GET['del']);
   if ($result =="1") {
-    message("Project deleted successfully!","1");
+    message("Article deleted successfully!","1");
   }
 }
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
@@ -150,7 +152,7 @@ if(isset($_FILES['files'])){
  </div>
 </div>
 <?php
-$sql = "SELECT * FROM article";
+$sql = "SELECT * FROM tblarticle";
 $result = $connect->query($sql);
 ?>
 <script>
@@ -212,13 +214,13 @@ $result = $connect->query($sql);
      while ($data = mysqli_fetch_array($result)) {
        ?>
        <tr>
-         <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['adatepub']));?></td>
+         <td scope="row" class="d-none"><?php echo $data['date_pub'];?></td>
          <td><?php echo $data['id']?></td>
-         <td><a href="article_backend.php?id=<?php echo $data['id']?>&ref=article"><?php echo $data['aauthor']?></a></td>
-         <td><?php echo $data['atitle']?></a></td>
-         <td><?php echo date("Y-m-d",strtotime($data['adatepub']));?></td>
+         <td><a href="article_backend.php?id=<?php echo $data['id']?>&ref=article"><?php echo $data['author']?></a></td>
+         <td><?php echo $data['title']?></a></td>
+         <td><?php echo date("Y-m-d",strtotime($data['date_pub']));?></td>
          <td><?php
-         $user = get_user_data($connect,$data['acreator']);
+         $user = get_user_data($connect,$data['created_by']);
          echo $user['name'];
          ?>
        </td>
@@ -227,9 +229,9 @@ $result = $connect->query($sql);
            <i class="fa fa-ellipsis-h"></i>
          </button>
          <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="article_backend.php?id=<?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="article_backend.php?edit=<?php echo $data['id']?>">Edit</a>
-           <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
+           <a class="dropdown-item" href="./api/article_backend.php?id=<?php echo $data['id']?>">View</a>
+           <a class="dropdown-item" href="./api/article_backend.php?edit=<?php echo $data['id']?>">Edit</a>
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
      </td>
@@ -258,6 +260,7 @@ $result = $connect->query($sql);
    <?php
  }
 }
+// include""
  ?>
 </tbody>
 </table>

@@ -1,6 +1,8 @@
 <?php
 include ("/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php");
 if (empty($_SESSION['id'])) {
+  // include""
+  header("Location: ../../login/login.php");
 }
 ?>
 <!-- #Journal-->
@@ -171,6 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
      $result = get_journal($connect);
      if ($result->num_rows>0) {
      while ($data = mysqli_fetch_array($result)) {
+      // include""
        ?>
        <tr>
          <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
@@ -191,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          <div class="dropdown-menu" aria-labelledby="option">
            <a class="dropdown-item" href="../journal/api/action.php?id= <?php echo $data['id']?>">View</a>
            <a class="dropdown-item" href="../journal/api/action.php?edit=<?php echo $data['id']?>">Edit</a>
-           <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
      </td>
