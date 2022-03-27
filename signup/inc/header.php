@@ -58,7 +58,7 @@ include ("/xampp/htdocs/CustomLandingPage/signup/inc/core.php");
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="#intro" class="scrollto"><img src="../img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+       <a href="#intro" class="scrollto"><img src="../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
       <div class="col-<?php if(isset($_SESSION['id'])){if($_SESSION['role'] == 1) { echo"6";}elseif($_SESSION['role'] == 2){echo"6";}else{echo"9";}}else{echo"10";}?>"></div>
       <nav class="main-nav float-right d-none d-lg-block" >

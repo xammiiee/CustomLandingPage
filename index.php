@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,11 +47,15 @@
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+       <a href="#intro" class="scrollto"><img src="./resource/img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
+      <!-- Condition for user -->
+      <?php
+
+      ?>
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-          <li><a href="" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li>
+          <li><a href="./signup/signup.php" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li>
           <li>  <a href="#footer">About Us</a></li>
         </ul>
       </nav>
@@ -187,7 +194,7 @@
           <div>
             <a href="" class="btn-get-started scrollto" >Search</a>   
       </form>
-            <a href="" class="btn-services scrollto" data-toggle="modal" data-target="#signinPage"> Login</a>
+            <a href="./login/login.php" class="btn-services scrollto"> Login</a>
           </div>
         </div>
     </div>

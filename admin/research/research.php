@@ -1,7 +1,8 @@
 <?php
 include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
 // include "../../resource/"
-if (empty($_SESSION['id'])) 
+$loggedUser = $_SESSION['id'];
+if ($loggedUser == "") 
 {
   // include ""
   header("Location: ../../login/login.php");
@@ -19,7 +20,7 @@ else
                 <div class="card-body">
                   <!-- change function to the designated function of your assign management -->
                   <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
-                  // echo get_journal($connect)->num_rows;?></h2>
+                  echo get_research($connect)->num_rows;?></h2>
                    <h5 class="card-title">All Research</h5>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
@@ -53,21 +54,50 @@ else
   <br>
 <?php
 }
-//  <!--<header class="section-header">
-//       <h3>Journal Management</h3>
-//     </header> -->
+// BACKEND CODE
 if (isset($_GET['del'])) {
   // change function to the designated function of your assign management
-  $result = delete_journalaction($connect,$_GET['del']);
+  $result = delete_researchaction($connect,$_GET['del']);
   if ($result =="1") {
     message("Research deleted successfully!","1");
   }
 }
+
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
-  if (isset($_POST['create'])) {
+  // UPLOAD FILE
+  if(isset($_FILES['files'])){
+    $errors= array();
+    $file_name_array = explode('.',$_FILES['files']['name']);
+    $file_size =$_FILES['files']['size'];
+    $file_tmp =$_FILES['files']['tmp_name'];
+    $file_type=$_FILES['files']['type'];
+    $file_ext=strtolower(end($file_name_array));
+    
+    $extensions= array("pdf","txt","docx");
+    
+    if(in_array($file_ext,$extensions)=== false){
+       $errors[]="extension not allowed, please choose a PDF or DOCX file.";
+    }
+    
+    if($file_size > 2097152){
+       $errors[]='File size must be excately 2 MB';
+    }
+    
+    if(empty($errors)==true){
+      // location
+       move_uploaded_file($file_tmp,"uploads/".$_FILES['files']['name']);
+       $Pdf_file = "uploads/".$_FILES['files']['name']."";
+    }else{
+       print_r($errors);
+    }
+  }
+
+  // UPLOAD DATA FROM FORM
+  if (isset($_POST['btnsubmit'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$_POST['created']);
+
+    $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$_POST['#co-author-list'],$_POST['dpub'],$_POST['fstudy'],$Pdf_file,"", "", $tagging);
     if ($result == 1) {
       message("Research created successfully!",1);
     } else {
@@ -75,34 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     }
   }
 }
-// upload file section
-if(isset($_FILES['files'])){
-  $errors= array();
-  $file_name_array = explode('.',$_FILES['files']['name']);
-  $file_size =$_FILES['files']['size'];
-  $file_tmp =$_FILES['files']['tmp_name'];
-  $file_type=$_FILES['files']['type'];
-  $file_ext=strtolower(end($file_name_array));
-  
-  $extensions= array("pdf","txt","docx");
-  
-  if(in_array($file_ext,$extensions)=== false){
-     $errors[]="extension not allowed, please choose a PDF or DOCX file.";
-  }
-  
-  if($file_size > 2097152){
-     $errors[]='File size must be excately 2 MB';
-  }
-  
-  if(empty($errors)==true){
-    // location
-     move_uploaded_file($file_tmp,"uploads/".$_FILES['files']['name']);
-  }else{
-     print_r($errors);
-  }
-}
-
-
 ?>
 
 <div class="container">
@@ -186,8 +188,8 @@ if(isset($_FILES['files'])){
           </div>
 
           <div class="col" id="co-author-list" >
-            <label>--Co-Authors Added--</label>
-          <ul class="list-group" id='co-list'>
+            <label >--Co-Authors Added--</label>
+          <ul class="list-group" id='co-list' id="co-author-list">
             <?php
               $a="list-group-item";
               foreach($result as $row)
@@ -247,17 +249,14 @@ if(isset($_FILES['files'])){
         </div>
         <div class="col">
           <label>--Tags Added--</label>
-          <ul class="list-group" id="tags-list">
+          <ul class="list-group" id="tags-list" >
           </ul>
         </div>
       </div><br>
       <div class="form-group">
-      <label for="" class="form-label">File Pdf *</label><br>
-        <div style="padding: 10px; border: 1px solid #999">
-          <input type="hidden" name="MAX_FILE_SIZE" value="20000000"/><input
-            type="file" name="pdfFile">
+          <label for="files">Add (pdf, txt or docs)</label>
+          <input type="file" class="form-control-file" id="files" name="files">
         </div>
-      </div>
       <div class="form-group">
         <button type="submit" class="btn btn-info" id="submit" name="btnsubmit" >
             Submit
@@ -300,13 +299,13 @@ if(isset($_FILES['files'])){
          <td><?php echo $data['id']?></td>
          <td><a href="action.php?id=<?php echo $data['id']?>&ref=research"><?php echo $data['title']?></a></td>
          <td><?php echo $data['main_author']?></a></td>
-         <td><?php echo $data['co_authors']?></a></td>
+         <td><?php echo $data['co-authors']?></a></td>
          <td><?php echo $data['date_publish']?></td>
          <td><?php echo $data['field_of_study']?></td>
          <td><?php echo $data['views']?></td>
          <td><?php echo $data['cites']?></td>
          <td><?php
-        //  $user = get_user_data($connect,$data['creator']);
+        //  $user = get_user_data($connect,$_SESSION['id']);
         //  echo $user['name'];
          ?>
        </td>
@@ -319,9 +318,9 @@ if(isset($_FILES['files'])){
            <i class="fa fa-ellipsis-h"></i>
          </button>
          <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="action.php?id=<?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="action.php?edit=<?php echo $data['id']?>">Edit</a>
-           <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
+           <a class="dropdown-item" href="./api/action.php?id=<?php echo $data['id']?>">View</a>
+           <a class="dropdown-item" href="./api/action.php?edit=<?php echo $data['id']?>">Edit</a>
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
      </td>
