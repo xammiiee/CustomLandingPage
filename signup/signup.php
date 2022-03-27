@@ -1,21 +1,35 @@
 <?php
 include "/xampp/htdocs/CustomLandingPage/signup/inc/header.php";
+if (isset($_POST['btnsubmit'])) {
 
-if ($_SERVER['REQUEST_METHOD']=="POST") 
-{ 
-    // add if not exist
-    $query = "INSERT INTO tblaccount (name, email, pass,status, ucategory, au_member) VALUES ('".$_POST['name']."','".$_POST['email']."','".$_POST['password']."','Inactive','User','".$_POST['aumember']."')";
-    $result = $connect->query($query);
-    if ($result->num_rows > 0) {
-      add_data($query1,$connect,"You are successfully registered!");
-      header("location: ../login/login.php");
-    }
+  $name=$_POST['name'];
+  $email=$_POST['email'];
 
-    if (isset($_SESSION['id'])) {
-      // include "../";
-      
+  $query = "SELECT * FROM tblaccount WHERE email = '$email'";
+  $result = $connect->query($query);
+  if($result->num_rows>0)
+  {
+    message("Already exits",0);
+  }
+  else{
+
+      if ($_SERVER['REQUEST_METHOD']=="POST") 
+      { 
+          // add if not exist
+          $query = "INSERT INTO tblaccount (name, email, pass,status, ucategory, au_member) VALUES ('".$_POST['name']."','".$_POST['email']."','".$_POST['password']."','Inactive','User','".$_POST['aumember']."')";
+          $result = $connect->query($query);
+          if ($result->num_rows > 0) {
+            add_data($query1,$connect,"You are successfully registered!");
+            header("location: ../login/login.php");
+          }
+
+          if (isset($_SESSION['id'])) {
+            // include "../";
+            
+          }
+      }
     }
-}
+    }
 ?>
 
 <section id="intro" class="clearfix">
