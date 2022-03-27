@@ -98,14 +98,16 @@ session_start();
         <div class="intro-info">    
           <h2>Arellano Research <span> Portal <span></h2>
           <div>
-            <button class="btn-get-started scrollto" name="btnsubmit">Search</button>  
-      </form>
-      <?php
+            <button class="btn-get-started scrollto" name="btnsubmit">Search</button>
+            
+            <?php
       if(empty($_SESSION['id'])) 
       { 
-        ?><li><a href="./login/login.php" class="btn-services scrollto"> Login</a><?php
+        ?><a href="./login/login.php" class="btn-services scrollto">Login</a><?php
       }
-      ?>
+      ?>  
+      </form>
+      
           </div>
         </div>
     </div>
@@ -180,8 +182,8 @@ session_start();
           <table id="table_id" class="display">
             <tbody id="tblresult">
               <?php 
-              // if(isset($_GET['btnsubmit']))
-              // {
+              if(isset($_GET['btnsubmit']))
+              {
                 if($_GET['search'] != "")
                 {
                   $title = $_GET['search'];
@@ -193,12 +195,19 @@ session_start();
                       <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.5s">
                         <div class="box">
                           <h4 class="title"><a href="./admin/research/api/action.php?id= <?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
-                            <ul class="list-inline" style="padding-left: 40px;">
-                              <li class="list-inline-item"><b><span><?php echo $data['main_author'];?>. <?php echo $data['co-authors'];?></span></b></li>
-                              <li class="list-inline-item"><b><span><?php echo $data['field_of_study'];?></span></b></li>
+                            <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                              <li class="list-inline-item"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
+
+                              <li class="list-inline-item"><b><u><span><?php echo $data['co-authors'];?></span></u></b></li>
+
+                              <li class="list-inline-item"><b><span> * Publshed <?php echo $data['date_publish'];?></span></b></li>
+                              
+                              <li class="list-inline-item"><b><span> * <?php echo $data['field_of_study'];?></span></b></li>
+
+                              
                             </ul>
                             <p class="description"><span><?php echo $data['abstract'];?></span></p>
-                            <ul class="list-inline" style="padding-left: 40px;">
+                            <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                               <li class="list-inline-item"><b>Views: <?php echo $data['views'];?></b></li>
                               <li class="list-inline-item"><b>Cite: <?php echo $data['cites'];?></b></li>
                             </ul>
@@ -210,7 +219,7 @@ session_start();
                 }
                 }
                 
-              // }
+              }
               else
               {
                 $title = "";
