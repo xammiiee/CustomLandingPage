@@ -1,5 +1,5 @@
 <?php
-include ("/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php");
+include_once ("/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php");
 // if (empty($_SESSION['id'])) {
 // 	header("Location: ../../../login/login.php");
 // }

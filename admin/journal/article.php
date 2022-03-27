@@ -1,5 +1,5 @@
 <?php
-include "/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php";
+include "/xampp/htdocs/CustomLandingPage/admin/article/inc/header.php";
 if (empty($_SESSION['id'])) {
   header("Location: login.php");
 }
@@ -7,7 +7,7 @@ if (empty($_SESSION['id'])) {
 ?>
 <link rel="stylesheet" href="../../resource/css/style.css">;
 <link rel="stylesheet" href="../../resource/css/bootstrap.min.css">;
-<!-- #Journal-->
+<!-- #Article-->
 <section id="intro" class="clearfix">
   <div class="container">
   <h3 style="color:#fff;">&nbsp;<b> Article Management </b></h3>
