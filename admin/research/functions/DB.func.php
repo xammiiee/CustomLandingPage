@@ -72,14 +72,25 @@ function delete_researchaction($connect,$id){
 	}
 }
 
-function get_research_by_id($connect,$id){
-	$sql = "SELECT * FROM research WHERE id=$id";
-	$result = $connect->query($sql);
-	if ($result->num_rows > 0) {
-		return $result->fetch_assoc();
-	} else {
-		return "0";
+function get_research_by_title($connect,$title){
+	//value from db
+	$bsearch = $title;
+	//save the keyword from the url
+	$trim_search = trim($bsearch);
+	// create a base query and words string
+	$sql_string = "SELECT * FROM tblresearch WHERE ";
+	$display_words = "";
+	// seperate each of the keywords
+	$keywords = explode(' ', $trim_search); 
+	//loop to search 
+	foreach($keywords as $word)
+	{
+		$sql_string .= " title LIKE '%".$word."%' OR ";
+		$display_words .= $word." ";
 	}
+ 	$sql_string = substr($sql_string, 0, strlen($sql_string) - 3);
+	$result = $connect->query($sql_string);
+		return $result;
 }
 
 function get_author($connect){

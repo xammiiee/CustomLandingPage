@@ -60,54 +60,8 @@ include ("/xampp/htdocs/CustomLandingPage/signup/inc/core.php");
       <div class="logo float-left">
        <a href="#intro" class="scrollto"><img src="../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
-      <div class="col-<?php if(isset($_SESSION['id'])){if($_SESSION['role'] == 1) { echo"6";}elseif($_SESSION['role'] == 2){echo"6";}else{echo"9";}}else{echo"10";}?>"></div>
-      <nav class="main-nav float-right d-none d-lg-block" >
-        <ul>
-        <?php if (isset($_SESSION['id'])) { if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Management
-                </a>
-                <?php } ?>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/admin/account/acount.php">Account Management</a>
-                  <?php if ($_SESSION['role'] ==1 || $_SESSION['role'] ==2) { ?>
-                  <a class="dropdown-item" href="/admin/research/research.php">Research Management</a>
-                  <?php } ?>
-                  <a class="dropdown-item" href="/admin/author/author.php">Author Management</a>
-                  <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
-                  <a class="dropdown-item" href="/admin/journal/journal.php">Journal Management</a>
-                  <?php } ?>
-                  <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
-                  <a class="dropdown-item" href="/admin/article/article.php">Article Management</a>
-                  <?php } ?>
-                  <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
-                  <a class="dropdown-item" href="#">Author Management</a>
-                  <?php } ?>
-                  <a class="dropdown-item" href="#">Events Management</a>
-                  </li>
-                  <?php if ($_SESSION['role']==1 || $_SESSION['role']==2 || $_SESSION['role']==3) { ?>
-                  <li class="nav-item active" >
-                    <a class="nav-link" href="/journal.php">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <?php } ?>
-                  <li class="nav-item dropdown" >
-                  <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-user"></i>&nbsp;</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#settings">Settings</a>
-                    <a class="dropdown-item" href="#aboutus">About Us</a>
-                   
-                    <a class="dropdown-item" href="logout.php">Signout</a>
-                  </div>
-                  </li>
-                  <?php } else { ?>
-                <li><a href="../login/login.php">Login</a></li>
-                <li><a href="../signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
-          
-          <?php } ?>
-        </ul>
-      </nav><!-- .main-nav -->
+      
+      <!-- .main-nav -->
     </div>
   </header><!-- #header -->
 

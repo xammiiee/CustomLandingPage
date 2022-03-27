@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,134 +50,40 @@
        <a href="#intro" class="scrollto"><img src="./resource/img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
       <!-- Condition for user -->
-      <?php
-
-      ?>
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-          <li><a href="./signup/signup.php" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li>
-          <li>  <a href="#footer">About Us</a></li>
+        <?php 
+          if(isset($_SESSION['id'])) 
+          { 
+            if ($_SESSION['role']=="User")
+            { ?>
+              <li class="nav-item dropdown"><?php 
+            }
+            ?>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              </li>
+                  <li class="nav-item dropdown" >
+                  <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user"></i>&nbsp;</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#profile">Profile</a>
+                    <a class="dropdown-item" href="#aboutus">About Us</a>
+                    <a class="dropdown-item" href="./signup/logout.php">Signout</a>
+                  </div>
+                  </li>
+                  <?php
+          } 
+          else 
+          { 
+            ?><li><a href="./signup/signup.php" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li><?php
+            // header("Location: ../../login/login.php");
+          }?>
         </ul>
       </nav>
     </div>
   </header>
   <!--========================================================== #header ===================================================-->
-  
-  
-  <!--================================================ SIGN UP MODAL ======================================================-->
-  <div class="modal fade" id="signupPage">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        
-        <div class="modal-header text-center">
-          <h4 class="modal-title text-center w-100 font-weight-bold" style="color: #007bff;">Sign Up</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
-        </div>
-
-        <form action="" method="POST">
-        <div class="modal-body mx-3" style="margin: 0;padding: 0;">
-          <div class="md-form mb-5">
-            <input type="text" class="form-control validate"
-            id="fname"
-            name="fname"
-            placeholder="First Name">
-            <label data-error="wrong" data-success="right"></label>
-          </div>
-
-          <div class="md-form mb-5">
-            <input type="text" class="form-control validate" 
-            id="lname"
-            name="lname"
-            placeholder="Last Name">
-            <label data-error="wrong" data-success="right"></label>
-          </div>
-
-          <div class="md-form mb-5">
-            
-            <input type="email" class="form-control validate"
-            id="email"
-            name="email"
-            placeholder="email@example.com">
-            <label data-error="wrong" data-success="right"></label>
-          </div>
-          <div class="md-form mb-5">
-            <input type="password" class="form-control validate  
-            id="password"
-            name="password"
-            placeholder="Your Password"">
-            <label data-error="wrong" data-success="right"></label>
-          </div>
-
-          <div class="md-form mb-5">
-            <select 
-            id="aumember"
-            class="form-control"
-            name="aumember"
-            value=" ">
-            <option selected  data-error="wrong" data-success="right">Are you a member of Arellano Community?</option>
-            <option value="Yes">Yes
-            <option value="No">No
-          </select>
-          </div>
-        </div>
-        <div class="modal-footer d-flex justify-content-center">
-          <button class="btn btn-primary" id="submit" name="btnsubmit" >Sign up</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-<!--=============================================== SIGN IN MODAL ============================================================-->
-
-<div class="modal fade" id="signinPage">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      
-      <div class="modal-header text-center">
-        <h3 class="modal-title w-100 dark-grey-text font-weight-bold" style="color: #007bff;">Sign In</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
-      </div>
-
-        <form action="" method="POST">
-          <div class="modal-body mx-4">
-            <div class="md-form">
-              <input type="email" class="form-control validate"  
-              id="txt_uemail"
-              name="txt_email"
-              placeholder="Your Email">
-              <label data-error="wrong" data-success="right"></label>
-            </div>
-
-            <div class="md-form">
-              <input type="password" class="form-control validate"
-              id="txt_upwd"
-              name="txt_pwd"
-              placeholder="Your Password">
-              <label data-error="wrong" data-success="right"></label>
-
-              <p class="font-small blue-text d-flex justify-content-end">Forgot<a href="#" class="blue-text ml-1">Password?</a></p>
-            </div>
-
-            <div class="text-center mb-3">
-              <button type="button" class="btn btn-primary btn-block z-depth-1a" id="but_submit" name="btn_login" >Sign in</button>
-            </div>
-        </form>
-        
-
-
-        <!-- <p class="font-small dark-grey-text d-flex justify-content-center">or sign in with:</p>
-        <div class="row my-3 justify-content-center">
-          <button type="button" class="btn btn-primary z-depth-1a"><i class="fab fa-facebook-f text-center"></i></button>
-          <button type="button" class="btn btn-purple z-depth-1a"><i class="fab fa-twitter text-center"></i></button>
-          <button type="button" class="btn btn-red z-depth-1a"><i class="fab fa-google-plus-g text-center"></i></button>
-        </div> -->
-      </div>
-    </div>
-    </div> 
-</div>
-
-
+ 
   <!--==========================
     Intro Section
   ============================-->
@@ -187,14 +93,19 @@
       <div class="intro-img">
         <img src="/" alt="" class="img-fluid">
       </div>
-      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-      <input name="mainsearch" class="form-control form-control-lg" type="text" placeholder="Search Here!" aria-label=".form-control-lg example"><br>
+      <form action="" method="GET">
+      <input name="search" class="form-control form-control-lg" type="text" placeholder="Search Here!" aria-label=".form-control-lg example"><br>
         <div class="intro-info">    
           <h2>Arellano Research <span> Portal <span></h2>
           <div>
-            <a href="" class="btn-get-started scrollto" >Search</a>   
+            <button class="btn-get-started scrollto" name="btnsubmit">Search</button>  
       </form>
-            <a href="./login/login.php" class="btn-services scrollto"> Login</a>
+      <?php
+      if(empty($_SESSION['id'])) 
+      { 
+        ?><li><a href="./login/login.php" class="btn-services scrollto"> Login</a><?php
+      }
+      ?>
           </div>
         </div>
     </div>
@@ -211,25 +122,16 @@
     <section id="services" class="section-bg">
       <div class="container">
   <?php
-  function test_input($data)
-  {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
-
-    if($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-      echo "Hello World";
-      $search_keyword = test_input($_POST("name"));
-    }
+    include "../CustomLandingPage/admin/research/inc/db.php";
+    include "../CustomLandingPage/admin/research/functions/DB.func.php";
+    include "../CustomLandingPage/admin/research/functions/functions.php";
+    include "../CustomLandingPage/admin/research/functions/Message.func.php";
   ?>
         <header class="section-header">
 
 <!----------------- Filtering Section ---------------------->
 
-          <ul class="list-inline" style="padding-left: 40px;" id="filtering">
+          <!-- <ul class="list-inline" style="padding-left: 40px;" id="filtering">
             <li class="list-inline-item" >
               <div class="dropdown">
               <button class="btn btn-primary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -269,7 +171,7 @@
             </div>
             </li>
 
-          </ul>
+          </ul> -->
 <!-------------------- End of Filtering Section ---------------------------->
         </header><br>
 
@@ -277,58 +179,42 @@
 <!--=============================== Search Result Section ===============================-->
           <table id="table_id" class="display">
             <tbody id="tblresult">
-              <tr>
-                  <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.5s">
-                    <div class="box">
-                    
-                      <h4 class="title"><a href="https://www.jite.org/documents/Vol17/JITEv17IIPp163-179Rodafinos4907.pdf">A FULLY ONLINE RESEARCH PORTAL FOR RESEARCH 
-                        STUDENTS AND RESEARCHERS</a></h4>
-                        <ul class="list-inline" style="padding-left: 40px;">
-                        <li class="list-inline-item"><b>Author</b></li>
-                        <li class="list-inline-item"><b>Field of study</b></li>
-                      </ul>
-                      <p class="description"><span>This paper describes the context, development, implementation, and the potential transferability of an integrated online research environment that allows its 
-                        users to conduct all aspects of research online.</span></p>
-                      <ul class="list-inline" style="padding-left: 40px;">
-                        <li class="list-inline-item"><b>Views: 05</b></li>
-                        <li class="list-inline-item"><b>Cites: 04</b></li>
-                      </ul>
-                    </div>
-                  </div>
-              </tr>
-
-              <tr>
-                  <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
-                    <div class="box">
-                      <h4 class="title"><a href="https://arxiv.org/pdf/1804.08891">A multi-level collaborative filtering method that improves
-                        recommendations</a></h4>
-                      <p class="description"><span>Collaborative filtering is one of the most used approaches for providing recommendations in various online
-                          environments. Even though collaborative recommendation methods have been widely utilized due to their
-                          simplicity and ease of use, accuracy is still an issue. In this paper we propose a multi-level recommendation
-                          method with its main purpose being to assist users in decision making by providing recommendations of
-                          better quality</span></p>
-                      <ul class="list-inline" style="padding-left: 40px;">
-                        <li class="list-inline-item"><b>Views: 11</b></li>
-                        <li class="list-inline-item"><b>Cites: 08</b></li>
-                      </ul>
-                    </div>
-                  </div>
-              </tr>
-
-              <tr>
-                  <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
-                    <div class="box">
-                      <h4 class="title"><a href="https://www.jite.org/documents/Vol17/JITEv17IIPp163-179Rodafinos4907.pdf">A FULLY ONLINE RESEARCH PORTAL FOR RESEARCH 
-                        STUDENTS AND RESEARCHERS</a></h4>
-                      <p class="description"><span>This paper describes the context, development, implementation, and the potential transferability of an integrated online research environment that allows its 
-                        users to conduct all aspects of research online.</span></p>
-                      <ul class="list-inline" style="padding-left: 40px;">
-                        <li class="list-inline-item"><b>Views: 05</b></li>
-                        <li class="list-inline-item"><b>Cites: 04</b></li>
-                      </ul>
-                    </div>
-                  </div>
-              </tr>
+              <?php 
+              // if(isset($_GET['btnsubmit']))
+              // {
+                if($_GET['search'] != "")
+                {
+                  $title = $_GET['search'];
+                  $result = get_research_by_title($connect,$title);
+                  if ($result->num_rows>0) {
+                  while ($data = mysqli_fetch_array($result))
+                  {?>
+                    <tr>
+                      <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.5s">
+                        <div class="box">
+                          <h4 class="title"><a href="./admin/research/api/action.php?id= <?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                            <ul class="list-inline" style="padding-left: 40px;">
+                              <li class="list-inline-item"><b><span><?php echo $data['main_author'];?>. <?php echo $data['co-authors'];?></span></b></li>
+                              <li class="list-inline-item"><b><span><?php echo $data['field_of_study'];?></span></b></li>
+                            </ul>
+                            <p class="description"><span><?php echo $data['abstract'];?></span></p>
+                            <ul class="list-inline" style="padding-left: 40px;">
+                              <li class="list-inline-item"><b>Views: <?php echo $data['views'];?></b></li>
+                              <li class="list-inline-item"><b>Cite: <?php echo $data['cites'];?></b></li>
+                            </ul>
+                        </div>
+                      </div>
+                    </tr>
+                  <?php
+                  }
+                }
+                }
+                
+              // }
+              else
+              {
+                $title = "";
+              }?>
             </tbody>
           </table>
 <!--======================== End of Result Section ===========================-->

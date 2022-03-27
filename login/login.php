@@ -20,7 +20,8 @@ if ($result->num_rows > 0)
     //verification for user
     if ($_SESSION['role']== "User") 
     {
-      // header("location: ../signup/pending_user.php");
+      header("location: ../index.php");
+      // include "/index.php";
     } 
     else if($_SESSION['role'] == "Administrator") 
     {
