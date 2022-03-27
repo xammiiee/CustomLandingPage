@@ -83,7 +83,7 @@ if(isset($_FILES['files'])){
 
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
-    $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$filelocation,"0");
+    $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$_POST['created'],$filelocation,"0");
     if ($result == 1) {
       message("Journal created successfully!",1);
     } else {
@@ -120,8 +120,15 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        </div>
        <div class="modal-body">
          <div class="form-group">
-           <label for="author">Author Name</label>
-           <input type="text" class="form-control" id="author" name="author" required>
+           <label for="author">Select Author</label>
+                <select name="author" id="Select Author" class="form-control" required>
+              <option  selected>Choose...</option>
+              <?php $authors = get_authors($connect); while ($author = mysqli_fetch_array($authors)) { 
+                if ($author['role'] !="Administrator") {
+                  ?>
+                  <option value="<?php echo $author['fullname'];?>"><?php echo $author['fullname'];?></option>
+                <?php }} ?>
+              </select>
            <div class="form-group">
              <label for="title">Title</label>
              <input type="text" class="form-control" id="title" name="title">
@@ -140,7 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
           <input type="file" class="form-control-file" id="files" name="files">
         </div>
        </div>
-       
        <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
        <input type="hidden" name="create" value="create"/>
        <div class="modal-footer">
@@ -162,8 +168,8 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <th scope="col">ID</th>
        <th scope="col">Author</th>
        <th scope="col">Title</th>
-       <th scope="col">Date Published</th>
        <th scope="col">Creator</th>
+       <th scope="col">Date Published</th>
        <th scope="col">Created</th>
        <th scope="col" align="center">Option</th>
      </tr>
@@ -180,20 +186,20 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          <td><?php echo $data['id']?></td>
          <td><a href="action.php?id=<?php echo $data['id']?>&ref=journal"><?php echo $data['author']?></a></td>
          <td><?php echo $data['title']?></a></td>
-         <td><?php echo $data['date_pub'];?></td>
          <td><?php
-        //  $user = get_user_data($connect,$data['creator']);
-        //  echo $user['name'];
-         ?>
+         $user = get_user_data($connect,$data['creator']);
+         echo $user['name'];
+         ?> 
        </td>
-       <td><?php echo $data['creator'];?></td>
+       <td><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
+       <td><?php echo date("Y-m-d",strtotime($data['created']));?></td>
        <td align="center"><div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
          </button>
          <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="../journal/api/action.php?id= <?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="../journal/api/action.php?edit=<?php echo $data['id']?>">Edit</a>
+           <a class="dropdown-item" href="action.php?id=<?php echo $data['id']?>">View</a>
+           <a class="dropdown-item" href="action.php?edit=<?php echo $data['id']?>">Edit</a>
            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>

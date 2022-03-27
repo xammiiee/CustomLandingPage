@@ -71,29 +71,22 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.ph
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Management
                 </a>
-                <?php } ?>
+               
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="/admin/account/acount.php">Account Management</a>
-                  <?php if ($_SESSION['role'] ==1 || $_SESSION['role'] ==2) { ?>
                   <a class="dropdown-item" href="/admin/research/research.php">Research Management</a>
-                  <?php } ?>
                   <a class="dropdown-item" href="/admin/author/author.php">Author Management</a>
-                  <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
                   <a class="dropdown-item" href="/admin/journal/journal.php">Journal Management</a>
-                  <?php } ?>
-                  <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
                   <a class="dropdown-item" href="/admin/article/article.php">Article Management</a>
-                  <?php } ?>
-                  <?php if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
                   <a class="dropdown-item" href="#">Author Management</a>
-                  <?php } ?>
                   <a class="dropdown-item" href="#">Events Management</a>
                   </li>
-                  <?php if ($_SESSION['role']==1 || $_SESSION['role']==2 || $_SESSION['role']==3) { ?>
                   <li class="nav-item active" >
                     <a class="nav-link" href="/journal.php">Home <span class="sr-only">(current)</span></a>
                   </li>
+                  <li class="nav-item active"><a class="dropdown-item" href="../../signup/logout.php">Signout</a></li>
                   <?php } ?>
+                  <?php if ($_SESSION['role']=="Researcher" || $_SESSION['role']=="Visitor") { ?>
                   <li class="nav-item dropdown" >
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>
@@ -104,6 +97,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.ph
                     <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
                   </div>
                   </li>
+                  <?php } ?>
                   <?php } else { ?>
                 <li><a href="/login/login.php">Login</a></li>
                 <li><a href="/signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>

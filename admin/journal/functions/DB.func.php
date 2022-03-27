@@ -86,6 +86,16 @@ function get_role_name($connect,$id){
 	}
 }
 
+
+// get author new update 27/03/2022 - 19:56
+function get_authors($connect){
+	$sql = "SELECT * FROM tblauthor ORDER BY id ASC";
+	$result = $connect->query($sql);
+	if ($result->num_rows > 0) {
+		return $result;
+	}
+}
+
 //journal
 
 function get_journal($connect){
@@ -105,9 +115,9 @@ function get_journalaction($connect,$id){
 	}
 }
 
-function create_journalaction($connect,$author,$title,$description,$datepub,$creator,$filelocation){
+function create_journalaction($connect,$author,$title,$description,$datepub,$creator,$created,$filelocation){
 
-	$sql = "INSERT INTO tbljournal VALUES ('','$title','$description','$author','$datepub','$creator','0','$filelocation')";
+	$sql = "INSERT INTO tbljournal VALUES ('','$title','$description','$author','$datepub','$creator','$created','0','$filelocation')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

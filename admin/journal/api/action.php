@@ -1,5 +1,5 @@
 <?php
-include_once "../api/header.php";
+include ("/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php");
 // if (empty($_SESSION['id'])) {
 // 	header("Location: ../../../login/login.php");
 // }
@@ -46,8 +46,15 @@ if (isset($_GET['edit'])) {
 				<tr>
 					<td>
 						<div class="form-group">
-							<label for="author">Author Name</label>
-							<input type="text" class="form-control" id="author" name="author" value="<?php echo $data['author'];?>">
+						<label for="author">Select Author</label>
+								<select name="author" id="Select Author" class="form-control" required>
+							<option  selected>Choose...</option>
+							<?php $authors = get_authors($connect); while ($author = mysqli_fetch_array($authors)) { 
+								if ($author['role'] !="Administrator") {
+								?>
+								<option value="<?php echo $author['fullname'];?>"><?php echo $author['fullname'];?></option>
+								<?php }} ?>
+							</select>
 							<div class="form-group">
 								<label for="title">Title</label>
 								<input class="form-control" id="title" name="title" value="<?php echo $data['title'];?>">
@@ -65,7 +72,7 @@ if (isset($_GET['edit'])) {
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">
 
 						<div class="form-group" align="right">
-							<button class="btn btn-primary btn-sm">Save Project</button> <a class="btn btn-dark btn-sm" href="/project.php?id=<?php echo $data['id'];?>&ref=journal">Cancel</a>
+							<button class="btn btn-primary btn-sm">Save Project</button> <a class="btn btn-dark btn-sm" href="/action.php?id=<?php echo $data['id'];?>&ref=journal">Cancel</a>
 						</div>
 					</td>
 
