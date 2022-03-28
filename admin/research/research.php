@@ -1,4 +1,15 @@
 <?php
+if (isset($_SESSION['id'])) 
+{ 
+  if($_SESSION['role'] == "Administrator")
+  {
+
+  }
+  elseif($_SESSION['role'] == "User")
+  {
+  }
+}
+// ==================================================================
 include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
 // include "../../resource/"
 $loggedUser = $_SESSION['id'];
@@ -290,6 +301,8 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
    </thead>
    <tbody>
      <?php
+     
+    //get author id inside research
      $result = get_research($connect);
      if ($result->num_rows>0) {
      while ($data = mysqli_fetch_array($result)) {
@@ -297,9 +310,9 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <tr>
          <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
          <td><?php echo $data['id']?></td>
-         <td><a href="action.php?id=<?php echo $data['id']?>&ref=research"><?php echo $data['title']?></a></td>
-         <td><?php echo $data['main_author']?></a></td>
-         <td><?php echo $data['co-authors']?></a></td>
+         <td><?php echo $data['title']?></td>
+         <td><?php echo $data['main_author']?></td>
+         <td><?php echo $data['co_authors']?></td>
          <td><?php echo $data['date_publish']?></td>
          <td><?php echo $data['field_of_study']?></td>
          <td><?php echo $data['views']?></td>

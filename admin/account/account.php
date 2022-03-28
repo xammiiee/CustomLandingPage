@@ -1,4 +1,14 @@
 <?php
+if (isset($_SESSION['id'])) 
+{ 
+  if($_SESSION['role'] == "Administrator")
+  {
+  }
+  elseif($_SESSION['role'] == "User")
+  {
+  }
+}
+// ===========================================================
 include "/xampp/htdocs/CustomLandingPage/admin/account/inc/header.php";
 // include "../../resource/"
 if (empty($_SESSION['id'])) {

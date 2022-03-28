@@ -1,5 +1,16 @@
 <?php
 session_start();
+if (isset($_SESSION['id'])) 
+{ 
+  if($_SESSION['role'] == "Administrator")
+  {
+
+  }
+  elseif($_SESSION['role'] == "User")
+  {
+  }
+}
+// =======================================================
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -207,7 +218,7 @@ session_start();
                             <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                               <li class="list-inline-item"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
 
-                              <li class="list-inline-item"><b><u><span><?php echo $data['co-authors'];?></span></u></b></li>
+                              <li class="list-inline-item"><b><u><span><?php echo $data['co_authors'];?></span></u></b></li>
 
                               <li class="list-inline-item"><b><span> * Publshed <?php echo $data['date_publish'];?></span></b></li>
                               
