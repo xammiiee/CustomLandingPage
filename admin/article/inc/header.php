@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "/xampp/htdocs/CustomLandingPage/admin/journal/inc/db.php";
-include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/DB.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/functions.php";
-include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/article/inc/db.php";
+include "/xampp/htdocs/CustomLandingPage/admin/article/functions/DB.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/article/functions/functions.php";
+include "/xampp/htdocs/CustomLandingPage/admin/article/functions/Message.func.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,13 +71,12 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.ph
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Management
                 </a>
-               
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/admin/account/acount.php">Account Management</a>
-                  <a class="dropdown-item" href="/admin/research/research.php">Research Management</a>
-                  <a class="dropdown-item" href="/admin/author/author.php">Author Management</a>
-                  <a class="dropdown-item" href="/admin/journal/journal.php">Journal Management</a>
-                  <a class="dropdown-item" href="/admin/article/article.php">Article Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/acount.php">Account Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/research/research.php">Research Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="./article.php">Article Management</a>
                   <a class="dropdown-item" href="#">Author Management</a>
                   <a class="dropdown-item" href="#">Events Management</a>
                   </li>

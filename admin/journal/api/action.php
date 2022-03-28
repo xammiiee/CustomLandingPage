@@ -1,5 +1,5 @@
 <?php
-include_once ("/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php");
+include_once "../inc/header_1.php";
 // if (empty($_SESSION['id'])) {
 // 	header("Location: ../../../login/login.php");
 // }
@@ -9,7 +9,7 @@ include_once ("/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php");
 <?php 
 //updating of journal
 if (isset($_POST['id'])) {
- 		$result = update_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['datepub'],$_POST['description'],$_POST['id']);
+ 		$result = update_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_POST['datepub'],$_POST['id']);
  		if ($result == "1") {
 			echo'<div style="position:relative;top: 100px;"';
  			message("Journal updated successfully!",1);
@@ -66,7 +66,7 @@ if (isset($_GET['edit'])) {
 						</div>
 						<div class="form-group">
 							<label for="datepub">Date Publish</label>
-							<input type="date" class="form-control" id="datepub" name="datepub" value="<?php echo $data['date_pub'];?>">
+							<input type="date" class="form-control" id="datepub" name="datepub" value="<?php echo $data['datepub'];?>">
 						</div>
 
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">
@@ -112,11 +112,8 @@ if (!empty($_GET['id'])) {
 					<h2 class="text-left" style="margin-top:10px;" ><?php echo $data['title']?></h2>
 						<button class="btn btn-primary btn-sm float-right" style="position:relative;bottom:40px;" ><i class="fa fa-download"> Download fulltext PDF&nbsp;</i></button>
 						<button class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" ><i class="fa fa-file-text"> Download fulltext PDF&nbsp;</i></button>
-							
-						
-
 					<p class="font-weight-normal text-left" style="width:50%;"><?php echo ($data['description']); ?></p>
-					<p class="font-weight-sm-light text-left" style="font-size: 15px;margin-top:10px;" ><?php echo $data['date_pub'];?></p>
+					<p class="font-weight-sm-light text-left" style="font-size: 15px;margin-top:10px;" ><?php echo $data['datepub'];?></p>
 					<p style="margin-top:10px;"><b>Authors:</b></p>
 					<p style="margin-top:10px;"><a href=""><?php echo $data['author']?></a></p>
 					</div>

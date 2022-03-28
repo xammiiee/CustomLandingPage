@@ -106,12 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 <br/>
 <br/>
 
+
+
 <!-- Create New Journal -->
 
 <div class="modal fade" id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered " role="document">
+ <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
    <div class="modal-content">
-     <form method="post" action="journal.php" enctype="multipart/form-data">
+     <form method="post" name="AddJournal" action="journal.php" enctype="multipart/form-data">
        <div class="modal-header">
          <h5 class="modal-title" id="create-project-label">Create Journal</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -131,20 +133,20 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
               </select>
            <div class="form-group">
              <label for="title">Title</label>
-             <input type="text" class="form-control" id="title" name="title">
+             <input type="text" class="form-control" id="title" name="title" oninvalid="alert('Hey, enter your title')" required="required">
            </div>
            <div class="form-group">
 							<label for="description">Description</label>
-							<textarea class="form-control" id="description" name="description"></textarea>
+							<textarea class="form-control" id="description" name="description" required="required"></textarea>
 					</div>
          </div>
          <div class="form-group">
            <label for="datepub">Date Published</label>
-           <input type="date" class="form-control" id="datepub" name="datepub">
+           <input type="date" class="form-control" id="datepub" name="datepub"  required="required">
          </div>
          <div class="form-group">
           <label for="files">Add (pdf, txt or docs)</label>
-          <input type="file" class="form-control-file" id="files" name="files">
+          <input type="file" class="form-control-file" id="files" name="files" oninvalid="alert('Hey, upload your file')" required="required">
         </div>
        </div>
        <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
@@ -198,8 +200,8 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
            <i class="fa fa-ellipsis-h"></i>
          </button>
          <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="action.php?id=<?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="action.php?edit=<?php echo $data['id']?>">Edit</a>
+           <a class="dropdown-item" href="./api/action.php?id=<?php echo $data['id']?>">View</a>
+           <a class="dropdown-item" href="./api/action.php?edit=<?php echo $data['id']?>">Edit</a>
            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>

@@ -1,5 +1,5 @@
 <?php
-include "/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php";
+include "/xampp/htdocs/CustomLandingPage/admin/article/inc/header.php";
 if (empty($_SESSION['id'])) {
   header("Location: login.php");
 }
@@ -119,8 +119,22 @@ if(isset($_FILES['files'])){
        </div>
        <div class="modal-body">
          <div class="form-group">
-           <label for="aauthor">Author Name</label>
-           <input type="text" class="form-control" id="aauthor" name="aauthor" required>
+         <label for="author">Select Author</label>
+                <select name="aauthor" id="aauthor" class="form-control" required>
+              <option  selected>Choose...</option>
+              <?php
+            $result = get_author($connect);
+            if ($result->num_rows>0) 
+            {
+              while ($data = mysqli_fetch_array($result)) 
+              {
+                {
+                  echo  "<option value=".$data['fullname'].">".$data['fullname']."</option>";
+                }
+              }
+            }
+            ?>
+              </select>
            <div class="form-group">
              <label for="atitle">Title</label>
              <input type="text" class="form-control" id="atitle" name="atitle">

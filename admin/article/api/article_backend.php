@@ -1,5 +1,5 @@
 <?php
-include_once "/xampp/htdocs/CustomLandingPage/admin/article/inc/header.php";
+include_once "../inc/header1.php";
 if (empty($_SESSION['id'])) {
 	// header("Location: login.php");
 }
@@ -28,25 +28,29 @@ if (isset($_GET['edit'])) {
 	$data = get_article($connect,$_GET['edit']);
 	?>
 	<br><br><br><br>
-	
-	<section id="intro" class="clearfix">
 	<div class="container">
-		<table class="table table-bordered " >
-			<thead class="thead-dark">
-				<tr>
-					<th scope="cols" colspan="3" class="p-0">
-						<h5> <a href="article_backend.php?id=<?php echo $data['id'];?>&ref=article"><button class="btn btn-dark btn-sm">← Back to project</button></a> </h5>
-					</th>
-				</tr>
-			</thead>
-			<form method="post">
-			<tbody>
-				<tr>
-					<td>
+	<div class="card float-left" style="width: 70%;" >
+	<div style="line-height: 20px;">
+	<style>
+		body{
+			background: rgb(2,0,36);
+			background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(193,193,245,1) 0%, rgba(40,40,228,1) 0%, rgba(109,109,232,1) 100%, rgba(255,255,255,1) 100%);
+			}
+		h2,p{
+			padding:0;
+			margin:0;
+			}
+	</style>
+		<div class="card-body" class >
+			<div class="badge badge-info text-wrap" style="width: 4rem;padding:5px;margin-bottom:10px;" >
+			<span >Article</span>
+			</div>
+				<form method="post">
 						<div class="form-group">
 							<label for="aauthor">Author</label>
 							<input type="text" class="form-control" id="aauthor" name="aauthor" value="<?php echo $data['author'];?>">
 							<div class="form-group">
+								<br>
 								<label for="atitle">Title</label>
 								<input class="form-control" id="atitle" name="atitle" value="<?php echo $data['title'];?>">
 							</div>
@@ -63,17 +67,12 @@ if (isset($_GET['edit'])) {
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">
 
 						<div class="form-group" align="right">
-							<button class="btn btn-primary btn-sm">Save Project</button> <a class="btn btn-dark btn-sm" href="/article_backend.php?id=<?php echo $data['id'];?>&ref=article">Cancel</a>
+							<button class="btn btn-primary btn-sm">Save Project</button> <a class="btn btn-dark btn-sm" href="/CustomLandingPage/admin/article/api/article_backend.php?id=<?php echo $data['id'];?>&ref=article">Cancel</a>
 						</div>
-					</td>
-
-				</tr>
-			</tbody>
-		</form>
-		</table>
+					</form>
+			</div>	
 		</div>
 		</div>
-		</section>
 <?php } ?>
 
 <?php 
@@ -94,7 +93,6 @@ if (!empty($_GET['id'])) {
 							padding:0;
 							margin:0;
 						}
-					
 					</style>
 				<div class="card-body" class >
 					<div class="badge badge-info text-wrap" style="width: 4rem;padding:5px;" >
@@ -107,13 +105,13 @@ if (!empty($_GET['id'])) {
 					<p style="margin-top:10px;"><b>Authors:</b></p>
 					<p style="margin-bottom:5px;"><a href=""><?php echo $data['author']?></a></p>
 					<p style="margin-top:10px;font-size:13px;">Tags:</p>
-					<div class="badge badge-muted  bg-dark" style="width: 3rem;padding:2px;" ><?php echo $data['tagging']?></div>
+					<div class="badge badge-muted  bg-dark" style="width: 4rem;padding:2px;" ><?php echo $data['tagging']?></div>
 				</div>
 					<button class="btn btn-success btn-sm float-right lowercase" style="position:relative;bottom:250px;font-size:12px;margin-right:20px;" ><i class="fa fa-download">&nbsp;fulltext PDF</i></button>
 					<button class="btn btn-outline-success btn-sm float-right" style="clear:both;position:relative;bottom:250px;margin-right:20px;"><i class="fa fa-file-text"> &nbsp;Read here</i></button>
 			</div>
 			<div class="modal-footer" style=" position:absolute;bottom:0;" > 
-				<a href="article.php"><button class="btn btn-dark btn-sm">Back</button></a>
+				<a href="/CustomLandingPage/admin/article/article.php"><button class="btn btn-dark btn-sm">Back</button></a>
 					<div class="dropdown">
 						<button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i class="fa fa-ellipsis-h"></i>
