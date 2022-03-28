@@ -99,6 +99,20 @@ function get_author($connect){
 	$result = $connect->query($sql);
 		return $result;
 }
+
+function get_author_with_paper($connect, $a_id){
+	//ORDER BY deadline ASC
+	$sql = "SELECT * FROM tblauthorredirect WHERE author_id= '$a_id' ORDER BY id ASC";
+	$result = $connect->query($sql);
+		return $result;
+}
+
+function create_researchredirecting($connect,$a_id,$a_name, $r_id, $r_title){
+	//ORDER BY deadline ASC
+	$sql = "INSERT INTO tblauthorredirect (id, author_id, author, paper_id, title, date) VALUES ('','$a_id','$a_name','$r_id','$r_title','')";
+	$result = $connect->query($sql);
+		return $result;
+}
 ?>
 
 
