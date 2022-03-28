@@ -3,14 +3,11 @@ include "/xampp/htdocs/CustomLandingPage/admin/article/inc/header.php";
 if (empty($_SESSION['id'])) {
   header("Location: login.php");
 }
-
 ?>
-<link rel="stylesheet" href="../../resource/css/style.css">;
-<link rel="stylesheet" href="../../resource/css/bootstrap.min.css">;
 <!-- #Journal-->
 <section id="intro" class="clearfix">
   <div class="container">
-  <h3 style="color:#fff;">&nbsp;<b> Article Management </b></h3>
+  <h3 style="color:#fff;">&nbsp;<b> Journal Management </b></h3>
     <div class="card-group">
           <div class="col-md-3 col-sm-5">
             <div class="card">
@@ -55,16 +52,6 @@ if (isset($_GET['del'])) {
     message("Article deleted successfully!","1");
   }
 }
-if ($_SERVER['REQUEST_METHOD'] =="POST") {
-  if (isset($_POST['atags'])) {
-    $result = create_article($connect,$_POST['aauthor'],$_POST['atitle'],$_POST['adescription'],$_POST['adatepub'],$_SESSION['id'],$_POST['atags']);
-    if ($result == 1) {
-      message("Article created successfully!",1);
-    } else {
-      message("Could not create Article!",0);
-    }
-  }
-}
 if(isset($_FILES['files'])){
   $errors= array();
   $file_name_array = explode('.',$_FILES['files']['name']);
@@ -83,13 +70,26 @@ if(isset($_FILES['files'])){
      $errors[]='File size must be excately 2 MB';
   }
   
-  if(empty($errors)==true){
+  if(empty($errors)==true)
+  {
      move_uploaded_file($file_tmp,"uploads/".$_FILES['files']['name']);
-  }else{
+     $a_filelocation = "uploads/".$_FILES['files']['name']."";
+  }
+  else{
      print_r($errors);
   }
 }
 
+if ($_SERVER['REQUEST_METHOD'] =="POST") {
+  if (isset($_POST['create'])) {
+    $result = create_article($connect,$_POST['a_title'],$_POST['a_description'],$_POST['a_author'],$_SESSION['id'],$_POST['a_datepub'],$_POST['a_created'],"0",$_POST['a_tagging'],$a_filelocation);
+    if ($result == 1) {
+      message("Journal created successfully!",1);
+    } else {
+      message("Could not create Journal!",0);
+    }
+  }
+}
 ?>
 
 <div class="container">
@@ -105,109 +105,66 @@ if(isset($_FILES['files'])){
 <br/>
 <br/>
 
-<!-- Create New Article -->
+
+
+<!-- Create New Journal -->
 
 <div class="modal fade" id="create-article" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-article-label" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered " role="document">
+ <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
    <div class="modal-content">
-     <form method="post" action="article.php" enctype="multipart/form-data" id="newArticle">
+     <form method="post" name="AddJournal" action="article.php" enctype="multipart/form-data">
        <div class="modal-header">
-         <h5 class="modal-title" id="create-article-label">Create Article</h5>
+         <h5 class="modal-title" id="create-article-label">Create Journal</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
        <div class="modal-body">
          <div class="form-group">
-         <label for="author">Select Author</label>
-                <select name="aauthor" id="aauthor" class="form-control" required>
+           <label for="author">Select Author</label>
+                <select name="a_author" id="Select Author" class="form-control" required>
               <option  selected>Choose...</option>
-              <?php
-            $result = get_author($connect);
-            if ($result->num_rows>0) 
-            {
-              while ($data = mysqli_fetch_array($result)) 
-              {
-                {
-                  echo  "<option value=".$data['fullname'].">".$data['fullname']."</option>";
-                }
-              }
-            }
-            ?>
+              <?php $authors = get_authors($connect); while ($author = mysqli_fetch_array($authors)) { 
+                if ($author['role'] !="Administrator") {
+                  ?>
+                  <option value="<?php echo $author['fullname'];?>"><?php echo $author['fullname'];?></option>
+                <?php }} ?>
               </select>
            <div class="form-group">
-             <label for="atitle">Title</label>
-             <input type="text" class="form-control" id="atitle" name="atitle">
+             <label for="a_title">Title</label>
+             <input type="text" class="form-control" id="a_title" name="a_title"  required="required">
            </div>
            <div class="form-group">
-			<label for="adescription">Description</label>
-			<textarea class="form-control" id="adescription" name="adescription"></textarea>
-		    </div>
+							<label for="a_description">Description</label>
+							<textarea class="form-control" id="a_description" name="a_description" required="required"></textarea>
+					</div>
          </div>
          <div class="form-group">
-           <label for="adatepub">Date Published</label>
-           <input type="date" class="form-control" id="adatepub" name="adatepub">
+           <label for="a_datepub">Date Published</label>
+           <input type="date" class="form-control" id="a_datepub" name="a_datepub" required="required">
          </div>
          <div class="form-group">
-          <label for="afiles">Add (pdf, txt or docs)</label>
-          <input type="file" class="form-control-file" id="afiles" name="afiles">
+          <label for="files">Add (pdf, txt or docs)</label>
+          <input type="file" class="form-control-file" id="files" name="files" required="required">
         </div>
         <div class="form-group">
-        <label for="atags">Article Tags</label>
-        <input type="text" class="form-control " id="atags" name="atags" style="font-size:12px;" >
-         </div>
+             <label for="a_tagging">Tags</label>
+             <input type="text" class="form-control" id="a_tagging" name="a_tagging" required="required">
+           </div>
        </div>
+       <input type="hidden" name="a_created" value="<?php echo date("M-d-y"); ?>"/>
+       <input type="hidden" name="create" value="create"/>
        <div class="modal-footer">
-         <button class="btn btn-primary" type="submit" name="submit" id="submit" value="Submit">Save</button>
+         <button class="btn btn-primary">Save</button>
          <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
        </div>
      </form>
    </div>
  </div>
 </div>
-<?php
-$sql = "SELECT * FROM tblarticle";
-$result = $connect->query($sql);
-?>
-<script>
-    $(document).ready(function(){
-      $('#atags').tokenfield({
-        autocomplete:{
-        source: [<?php foreach($result as $row) { ?>
-            "<?php echo $row['atags']; ?>", 
-            <?php } ?>],
-        delay:100
-        },
-        showAutocompleteOnFocus: true
-      });
-      
-      $('#newArticle').on('submit', function(event){
-        event.preventDefault();
-       if($.trim($('#atags').val()).length == 0) {
-          alert("Please Enter Atleast one tag");
-          return false;
-        }
-        else{
-          var form_data = $(this).serialize();
-          $('#submit').attr("disabled","disabled");
-          $.ajax({
-              url:"article.php",
-              method:"POST",
-              data:form_data,
-              success:function(data){
-                if(data != '') {
-                  $('#skill').tokenfield('setTokens',[]);
-  
-                }
-              }
-          });
-        }
-      });
-});
-</script>  
 
 
-<!--Article-->
+<!--Journal-->
 <div class="table-responsive-lg">
  <table id="article" class="table table-hover">
    <thead>
@@ -216,8 +173,9 @@ $result = $connect->query($sql);
        <th scope="col">ID</th>
        <th scope="col">Author</th>
        <th scope="col">Title</th>
-       <th scope="col">Date Published</th>
        <th scope="col">Creator</th>
+       <th scope="col">Date Published</th>
+       <th scope="col">Created</th>
        <th scope="col" align="center">Option</th>
      </tr>
    </thead>
@@ -226,19 +184,21 @@ $result = $connect->query($sql);
      $result = get_articles($connect);
      if ($result->num_rows>0) {
      while ($data = mysqli_fetch_array($result)) {
+      // include""
        ?>
        <tr>
-         <td scope="row" class="d-none"><?php echo $data['date_pub'];?></td>
+         <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['a_datepub']));?></td>
          <td><?php echo $data['id']?></td>
-         <td><a href="article_backend.php?id=<?php echo $data['id']?>&ref=article"><?php echo $data['author']?></a></td>
-         <td><?php echo $data['title']?></a></td>
-         <td><?php echo date("Y-m-d",strtotime($data['date_pub']));?></td>
+         <td><a href="article_backend.php?id=<?php echo $data['id']?>&ref=journal"><?php echo $data['a_author']?></a></td>
+         <td><?php echo $data['a_title']?></a></td>
          <td><?php
-         $user = get_user_data($connect,$data['created_by']);
+         $user = get_user_data($connect,$data['a_creator']);
          echo $user['name'];
-         ?>
+         ?> 
        </td>
-       <td ><div class="dropdown">
+       <td><?php echo date("Y-m-d",strtotime($data['a_datepub']));?></td>
+       <td><?php echo date("Y-m-d",strtotime($data['a_created']));?></td>
+       <td align="center"><div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
          </button>
@@ -274,7 +234,6 @@ $result = $connect->query($sql);
    <?php
  }
 }
-// include""
  ?>
 </tbody>
 </table>
@@ -284,7 +243,7 @@ $result = $connect->query($sql);
 <script src="assets/datatables.min.js"></script>
 <script>
  $(function() {
-   $('#articles').DataTable();
+   $('#article').DataTable();
    $(function() {
      var table = $('#example').DataTable({
        "columnDefs": [{
@@ -388,6 +347,3 @@ $result = $connect->query($sql);
       </div>
       
     </div>
-
-  
-

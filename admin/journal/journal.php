@@ -50,7 +50,7 @@ if (empty($_SESSION['id'])) {
 if (isset($_GET['del'])) {
   $result = delete_journalaction($connect,$_GET['del']);
   if ($result =="1") {
-    message("Project deleted successfully!","1");
+    message("Journal deleted successfully!","1");
   }
 }
 if(isset($_FILES['files'])){

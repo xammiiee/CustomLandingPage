@@ -8,7 +8,7 @@ if (empty($_SESSION['id'])) {
 <?php 
 
 if (isset($_POST['id'])) {
- 		$result = update_article($connect,$_POST['aauthor'],$_POST['atitle'],$_POST['adescription'],$_POST['adatepub'],$_POST['id']);
+ 		$result = update_article($connect,$_POST['a_title'],$_POST['a_description'],$_POST['a_author'],$_POST['a_datepub'],$_POST['id']);
  		if ($result == "1") {
 			echo'<div style="position:relative;top: 100px;"';
  			message("Article updated successfully!",1);
@@ -47,21 +47,29 @@ if (isset($_GET['edit'])) {
 			</div>
 				<form method="post">
 						<div class="form-group">
-							<label for="aauthor">Author</label>
-							<input type="text" class="form-control" id="aauthor" name="aauthor" value="<?php echo $data['author'];?>">
+						<label for="author">Select Author</label>
+						<select name="a_author" id="Select Author" class="form-control" required>
+							<option  selected>Choose...</option>
+							<?php $authors = get_authors($connect); while ($author = mysqli_fetch_array($authors)) { 
+								if ($author['role'] !="Administrator") {
+								?>
+								<option value="<?php echo $author['fullname'];?>"><?php echo $author['fullname'];?></option>
+								<?php }} ?>
+							</select>
+							
 							<div class="form-group">
 								<br>
-								<label for="atitle">Title</label>
-								<input class="form-control" id="atitle" name="atitle" value="<?php echo $data['title'];?>">
+								<label for="a_title">Title</label>
+								<input class="form-control" id="a_title" name="a_title" value="<?php echo $data['a_title'];?>">
 							</div>
 							<div class="form-group">
-								<label for="adescription">Description</label>
-								<textarea class="form-control" id="adescription" name="adescription" rows="10"></textarea>
+								<label for="a_description">Description</label>
+								<textarea class="form-control" id="a_description" name="a_description" rows="10"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="adatepub">Date Publish</label>
-							<input type="date" class="form-control" id="adatepub" name="adatepub" value="<?php echo $data['date_pub'];?>">
+							<label for="a_datepub">Date Publish</label>
+							<input type="date" class="form-control" id="a_datepub" name="a_datepub" value="<?php echo $data['a_datepub'];?>">
 						</div>
 
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">
@@ -99,16 +107,16 @@ if (!empty($_GET['id'])) {
 					<span >Article</span>
 					</div>
 					<br>	<br>
-					<span class="text-left" style="font-size:22px;font-weight:800px;"><?php echo $data['title']?></span>
-					<p class="font-weight-normal text-left" style="width:60%;margin-top:10px;"><?php echo ($data['description']); ?></p>
-					<p class="font-weight-sm-light text-left" style="font-size: 15px;margin-top:10px;" ><?php echo date("Y-m-d",strtotime($data['date_pub']));?></p>
+					<span class="text-left" style="font-size:22px;font-weight:800px;"><?php echo $data['a_title']?></span>
+					<p class="font-weight-normal text-left" style="width:60%;margin-top:10px;"><?php echo ($data['a_description']); ?></p>
+					<p class="font-weight-sm-light text-left text-muted" style="font-size: 13px;margin-top:10px;" ><?php echo date("F Y",strtotime($data['a_datepub']));?>&nbsp;&#x22C5;</p>
 					<p style="margin-top:10px;"><b>Authors:</b></p>
-					<p style="margin-bottom:5px;"><a href=""><?php echo $data['author']?></a></p>
+					<p style="margin-bottom:5px;"><a href=""><?php echo $data['a_author']?></a></p>
 					<p style="margin-top:10px;font-size:13px;">Tags:</p>
-					<div class="badge badge-muted  bg-dark" style="width: 4rem;padding:2px;" ><?php echo $data['tagging']?></div>
+					<div class="badge badge-muted  bg-dark" style="width: 4rem;padding:2px;" ><?php echo $data['a_tagging']?></div>
 				</div>
-					<button class="btn btn-success btn-sm float-right lowercase" style="position:relative;bottom:250px;font-size:12px;margin-right:20px;" ><i class="fa fa-download">&nbsp;fulltext PDF</i></button>
-					<button class="btn btn-outline-success btn-sm float-right" style="clear:both;position:relative;bottom:250px;margin-right:20px;"><i class="fa fa-file-text"> &nbsp;Read here</i></button>
+					<button class="btn btn-success btn-sm float-right lowercase" style="position:relative;bottom:220px;font-size:12px;margin-right:20px;" ><i class="fa fa-download">&nbsp;fulltext PDF</i></button>
+					<button class="btn btn-outline-success btn-sm float-right" style="clear:both;position:relative;bottom:220px;margin-right:20px;"><i class="fa fa-file-text"> &nbsp;Read here</i></button>
 			</div>
 			<div class="modal-footer" style=" position:absolute;bottom:0;" > 
 				<a href="/CustomLandingPage/admin/article/article.php"><button class="btn btn-dark btn-sm">Back</button></a>
