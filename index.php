@@ -52,7 +52,14 @@ session_start();
       <!-- Condition for user -->
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-        <?php 
+        <?php
+        if(empty($_SESSION['id']))
+        {
+          // header("Location: login/login.php");
+          ?><li><a href="./signup/signup.php" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li><?php
+        }
+        else
+        {
           if(isset($_SESSION['id'])) 
           { 
             if ($_SESSION['role']=="User")
@@ -77,7 +84,9 @@ session_start();
           { 
             ?><li><a href="./signup/signup.php" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li><?php
             // header("Location: ../../login/login.php");
-          }?>
+          }
+        }
+        ?>
         </ul>
       </nav>
     </div>
