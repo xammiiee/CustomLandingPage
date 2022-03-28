@@ -99,54 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   <a href="article.php"><button type="button" class="btn btn-outline-primary btn-sm">
   <i class="fa fa-refresh" aria-hidden="true"></i></button></a>
 
-  <!--Article-->
-  <div class="table-responsive-lg">
-    <!-- <h5>Hello World</h5> -->
-  <table id="article" class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col" class="d-none">Default Sort Fixer</th>
-        <th scope="col">ID</th>
-        <th scope="col">Author</th>
-        <th scope="col">Title</th>
-        <th scope="col">Date Published</th>
-        <th scope="col">Creator</th>
-        <th scope="col" align="center">Option</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      $result = get_articles($connect);
-      if ($result->num_rows>0) 
-      {
-        while ($data = mysqli_fetch_array($result)) {
-        ?>
-        <tr>
-          <td scope="row" class="d-none"><?php echo $data['date_pub'];?></td>
-          <td><?php echo $data['id']?></td>
-          <td><a href="article_backend.php?id=<?php echo $data['id']?>&ref=article"><?php echo $data['author']?></a></td>
-          <td><?php echo $data['title']?></a></td>
-          <td><?php echo date("Y-m-d",strtotime($data['date_pub']));?></td>
-          <td><?php
-          $user = get_user_data($connect,$data['created_by']);
-          echo $user['name'];
-          ?>
-        </td>
-        <td ><div class="dropdown">
-          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-ellipsis-h"></i>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="option">
-            <a class="dropdown-item" href="./api/article_backend.php?id=<?php echo $data['id']?>">View</a>
-            <a class="dropdown-item" href="./api/article_backend.php?edit=<?php echo $data['id']?>">Edit</a>
-            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
-          </div>
-        </div>
-      </td>
-    </tr>
-
-
-
 <!-- Create New Journal -->
 
 <!-- Modal -->
@@ -204,7 +156,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
  </div>
 </div>
 
-
 <!--Journal-->
 <div class="table-responsive-lg">
  <table id="article" class="table table-hover">
@@ -221,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
      </tr>
    </thead>
    <tbody>
-     <?php
+   <?php
      $result = get_articles($connect);
      if ($result->num_rows>0) {
      while ($data = mysqli_fetch_array($result)) {
@@ -230,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <tr>
          <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['a_datepub']));?></td>
          <td><?php echo $data['id']?></td>
-         <td><a href="article_backend.php?id=<?php echo $data['id']?>&ref=journal"><?php echo $data['a_author']?></a></td>
+         <td><a href="article_backend.php?id=<?php echo $data['id']?>&ref=article"><?php echo $data['a_author']?></a></td>
          <td><?php echo $data['a_title']?></a></td>
          <td><?php
          $user = get_user_data($connect,$data['a_creator']);
