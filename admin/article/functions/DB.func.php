@@ -96,6 +96,12 @@ function get_authors($connect){
 	}
 }
 
+function get_author($connect){
+	$sql = "SELECT * FROM tblauthor";
+	$result = $connect->query($sql);
+		return $result;
+}
+
 //journal
 
 function get_journal($connect){

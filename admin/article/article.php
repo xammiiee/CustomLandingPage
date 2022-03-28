@@ -1,5 +1,6 @@
 <?php
 include "/xampp/htdocs/CustomLandingPage/admin/article/inc/header.php";
+// include "../article/inc/header.php";
 if (empty($_SESSION['id'])) {
   header("Location: login.php");
 }
@@ -91,24 +92,64 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   }
 }
 ?>
-
 <div class="container">
-<!-- Create task button -->
-<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-article">
-<i  class="fa fa-plus"></i>
-</button>
-<a href="article.php"><button type="button" class="btn btn-outline-primary btn-sm">
-<i class="fa fa-refresh" aria-hidden="true"></i>
-</button>
-</a>
+  <!-- Create task button -->
+  <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-article">
+  <i  class="fa fa-plus"></i></button>
+  <a href="article.php"><button type="button" class="btn btn-outline-primary btn-sm">
+  <i class="fa fa-refresh" aria-hidden="true"></i></button></a>
 
-<br/>
-<br/>
+  <!--Article-->
+  <div class="table-responsive-lg">
+    <!-- <h5>Hello World</h5> -->
+  <table id="article" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" class="d-none">Default Sort Fixer</th>
+        <th scope="col">ID</th>
+        <th scope="col">Author</th>
+        <th scope="col">Title</th>
+        <th scope="col">Date Published</th>
+        <th scope="col">Creator</th>
+        <th scope="col" align="center">Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      $result = get_articles($connect);
+      if ($result->num_rows>0) 
+      {
+        while ($data = mysqli_fetch_array($result)) {
+        ?>
+        <tr>
+          <td scope="row" class="d-none"><?php echo $data['date_pub'];?></td>
+          <td><?php echo $data['id']?></td>
+          <td><a href="article_backend.php?id=<?php echo $data['id']?>&ref=article"><?php echo $data['author']?></a></td>
+          <td><?php echo $data['title']?></a></td>
+          <td><?php echo date("Y-m-d",strtotime($data['date_pub']));?></td>
+          <td><?php
+          $user = get_user_data($connect,$data['created_by']);
+          echo $user['name'];
+          ?>
+        </td>
+        <td ><div class="dropdown">
+          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-ellipsis-h"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="option">
+            <a class="dropdown-item" href="./api/article_backend.php?id=<?php echo $data['id']?>">View</a>
+            <a class="dropdown-item" href="./api/article_backend.php?edit=<?php echo $data['id']?>">Edit</a>
+            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
+          </div>
+        </div>
+      </td>
+    </tr>
 
 
 
 <!-- Create New Journal -->
 
+<!-- Modal -->
 <div class="modal fade" id="create-article" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-article-label" aria-hidden="true">
  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
    <div class="modal-content">
