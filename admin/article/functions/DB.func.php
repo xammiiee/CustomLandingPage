@@ -96,6 +96,12 @@ function get_authors($connect){
 	}
 }
 
+function get_author($connect){
+	$sql = "SELECT * FROM tblauthor";
+	$result = $connect->query($sql);
+		return $result;
+}
+
 //journal
 
 function get_journal($connect){
@@ -178,7 +184,7 @@ function get_article($connect,$id){
 
 function create_article($connect,$aauthor,$atitle,$adescription,$adatepub,$creator,$atags){
 
-	$sql = "INSERT INTO tblarticle VALUES ('','$aauthor','$atitle','$adescription','$adatepub','$creator','$atags',0)";
+	$sql = "INSERT INTO tblarticle VALUES ('',$atitle','$adescription','$aauthor','$adatepub','$creator','$atags',0)";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

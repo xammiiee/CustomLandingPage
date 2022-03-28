@@ -1,12 +1,13 @@
 <?php
 include "/xampp/htdocs/CustomLandingPage/admin/article/inc/header.php";
+// include "../article/inc/header.php";
 if (empty($_SESSION['id'])) {
   header("Location: login.php");
 }
 
 ?>
-<link rel="stylesheet" href="../../resource/css/style.css">;
-<link rel="stylesheet" href="../../resource/css/bootstrap.min.css">;
+<!-- <link rel="stylesheet" href="../../resource/css/style.css">;
+<link rel="stylesheet" href="../../resource/css/bootstrap.min.css">; -->
 <!-- #Journal-->
 <section id="intro" class="clearfix">
   <div class="container">
@@ -91,84 +92,155 @@ if(isset($_FILES['files'])){
 }
 
 ?>
-
 <div class="container">
-<!-- Create task button -->
-<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-article">
-<i  class="fa fa-plus"></i>
-</button>
-<a href="article.php"><button type="button" class="btn btn-outline-primary btn-sm">
-<i class="fa fa-refresh" aria-hidden="true"></i>
-</button>
-</a>
+  <!-- Create task button -->
+  <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-article">
+  <i  class="fa fa-plus"></i></button>
+  <a href="article.php"><button type="button" class="btn btn-outline-primary btn-sm">
+  <i class="fa fa-refresh" aria-hidden="true"></i></button></a>
 
-<br/>
-<br/>
+  <!--Article-->
+  <div class="table-responsive-lg">
+    <!-- <h5>Hello World</h5> -->
+  <table id="article" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" class="d-none">Default Sort Fixer</th>
+        <th scope="col">ID</th>
+        <th scope="col">Author</th>
+        <th scope="col">Title</th>
+        <th scope="col">Date Published</th>
+        <th scope="col">Creator</th>
+        <th scope="col" align="center">Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      $result = get_articles($connect);
+      if ($result->num_rows>0) 
+      {
+        while ($data = mysqli_fetch_array($result)) {
+        ?>
+        <tr>
+          <td scope="row" class="d-none"><?php echo $data['date_pub'];?></td>
+          <td><?php echo $data['id']?></td>
+          <td><a href="article_backend.php?id=<?php echo $data['id']?>&ref=article"><?php echo $data['author']?></a></td>
+          <td><?php echo $data['title']?></a></td>
+          <td><?php echo date("Y-m-d",strtotime($data['date_pub']));?></td>
+          <td><?php
+          $user = get_user_data($connect,$data['created_by']);
+          echo $user['name'];
+          ?>
+        </td>
+        <td ><div class="dropdown">
+          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-ellipsis-h"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="option">
+            <a class="dropdown-item" href="./api/article_backend.php?id=<?php echo $data['id']?>">View</a>
+            <a class="dropdown-item" href="./api/article_backend.php?edit=<?php echo $data['id']?>">Edit</a>
+            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
+          </div>
+        </div>
+      </td>
+    </tr>
 
-<!-- Create New Article -->
+      <!-- Delete Popup -->
+  <div style="margin-top: 200px;width: 30%;margin-left: 35%;margin-right: 35%;" class="modal fade" id="delete-<?php echo $data['id'];?>" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteLabel">Delete Journal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete?
+        </div>
+        <div class="modal-footer">
+          <a href="?del=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <?php
+  }
+  }
+  // include""
+  ?>
+  </tbody>
+  </table>
+  </div>
+</div>
 
+<!-- Modal -->
 <div class="modal fade" id="create-article" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-article-label" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered " role="document">
-   <div class="modal-content">
-     <form method="post" action="article.php" enctype="multipart/form-data" id="newArticle">
-       <div class="modal-header">
-         <h5 class="modal-title" id="create-article-label">Create Article</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-       <div class="modal-body">
-         <div class="form-group">
-         <label for="author">Select Author</label>
-                <select name="aauthor" id="aauthor" class="form-control" required>
-              <option  selected>Choose...</option>
-              <?php
-            $result = get_author($connect);
-            if ($result->num_rows>0) 
-            {
-              while ($data = mysqli_fetch_array($result)) 
-              {
-                {
-                  echo  "<option value=".$data['fullname'].">".$data['fullname']."</option>";
-                }
-              }
-            }
-            ?>
-              </select>
-           <div class="form-group">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content">
+      <form method="post" action="article.php" enctype="multipart/form-data" id="newArticle">
+        <div class="modal-header">
+          <h5 class="modal-title" id="create-article-label">Create Article</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+          <label for="author">Select Author</label>
+                  <select name="aauthor" id="aauthor" class="form-control" required>
+                <option  selected>Choose...</option>
+                <?php
+                  $result = get_author($connect);
+                  if ($result->num_rows>0) 
+                  {
+                    while ($data = mysqli_fetch_array($result)) 
+                    {
+                      {
+                        echo  "<option value=".$data['fullname'].">".$data['fullname']."</option>";
+                      }
+                    }
+                  }
+              ?>
+                </select>
+          </div>
+
+          <div class="form-group">
              <label for="atitle">Title</label>
              <input type="text" class="form-control" id="atitle" name="atitle">
-           </div>
-           <div class="form-group">
-			<label for="adescription">Description</label>
-			<textarea class="form-control" id="adescription" name="adescription"></textarea>
-		    </div>
+          </div>
+
+          <div class="form-group">
+            <label for="adescription">Description</label>
+            <textarea class="form-control" id="adescription" name="adescription"></textarea>
+		      </div>
+         
+          <div class="form-group">
+            <label for="adatepub">Date Published</label>
+            <input type="date" class="form-control" id="adatepub" name="adatepub">
+          </div>
+
+          <div class="form-group">
+            <label for="afiles">Add (pdf, txt or docs)</label>
+            <input type="file" class="form-control-file" id="afiles" name="afiles">
+          </div>
+
+          <div class="form-group">
+            <label for="atags">Article Tags</label>
+            <input type="text" class="form-control " id="atags" name="atags" style="font-size:12px;" >
          </div>
-         <div class="form-group">
-           <label for="adatepub">Date Published</label>
-           <input type="date" class="form-control" id="adatepub" name="adatepub">
-         </div>
-         <div class="form-group">
-          <label for="afiles">Add (pdf, txt or docs)</label>
-          <input type="file" class="form-control-file" id="afiles" name="afiles">
+
+          <div class="modal-footer">
+            <button class="btn btn-primary" type="submit" name="submit" id="submit" value="Submit">Save</button>
+            <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          </div>
         </div>
-        <div class="form-group">
-        <label for="atags">Article Tags</label>
-        <input type="text" class="form-control " id="atags" name="atags" style="font-size:12px;" >
-         </div>
-       </div>
-       <div class="modal-footer">
-         <button class="btn btn-primary" type="submit" name="submit" id="submit" value="Submit">Save</button>
-         <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-       </div>
-     </form>
-   </div>
- </div>
+      </form>
+    </div>
+  </div>
 </div>
-<?php
-$sql = "SELECT * FROM tblarticle";
-$result = $connect->query($sql);
-?>
+<script src="assets/datatables.min.js"></script>
 <script>
     $(document).ready(function(){
       $('#atags').tokenfield({
@@ -205,83 +277,6 @@ $result = $connect->query($sql);
       });
 });
 </script>  
-
-
-<!--Article-->
-<div class="table-responsive-lg">
- <table id="article" class="table table-hover">
-   <thead>
-     <tr>
-       <th scope="col" class="d-none">Default Sort Fixer</th>
-       <th scope="col">ID</th>
-       <th scope="col">Author</th>
-       <th scope="col">Title</th>
-       <th scope="col">Date Published</th>
-       <th scope="col">Creator</th>
-       <th scope="col" align="center">Option</th>
-     </tr>
-   </thead>
-   <tbody>
-     <?php
-     $result = get_articles($connect);
-     if ($result->num_rows>0) {
-     while ($data = mysqli_fetch_array($result)) {
-       ?>
-       <tr>
-         <td scope="row" class="d-none"><?php echo $data['date_pub'];?></td>
-         <td><?php echo $data['id']?></td>
-         <td><a href="article_backend.php?id=<?php echo $data['id']?>&ref=article"><?php echo $data['author']?></a></td>
-         <td><?php echo $data['title']?></a></td>
-         <td><?php echo date("Y-m-d",strtotime($data['date_pub']));?></td>
-         <td><?php
-         $user = get_user_data($connect,$data['created_by']);
-         echo $user['name'];
-         ?>
-       </td>
-       <td ><div class="dropdown">
-         <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <i class="fa fa-ellipsis-h"></i>
-         </button>
-         <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="./api/article_backend.php?id=<?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="./api/article_backend.php?edit=<?php echo $data['id']?>">Edit</a>
-           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
-         </div>
-       </div>
-     </td>
-   </tr>
-
-     <!-- Delete Popup -->
- <div style="margin-top: 200px;width: 30%;margin-left: 35%;margin-right: 35%;" class="modal fade" id="delete-<?php echo $data['id'];?>" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <h5 class="modal-title" id="deleteLabel">Delete Journal</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-       <div class="modal-body">
-         Are you sure you want to delete?
-       </div>
-       <div class="modal-footer">
-         <a href="?del=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-       </div>
-     </div>
-   </div>
- </div>
-   <?php
- }
-}
-// include""
- ?>
-</tbody>
-</table>
-</div>
-</div>
-
-<script src="assets/datatables.min.js"></script>
 <script>
  $(function() {
    $('#articles').DataTable();
