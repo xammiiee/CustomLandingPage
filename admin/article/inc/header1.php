@@ -73,11 +73,11 @@ include "/xampp/htdocs/CustomLandingPage/admin/article/functions/Message.func.ph
                 </a>
                
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/admin/account/acount.php">Account Management</a>
-                  <a class="dropdown-item" href="/admin/research/research.php">Research Management</a>
-                  <a class="dropdown-item" href="/admin/author/author.php">Author Management</a>
-                  <a class="dropdown-item" href="/admin/journal/journal.php">Journal Management</a>
-                  <a class="dropdown-item" href="/admin/article/article.php">Article Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/acount.php">Account Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/research/research.php">Research Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/article/article.php">Article Management</a>
                   <a class="dropdown-item" href="#">Author Management</a>
                   <a class="dropdown-item" href="#">Events Management</a>
                   </li>

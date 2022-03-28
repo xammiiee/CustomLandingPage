@@ -182,9 +182,9 @@ function get_article($connect,$id){
 	}
 }
 
-function create_article($connect,$aauthor,$atitle,$adescription,$adatepub,$creator,$atags){
+function create_article($connect,$a_title,$a_description,$a_author,$a_creator,$a_datepub,$a_created,$a_filelocation,$a_tagging){
 
-	$sql = "INSERT INTO tblarticle VALUES ('',$atitle','$adescription','$aauthor','$adatepub','$creator','$atags',0)";
+	$sql = "INSERT INTO tblarticle VALUES ('','$a_title','$a_description','$a_author','$a_creator','$a_datepub','$a_created','$a_filelocation','$a_tagging','0')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -193,9 +193,9 @@ function create_article($connect,$aauthor,$atitle,$adescription,$adatepub,$creat
 	}
 }
 
-function update_article($connect,$aauthor,$atitle,$adescription,$adatepub,$id){
+function update_article($connect,$a_title,$a_description,$a_author,$a_datepub,$id){
 
-	$sql = "UPDATE tblarticle SET aauthor='$aauthor',atitle='$atitle',adescription='$adescription',adatepub='$adatepub' WHERE id=$id";
+	$sql = "UPDATE tblarticle SET a_title='$a_title',a_description='$a_description',a_author='$a_author',a_datepub='$a_datepub' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
