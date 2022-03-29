@@ -54,9 +54,13 @@ if (empty($_SESSION['id'])) {
 <?php
 if (isset($_GET['del'])) {
   // change function to the designated function of your assign management
-  $result = delete_journalaction($connect,$_GET['del']);
+  $result = delete_authoraction($connect,$_GET['del']);
   if ($result =="1") {
     message("Author deleted successfully!","1");
+  }
+  else
+  {
+    message("Author not deleted!","0");
   }
 }
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
@@ -162,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          <div class="dropdown-menu" aria-labelledby="option">
            <a class="dropdown-item" href="../author/api/action.php?id= <?php echo $data['id']?>">View</a>
            <a class="dropdown-item" href="../author/api/action.php?edit=<?php echo $data['id']?>">Edit</a>
-           <!-- <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?> -->
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
      </td>
