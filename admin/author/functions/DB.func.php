@@ -104,8 +104,8 @@ function get_researchaction($connect,$id){
 	}
 }
 
-function create_researchaction($connect,$title, $abstract, $main_author, $co_author, $datepub, $fstudy, $pdf_file, $views, $cite, $tagging){
-	$sql = "INSERT INTO tblresearch VALUES ('','$title','$abstract','$main_author','$co_author','$datepub','$fstudy','', '$pdf_file','$views','$cite', '$tagging')";
+function create_authoraction($connect,$name, $email){
+	$sql = "INSERT INTO tblauthor VALUES ('','$name','$email','','','')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
