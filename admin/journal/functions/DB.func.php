@@ -115,7 +115,7 @@ function get_journalaction($connect,$id){
 	}
 }
 
-function create_journalaction($connect,$author,$title,$description,$datepub,$creator,$created,$filelocation){
+function create_journalaction($connect,$author,$title,$description,$creator,$datepub,$created,$filelocation){
 
 	$sql = "INSERT INTO tbljournal VALUES ('','$title','$description','$author','$creator','$datepub','$created','0','$filelocation')";
 	$result = $connect->query($sql);
