@@ -73,15 +73,16 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 ?>
 
 <div class="container">
-<!-- Create task button -->
-<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-project">
-<i  class="fa fa-plus"></i>
-</button>
-<!-- change location of href -->
-<a href="./account.php"><button type="button" class="btn btn-outline-primary btn-sm">
-<i class="fa fa-refresh" aria-hidden="true"></i>
-</button>
-</a>
+  <!-- Create task button -->
+  <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-project">
+  <i  class="fa fa-plus"></i>
+  </button>
+  <!-- change location of href -->
+  <a href="./account.php"><button type="button" class="btn btn-outline-primary btn-sm">
+  <i class="fa fa-refresh" aria-hidden="true"></i>
+  </button>
+  </a>
+
 
 <br/>
 <br/>
@@ -195,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          <div class="dropdown-menu" aria-labelledby="option">
            <a class="dropdown-item" href="action.php?id=<?php echo $data['id']?>">View</a>
            <a class="dropdown-item" href="action.php?edit=<?php echo $data['id']?>">Edit</a>
-           <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
      </td>
