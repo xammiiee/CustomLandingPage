@@ -6,7 +6,7 @@ if (empty($_SESSION['id'])) {
 }
 ?>
 
-<!--View Redearch-->
+<!--View Author-->
 <?php 
 //updating of Research
 if (isset($_POST['id'])) {
