@@ -151,7 +151,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
          </div>
          <div class="form-group">
            <label for="datepub">Time </label>
-           <input type="date" class="form-control" id="email" name="date">
+           <input type="time" class="form-control" id="email" name="date">
          </div>
        </div>
       
