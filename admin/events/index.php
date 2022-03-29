@@ -54,6 +54,65 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
 </head>
 
 <body>
+<header id="header" class="fixed-top">
+    <div class="container">
+      <div class="logo float-left">
+       <a href="/CustomLandingPage/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+      </div>
+      <div class="col-<?php 
+      if(isset($_SESSION['id']))
+      {
+        if($_SESSION['role'] == "Administrator") 
+        { 
+          echo"6";
+        }
+      }
+      else
+      {
+        echo"10";
+      }
+      ?>"></div>
+      <nav class="main-nav float-right d-none d-lg-block" >
+        <ul>
+        <?php 
+          if (isset($_SESSION['id'])) 
+          { 
+            if ($_SESSION['role']=="Administrator")
+            { ?>
+              <li><a><?php echo $_SESSION['name'];?></a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">Management</a>
+              <?php 
+            }
+            ?>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="../account/account.php">Account Management</a>
+                  <a class="dropdown-item" href="../research/research.php">Research Management</a>
+                  <a class="dropdown-item" href="../author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="../article/article.php">Article Management</a>
+                  <a class="dropdown-item" href="../news//index.php">News Management</a>
+                  <a class="dropdown-item" href="../events/index.php">Events Management</a>
+                </li>
+                  <li class="nav-item dropdown" >
+                  <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user"></i>&nbsp;</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#profile">Profile</a>
+                    <a class="dropdown-item" href="#aboutus">About Us</a>
+                    <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
+                  </div>
+                  </li>
+                  <?php
+          } 
+          else 
+          { 
+            header("Location: ../../login/login.php");
+          }?>
+        </ul>
+      </nav><!-- .main-nav -->
+    </div>
+  </header>
 <?php
     //   include("./accounts/api/post_signup.php");
     //   include_once ("./login/api/login_api_authenticate.php");

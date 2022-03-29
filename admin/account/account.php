@@ -147,8 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
      </form>
    </div>
  </div>
-</div>
-
 
 <!--Account-->
 <div class="table-responsive-lg">
@@ -230,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 </table>
 </div>
 </div>
-
+</div>
 <script src="assets/datatables.min.js"></script>
 <script>
  $(function() {
