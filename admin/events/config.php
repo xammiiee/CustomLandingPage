@@ -1,7 +1,4 @@
 <?php
-/**
- * using mysqli_connect for database connection
- */
 
 $databaseHost = 'localhost';
 $databaseName = 'research_portal';
