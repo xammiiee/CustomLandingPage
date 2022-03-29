@@ -167,8 +167,6 @@ if(isset($_FILES['files'])){
      <tr>
        <th scope="col" class="d-none">Default Sort Fixer</th>
        <th scope="col">ID</th>
-       <th scope="col">First Name</th>
-       <th scope="col">Last Name</th>
        <th scope="col">Full Name</th>
        <th scope="col">Email</th>
        <th scope="col" align="center">Option</th>
