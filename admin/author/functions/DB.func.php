@@ -124,8 +124,8 @@ function update_researchaction($connect,$title, $abstract, $main_author, $co_aut
 	}
 }
 
-function delete_researchaction($connect,$id){
-	$sql = "DELETE FROM tblresearch WHERE id=$id";
+function delete_authoraction($connect,$id){
+	$sql = "DELETE FROM tblauthor WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return "1";
