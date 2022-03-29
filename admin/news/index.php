@@ -1,5 +1,6 @@
 <?php
 // include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+session_start();
 include "/xampp/htdocs/CustomLandingPage/admin/research/inc/db.php";
 include "/xampp/htdocs/CustomLandingPage/admin/research/functions/DB.func.php";
 include "/xampp/htdocs/CustomLandingPage/admin/research/functions/Message.func.php";
@@ -194,7 +195,6 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
       
  <!-- ACTION BUTTON -->
 
- <a class="dropdown-item" href="edit.php?edit=<?php echo $data['id']?>">Edit</a>
 
        <td align="center"> <div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -207,7 +207,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
 
         <a class="dropdown-item" href="edit.php?edit=<?php echo $data['id']?>">Edit</a>
 
-           <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
      </td>
