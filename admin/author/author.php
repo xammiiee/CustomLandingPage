@@ -181,7 +181,7 @@ if(isset($_FILES['files'])){
        <tr>
          <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
          <td><?php echo $data['id']?></td>
-         <td><?php echo $data['fullname']?></a></td>
+         <td><?php echo $data['name']?></a></td>
          <td><?php echo $data['email']?></a></td>
          <td><?php
         //  $user = get_user_data($connect,$data['creator']);
