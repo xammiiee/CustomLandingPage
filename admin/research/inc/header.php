@@ -83,7 +83,6 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
           { 
             if ($_SESSION['role']=="Administrator")
             { ?>
-              <li><a><?php echo $_SESSION['name'];?></a></li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">Management</a>
               <?php 
@@ -98,6 +97,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
                   <a class="dropdown-item" href="../news//index.php">News Management</a>
                   <a class="dropdown-item" href="../events/index.php">Events Management</a>
                 </li>
+                <li><a><?php echo $_SESSION['name'];?></a></li>
                   <li class="nav-item dropdown" >
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>
