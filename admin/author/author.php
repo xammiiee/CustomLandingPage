@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$_POST['created']);
+    $result = create_journalaction($connect,$_POST['fname'],$_POST['lname'],$_POST['fullname'],$_SESSION['email'],$_POST['datepub'],$_POST['created']);
     if ($result == 1) {
       message("Author created successfully!",1);
     } else {
@@ -183,8 +183,6 @@ if(isset($_FILES['files'])){
        <tr>
          <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
          <td><?php echo $data['id']?></td>
-         <td><?php echo $data['fname']?></a></td>
-         <td><?php echo $data['lname']?></a></td>
          <td><?php echo $data['fullname']?></a></td>
          <td><?php echo $data['email']?></a></td>
          <td><?php
