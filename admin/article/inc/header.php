@@ -80,12 +80,12 @@ include "/xampp/htdocs/CustomLandingPage/admin/article/functions/Message.func.ph
                   <a class="dropdown-item" href="#">Author Management</a>
                   <a class="dropdown-item" href="#">Events Management</a>
                   </li>
-                  <li class="nav-item active" >
+                  <!-- <li class="nav-item active" >
                     <a class="nav-link" href="/journal.php">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item active"><a class="dropdown-item" href="../../signup/logout.php">Signout</a></li>
+                  </li> -->
+                  <!-- <li class="nav-item active"><a class="dropdown-item" href="../../signup/logout.php">Signout</a></li> -->
                   <?php } ?>
-                  <?php if ($_SESSION['role']=="Researcher" || $_SESSION['role']=="Visitor") { ?>
+                  <?php if ($_SESSION['role']=="Administrator" || $_SESSION['role']=="Visitor") { ?>
                   <li class="nav-item dropdown" >
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>

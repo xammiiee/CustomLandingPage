@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,9 +34,29 @@ session_start();
 </head>
 <!-- Try lng mag push -->
 <body>
+
 <?php
-      // include_once ("/xampp/htdocs/CustomLandingPage/login/api/login_api_authenticate.php");
-      // include_once ("/xampp/htdocs/CustomLandingPage/signup/api/post_new_user.php");
+    session_start();
+    if (isset($_SESSION['id'])) 
+    {?>
+      
+    <?php 
+      if($_SESSION['role'] == "Administrator")
+      {?>
+
+      <?php
+      }
+      elseif($_SESSION['role'] == "User")
+      {?>
+      
+      <?php
+      }
+    }
+    else
+    {?>
+      
+    <?php
+    }  
 ?>
 
   <!--======================================================================================================================
@@ -52,6 +70,7 @@ session_start();
       <!-- Condition for user -->
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
+<!-- ================================================ -->
         <?php
         if(empty($_SESSION['id']))
         {
@@ -63,8 +82,10 @@ session_start();
           if(isset($_SESSION['id'])) 
           { 
             if ($_SESSION['role']=="User")
-            { ?>
+            {?>
+              <li><a><?php echo $_SESSION['name'];?></a></li>
               <li class="nav-item dropdown"><?php 
+              
             }
             ?>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -87,6 +108,7 @@ session_start();
           }
         }
         ?>
+<!-- ================================================================= -->
         </ul>
       </nav>
     </div>
@@ -109,14 +131,15 @@ session_start();
           <div>
             <button class="btn-get-started scrollto" name="btnsubmit">Search</button>
             
-            <?php
+      <!-- ============================================ -->
+      <?php
       if(empty($_SESSION['id'])) 
       { 
         ?><a href="./login/login.php" class="btn-services scrollto">Login</a><?php
       }
-      ?>  
+      ?>
+      <!-- ============================================ -->
       </form>
-      
           </div>
         </div>
     </div>
@@ -207,7 +230,7 @@ session_start();
                             <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                               <li class="list-inline-item"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
 
-                              <li class="list-inline-item"><b><u><span><?php echo $data['co-authors'];?></span></u></b></li>
+                              <li class="list-inline-item"><b><u><span><?php echo $data['co_authors'];?></span></u></b></li>
 
                               <li class="list-inline-item"><b><span> * Publshed <?php echo $data['date_publish'];?></span></b></li>
                               

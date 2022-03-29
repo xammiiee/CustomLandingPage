@@ -100,6 +100,13 @@ function get_author($connect){
 		return $result;
 }
 
+function get_author_inside_research($connect,$m_author,$c_author){
+	//ORDER BY deadline ASC
+	$sql = "SELECT * FROM tblresearch WHERE main_author LIKE '%".$m_author."%' OR 'co_authors' LIKE '%".$c_author."%' ";
+	$result = $connect->query($sql);
+		return $result;
+}
+
 function get_author_with_paper($connect, $a_id){
 	//ORDER BY deadline ASC
 	$sql = "SELECT * FROM tblauthorredirect WHERE author_id= '$a_id' ORDER BY id ASC";

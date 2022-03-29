@@ -28,7 +28,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
 	<link rel="stylesheet" href="../../resource/css/mdb.min.css">
 
    <!-- Datatables -->
-   <link href="./resource/assets/dataTables.bootstrap4.min.css" rel="stylesheet">
+   <link href="../../resource/assets/dataTables.bootstrap4.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
   <link href="../../resource/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
 
   
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
 
 
 
@@ -83,6 +83,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
           { 
             if ($_SESSION['role']=="Administrator")
             { ?>
+              <li><a><?php echo $_SESSION['name'];?></a></li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">Management</a>
               <?php 

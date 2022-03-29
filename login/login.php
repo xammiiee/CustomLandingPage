@@ -12,7 +12,7 @@ if ($result->num_rows > 0)
 {
   while($row = $result->fetch_assoc()){
     $_SESSION['id'] = $row['id'];
-    $_SESSION['name'] = $row['fname'];
+    $_SESSION['name'] = $row['name'];
     $_SESSION['role'] = $row['ucategory'];
     $_SESSION['status'] = $row['status'];
   }

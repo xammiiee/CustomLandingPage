@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 include "/xampp/htdocs/CustomLandingPage/admin/research/inc/db.php";
 include "/xampp/htdocs/CustomLandingPage/admin/research/functions/DB.func.php";
 include "/xampp/htdocs/CustomLandingPage/admin/research/functions/Message.func.php";
@@ -61,12 +61,12 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="#intro" class="scrollto"><img src="../img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+       <a href="#intro" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
-      <div class="col-<?php if(isset($_SESSION['id'])){if($_SESSION['role'] == 1) { echo"6";}elseif($_SESSION['role'] == 2){echo"6";}else{echo"9";}}else{echo"10";}?>"></div>
+      
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-        <?php if (isset($_SESSION['id'])) { if ($_SESSION['role']==1 || $_SESSION['role']==2) { ?>
+        <?php if (isset($_SESSION['id'])) { if ($_SESSION['role']== "Administrator") { ?>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Management
@@ -105,7 +105,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
                   </div>
                   </li>
                   <?php } else { ?>
-                <li><a href="/login/login.php">Login</a></li>
+                <li><a href="../../login/login.php">Login</a></li>
                 <li><a href="/signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
           
           <?php } ?>

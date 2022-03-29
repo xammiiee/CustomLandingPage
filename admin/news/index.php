@@ -1,6 +1,10 @@
 <?php
 // include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
-
+session_start();
+include "/xampp/htdocs/CustomLandingPage/admin/research/inc/db.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/functions/DB.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/functions/Message.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php";
 
 // include "../../resource/"
 if (empty($_SESSION['id'])) {
@@ -9,7 +13,6 @@ if (empty($_SESSION['id'])) {
 
 // Create database connection using config file
 include_once("config.php");
-
 // Fetch all users data from database
 $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
 
@@ -51,6 +54,65 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
 </head>
 
 <body>
+<header id="header" class="fixed-top">
+    <div class="container">
+      <div class="logo float-left">
+       <a href="/CustomLandingPage/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+      </div>
+      <div class="col-<?php 
+      if(isset($_SESSION['id']))
+      {
+        if($_SESSION['role'] == "Administrator") 
+        { 
+          echo"6";
+        }
+      }
+      else
+      {
+        echo"10";
+      }
+      ?>"></div>
+      <nav class="main-nav float-right d-none d-lg-block" >
+        <ul>
+        <?php 
+          if (isset($_SESSION['id'])) 
+          { 
+            if ($_SESSION['role']=="Administrator")
+            { ?>
+              <li><a><?php echo $_SESSION['name'];?></a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">Management</a>
+              <?php 
+            }
+            ?>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="../account/account.php">Account Management</a>
+                  <a class="dropdown-item" href="../research/research.php">Research Management</a>
+                  <a class="dropdown-item" href="../author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="../article/article.php">Article Management</a>
+                  <a class="dropdown-item" href="../news//index.php">News Management</a>
+                  <a class="dropdown-item" href="../events/index.php">Events Management</a>
+                </li>
+                  <li class="nav-item dropdown" >
+                  <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user"></i>&nbsp;</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#profile">Profile</a>
+                    <a class="dropdown-item" href="#aboutus">About Us</a>
+                    <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
+                  </div>
+                  </li>
+                  <?php
+          } 
+          else 
+          { 
+            header("Location: ../../login/login.php");
+          }?>
+        </ul>
+      </nav><!-- .main-nav -->
+    </div>
+  </header>
 <?php
     //   include("./accounts/api/post_signup.php");
     //   include_once ("./login/api/login_api_authenticate.php");
@@ -192,7 +254,6 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
       
  <!-- ACTION BUTTON -->
 
- <a class="dropdown-item" href="edit.php?edit=<?php echo $data['id']?>">Edit</a>
 
        <td align="center"> <div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -205,7 +266,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
 
         <a class="dropdown-item" href="edit.php?edit=<?php echo $data['id']?>">Edit</a>
 
-           <?php if ($_SESSION['role']==1) {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
      </td>
