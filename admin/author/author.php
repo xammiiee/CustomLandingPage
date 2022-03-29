@@ -65,9 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     // also correct each string of the sql with your form
     $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$_POST['created']);
     if ($result == 1) {
-      message("Research created successfully!",1);
+      message("Author created successfully!",1);
     } else {
-      message("Could not create Journal!",0);
+      message("Could not create Author!",0);
     }
   }
 }
@@ -107,7 +107,7 @@ if(isset($_FILES['files'])){
 <i  class="fa fa-plus"></i>
 </button>
 <!-- change location of href -->
-<a href="./research.php"><button type="button" class="btn btn-outline-primary btn-sm">
+<a href="./author.php"><button type="button" class="btn btn-outline-primary btn-sm">
 <i class="fa fa-refresh" aria-hidden="true"></i>
 </button>
 </a>
@@ -121,9 +121,9 @@ if(isset($_FILES['files'])){
  <div class="modal-dialog modal-dialog-centered " role="document">
    <div class="modal-content">
      <!-- change action location to your management -->
-     <form method="post" action="./research.php" enctype="multipart/form-data">
+     <form method="post" action="./author.php" enctype="multipart/form-data">
        <div class="modal-header">
-         <h5 class="modal-title" id="create-project-label">Create Research</h5>
+         <h5 class="modal-title" id="create-project-label">Create Author</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
