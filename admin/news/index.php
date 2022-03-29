@@ -1,6 +1,9 @@
 <?php
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
-
+// include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/inc/db.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/functions/DB.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/functions/Message.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php";
 
 // include "../../resource/"
 if (empty($_SESSION['id'])) {
@@ -9,7 +12,6 @@ if (empty($_SESSION['id'])) {
 
 // Create database connection using config file
 include_once("config.php");
-
 // Fetch all users data from database
 $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
 
