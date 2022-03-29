@@ -68,9 +68,10 @@
                         <a class="dropdown-item" href="../admin/news/index.php">News Management</a>
                         <a class="dropdown-item" href="../admin/events/index.php">Events Management</a>
                     </li>
-                    <li class="nav-item active" >
+                    <!-- <li class="nav-item active" >
                       <a class="nav-link" href="/journal.php">Home <span class="sr-only">(current)</span></a>
-                    </li>
+                    </li> -->
+                    <li><a><?php echo $_SESSION['name'];?></a></li>
                     <li class="nav-item dropdown" >
                         <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user"></i>&nbsp;</a>

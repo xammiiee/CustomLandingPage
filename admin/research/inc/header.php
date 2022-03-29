@@ -83,6 +83,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
           { 
             if ($_SESSION['role']=="Administrator")
             { ?>
+              <li><a><?php echo $_SESSION['name'];?></a></li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">Management</a>
               <?php 

@@ -1,17 +1,4 @@
-<?php
-session_start();
-if (isset($_SESSION['id'])) 
-{ 
-  if($_SESSION['role'] == "Administrator")
-  {
 
-  }
-  elseif($_SESSION['role'] == "User")
-  {
-  }
-}
-// =======================================================
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,9 +34,29 @@ if (isset($_SESSION['id']))
 </head>
 <!-- Try lng mag push -->
 <body>
+
 <?php
-      // include_once ("/xampp/htdocs/CustomLandingPage/login/api/login_api_authenticate.php");
-      // include_once ("/xampp/htdocs/CustomLandingPage/signup/api/post_new_user.php");
+    session_start();
+    if (isset($_SESSION['id'])) 
+    {?>
+      
+    <?php 
+      if($_SESSION['role'] == "Administrator")
+      {?>
+
+      <?php
+      }
+      elseif($_SESSION['role'] == "User")
+      {?>
+      
+      <?php
+      }
+    }
+    else
+    {?>
+      
+    <?php
+    }  
 ?>
 
   <!--======================================================================================================================
@@ -63,6 +70,7 @@ if (isset($_SESSION['id']))
       <!-- Condition for user -->
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
+<!-- ================================================ -->
         <?php
         if(empty($_SESSION['id']))
         {
@@ -74,8 +82,10 @@ if (isset($_SESSION['id']))
           if(isset($_SESSION['id'])) 
           { 
             if ($_SESSION['role']=="User")
-            { ?>
+            {?>
+              <li><a><?php echo $_SESSION['name'];?></a></li>
               <li class="nav-item dropdown"><?php 
+              
             }
             ?>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -98,6 +108,7 @@ if (isset($_SESSION['id']))
           }
         }
         ?>
+<!-- ================================================================= -->
         </ul>
       </nav>
     </div>
@@ -120,14 +131,15 @@ if (isset($_SESSION['id']))
           <div>
             <button class="btn-get-started scrollto" name="btnsubmit">Search</button>
             
-            <?php
+      <!-- ============================================ -->
+      <?php
       if(empty($_SESSION['id'])) 
       { 
         ?><a href="./login/login.php" class="btn-services scrollto">Login</a><?php
       }
-      ?>  
+      ?>
+      <!-- ============================================ -->
       </form>
-      
           </div>
         </div>
     </div>

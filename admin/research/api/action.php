@@ -13,7 +13,7 @@ if (isset($_SESSION['id']))
 include_once "../inc/header1.php";
 if (empty($_SESSION['id'])) {
 	// include""
-	header("Location: ../../../login/login.php");
+	header("Location: ../../../../login/login.php");
 }
 ?>
 <!--View Research-->
