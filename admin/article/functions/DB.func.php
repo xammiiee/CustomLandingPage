@@ -143,8 +143,8 @@ function update_journalaction($connect,$author,$title,$description,$datepub,$id)
 	}
 }
 
-function delete_journalaction($connect,$id){
-	$sql = "DELETE FROM tbljournal WHERE id=$id";
+function delete_authoraction($connect,$id){
+	$sql = "DELETE FROM tblauthor WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return "1";
