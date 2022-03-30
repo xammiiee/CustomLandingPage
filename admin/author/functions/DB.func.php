@@ -104,8 +104,25 @@ function get_researchaction($connect,$id){
 	}
 }
 
-function create_authoraction($connect,$name, $email){
-	$sql = "INSERT INTO tblauthor VALUES ('','$name','$email','','','')";
+
+function get_author($connect){
+
+	$sql = "SELECT * FROM tblauthor";
+	$result = $connect->query($sql);
+		return $result;
+}
+function get_authors($connect,$id){
+	$sql = "SELECT * FROM tblauthor WHERE id='$id'";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return "1";
+	} else {
+		return "0";
+	}
+}
+
+function create_authoraction($connect,$name, $email, $profession,$description,$fstudy,$created,$filelocation){
+	$sql = "INSERT INTO tblauthor VALUES ('','$name','$email','$profession','$description','$fstudy','$created','$filelocation')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -114,8 +131,8 @@ function create_authoraction($connect,$name, $email){
 	}
 }
 
-function update_researchaction($connect,$title, $abstract, $main_author, $co_author, $datepub, $fstudy, $pdf_file, $tagging,$id){
-	$sql = "UPDATE tblresearch SET title='$title',abstract='$abstract',main_author='$main_author',co_author='$co_author', date_publish='$datepub', field_of_study='$fstudy', tagging ='$tagging', pdf_file='$pdf_file' WHERE id=$id";
+function update_authoraction($connect,$name, $email, $profession, $fstudy,$id){
+	$sql = "UPDATE tblauthor SET name='$name',email='$email',profession='$profession',fstudy='$fstudy' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -144,12 +161,8 @@ function get_research_by_id($connect,$id){
 	}
 }
 
-function get_author($connect){
-	//ORDER BY deadline ASC
-	$sql = "SELECT * FROM tblauthor";
-	$result = $connect->query($sql);
-		return $result;
-}
+
+
 
 ?>
 

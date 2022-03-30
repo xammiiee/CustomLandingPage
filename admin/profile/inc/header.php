@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "/xampp/htdocs/CustomLandingPage/admin/journal/inc/db.php";
-include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/DB.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/functions.php";
-include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/profile/inc/db.php";
+include "/xampp/htdocs/CustomLandingPage/admin/profile/functions/DB.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/profile/functions/functions.php";
+include "/xampp/htdocs/CustomLandingPage/admin/profile/functions/Message.func.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +76,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.ph
                   <a class="dropdown-item" href="/CustomLandingPage/admin/account/acount.php">Account Management</a>
                   <a class="dropdown-item" href="/CustomLandingPage/admin/research/research.php">Research Management</a>
                   <a class="dropdown-item" href="/CustomLandingPage/admin/author/author.php">Author Management</a>
-                  <a class="dropdown-item" href="./journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/journal/journal.php">Journal Management</a>
                   <a class="dropdown-item" href="/CustomLandingPage/admin/article/article.php">Article Management</a>
                   <a class="dropdown-item" href="#">Author Management</a>
                   <a class="dropdown-item" href="#">Events Management</a>

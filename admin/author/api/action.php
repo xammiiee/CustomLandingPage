@@ -12,7 +12,7 @@ if (empty($_SESSION['id'])) {
 if (isset($_POST['id'])) {
 	// change function to the designated function of your assign management
 	// also correct each string of the sql with your form
- 		$result = update_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['datepub'],$_POST['description'],$_POST['id']);
+ 		$result = update_journalaction($connect,$_POST['name'],$_POST['email'],$_POST['profession'],$_POST['description'],$_POST['id'],$_POST['created'],$filelocation,"0");
  		if ($result == "1") {
 			echo'<div style="position:relative;top: 100px;"';
  			message("Research updated successfully!",1);

@@ -52,7 +52,7 @@ if (isset($_GET['edit'])) {
 							<?php $authors = get_authors($connect); while ($author = mysqli_fetch_array($authors)) { 
 								if ($author['role'] !="Administrator") {
 								?>
-								<option value="<?php echo $author['fullname'];?>"><?php echo $author['fullname'];?></option>
+								<option value="<?php echo $author['name'];?>"><?php echo $author['name'];?></option>
 								<?php }} ?>
 							</select>
 							<div class="form-group">

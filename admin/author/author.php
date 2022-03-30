@@ -52,6 +52,8 @@ if (empty($_SESSION['id'])) {
       <h3>Journal Management</h3>
     </header> -->
 <?php
+
+
 if (isset($_GET['del'])) {
   // change function to the designated function of your assign management
   $result = delete_authoraction($connect,$_GET['del']);
@@ -63,11 +65,41 @@ if (isset($_GET['del'])) {
     message("Author not deleted!","0");
   }
 }
+
+if(isset($_FILES['files'])){
+  $errors= array();
+  $file_name_array = explode('.',$_FILES['files']['name']);
+  $file_size =$_FILES['files']['size'];
+  $file_tmp =$_FILES['files']['tmp_name'];
+  $file_type=$_FILES['files']['type'];
+  $file_ext=strtolower(end($file_name_array));
+  
+  $extensions= array("pdf");
+  
+  if(in_array($file_ext,$extensions)=== false){
+     $errors[]="extension not allowed, please choose a PDF file only.";
+  }
+  
+  if($file_size > 20097152){
+     $errors[]='File size must be excately 20 MB';
+  }
+  
+  if(empty($errors)==true)
+  {
+     move_uploaded_file($file_tmp,"uploads/".$_FILES['files']['name']);
+     $filelocation = "uploads/".$_FILES['files']['name']."";
+  }
+  else{
+     print_r($errors);
+  }
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    $result = create_authoraction($connect,$_POST['name'],$_POST['email']);
+    $result = create_authoraction($connect,$_POST['name'],$_POST['email'],$_POST['profession'],$_POST['description'],$_POST['fstudy'],$_SESSION['id'],$_POST['created'],$filelocation);
     if ($result == 1) {
       message("Author created successfully!",1);
     } else {
@@ -91,35 +123,48 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 
 <br/>
 <br/>
+</style>
 
-<!-- Create New Research -->
+<!-- Create New Author -->
 
-<div class="modal fade" id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered " role="document">
-   <div class="modal-content">
-     <!-- change action location to your management -->
-     <form method="post" action="./author.php" enctype="multipart/form-data">
+<div class="modal fade " id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
+ <div class="modal-dialog  modal-dialog-centered modal-sm" role="document" style="width:50%;margin:auto;">
+   <div class="modal-content " style="height:100%;">
+     <form method="post" name="" action="author.php" enctype="multipart/form-data">
        <div class="modal-header">
-         <h5 class="modal-title" id="create-project-label">Create Author</h5>
+         <h5 class="modal-title" id="create-project-label">Create Journal</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
-       <div class="modal-body">
-         <!-- change the form add based on your designated management -->
-         <div class="form-group">
+       <div class="modal-body ">
+         <div class="form-group " >
+           <label for="name" class="control-label">Author Name</label><span style="color:red;"> &#42;</span>
+           <input type="text" class="form-control" id="name" name="name"  required="required">
            <div class="form-group">
-							<label for="name">Full Name</label>
-							<input type="text" class="form-control" id="name" name="name">
+             <label for="email" class="control-label"> Email</label><span style="color:red;"> &#42;</span>
+             <input type="text" class="form-control" id="email" name="email" required="required">
+           </div>
+           <div class="form-group">
+             <label for="profession" class="control-label">Profession</label><span style="color:red;"> &#42;</span>
+             <input type="text" class="form-control" id="profession" name="profession" required="required">
+           </div>
+           <div class="form-group">
+							<label for="description" class="control-label">Description</label><span style="color:red;"> &#42;</span>
+							<textarea class="form-control" id="description" name="description" required="required"></textarea>
 					</div>
+          <div class="form-group">
+             <label for="fstudy" class="control-label">Field of Study</label><span style="color:red;"> &#42;</span>
+             <input type="text" class="form-control" id="fstudy" name="fstudy" required="required">
+           </div>
          </div>
+      
          <div class="form-group">
-           <label for="email">Email</label>
-           <input type="text" class="form-control" id="email" name="email">
-         </div>
-         
+          <label for="files" class="control-label">Add (pdf only)</label><span style="color:red;"> &#42;</span>
+          <input type="file" class="form-control-file" id="files" name="files" required="required">
         </div>
-       
+       </div>
+       <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
        <input type="hidden" name="create" value="create"/>
        <div class="modal-footer">
          <button class="btn btn-primary">Save</button>
@@ -131,6 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 </div>
 
 
+
 <!--Journal-->
 <div class="table-responsive-lg">
  <table id="journal" class="table table-hover">
@@ -138,8 +184,10 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
      <tr>
        <th scope="col" class="d-none">Default Sort Fixer</th>
        <th scope="col">ID</th>
-       <th scope="col">Full Name</th>
-       <th scope="col">Email</th>
+       <th scope="col">Full name</th>
+       <th scope="col">Profession</th>
+       <th scope="col">Field of Study</th>
+       <th scope="col">Created</th>
        <th scope="col" align="center">Option</th>
      </tr>
    </thead>
@@ -148,24 +196,23 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
      $result = get_author($connect);
      if ($result->num_rows>0) {
      while ($data = mysqli_fetch_array($result)) {
+      // include""
        ?>
        <tr>
-         <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
+        
          <td><?php echo $data['id']?></td>
-         <td><?php echo $data['name']?></a></td>
-         <td><?php echo $data['email']?></a></td>
-         <td><?php
-        //  $user = get_user_data($connect,$data['creator']);
-        //  echo $user['name'];
-         ?>
-       </td>
-       <td align="center"><div class="dropdown">
+         <td><a href="/CustomLandingPage/admin/profile/profile.php?id=<?php echo $data['id']?>"><?php echo $data['name']?></a></td>
+         <td><?php echo $data['profession']?></td>
+         <td><?php echo $data['fstudy']?></td>
+        <td><?php echo date("Y-m-d",strtotime($data['created']));?></td>
+       <td><div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
          </button>
          <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="../author/api/action.php?id= <?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="../author/api/action.php?edit=<?php echo $data['id']?>">Edit</a>
+           <a class="dropdown-item" href="./api/action.php?id=<?php echo $data['id']?>">View</a>
+           <a class="dropdown-item" href="./api/action.php?edit=<?php echo $data['id']?>">Edit</a>
+         
            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>

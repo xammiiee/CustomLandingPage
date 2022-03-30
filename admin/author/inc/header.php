@@ -77,7 +77,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/author/functions/functions.php";
                   <?php if ($_SESSION['role']== "Administrator") { ?>
                   <a class="dropdown-item" href="/admin/research/research.php">Research Management</a>
                   <?php } ?>
-                  <a class="dropdown-item" href="/admin/author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="./author.php">Author Management</a>
                   <?php if ($_SESSION['role']== "Administrator") ?>
                   <a class="dropdown-item" href="/admin/journal/journal.php">Journal Management</a>
                   <?php } ?>
