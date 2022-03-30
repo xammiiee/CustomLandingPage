@@ -26,6 +26,13 @@ function get_research($connect){
 		return $result;
 }
 
+function get_research_id($connect, $id){
+	//ORDER BY deadline ASC
+	$sql = "SELECT * FROM tblresearch WHERE id= '$id'";
+	$result = $connect->query($sql);
+		return $result;
+}
+
 function get_researchaction($connect,$id){
 	$sql = "SELECT * FROM tblresearch WHERE id='$id'";
 	$result = $connect->query($sql);
@@ -93,6 +100,7 @@ function get_research_by_title($connect,$title){
 		return $result;
 }
 
+// =====================================================================
 function get_author($connect){
 	//ORDER BY deadline ASC
 	$sql = "SELECT * FROM tblauthor";

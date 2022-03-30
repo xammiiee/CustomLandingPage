@@ -145,5 +145,6 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
     } );
   </script>
   <script src="../../../resource/js/main.js"></script>
+  <script src="../script/main.js"></script>
   </body>
 </html>
