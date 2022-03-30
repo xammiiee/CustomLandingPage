@@ -63,15 +63,19 @@ if (isset($_GET['edit'])) {
 					<td>
 						<!-- change this form to what must be edited to your assign management -->
 						<div class="form-group">
-							<label for="author">Author Name</label>
-							<input type="text" class="form-control" id="author" name="author" value="<?php echo $data['author'];?>">
+							<label for="author">Title</label>
+							<input type="text" class="form-control" id="title" name="title" value="<?php echo $data['title'];?>">
 							<div class="form-group">
-								<label for="title">Title</label>
-								<input class="form-control" id="title" name="title" value="<?php echo $data['title'];?>">
+								<label for="title">Main Author</label>
+								<input class="form-control" id="m_author" name="m_author" value="<?php echo $data['main_author'];?>" disabled>
+							</div>
+							<div class="form-group">
+								<label for="title">Co-Author</label>
+								<input class="form-control" id="m_author" name="c_author" value="<?php echo $data['co_authors'];?>" disabled>
 							</div>
 							<div class="form-group">
 								<label for="description">Description</label>
-								<textarea class="form-control" id="description" name="description" rows="10"></textarea>
+								<textarea class="form-control" id="abstract" name="abstract " rows="5"></textarea>
 							</div>
 						</div>
 						<div class="form-group">

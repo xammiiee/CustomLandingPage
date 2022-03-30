@@ -54,50 +54,27 @@ if (empty($_SESSION['id'])) {
 <?php
 if (isset($_GET['del'])) {
   // change function to the designated function of your assign management
-  $result = delete_journalaction($connect,$_GET['del']);
+  $result = delete_authoraction($connect,$_GET['del']);
   if ($result =="1") {
-    message("Research deleted successfully!","1");
+    message("Author deleted successfully!","1");
+  }
+  else
+  {
+    message("Author not deleted!","0");
   }
 }
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    $result = create_journalaction($connect,$_POST['fname'],$_POST['lname'],$_POST['fullname'],$_SESSION['email'],$_POST['datepub'],$_POST['created']);
+    $result = create_authoraction($connect,$_POST['name'],$_POST['email']);
     if ($result == 1) {
       message("Author created successfully!",1);
     } else {
-      message("Could not create Author!",0);
+      message("Could not create author!",0);
     }
   }
 }
-// upload file section
-if(isset($_FILES['files'])){
-  $errors= array();
-  $file_name_array = explode('.',$_FILES['files']['name']);
-  $file_size =$_FILES['files']['size'];
-  $file_tmp =$_FILES['files']['tmp_name'];
-  $file_type=$_FILES['files']['type'];
-  $file_ext=strtolower(end($file_name_array));
-  
-  $extensions= array("pdf","txt","docx");
-  
-  if(in_array($file_ext,$extensions)=== false){
-     $errors[]="extension not allowed, please choose a PDF or DOCX file.";
-  }
-  
-  if($file_size > 2097152){
-     $errors[]='File size must be excately 2 MB';
-  }
-  
-  if(empty($errors)==true){
-    // location
-     move_uploaded_file($file_tmp,"uploads/".$_FILES['files']['name']);
-  }else{
-     print_r($errors);
-  }
-}
-
 
 ?>
 
@@ -131,15 +108,9 @@ if(isset($_FILES['files'])){
        <div class="modal-body">
          <!-- change the form add based on your designated management -->
          <div class="form-group">
-           <label for="fname">First Name</label>
-           <input type="text" class="form-control" id="fname" name="fname" required>
            <div class="form-group">
-             <label for="lname">Last Name</label>
-             <input type="text" class="form-control" id="lname" name="lname">
-           </div>
-           <div class="form-group">
-							<label for="fullname">Full Name</label>
-							<textarea class="form-control" id="fullname" name="fullname"></textarea>
+							<label for="name">Full Name</label>
+							<input type="text" class="form-control" id="name" name="name">
 					</div>
          </div>
          <div class="form-group">
@@ -195,7 +166,7 @@ if(isset($_FILES['files'])){
          <div class="dropdown-menu" aria-labelledby="option">
            <a class="dropdown-item" href="../author/api/action.php?id= <?php echo $data['id']?>">View</a>
            <a class="dropdown-item" href="../author/api/action.php?edit=<?php echo $data['id']?>">Edit</a>
-           <!-- <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?> -->
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
      </td>

@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/db.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/DB.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/Message.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php";
+include "/xampp/htdocs/CustomLandingPage/admin/author/inc/db.php";
+include "/xampp/htdocs/CustomLandingPage/admin/author/functions/DB.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/author/functions/Message.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/author/functions/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +85,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
                   <a class="dropdown-item" href="/admin/article/article.php">Article Management</a>
                   <?php } ?>
                   <?php if ($_SESSION['role']== "Administrator"){ ?>
-                  <a class="dropdown-item" href="#">Author Management</a>
+                  <a class="dropdown-item" href="/admin/author/author.php">Author Management</a>
                   <?php } ?>
                   <a class="dropdown-item" href="#">Events Management</a>
                   </li>
