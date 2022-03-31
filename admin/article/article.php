@@ -8,7 +8,7 @@ if (empty($_SESSION['id'])) {
 <!-- #Journal-->
 <section id="intro" class="clearfix">
   <div class="container">
-  <h3 style="color:#fff;">&nbsp;<b> Journal Management </b></h3>
+  <h3 style="color:#fff;">&nbsp;<b> Article Management </b></h3>
     <div class="card-group">
           <div class="col-md-3 col-sm-5">
             <div class="card">

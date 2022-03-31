@@ -40,7 +40,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/author/functions/Message.func.php
 
   
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
 
 
 
@@ -61,7 +61,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/author/functions/Message.func.php
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="#intro" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+       <a href="/CustomLandingPage/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
       
       <nav class="main-nav float-right d-none d-lg-block" >
@@ -105,8 +105,6 @@ include "/xampp/htdocs/CustomLandingPage/admin/author/functions/Message.func.php
       </nav><!-- .main-nav -->
     </div>
   </header><!-- #header -->
-
-
 
 <!-- #footer -->
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>

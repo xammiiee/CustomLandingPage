@@ -49,11 +49,11 @@ if (isset($_GET['edit'])) {
 	<div class="container">
 		<table class="table table-bordered " >
 			<thead class="thead-dark">
-			
 				<tr>
 					<th scope="cols" colspan="3" class="p-0">
 						<!--  -->
-						<h5> <a href="action.php?id=<?php echo $data['id'];?>&ref=journal"><button class="btn btn-dark btn-sm">← Back to project</button></a> </h5>
+						<h5> <a href=""><button class="btn btn-dark btn-sm">← Back to project</button></a> </h5>
+						<center><h5><span>EDIT RESEARCH</span></h5></center>
 					</th>
 				</tr>
 			</thead>
@@ -62,34 +62,142 @@ if (isset($_GET['edit'])) {
 				<tr>
 					<td>
 						<!-- change this form to what must be edited to your assign management -->
+						<!-- TITLE -->
 						<div class="form-group">
-							<label for="author">Title</label>
-							<input type="text" class="form-control" id="title" name="title" value="<?php echo $data['title'];?>">
-							<div class="form-group">
-								<label for="title">Main Author</label>
-								<input class="form-control" id="m_author" name="m_author" value="<?php echo $data['main_author'];?>" disabled>
-							</div>
-							<div class="form-group">
-								<label for="title">Co-Author</label>
-								<input class="form-control" id="m_author" name="c_author" value="<?php echo $data['co_authors'];?>" disabled>
-							</div>
-							<div class="form-group">
-								<label for="description">Description</label>
-								<textarea class="form-control" id="abstract" name="abstract " rows="5"></textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="datepub">Date Publish</label>
-							<input type="date" class="form-control" id="datepub" name="datepub" value="<?php echo $data['datepub'];?>">
+							<label class="label">Title</label>
+							<textarea rows="2" cols="60" type="text "name="title" id="title" class="form-control" value =''><?php echo $data['title'];?></textarea>
 						</div>
 
+						<!-- MAIN AUTHOR -->
+						<div class="form-group">
+								<label class="label">Main Author</label><br>
+								<input class="form-control" id="m_author" name="m_author" value="<?php echo $data['main_author'];?>" disabled>
+							</div>
+						
+						<!-- CO AUTHOR -->
+						<div class="row">
+							
+							<div class="col">
+								<label class="label">Co-Author(s) *</label><br>
+								<input class="form-control" id="c_authors" name="c_authors" value="<?php echo $data['co_authors'];?>" disabled>
+							</div>
+							<div class="col" id="co-author-list" >
+
+							</div>
+						</div>
+
+						<!-- ABSTRACT -->
+						<div class="form-group">
+						<label class="label">Abstract *</label>
+						<textarea rows="5" cols="60" type="text "name="abstract" id="title" class="form-control"></textarea>
+						</div>
+
+						<div class="row">
+						<!-- DATE PUBLISH -->
+						<div class="col">
+							<div class="form-group">
+								<label>Date Publish *</label>
+								<input type="text" name="dpub" id="dpub" class="form-control" value="<?php echo $data['date_publish'];?>" disabled/>
+							</div>
+						</div>
+
+						<!-- FIELD OF STUDY -->
+						<div class="col">
+							<div class="form-group">
+								<label class="label">Field of Study *</label><br>
+								<select class="custom-select" id="fstudy" name="fstudy">
+								<option selected disabled><?php echo $data['field_of_study'];?></option>
+								<option value="Accounting and Finance">Accounting and Finance</option>
+								<option value="Business and Economics">Business and Economics</option>
+								<option value="Computer Studies">Computer Studies</option>
+								<option value="Hospitality">Hospitality</option>
+								<option value="Nursing">Nursing</option>
+								</select>
+							</div>
+						</div>
+						</div>
+
+						<div class="row">
+
+						<!-- TAGS -->
+						<div class="col">
+							<?php
+							if(isset($_GET['bt']))
+							{
+								$comma_separated = implode(",", $mytags);
+								echo $comma_separated;
+							}
+							?>
+							<label class="label">Tag(s) *</label>
+							<select class="custom-select" id="drop-tags">
+								<option selected disabled> </option>
+								<?php
+								$result = get_research_id($connect,$_GET['edit']);
+								if ($result->num_rows>0) 
+								{
+								  if($data['tagging'] != "Computer" || $data['tagging'] != "WebDesign" || $data['tagging'] != "InternetSecurity")
+								  {?>
+									<option value="Computer" id="Computer">Computer</option>
+									<option value="WebDesign" id="WebDesign">Web Design</option>
+									<option value="InternetSecurity" id="InternetSecurity">Internet Security</option>
+								  <?php
+								  }
+								}
+								?>
+								
+							</select>
+							<div class="input-group-append">
+								<button class="btn btn-info" type="button" id="btn-tags" name="btntags">Add</button>
+							</div>
+						</div>
+						<div class="col">
+							<label>--Tags Added--</label>
+							<ul class="list-group" id="tags-list" >
+								<?php
+								$mytags = array();
+
+								$result = get_research_id($connect,$_GET['edit']);
+								if ($result->num_rows>0) 
+								{
+								  while ($data = mysqli_fetch_array($result)) 
+								  {
+									 {
+										echo  "<option>".$data['tagging']."</option>";
+										$mytags =  array($data['tagging']);
+									 }
+								  }
+								}
+								?>
+							</ul>
+						</div>
+						</div><br>
+						<div class="form-group">
+							<?php
+							// $travel = 
+							$added = explode(",", $_POST["added"]);
+							$travel = array_merge($travel, $added);
+							
+							
+							echo "<p> Here is the list with your additions:</p>";
+							
+							echo "<ul>";
+							
+							foreach ($travel as $t)
+								 {
+								 echo "<li>$t</li>";
+								 }
+							
+							echo "</ul>";
+							?>
+							<label for="files">Add (pdf, txt or docs)</label>
+							<input type="file" class="form-control-file" id="files" name="files">
+						</div>
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">
 
 						<div class="form-group" align="right">
-							<button class="btn btn-primary btn-sm">Save Project</button> <a class="btn btn-dark btn-sm" href="/project.php?id=<?php echo $data['id'];?>&ref=journal">Cancel</a>
+							<button class="btn btn-primary btn-sm">Save Edit</button> <a class="btn btn-dark btn-sm" href="/action.php?id=<?php echo $data['id'];?>&ref=research">Cancel</a>
 						</div>
 					</td>
-
 				</tr>
 			</tbody>
 		</form>

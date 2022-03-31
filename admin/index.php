@@ -43,72 +43,77 @@
           Header
           ============================-->
           <header id="header" class="fixed-top">
-            <div class="container">
-              <div class="logo float-left">
-              <a href="#intro" class="scrollto"><img src="../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
-              </div>
-              
-              <nav class="main-nav float-right d-none d-lg-block" >
-                <ul>
-                <?php 
-                if (isset($_SESSION['id'])) 
-                { 
-                  if ($_SESSION['role'] == "Administrator") 
-                  { ?>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">
-                        Management
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../admin/account/account.php">Account Management</a>
-                        <a class="dropdown-item" href="../admin/research/research.php">Research Management</a>
-                        <a class="dropdown-item" href="../admin/author/author.php">Author Management</a>
-                        <a class="dropdown-item" href="../admin/journal/journal.php">Journal Management</a>
-                        <a class="dropdown-item" href="../admin/article/article.php">Article Management</a>
-                        <a class="dropdown-item" href="../admin/news/index.php">News Management</a>
-                        <a class="dropdown-item" href="../admin/events/index.php">Events Management</a>
-                    </li>
-                    <!-- <li class="nav-item active" >
-                      <a class="nav-link" href="/journal.php">Home <span class="sr-only">(current)</span></a>
-                    </li> -->
-                    <li><a><?php echo $_SESSION['name'];?></a></li>
-                    <li class="nav-item dropdown" >
-                        <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user"></i>&nbsp;</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#settings">Settings</a>
-                          <a class="dropdown-item" href="#aboutus">About Us</a>
-                        
-                          <a class="dropdown-item" href="../signup/logout.php">Signout</a>
-                      </div>
-                    </li>
-                <?php 
-                  }
-                  else if($_SESSION['role']== "User")
-                  {?>
-                    <li class="nav-item dropdown" >
-                      <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-user"></i>&nbsp;</a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#settings">Settings</a>
-                        <a class="dropdown-item" href="#aboutus">About Us</a>
-                      
-                        <a class="dropdown-item" href="../signup/logout.php">Signout</a>
-                      </div>
-                  </li><?php
-                  }  
-                } 
-                else 
-                { ?>
-                  <li><a href="../login/login.php">Login</a></li>
-                  <li><a href="../signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
+    <div class="container">
+      <div class="logo float-left">
+       <a href="/CustomLandingPage/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+      </div>
+      
+      <nav class="main-nav float-right d-none d-lg-block" >
+        <ul>
+        <?php 
+          if (isset($_SESSION['id'])) 
+          { 
+            if ($_SESSION['role']=="Administrator")
+            { ?>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">Management</a>
+              <?php 
+            }
+            ?>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../admin/account/account.php">Account Management</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../admin/research/research.php">Research Management</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../admin/author/author.php">Author Management</a>
+                  <?php } ?>
                   
-                <?php 
-                } ?>
-                </ul>
-              </nav><!-- .main-nav -->
-            </div>
-          </header><!-- #header -->
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../admin/journal/journal.php">Journal Management</a>
+                  <?php } ?>
+                  
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../admin/article/article.php">Article Management</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../admin/author/author.php">Author Management</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../admin/events/index.php">Events Management</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../admin/news/index.php">News Management</a>
+                  <?php } ?>
+                  </div>
+                </li>
+                  <li><a><?php echo $_SESSION['name'];?></a></li>
+                  <li class="nav-item dropdown" >
+                  <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user"></i>&nbsp;</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/admin/profile/profile.php">Profile</a>
+                      <a class="dropdown-item" href="#aboutus">About Us</a>
+                      <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
+                    </div>
+                  </li>
+                  <?php
+          } 
+          else 
+          { 
+            header("Location: ../../login/login.php");
+          }?>
+        </ul>
+      </nav><!-- .main-nav -->
+    </div>
+  </header><!-- #header -->
           
 
 
