@@ -268,10 +268,12 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
           <label for="files">Add (pdf, txt or docs)</label>
           <input type="file" class="form-control-file" id="files" name="files">
         </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-info" id="submit" name="btnsubmit" >
-            Submit
-        </button>
+        
+      <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
+      <input type="hidden" name="create" value="create"/>
+      <div class="modal-footer">
+         <button class="btn btn-primary" id="submit" name="btnsubmit">Save</button>
+         <button class="btn btn-secondary" data-dismiss="modal" >Cancel</button>
       </div>
       </form>
     </div>

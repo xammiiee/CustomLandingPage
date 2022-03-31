@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "/xampp/htdocs/CustomLandingPage/admin/journal/inc/db.php";
-include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/DB.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/functions.php";
-include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/inc/db.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/functions/DB.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/functions/Message.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.ph
 	<link rel="stylesheet" href="../../../resource/css/mdb.min.css">
 
    <!-- Datatables -->
-   <link href="../../../resource/assets/dataTables.bootstrap4.min.css" rel="stylesheet">
+   <link href="../../../resource/ts/dataTables.bootstrap4.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
   <link href="../../../resource/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -61,54 +61,75 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.ph
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="#intro" class="scrollto"><img src="../../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+       <a href="/CustomLandingPage/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
       
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-        <?php if (isset($_SESSION['id'])) { if ($_SESSION['role']=="Administrator") { ?>
+        <?php 
+          if (isset($_SESSION['id'])) 
+          { 
+            if ($_SESSION['role']=="Administrator")
+            { ?>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Management
-                </a>
-               
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/acount.php">Account Management</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/research/research.php">Research Management</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/author/author.php">Author Management</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/journal/journal.php">Journal Management</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/article/article.php">Article Management</a>
-                  <a class="dropdown-item" href="#">Author Management</a>
-                  <a class="dropdown-item" href="#">Events Management</a>
-                  </li>
-                  <li class="nav-item active" >
-                    <a class="nav-link" href="/journal.php">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item active"><a class="dropdown-item" href="../../signup/logout.php">Signout</a></li>
+                <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">Management</a>
+              <?php 
+            }
+            ?>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../../account/account.php">Account Management</a>
                   <?php } ?>
-                  <?php if ($_SESSION['role']=="Researcher" || $_SESSION['role']=="Visitor") { ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../../research/research.php">Research Management</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../../author/author.php">Author Management</a>
+                  <?php } ?>
+                  
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../../journal/journal.php">Journal Management</a>
+                  <?php } ?>
+                  
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../../article/article.php">Article Management</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../../author/author.php">Author Management</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../../events/index.php">Events Management</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../../news/index.php">News Management</a>
+                  <?php } ?>
+                  </div>
+                </li>
+                  <li><a><?php echo $_SESSION['name'];?></a></li>
                   <li class="nav-item dropdown" >
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#settings">Settings</a>
-                    <a class="dropdown-item" href="#aboutus">About Us</a>
-                   
-                    <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
-                  </div>
+                      <a class="dropdown-item" href="../../profile/profile.php">Profile</a>
+                      <a class="dropdown-item" href="#aboutus">About Us</a>
+                      <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
+                    </div>
                   </li>
-                  <?php } ?>
-                  <?php } else { ?>
-                <li><a href="/login/login.php">Login</a></li>
-                <li><a href="/signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
-          
-          <?php } ?>
+                  <?php
+          } 
+          else 
+          { 
+            header("Location: ../../login/login.php");
+          }?>
         </ul>
       </nav><!-- .main-nav -->
     </div>
   </header><!-- #header -->
-
-
 
 <!-- #footer -->
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
@@ -118,15 +139,12 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.ph
 
   <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
   <!-- JavaScript Libraries -->
-  <script src="../../../resource/lib/jquery/jquery.min.js"></script>
-  <script src="../../../resource/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="../../../resource/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../../../resource/lib/easing/easing.min.js"></script>
-  <script src="../../../resource/lib/mobile-nav/mobile-nav.js"></script>
-  <script src="../../../resource/lib/wow/wow.min.js"></script>
-  <script src="../../../resource/lib/waypoints/waypoints.min.js"></script>
-  <script src="../../../resource/lib/counterup/counterup.min.js"></script>
-  <script src="../../../resource/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="./../resource/lib/jquery/jquery.min.js"></script>  <script src="./../resource/lib/jquery/jquery-migrat.min.js"></script>
+  <script src="../../../resource/lib/bootstrap/js/bootstrap.bunle.min.js"></script>
+  <script src="../../../resource/lib/easing/easing.min.js"></script <script src="./../resource/lib/mobile-nav/mobile-nav.js></script>
+  <script src="../../../resource/lib/wow/wow.min.js"></script>  <script src="./../resource/lib/waypoints/waypoints.minjs"></script>
+  <script src="../../../resource/lib/counterup/counterup.minjs"></script>
+  <script src="../../../resource/lib/owlcarousel/owl.carousel.min.s"></script>
   <script src="../../../resource/lib/isotope/isotope.pkgd.min.js"></script>
   <script src="../../../resource/lib/lightbox/js/lightbox.min.js"></script>
   <!-- Contact Form JavaScript File -->
@@ -136,11 +154,10 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.ph
   <!-- Template Main Javascript File -->
   <script>
   $(document).ready( function () {
-  } );
+    $('#table_id').DataTable();
+    } );
   </script>
-  <script language="javascript" type="text/javascript">
-  window.history.forward();
-</script>
   <script src="../../../resource/js/main.js"></script>
+  <script src="../script/main.js"></script>
   </body>
 </html>
