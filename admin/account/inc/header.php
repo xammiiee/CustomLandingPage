@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/db.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/DB.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/Message.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php";
+include "/xampp/htdocs/CustomLandingPage/admin/account/inc/db.php";
+include "/xampp/htdocs/CustomLandingPage/admin/account/functions/DB.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/account/functions/Message.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/account/functions/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +63,6 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
       <div class="logo float-left">
        <a href="/CustomLandingPage/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
-      
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
         <?php 

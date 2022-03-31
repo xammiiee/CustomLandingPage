@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    $result = create_accountaction($connect,$_POST['name'],$_POST['email'],$_POST['pass'],$_POST['ucategory'],$_POST['au_member']);
+    $result = create_accountaction($connect,$_POST['name'],$_POST['email'],$_POST['pass'],$_SESSION['id'],$_POST['ucategory'],$_POST['au_member']);
     if ($result == 1) {
       message("Account created successfully!",1);
     } else {
@@ -116,9 +116,9 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 					</div>
 
           <div class="form-group">
-               <select class="browser-default custom-select"  id="aumember"
+               <select class="browser-default custom-select"  id="ucategory"
                   class="form-control"
-                  name="aumember"
+                  name="ucategory"
                   value=" ">
                   <option selected disabled>Category</option>
                   <option value="User">User</option>
@@ -127,9 +127,9 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
                 </div>
 
          <div class="form-group">
-               <select class="browser-default custom-select"  id="aumember"
+               <select class="browser-default custom-select"  id="au_member"
                   class="form-control"
-                  name="aumember"
+                  name="au_member"
                   value=" ">
                   <option selected disabled>Member of Arellano Community?</option>
                   <option value="Yes">Yes</option>
@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <th scope="col">Name</th>
        <th scope="col">Email</th>
        <th scope="col">Password</th>
-       <th scope="col">Status</th>
+
        <th scope="col">Category</th>
        <th scope="col">Membership</th>
        <th scope="col" align="center">Action</th>
@@ -176,7 +176,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          <td><?php echo $data['name']?></a></td>
          <td><?php echo $data['email']?></a></td>
          <td><?php echo $data['pass']?></td>
-         <td><?php echo $data['status']?></td>
          <td><?php echo $data['ucategory']?></td>
          <td><?php echo $data['au_member']?></td>
          <td><?php
@@ -185,8 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          ?>
        </td>
        
-       <td><?php 
-      //  echo date("Y-m-d",strtotime($data['created']));?></td>
+     
        <td align="center"><div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
