@@ -121,8 +121,8 @@ if (!empty($_GET['id'])) {
 										<!-- <div class="card-body"> -->
 											<div class="row">
 												<div class="col-sm-6">
-													<h5 class="card-title text-muted">Research</h5>
-													<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+													<h5 class="card-title text-muted">All Publications</h5>
+													<?php echo get_author($connect)->num_rows;?>
 												</div>
 												<div class="col-sm-6">
 													<h5 class="card-title text-muted">Views</h5>

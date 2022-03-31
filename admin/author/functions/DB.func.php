@@ -161,6 +161,28 @@ function get_research_by_id($connect,$id){
 	}
 }
 
+function create_journalaction($connect,$author,$title,$description,$creator,$datepub,$created,$filelocation){
+
+	$sql = "INSERT INTO tbljournal VALUES ('','$title','$description','$author','$creator','$datepub','$created','0','$filelocation')";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+function update_journalaction($connect,$author,$title,$description,$datepub,$id){
+
+	$sql = "UPDATE tbljournal SET author='$author',title='$title',description='$description',datepub='$datepub' WHERE id=$id";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
 
 
 

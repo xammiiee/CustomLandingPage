@@ -26,7 +26,7 @@ if (isset($_POST['id'])) {
 
 // editing of journal
 if (isset($_GET['edit'])) {
-	$data = get_journalaction($connect,$_GET['edit']);
+	$data = get_journalactions($connect,$_GET['edit']);
 	?>
 	<br><br><br><br>
 
@@ -89,7 +89,7 @@ if (isset($_GET['edit'])) {
 
 // Get journal id
 if (!empty($_GET['id'])) {
-	$data = get_journalaction($connect,$_GET['id']);
+	$data = get_journalactions($connect,$_GET['id']);
 	?>
 <br><br><br><br>
 	<!--View Journal-->

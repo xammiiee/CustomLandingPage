@@ -5,7 +5,7 @@ if (empty($_SESSION['id'])) {
   header("Location: login.php");
 }
 ?>
-<!-- #Journal-->
+<!-- #Article-->
 <section id="intro" class="clearfix">
   <div class="container">
   <h3 style="color:#fff;">&nbsp;<b> Article Management </b></h3>

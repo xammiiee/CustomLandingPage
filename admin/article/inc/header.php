@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/db.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/DB.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/Message.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php";
+include "/xampp/htdocs/CustomLandingPage/admin/article/inc/db.php";
+include "/xampp/htdocs/CustomLandingPage/admin/article/functions/DB.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/article/functions/Message.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/article/functions/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -96,6 +96,12 @@ function get_authors($connect){
 	}
 }
 
+function get_author($connect){
+	$sql = "SELECT * FROM tblauthor";
+	$result = $connect->query($sql);
+		return $result;
+}
+
 //journal
 
 function get_journal($connect){
@@ -115,9 +121,9 @@ function get_journalaction($connect,$id){
 	}
 }
 
-function create_journalaction($connect,$author,$title,$description,$creator,$datepub,$created,$filelocation){
+function create_journalaction($connect,$author,$title,$description,$datepub,$creator,$created,$filelocation){
 
-	$sql = "INSERT INTO tbljournal VALUES ('','$title','$description','$author','$creator','$datepub','$created','0','$filelocation')";
+	$sql = "INSERT INTO tbljournal VALUES ('','$title','$description','$author','$datepub','$creator','$created','0','$filelocation')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -128,7 +134,7 @@ function create_journalaction($connect,$author,$title,$description,$creator,$dat
 
 function update_journalaction($connect,$author,$title,$description,$datepub,$id){
 
-	$sql = "UPDATE tbljournal SET author='$author',title='$title',description='$description',datepub='$datepub' WHERE id=$id";
+	$sql = "UPDATE tbljournal SET author='$author',title='$title',description='$description',date_pub='$datepub' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -176,9 +182,10 @@ function get_article($connect,$id){
 	}
 }
 
-function create_article($connect,$aauthor,$atitle,$adescription,$adatepub,$creator,$atags){
 
-	$sql = "INSERT INTO tblarticle VALUES ('','$aauthor','$atitle','$adescription','$adatepub','$creator','$atags',0)";
+function create_article($connect,$a_title,$a_description,$a_author,$a_creator,$a_datepub,$a_created,$a_filelocation,$a_tagging){
+
+	$sql = "INSERT INTO tblarticle VALUES ('','$a_title','$a_description','$a_author','$a_creator','$a_datepub','$a_created','$a_filelocation','$a_tagging','0')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -187,9 +194,9 @@ function create_article($connect,$aauthor,$atitle,$adescription,$adatepub,$creat
 	}
 }
 
-function update_article($connect,$aauthor,$atitle,$adescription,$adatepub,$id){
+function update_article($connect,$a_title,$a_description,$a_author,$a_datepub,$id){
 
-	$sql = "UPDATE tblarticle SET aauthor='$aauthor',atitle='$atitle',adescription='$adescription',adatepub='$adatepub' WHERE id=$id";
+	$sql = "UPDATE tblarticle SET a_title='$a_title',a_description='$a_description',a_author='$a_author',a_datepub='$a_datepub' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

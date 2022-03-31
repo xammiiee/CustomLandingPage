@@ -182,6 +182,7 @@ function get_article($connect,$id){
 	}
 }
 
+
 function create_article($connect,$a_title,$a_description,$a_author,$a_creator,$a_datepub,$a_created,$a_filelocation,$a_tagging){
 
 	$sql = "INSERT INTO tblarticle VALUES ('','$a_title','$a_description','$a_author','$a_creator','$a_datepub','$a_created','$a_filelocation','$a_tagging','0')";

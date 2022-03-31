@@ -6,7 +6,7 @@ if (empty($_SESSION['id'])) {
 }
 
 ?>
-<!-- #Journal-->
+<!-- #Author-->
 <section id="intro" class="clearfix">
   <div class="container">
   <h3 style="color:#fff;">&nbsp;<b> Author Management </b></h3>
@@ -15,7 +15,7 @@ if (empty($_SESSION['id'])) {
             <div class="card">
               <div class="card-body">
                 <!-- change function to the designated function of your assign management -->
-                <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php echo get_author($connect)->num_rows;?><?php 
                 // echo get_journal($connect)->num_rows;?></h2>
                  <h5 class="card-title">All Author</h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>

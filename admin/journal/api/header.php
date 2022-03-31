@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "/xampp/htdocs/CustomLandingPage/admin/journal/inc/db.php";
-include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/DB.func.php";
+include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/DB.func.journal.php";
 include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/functions.php";
 include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/Message.func.php";
 ?>
