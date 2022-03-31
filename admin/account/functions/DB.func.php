@@ -87,7 +87,7 @@ function get_role_name($connect,$id){
 
 function create_accountaction($connect,$name,$email,$password,$ucategory,$aumember){
 
-	$sql = "INSERT INTO tblaccount VALUES ('','$name','$email','$password','Inactive','$ucategory','$aumember')";
+	$sql = "INSERT INTO tblaccount VALUES ('','$name','$email','$password','Inactive','$ucategory','$aumember','','','')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -96,6 +96,15 @@ function create_accountaction($connect,$name,$email,$password,$ucategory,$aumemb
 	}
 }
 
+function delete_accountaction($connect,$id){
+	$sql = "DELETE FROM tblaccount WHERE id=$id";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return "1";
+	} else {
+		return "0";
+	}
+}
 ?>
 
 

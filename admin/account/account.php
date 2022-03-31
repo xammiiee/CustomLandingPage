@@ -52,7 +52,7 @@ if (empty($_SESSION['id'])) {
 <?php
 if (isset($_GET['del'])) {
   // change function to the designated function of your assign management
-  $result = delete_journalaction($connect,$_GET['del']);
+  $result = delete_accountaction($connect,$_GET['del']);
   if ($result =="1") {
     message("Account deleted successfully!","1");
   }
@@ -190,8 +190,8 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
            <i class="fa fa-ellipsis-h"></i>
          </button>
          <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="action.php?id=<?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="action.php?edit=<?php echo $data['id']?>">Edit</a>
+           <a class="dropdown-item" href="./api/action.php?id=<?php echo $data['id']?>">View</a>
+           <a class="dropdown-item" href="./api/action.php?edit=<?php echo $data['id']?>">Edit</a>
            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
    <div class="modal-dialog" role="document">
      <div class="modal-content">
        <div class="modal-header">
-         <h5 class="modal-title" id="deleteLabel">Delete Journal</h5>
+         <h5 class="modal-title" id="deleteLabel">Delete Account</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>

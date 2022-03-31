@@ -127,7 +127,7 @@ function create_authoraction($connect,$name, $email, $profession,$description,$f
 	if ($result === true) {
 		return 1;
 	} else {
-		return 0;
+		return $result;
 	}
 }
 
