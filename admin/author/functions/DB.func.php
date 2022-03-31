@@ -104,18 +104,18 @@ function get_researchaction($connect,$id){
 	}
 }
 
-
+// edit author's profile
 function get_author($connect){
-
 	$sql = "SELECT * FROM tblauthor";
 	$result = $connect->query($sql);
 		return $result;
 }
+// viewing author's profile
 function get_authors($connect,$id){
 	$sql = "SELECT * FROM tblauthor WHERE id='$id'";
 	$result = $connect->query($sql);
-	if ($result === true) {
-		return "1";
+	if ($result->num_rows > 0) {
+		return $result->fetch_assoc();
 	} else {
 		return "0";
 	}
@@ -131,8 +131,8 @@ function create_authoraction($connect,$name, $email, $profession,$description,$f
 	}
 }
 
-function update_authoraction($connect,$name, $email, $profession, $fstudy,$id){
-	$sql = "UPDATE tblauthor SET name='$name',email='$email',profession='$profession',fstudy='$fstudy' WHERE id=$id";
+function update_authoraction($connect,$name,$profession,$fstudy,$description,$id){
+	$sql = "UPDATE tblauthor SET name='$name',profession='$profession',fstudy='$fstudy',description='$description' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

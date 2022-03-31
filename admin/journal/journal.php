@@ -199,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <tr>
          <td scope="row" class="d-none"><?php echo date("F Y",strtotime($data['datepub']));?></td>
          <td><?php echo $data['id']?></td>
-         <td><a href="/CustomLandingPage/admin/profile/profile.php?id=<?php echo $data['id']?>"><?php echo $data['author']?></a></td>
+         <td><a href=./api/action.php?id=<?php echo $data['id']?>"><?php echo $data['author']?></a></td>
          <td><?php echo $data['title']?></a></td>
          <td><?php
          $user = get_user_data($connect,$data['creator']);

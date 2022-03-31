@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <tr>
         
          <td><?php echo $data['id']?></td>
-         <td><a href="/CustomLandingPage/admin/profile/profile.php?id=<?php echo $data['id']?>"><?php echo $data['name']?></a></td>
+         <td><a href="./api/action.php?id=<?php echo $data['id']?>"><?php echo $data['name']?></a></td>
          <td><?php echo $data['profession']?></td>
          <td><?php echo $data['fstudy']?></td>
         <td><?php echo date("Y-m-d",strtotime($data['created']));?></td>
