@@ -92,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   }
 }
 ?>
-
 <div class="container">
 <!-- Create task button -->
 <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-project">
@@ -102,63 +101,77 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 <i class="fa fa-refresh" aria-hidden="true"></i>
 </button>
 </a>
-
 <br/>
 <br/>
 
-
-
-<!-- Create New Journal -->
-
+<!-- Modal New Journal -->
 <div class="modal fade" id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
    <div class="modal-content">
      <form method="post" name="AddJournal" action="journal.php" enctype="multipart/form-data">
-       <div class="modal-header">
+       
+        <div class="modal-header">
          <h5 class="modal-title" id="create-project-label">Create Journal</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
-       </div>
-       <div class="modal-body">
-         <div class="form-group">
-           <label for="author">Select Author</label>
-                <select name="author" id="Select Author" class="form-control" required>
-              <option  selected>Choose...</option>
-              <?php $authors = get_authors($connect); while ($author = mysqli_fetch_array($authors)) { 
-                if ($author['role'] !="Administrator") {
-                  ?>
-                  <option value="<?php echo $author['name'];?>"><?php echo $author['name'];?></option>
-                <?php }} ?>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="author">Select Author</label>
+              <select name="author" id="Select Author" class="form-control" required>
+                <option  selected>Choose...</option>
+                <?php 
+                  $authors = get_authors($connect);
+                  if ($result->num_rows>0) 
+                  { 
+                    while ($author = mysqli_fetch_array($authors)) 
+                    { 
+                      if ($author['role'] !="Administrator") 
+                      {
+                        ?>
+                        <option value="<?php echo $author['name'];?>"><?php echo $author['name'];?></option>
+                      <?php 
+                      }
+                    } 
+                  }
+                    ?>
               </select>
-           <div class="form-group">
-             <label for="title">Title</label>
-             <input type="text" class="form-control" id="title" name="title" oninvalid="alert('Hey, enter your title')" required="required">
+          </div>
+
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" oninvalid="alert('Hey, enter your title')" required="required">
            </div>
-           <div class="form-group">
-							<label for="description">Description</label>
-							<textarea class="form-control" id="description" name="description" required="required"></textarea>
+
+          <div class="form-group">
+						<label for="description">Description</label>
+						<textarea class="form-control" id="description" name="description" required="required"></textarea>
 					</div>
-         </div>
-         <div class="form-group">
+
+          <div class="form-group">
            <label for="datepub">Date Published</label>
            <input type="date" class="form-control" id="datepub" name="datepub"  required="required">
          </div>
+
          <div class="form-group">
           <label for="files">Add (pdf, txt or docs)</label>
           <input type="file" class="form-control-file" id="files" name="files" oninvalid="alert('Hey, upload your file')" required="required">
         </div>
-       </div>
-       <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
-       <input type="hidden" name="create" value="create"/>
-       <div class="modal-footer">
-         <button class="btn btn-primary">Save</button>
-         <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-       </div>
-     </form>
+       
+        <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
+        <input type="hidden" name="create" value="create"/>
+       
+        <div class="modal-footer">
+          <button class="btn btn-primary">Save</button>
+          <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+
+        </div>
+      </form>
+    </div>
    </div>
- </div>
-</div>
+   </div>
 
 
 <!--Journal-->
@@ -235,7 +248,14 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 </tbody>
 </table>
 </div>
+
 </div>
+
+</div>
+
+
+
+
 
 <script src="assets/datatables.min.js"></script>
 <script>
@@ -342,7 +362,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 
         </div>
       </div>
-      
     </div>
+  </footer>
 
 
