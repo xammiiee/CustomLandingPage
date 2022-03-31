@@ -1,101 +1,190 @@
 <?php
-// include database connection file
+
+if (isset($_SESSION['id'])) 
+{ 
+  if($_SESSION['role'] == "Administrator")
+  {
+
+  }
+  elseif($_SESSION['role'] == "User")
+  {
+  }
+}
+// including the database connection file
+
+include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+
 include_once("config.php");
 
-// Check if form is submitted for user update, then redirect to homepage after update
-if(isset($_POST['update']))
+if(isset($_POST['update_events']))
 {	
-	$id = $_POST['id'];
-	$event_name=$_POST['event_name'];
-	$event_description=$_POST['event_description'];
-	$date=$_POST['date'];
-	$time = $_POST['time'];
+	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
+	$event_name = mysqli_real_escape_string($mysqli, $_POST['event_name']);
+	$event_description = mysqli_real_escape_string($mysqli, $_POST['event_description']);
+	$date = mysqli_real_escape_string($mysqli, $_POST['date']);	
+	$time = mysqli_real_escape_string($mysqli, $_POST['time']);	
+	
+	
+	// checking empty fields
+	if(empty($event_name) || empty($event_description) || empty($date) || empty($time)) {	
+			
+		if(empty($event_name)) {
+			echo "<font color='red'>Name field is empty.</font><br/>";
+		}
 		
-	// update user data
-	$result = mysqli_query($mysqli, "UPDATE tblevents SET event_name='$event_name',event_description='$event_description',$date='$date' WHERE id=$id");
+		if(empty($event_description)) {
+			echo "<font color='red'>Description field is empty.</font><br/>";
+		}
+		
+		if(empty($date)) {
+			echo "<font color='red'>Date field is empty.</font><br/>";
+		}		
+		if(empty($time)) {
+			echo "<font color='red'>Time field is empty.</font><br/>";
+		}	
+	} else {	
+		//updating the table
+		$result = mysqli_query($mysqli, "UPDATE tblevents SET event_name=' $event_name ', event_description='$event_description', date='$date', time='$time' WHERE id=$id");
 
-	// Redirect to homepage to display updated user in list
-	header("Location: index.php");
+		//redirectig to the display page. In our case, it is index.php
+		header("Location: index.php");
+	}
 }
+
 ?>
 <?php
-// Display selected user data based on id
-// Getting id from url
+//getting id from url
 $id = $_GET['id'];
 
-// Fetech user data based on id
+//selecting data associated with this particular id
 $result = mysqli_query($mysqli, "SELECT * FROM tblevents WHERE id=$id");
 
-while($user_data = mysqli_fetch_array($result))
+while($res = mysqli_fetch_array($result))
 {
-	$event_name = $user_data['event_name'];
-	$event_description = $user_data['event_description'];
-	$date = $user_data['date'];
-	$time = $user_data['time'];
+	$id = $res['id'];
+	$event_name = $res['event_name'];
+	$event_description = $res['event_description'];
+	$date = $res['date'];
+	$time = $res['time'];
 }
 ?>
 <html>
-<head>	
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-	<title>Edit User Data</title>
-</head>
 
 <body>
-	<a href="index.php">Home</a>
-	<br/><br/>
+
+<head>	
+	<title>Edit Events</title>
+</head>
+<body>
 	
-	<form name="update_user" method="post" action="editevents.php">
-		<table>
-			<tr> 
-				<td>event_name</td>
-				<td><input type="text" name="name" value=<?php echo $event_name;?>></td>
-			</tr>
-			<tr> 
-				<td>event_description</td>
-				<td><input type="text" name="mobile" value=<?php echo $event_description;?>></td>
-			</tr>
-			<tr> 
-				<td>DATE</td>
-				<td>
-				<div class='input-group date' id='datetimepicker1'>
-                     <input type='text' class="form-control"name=email value=<?php echo $date;?>/>
-                     <span class="input-group-addon">
-                     <span class="glyphicon glyphicon-calendar"></span>
-                     </span>
-                  </div>
+<br><br><br><br>
+<div class="container">
+		<table class="table table-bordered " >
+			<thead class="thead-dark">
+			
+				<tr>
+					<th scope="cols" colspan="3" class="p-0">
+						<!--  -->
+						<h5> <a href="index.php"><button class="btn btn-dark btn-sm">← Back to project</button></a> </h5>
+					</th>
+				</tr>
+			</thead>
+			<form method="post">
+			<tbody>
+				<tr>
+					<td>
+						<!-- change this form to what must be edited to your assign management -->
+						<div class="form-group">
+							<label for="author">Event Name</label>
+							<input type="text" class="form-control" id="headlines" name="event_name" value="<?php echo $event_name;?>">
+							
+							<div class="form-group">
+             <label for="description">Description</label>
+			 <input type="text" class="form-control" id="Description" name="event_description" value="<?php echo $event_description;?>">
+					           </div>
+						</div>
+						<div class="form-group">
+							<label for="datepub">Dated Created</label>
+							<input type="date" class="form-control" id="date" name="date" value="<?php echo $date;?>">
+						</div>
 
-				</td>
-			</tr>
-			<tr> 
-				<td>TIME</td>
-				<td>
-				<div class='input-group date' id='datetimepicker1'>
-                     <input type='text' class="form-control"name=email value=<?php echo $time;?>/>
-                     <span class="input-group-addon">
-                     <span class="glyphicon glyphicon-calendar"></span>
-                     </span>
-                  </div>
+						<div class="form-group">
+							<label for="datepub">Time</label>
+							<input type="time" class="form-control" id="time" name="time" value="<?php echo $time;?>">
+						</div>
 
-				</td>
-			</tr>
-			<tr>
-				<td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-				<td><input type="submit" name="update" value="Update"></td>
-			</tr>
+
+						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $_GET['id'];?>">
+
+						<div class="form-group" align="right">
+							<button class="btn btn-primary btn-sm" name="update_events" value="Update">Update</button> <a class="btn btn-dark btn-sm" href="index.php">Cancel</a>
+						</div>
+					</td>
+
+				</tr>
+			</tbody>
+		</form>
 		</table>
-	</form>
+		</div>
+		</div>
+
+
+
+		
+        <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 footer-info">
+            <h3>AURESPOR</h3>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Terms of service</a></li>
+              <li><a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br>
+              <b>Phone:</b> +1 5589 55488 55<br>
+              <b>Email:</b> info@example.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit"  value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </footer><!-- #footer -->
+        
 </body>
 </html>
-
-<script>
-  $(function () {
-    $('#datetimepicker1').datetimepicker();
- });
-</script>

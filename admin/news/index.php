@@ -274,10 +274,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
          </button>
 
          <div class="dropdown-menu" aria-labelledby="option">
-          
-         <a class="dropdown-item" href="view.php?id=<?php echo $data['id']?>">View</a>
 
-        <a class="dropdown-item" href="edit.php?edit=<?php echo $data['id']?>">Edit</a>
+        <a class="dropdown-item" href="edit.php?id=<?php echo $data['id']?>">Edit</a>
 
            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
@@ -290,7 +288,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
    <div class="modal-dialog" role="document">
      <div class="modal-content">
        <div class="modal-header">
-         <h5 class="modal-title" id="deleteLabel">Delete Journal</h5>
+         <h5 class="modal-title" id="deleteLabel">Delete News</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
@@ -299,7 +297,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
          Are you sure you want to delete?
        </div>
        <div class="modal-footer">
-         <a href="?del=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
+         <a href="delete.php?id=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
        </div>
      </div>
