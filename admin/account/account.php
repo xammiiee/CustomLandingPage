@@ -57,6 +57,15 @@ if (isset($_GET['del'])) {
     message("Account deleted successfully!","1");
   }
 }
+
+if (isset($_GET['act'])) {
+  // change function to the designated function of your assign management
+  $result = update_activeaction($connect,$_GET['act']);
+  if ($result =="1") {
+    message("Account Active!","1");
+  }
+}
+
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
     // change function to the designated function of your assign management
@@ -69,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     }
   }
 }
+
 
 ?>
 
