@@ -42,6 +42,14 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
 
+<!--  -->
+<!-- <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+<!-- <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
+<link rel= "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"/> -->
+
 
 
   <!-- Main Stylesheet File -->
@@ -132,7 +140,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
   </header><!-- #header -->
 
 <!-- #footer -->
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
   <!-- Tables CDN -->
@@ -157,9 +165,11 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
   <!-- Template Main Javascript File -->
   <script>
   $(document).ready( function () {
-    $('#table_id').DataTable();
-    } );
+  } );
   </script>
+  <script language="javascript" type="text/javascript">
+  window.history.forward();
+</script>
   <script src="../../resource/js/main.js"></script>
   </body>
 </html>

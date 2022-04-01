@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2022 at 06:29 AM
+-- Generation Time: Mar 31, 2022 at 05:03 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -65,13 +65,6 @@ CREATE TABLE `tblarticle` (
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tblarticle`
---
-
-INSERT INTO `tblarticle` (`id`, `title`, `description`, `author`, `date_pub`, `created_by`, `tagging`, `status`) VALUES
-(3, 'sample 1', 'tile1', 'wertyuiojhgfdcvbnm', '2022-03-03', '1', 'computer, science', '0');
-
 -- --------------------------------------------------------
 
 --
@@ -80,13 +73,35 @@ INSERT INTO `tblarticle` (`id`, `title`, `description`, `author`, `date_pub`, `c
 
 CREATE TABLE `tblauthor` (
   `id` varchar(20) NOT NULL,
-  `fname` varchar(100) NOT NULL,
-  `lname` varchar(100) NOT NULL,
-  `fullname` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `profession` varchar(100) NOT NULL,
+  `description` longtext NOT NULL,
+  `fstudy` varchar(100) NOT NULL,
   `pdf_file` varchar(100) NOT NULL,
-  `detect` varchar(10) NOT NULL,
-  `get-selected` varchar(5) NOT NULL
+  `created` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblauthor`
+--
+
+INSERT INTO `tblauthor` (`id`, `name`, `email`, `profession`, `description`, `fstudy`, `pdf_file`, `created`) VALUES
+('1', 'Jaren Heruela', 'jaren@gmail.com', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblauthorredirect`
+--
+
+CREATE TABLE `tblauthorredirect` (
+  `id` int(100) NOT NULL,
+  `author_id` varchar(100) NOT NULL,
+  `author` varchar(200) NOT NULL,
+  `paper_id` varchar(100) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `date` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -108,7 +123,9 @@ CREATE TABLE `tblevents` (
 --
 
 INSERT INTO `tblevents` (`id`, `event_name`, `event_description`, `date`, `time`) VALUES
-(1, 'sample1', ' sample1sample1sample1sample1sample1sample1sample1sample1sample1sample1sample1sample1', '2022-03-25', '2022-03-18');
+(2, 'sample1', ' wertyuio', '2022-03-26', '2022-03-08'),
+(3, 'sample1', ' poiuytrew', '06:09', '2022-03-03'),
+(4, 'sample2', ' lkjljlkkgjb ', '2022-03-02', '04:11');
 
 -- --------------------------------------------------------
 
@@ -121,19 +138,12 @@ CREATE TABLE `tbljournal` (
   `title` varchar(500) NOT NULL,
   `description` longtext NOT NULL,
   `author` varchar(100) NOT NULL,
-  `date_pub` varchar(50) NOT NULL,
+  `datepub` varchar(50) NOT NULL,
   `creator` varchar(100) NOT NULL,
+  `created` varchar(100) NOT NULL,
   `status` varchar(10) NOT NULL,
   `pdf_file` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbljournal`
---
-
-INSERT INTO `tbljournal` (`id`, `title`, `description`, `author`, `date_pub`, `creator`, `status`, `pdf_file`) VALUES
-(4, 'sample 2', 'sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2sample 2', 'jaren', '1', '2022-03-18', '0', 'uploads/A multi-level collaborative filtering method that improves recommendations.pdf'),
-(5, 'sample2', 'sample2sample2sample2sample2sample2sample2sample2sample2sample2sample2', 'jaren', '1', '2022-03-09', '0', 'uploads/Afully ol rs for research student and researchers.pdf');
 
 -- --------------------------------------------------------
 
@@ -167,7 +177,10 @@ CREATE TABLE `tblnews` (
 --
 
 INSERT INTO `tblnews` (`id`, `name`, `mobile`, `email`) VALUES
-(1, 'sample1', ' sample1sample1sample1sample1sample1sample1sample1sample1sample1sample1sample1', '2022-03-12');
+(1, 'sample1', ' sample1sample1sample1sample1sample1sample1sample1sample1sample1sample1sample1', '2022-03-12'),
+(2, 'sampl2', ' wertyuio', '2022-04-07'),
+(3, 'poiuyt', ' ertyu', '2022-03-01'),
+(4, 'dfghjk', ' uytrewqwerty', '2022-03-09');
 
 -- --------------------------------------------------------
 
@@ -180,7 +193,7 @@ CREATE TABLE `tblresearch` (
   `title` longtext NOT NULL,
   `abstract` longtext NOT NULL,
   `main_author` varchar(100) NOT NULL,
-  `co-authors` varchar(100) NOT NULL,
+  `co_authors` varchar(100) NOT NULL,
   `date_publish` varchar(20) NOT NULL,
   `field_of_study` varchar(100) NOT NULL,
   `status` varchar(20) NOT NULL,
@@ -189,6 +202,14 @@ CREATE TABLE `tblresearch` (
   `cites` varchar(20) NOT NULL,
   `tagging` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblresearch`
+--
+
+INSERT INTO `tblresearch` (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `status`, `pdf_file`, `views`, `cites`, `tagging`) VALUES
+(1, 'A STUDY ON ONLINE SEARCH BY PEOPLE USING SEARCH ENGINE', 'Thepurpose of this study is to understand how users search for online information \r\nfrom search engine through their own experience using the Internet.', 'Jaren', '', '2022-03-02', 'Computer Studies', '', 'uploads/A Multifunctional Online Research Portal for Facilitation of.pdf', '', '', ''),
+(2, 'The Collaborative Filtering Recommendation Algorithm Based on BP Neural', 'Collaborative filtering is one of the most successful \r\ntechnologies in recommender systems, and widely used in \r\nmany personalized recommender areas with the development \r\nof Internet, such as e-commerce, digital library and so on. The \r\nK-nearest neighbor method is a popular way for the \r\ncollaborative filtering realizations. Its key technique is to find k \r\nnearest neighbors for a given user to predict his interests. \r\nHowever, most collaborative filtering algorithms suffer from \r\ndata sparsity which leads to inaccuracy of recommendation. \r\nAiming at the problem of data sparsity for collaborative \r\nfiltering, a collaborative filtering algorithm based on BP neural \r\nnetworks is presented. This method uses the BP neural \r\nnetworks to fill the vacant ratings at first, then uses \r\ncollaborative filtering to form nearest neighborhood, and lastly \r\ngenerates recommendations. The collaborative filtering based \r\non BP neural networks smoothing can produce more accuracy \r\nrecommendation than the traditional method. ', 'Jaren', '', '2022-03-03', 'Computer Studies', '', 'uploads/The Collaborative Filtering Recommendation Algorithm Based on BP Neural Networks.pdf', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -210,6 +231,12 @@ ALTER TABLE `tblarticle`
 -- Indexes for table `tblauthor`
 --
 ALTER TABLE `tblauthor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tblauthorredirect`
+--
+ALTER TABLE `tblauthorredirect`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -253,28 +280,34 @@ ALTER TABLE `tblarticle`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `tblauthorredirect`
+--
+ALTER TABLE `tblauthorredirect`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tblevents`
 --
 ALTER TABLE `tblevents`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbljournal`
 --
 ALTER TABLE `tbljournal`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tblnews`
 --
 ALTER TABLE `tblnews`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tblresearch`
 --
 ALTER TABLE `tblresearch`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

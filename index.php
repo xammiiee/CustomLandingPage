@@ -36,27 +36,28 @@
 <body>
 
 <?php
-    session_start();
-    if (isset($_SESSION['id'])) 
-    {?>
-      
-    <?php 
-      if($_SESSION['role'] == "Administrator")
-      {?>
 
-      <?php
-      }
-      elseif($_SESSION['role'] == "User")
-      {?>
-      
-      <?php
-      }
-    }
-    else
+  session_start();
+  if (isset($_SESSION['id'])) 
+  {?>
+    
+  <?php 
+    if($_SESSION['role'] == "Administrator")
     {?>
-      
+
     <?php
-    }  
+    }
+    elseif($_SESSION['role'] == "User")
+    {?>
+    
+    <?php
+    }
+  }
+  else
+  {?>
+    
+  <?php
+  }
 ?>
 
   <!--======================================================================================================================
@@ -81,7 +82,7 @@
         {
           if(isset($_SESSION['id'])) 
           { 
-            if ($_SESSION['role']=="User")
+            if ($_SESSION['role']=="User" || $_SESSION['role']=="Administrator")
             {?>
               <li><a><?php echo $_SESSION['name'];?></a></li>
               <li class="nav-item dropdown"><?php 
@@ -134,8 +135,12 @@
       <!-- ============================================ -->
       <?php
       if(empty($_SESSION['id'])) 
-      { 
+      {
         ?><a href="./login/login.php" class="btn-services scrollto">Login</a><?php
+      }
+      else
+      {
+        ?><!-- <a href="./login/login.php" class="btn-services scrollto">Login</a><?php
       }
       ?>
       <!-- ============================================ -->

@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <?php
 if (isset($_SESSION['id'])) 
 { 
@@ -66,6 +68,22 @@ else
 <?php
 }
 // BACKEND CODE
+// for co-authors
+if(isset($_POST["prim_skills"]))
+{
+ $prim_skills = '';
+ foreach($_POST["prim_skills"] as $row)
+ {
+  $prim_skills .= $row . ', ';
+ }
+ $prim_skills = substr($prim_skills, 0, -2);
+ $query = "INSERT INTO skills(skills) VALUES('".$prim_skills."')";
+ if(mysqli_query($connect, $query))
+ {
+  echo 'Data Inserted';
+ }
+}
+
 if (isset($_GET['del'])) {
   // change function to the designated function of your assign management
   $result = delete_researchaction($connect,$_GET['del']);
@@ -107,14 +125,23 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['btnsubmit'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
+    if(isset($_POST["co-author"]))
+    {
+      $c_author = '';
+      foreach($_POST["co-author"] as $row)
+    {
+      $c_author .= $row . ', ';
+    }
+      $c_author = substr($c_author, 0, -2);
 
-    $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$_POST['#co-author-list'],$_POST['dpub'],$_POST['fstudy'],$Pdf_file,"", "", $tagging);
+    $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$c_author,$_POST['dpub'],$_POST['fstudy'],$Pdf_file,"", "", $tagging);
     if ($result == 1) {
       message("Research created successfully!",1);
     } else {
       message("Could not create Journal!",0);
     }
   }
+}
 }
 ?>
 
@@ -145,7 +172,18 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
       <div class="modal-body">
       <div class="box">
       <center><h1>Add New Research Paper</h1></center>
-      <form action="" method="POST" name="form" enctype="multipart/form-data">
+      <form action="" method="POST" name="form" enctype="multipart/form-data" id="adding-research-form">
+
+      <select id="prim_skills" name="prim_skills[]" multiple="" style="display: none;">
+      <option value="java">java</option>
+      <option value="Php">Php</option>
+      <option value="Python">Python</option>
+      <option value="Angular">Angular</option>
+      <option value="Java Script">Java Script</option>
+      <option value="Css">Css</option>
+      <option value="React">React</option>
+      <option value=".Net">.Net</option>
+     </select>
 
         <!-- TITLE -->
         <div class="form-group">
@@ -165,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
               while ($data = mysqli_fetch_array($result)) 
               {
                 {
-                  echo  "<option value=".$data['fullname'].">".$data['fullname']."</option>";
+                  echo  "<option value=".$data['name'].">".$data['name']."</option>";
                 }
               }
             }
@@ -175,41 +213,20 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         
         <!-- CO AUTHOR -->
         <div class="row">
-          
-          <div class="col">
-          <label class="label">Co-Author(s) *</label><br>
-          <select class="custom-select" id="txtco-authors" name="co-author">
-          <option selected disabled> </option>
-          <?php
-          $result = get_author($connect);
-          if ($result->num_rows>0) 
-          {
-            while ($data = mysqli_fetch_array($result)) 
-            {
-              {
-                echo  "<option value=".$data['id']." id=".$data['fullname'].">".$data['fullname']."</option>";
-              }
-            }
-          }
-          ?>
-          </select>
-          <div class="input-group-append">
-            <button class="btn btn-info" type="button" id="btn-co-author">Add</button>
-          </div>
-          </div>
-
-          <div class="col" id="co-author-list" >
-            <label >--Co-Authors Added--</label>
-          <ul class="list-group" id='co-list' id="co-author-list">
-            <?php
-              $a="list-group-item";
-              foreach($result as $row)
-              {
-                echo  "<li class ='list-group-item' value='".$row['id']."' id='".$row['fullname']."'>".$row['fullname']."</li>";
-              }
-            ?>
-          </ul>
-          </div>
+        <form method="post" id="prim_skills_form">
+     <label>Select Skills</label>
+     <select id="prim_skills" name="prim_skills[]" multiple >
+      <option value="java">java</option>
+      <option value="Php">Php</option>
+      <option value="Python">Python</option>
+      <option value="Angular">Angular</option>
+      <option value="Java Script">Java Script</option>
+      <option value="Css">Css</option>
+      <option value="React">React</option>
+      <option value=".Net">.Net</option>
+     </select>
+     <input type="submit" class="btn btn-info" name="submit" value="Submit" />
+   </form>
         </div>
 
         <!-- ABSTRACT -->
@@ -418,6 +435,33 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
    ]
  });
  $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+
+
+//  script for co-author
+$('#txtco-authors').multiselect({
+nonSelectedText: 'Select Your Skills',
+enableFiltering: true,
+enableCaseInsensitiveFiltering: true,
+buttonWidth:'400px'
+});
+
+$('#adding-research-form').on('submit', function(event){
+event.preventDefault();
+var form_data = $(this).serialize();
+$.ajax({
+url:"research.php",
+method:"POST",
+data:form_data,
+success:function(data)
+{
+$('#txtco-authors option:selected').each(function(){
+$(this).prop('selected', false);
+});
+$('#txtco-authors').multiselect('refresh');
+alert(data);
+}
+});
+});
 </script>
 
 
@@ -479,6 +523,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
       </div>
       
     </div>
-
-  
+  </footer>
+  ?>
 
