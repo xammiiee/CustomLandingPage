@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
            </div>
            <div class="form-group">
 							<label for="pass">Password</label>
-							<textarea class="form-control" id="pass" name="pass"></textarea>
+							<input type="password" class="form-control" id="pass" name="pass"></input>
 					</div>
 
           <div class="form-group">
