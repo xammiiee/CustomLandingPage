@@ -1,5 +1,6 @@
 <?php
 include_once ("/xampp/htdocs/CustomLandingPage/login/inc/header.php");
+$_SESSION["url"];
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
 $email = $_POST['email'];
