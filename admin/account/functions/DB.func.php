@@ -108,7 +108,18 @@ function delete_accountaction($connect,$id){
 
 function update_activeaction($connect,$id){
 
-	$sql = "UPDATE tblaccount SET status='Active' WHERE id=$id";
+	$sql = "UPDATE tblaccount SET `status`='Active' WHERE id=$id";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+function update_deactiveaction($connect,$id){
+
+	$sql = "UPDATE tblaccount SET `status`='Inactive' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -126,6 +137,8 @@ function get_accountaction($connect,$id){
 		return "0";
 	}
 }
+
+
 ?>
 
 

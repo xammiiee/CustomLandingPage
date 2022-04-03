@@ -29,6 +29,28 @@ if (isset($_POST['id'])) {
  	}
  }
 
+// activating of account 
+if (isset($_GET['act'])) {
+	//  change function to the designated function of your assign management
+ 	$result = update_activeaction($connect,$_GET['act']);
+ 	if ($result =="1") {
+		//  change location to the page of your assign mangement
+ 		header("Location: ./admin/account/account.php");
+ 		message("Account activated successfully!","1");
+ 	}
+ }
+
+ // deactivating of account 
+if (isset($_GET['deact'])) {
+	//  change function to the designated function of your assign management
+ 	$result = update_deactiveaction($connect,$_GET['deact']);
+ 	if ($result =="1") {
+		//  change location to the page of your assign mangement
+ 		header("Location: ./admin/account/account.php");
+ 		message("Account deactivated successfully!","1");
+ 	}
+ }
+
 // editing of account
 if (isset($_GET['edit'])) {
 	// change function to the designated function of your assign management
