@@ -1,43 +1,72 @@
 <?php
 include_once ("/xampp/htdocs/CustomLandingPage/login/inc/header.php");
-$_SESSION["url"];
 
-if (isset($_POST['email']) && isset($_POST['password'])) {
-$email = $_POST['email'];
-$pass = $_POST['password'];
-
-  $sql ="SELECT * FROM tblaccount WHERE email='$email' AND pass='$pass'";
-  $result = $connect->query($sql);
-
-if ($result->num_rows > 0) 
-{
-  while($row = $result->fetch_assoc()){
-    $_SESSION['id'] = $row['id'];
-    $_SESSION['name'] = $row['name'];
-    $_SESSION['role'] = $row['ucategory'];
-    $_SESSION['status'] = $row['status'];
-  }
-  if (isset($_SESSION['id'])) {
-    //verification for user
-    if ($_SESSION['role']== "User") 
+if(isset($_POST['but_submit']))
     {
-      header("location: ../index.php");
-      // include "/index.php";
-    } 
-    else if($_SESSION['role'] == "Administrator") 
-    {
-      header("Location: ../admin/index.php");
-    }
-  }
-} 
-else 
-{
-  message("Your email/password was incorrect!","0");
-}
-}
-// include""
-
+      if(empty($_POST['email']) && empty($_POST['password']))
+      {
+        echo '<script>alert("Fill all Fields")</script>';
+      }
+      else
+      {
+        // username and password sent from form 
+      $email = mysqli_real_escape_string($connect,$_POST['email']);
+      $password = mysqli_real_escape_string($connect,$_POST['password']); 
+      
+      $sql = "SELECT * FROM tblaccount WHERE email = '$email'";
+      $result = mysqli_query($connect,$sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $count = mysqli_num_rows($result);
+      // check email if exist
+      if($count == 1) 
+      {
+        $em = $row['email'];
+        $pass= $row['pass'];
+        $status = $row['status'];
+        $fname = $row['name'];
+        $categ = $row['ucategory'];
+        
+        if($_POST['email'] == $em && $_POST['password'] == $pass)
+        {
+            if($status == "Active")
+            {
+                if($categ == "Administrator")
+                {
+                    // session_register("myusername");
+                      $_SESSION['id'] = $row['id'];
+                      $_SESSION['name'] = $row['name'];
+                      $_SESSION['role'] = $row['ucategory'];
+                      $_SESSION['status'] = $row['status'];
+                    header("location: ../admin/index.php");
+                }
+                else
+                {
+                    // session_register("myusername");
+                      $_SESSION['id'] = $row['id'];
+                      $_SESSION['name'] = $row['name'];
+                      $_SESSION['role'] = $row['ucategory'];
+                      $_SESSION['status'] = $row['status'];
+                    header("location: ../index.php");
+                }
+            }
+            else
+            {
+              echo '<script>alert("Account Inactive")</script>';
+            }
+        }
+        else
+        {
+            echo '<script>alert("Email and Password not Match")</script>';
+        }
+      }
+      else 
+      {
+        echo '<script>alert("Account Not Exist")</script>';
+      }
+      }
+   }
 ?>
+
 <section id="intro" class="clearfix">
 <!-- #sign in -->
 <div class="container">
@@ -46,8 +75,11 @@ else
 	<div class="col-6">
             <div class="card">
             <div class="card-body" id="margin-top">
-            <h5 class="card-title text-center">Login</h5>
-        <form action="" method="POST">
+            <?php
+            
+            ?>
+            <h3 class="card-title text-center">Login</h3>
+        <form action="" method="POST" name="Form" onsubmit="return validateForm()">
             <div class="md-form">
               <input type="email" class="form-control validate"  
               id="email"
@@ -63,7 +95,7 @@ else
               placeholder="Your Password">
               <label data-error="wrong" data-success="right"></label>
 
-              <p class="font-small blue-text d-flex justify-content-end">Forgot<a href="#" class="blue-text ml-1">Password?</a></p>
+              <!-- <p class="font-small blue-text d-flex justify-content-end"><a href="#" class="blue-text ml-1">Forgot Password?</a></p> -->
             </div>
 
           <div class="text-center mb-3">
@@ -72,11 +104,11 @@ else
           <span>Don't have an account? <a href="../signup/signup.php" >Create a free account</span>
         </form>
     
-        <p class="font-small dark-grey-text d-flex justify-content-center">or sign in with:</p>
+        <!-- <p class="font-small dark-grey-text d-flex justify-content-center">or sign in with:</p>
         <div class="row my-3 justify-content-center">
           <button type="button" class="btn btn-primary z-depth-1a"><i class="fab fa-facebook-f text-center"></i></button>
           <button type="button" class="btn btn-purple z-depth-1a"><i class="fab fa-twitter text-center"></i></button>
-          <button type="button" class="btn btn-red z-depth-1a"><i class="fab fa-google-plus-g text-center"></i></button>
+          <button type="button" class="btn btn-red z-depth-1a"><i class="fab fa-google-plus-g text-center"></i></button> -->
         </div>
       </div>
     </div>
@@ -89,7 +121,7 @@ else
  <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
+  <!-- <footer id="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -142,4 +174,4 @@ else
       </div>
       
     </div>
-  </footer>
+  </footer> -->

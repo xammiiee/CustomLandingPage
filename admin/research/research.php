@@ -129,18 +129,28 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     {
       $c_author = '';
       foreach($_POST["co-author"] as $row)
-    {
-      $c_author .= $row . ', ';
-    }
+      {
+        $c_author .= $row . ', ';
+      }
       $c_author = substr($c_author, 0, -2);
+    }
+
+    if(isset($_POST["tags"]))
+    {
+      $tagging = '';
+      foreach($_POST["tags"] as $row)
+      {
+        $tagging .= $row . ', ';
+      }
+      $tagging = substr($tagging, 0, -2);
+    }
 
     $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$c_author,$_POST['dpub'],$_POST['fstudy'],$Pdf_file,"", "", $tagging);
-    if ($result == 1) {
-      message("Research created successfully!",1);
-    } else {
-      message("Could not create Journal!",0);
-    }
-  }
+      if ($result == 1) {
+        message("Research created successfully!",1);
+      } else {
+        message("Could not create Research!",0);
+      }
 }
 }
 ?>
@@ -156,13 +166,10 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 </button>
 </a>
 
-<br/>
-<br/>
-
 <!-- Create New Research -->
 
-<div class="modal fadeInDown  adding-research-lg " id="adding-research" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+<div class="modal fadeInDown  adding-research-lg " id="adding-research" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-lg" role="document" style="border-radius: 10px;">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -174,17 +181,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
       <center><h1>Add New Research Paper</h1></center>
       <form action="" method="POST" name="form" enctype="multipart/form-data" id="adding-research-form">
 
-      <select id="prim_skills" name="prim_skills[]" multiple="" style="display: none;">
-      <option value="java">java</option>
-      <option value="Php">Php</option>
-      <option value="Python">Python</option>
-      <option value="Angular">Angular</option>
-      <option value="Java Script">Java Script</option>
-      <option value="Css">Css</option>
-      <option value="React">React</option>
-      <option value=".Net">.Net</option>
-     </select>
-
         <!-- TITLE -->
         <div class="form-group">
           <label class="label">Title *</label>
@@ -192,7 +188,8 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         </div>
 
         <!-- MAIN AUTHOR -->
-        <div class="form-group">
+          <div class="col">
+            <div class="form-group">
             <label class="label">Main Author *</label><br>
             <select class="custom-select" id="txtmain-author" name="txtmain-author">
             <option selected> </option>
@@ -209,25 +206,35 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
             }
             ?>
             </select>
+            </div>
           </div>
+
+          <!-- CO-AUTHORS -->
+          <div class="col">
+          <label class="label">Co-Authors *</label><br>
+          <style>
+            #co-authors{
+              width: 100%;
+              color: black;
+            }
+          </style>
+          <select class="form-control selectpicker md" data-live-search="true" id="co-authors" name="txtco-authors">
+            <option selected disabled></option>
+          <?php
+            $result = get_author($connect);
+            if ($result->num_rows>0) 
+            {
+              while ($data = mysqli_fetch_array($result)) 
+              {
+                {
+                  echo  "<option>".$data['name']."</option>";
+                }
+              }
+            }
+            ?>
+        </select>
+        </div><br>
         
-        <!-- CO AUTHOR -->
-        <div class="row">
-        <form method="post" id="prim_skills_form">
-     <label>Select Skills</label>
-     <select id="prim_skills" name="prim_skills[]" multiple >
-      <option value="java">java</option>
-      <option value="Php">Php</option>
-      <option value="Python">Python</option>
-      <option value="Angular">Angular</option>
-      <option value="Java Script">Java Script</option>
-      <option value="Css">Css</option>
-      <option value="React">React</option>
-      <option value=".Net">.Net</option>
-     </select>
-     <input type="submit" class="btn btn-info" name="submit" value="Submit" />
-   </form>
-        </div>
 
         <!-- ABSTRACT -->
       <div class="form-group">
@@ -264,22 +271,15 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 
         <!-- TAGS -->
         <div class="col">
-          <label class="label">Tag(s) *</label>
-          <select class="custom-select" id="drop-tags">
+          <label class="label">Tag(s) *</label><br>
+          <select class=" form-control selectpicker md" multiple data-live-search="true" id="tags" name="tags">
             <option selected disabled> </option>
             <option value="Computer" id="Computer">Computer</option>
             <option value="WebDesign" id="WebDesign">Web Design</option>
             <option value="InternetSecurity" id="InternetSecurity">Internet Security</option>
           </select>
-          <div class="input-group-append">
-            <button class="btn btn-info" type="button" id="btn-tags">Add</button>
-          </div>
         </div>
-        <div class="col">
-          <label>--Tags Added--</label>
-          <ul class="list-group" id="tags-list" >
-          </ul>
-        </div>
+        
       </div><br>
       <div class="form-group">
           <label for="files">Add (pdf, txt or docs)</label>
@@ -299,10 +299,10 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   </div>
 </div>
 
-
 <!--Journal-->
 <div class="table-responsive-lg">
   <!-- change table id based on your managemnet -->
+  <!-- <table class="table table-striped table-bordered" cellspacing="0" width="100%"> -->
  <table id="research" class="table table-hover">
    <thead>
      <tr>
@@ -318,7 +318,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <th scope="col" align="center">Action</th>
      </tr>
    </thead>
-   <tbody>
+   <tbody id="myTable">
      <?php
      
     //get author id inside research
@@ -341,11 +341,9 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         //  echo $user['name'];
          ?>
        </td>
-       
-       <td><?php 
-      //  echo date("Y-m-d",strtotime($data['created']));?></td>
        <!-- Action Column -->
-       <td align="center"><div class="dropdown">
+       <td>
+         <div class="dropdown"  style="float:left">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
          </button>
@@ -384,57 +382,67 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
  ?>
 </tbody>
 </table>
+<div class="col-md-12 text-center">
+  <ul class="pagination pagination-lg pager" id="myPager"></ul>
+</div>
 </div>
 </div>
 
 <script src="assets/datatables.min.js"></script>
 <script src="./script/main.js"></script>
 <script>
- $(function() {
-  //  change id with the id of the table
-   $('#research').DataTable();
-   $(function() {
-     var table = $('#example').DataTable({
-       "columnDefs": [{
-         "visible": false,
-         "targets": 2
-       }],
-       "ordering": false,
-       "displayLength": 25,
-       "drawCallback": function(settings) {
-         var api = this.api();
-         var rows = api.rows({
-           page: 'current'
-         }).nodes();
-         var last = null;
-         api.column(2, {
-           page: 'current'
-         }).data().each(function(group, i) {
-           if (last !== group) {
-             $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-             last = group;
-           }
-         });
-       }
-     });
-           // Order by the grouping
-           $('#example tbody').on('click', 'tr.group', function() {
-             var currentOrder = table.order()[0];
-             if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-               table.order([2, 'desc']).draw();
-             } else {
-               table.order([2, 'asc']).draw();
-             }
-           });
-       });
- });
- $('#example23').DataTable({
-   dom: 'Bfrtip',
-   buttons: [
-   'copy', 'csv', 'excel', 'pdf', 'print'
-   ]
- });
- $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+  $(document).ready(function () {
+    $('#myTable').pageMe({
+      pagerSelector:'#myPager',
+      showPrevNext:true,
+      hidePageNumbers:false,
+      perPage:4});
+});
+//  $(function() {
+//   //  change id with the id of the table
+//    $('#research').DataTable();
+//    $(function() {
+//      var table = $('#research').DataTable({
+//        "columnDefs": [{
+//          "visible": false,
+//          "targets": 2
+//        }],
+//        "ordering": false,
+//        "displayLength": 25,
+//        "drawCallback": function(settings) {
+//          var api = this.api();
+//          var rows = api.rows({
+//            page: 'current'
+//          }).nodes();
+//          var last = null;
+//          api.column(2, {
+//            page: 'current'
+//          }).data().each(function(group, i) {
+//            if (last !== group) {
+//              $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+//              last = group;
+//            }
+//          });
+//        }
+//      });
+//            // Order by the grouping
+//            $('#research tbody').on('click', 'tr.group', function() {
+//              var currentOrder = table.order()[0];
+//              if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+//                table.order([2, 'desc']).draw();
+//              } else {
+//                table.order([2, 'asc']).draw();
+//              }
+//            });
+//        });
+//  });
+//  $('#research').DataTable({
+//    dom: 'Bfrtip',
+//    buttons: [
+//    'copy', 'csv', 'excel', 'pdf', 'print'
+//    ]
+//  });
+//  $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 
 
 //  script for co-author
@@ -470,7 +478,7 @@ alert(data);
   <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
+  <!-- <footer id="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -523,6 +531,6 @@ alert(data);
       </div>
       
     </div>
-  </footer>
-  ?>
+  </footer> -->
+  
 

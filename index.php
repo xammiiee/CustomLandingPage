@@ -28,7 +28,7 @@
   <link href="./resource/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="./resource/css/style.css" rel="stylesheet">
+  <link href="./resource/css/style_mainpage.css" rel="stylesheet">
   <link href="./resource/css/addons.css" rel="stylesheet">
 
 </head>
@@ -36,27 +36,24 @@
 <body>
 
 <?php
-
   session_start();
-  if (isset($_SESSION['id'])) 
-  {?>
-    
-  <?php 
-    if($_SESSION['role'] == "Administrator")
-    {?>
+  if (!empty($_SESSION['id'])) 
+  {?>  
+    <?php 
+      if($_SESSION['role'] == "Administrator")
+      {?>
 
-    <?php
-    }
-    elseif($_SESSION['role'] == "User")
-    {?>
-    
-    <?php
-    }
+      <?php
+      }
+      elseif($_SESSION['role'] == "User")
+      {?>
+      
+      <?php
+      }
   }
-  else
-  {?>
-    
-  <?php
+  elseif(empty($_SESSION['id']))
+  {
+    header("Location: ./login/login.php");
   }
 ?>
 
@@ -73,14 +70,7 @@
         <ul>
 <!-- ================================================ -->
         <?php
-        if(empty($_SESSION['id']))
-        {
-          // header("Location: login/login.php");
-          ?><li><a href="./signup/signup.php" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li><?php
-        }
-        else
-        {
-          if(isset($_SESSION['id'])) 
+          if(!empty($_SESSION['id'])) 
           { 
             if ($_SESSION['role']=="User" || $_SESSION['role']=="Administrator")
             {?>
@@ -101,15 +91,8 @@
                   </div>
                   </li>
                   <?php
-          } 
-          else 
-          { 
-            ?><li><a href="./signup/signup.php" class="signup" data-toggle="modal" data-target="#signupPage">Sign Up</a></li><?php
-            // header("Location: ../../login/login.php");
           }
-        }
         ?>
-<!-- ================================================================= -->
         </ul>
       </nav>
     </div>
@@ -125,22 +108,18 @@
       <div class="intro-img">
         <img src="/" alt="" class="img-fluid">
       </div>
-      <form action="" method="GET">
-      <input name="search" class="form-control form-control-lg" type="text" placeholder="Search Here!" aria-label=".form-control-lg example"><br>
+      <form action="" method="GET" onsubmit="">
+      <input name="k" class="form-control form-control-lg" type="text" placeholder="Search Here!" aria-label=".form-control-lg example"><br>
         <div class="intro-info">    
           <h2>Arellano Research <span> Portal <span></h2>
           <div>
-            <button class="btn-get-started scrollto" name="btnsubmit">Search</button>
+            <a href="tblresult"><button class="btn-get-started scrollto" name="btn">Search</button></a>
             
       <!-- ============================================ -->
       <?php
       if(empty($_SESSION['id'])) 
       {
         ?><a href="./login/login.php" class="btn-services scrollto">Login</a><?php
-      }
-      else
-      {
-        ?><!-- <a href="./login/login.php" class="btn-services scrollto">Login</a><?php
       }
       ?>
       <!-- ============================================ -->
@@ -166,7 +145,8 @@
     include "../CustomLandingPage/admin/research/functions/functions.php";
     include "../CustomLandingPage/admin/research/functions/Message.func.php";
   ?>
-        <header class="section-header">
+  
+  <header class="section-header">
 
 <!----------------- Filtering Section ---------------------->
 
@@ -219,19 +199,20 @@
           <table id="table_id" class="display">
             <tbody id="tblresult">
               <?php 
-              if(isset($_GET['btnsubmit']))
+              if(isset($_GET['btn']))
+              // function searching()
               {
-                if($_GET['search'] != "")
+                if($_GET['k'] != "")
                 {
-                  $title = $_GET['search'];
+                  $title = $_GET['k'];
                   $result = get_research_by_title($connect,$title);
                   if ($result->num_rows>0) {
                   while ($data = mysqli_fetch_array($result))
                   {?>
                     <tr>
-                      <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.5s">
+                      <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
                         <div class="box">
-                          <h4 class="title"><a href="./admin/research/api/action.php?id= <?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                          <h4 class="title"><a href="./view/action.php?id= <?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
                             <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                               <li class="list-inline-item"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
 
@@ -280,61 +261,20 @@
   <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
+  <!-- <footer id="footer">
     <div class="footer-top">
       <div class="container">
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 footer-info">
+        
+          <div class="col">
             <h3>AURESPOR</h3>
             <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Terms of service</a></li>
-              <li><a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br>
-              <b>Phone:</b> +1 5589 55488 55<br>
-              <b>Email:</b> info@example.com<br>
-            </p>
-
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
-
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit"  value="Subscribe">
-            </form>
-          </div>
-
-        </div>
       </div>
-      <center><h4>Malindog Group</h4></center>
     </div>
 
-  </footer><!-- #footer -->
+  </footer> -->
+  <!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->

@@ -5,17 +5,7 @@ $(document).ready(function () {
   $("#tags-list").toggle();
 
   // CO-AUTHORS =======================================================================================
-  $("#btn-co-author").click(function () {
-    $("#co-list").show();
-    
-    var main_author = $("#txtmain-author").val();
-    console.log(main_author);
-    var value1 = $('#txtco-authors').val();
-    $('#tags-list').append('<li class ="list-group-item">'+ value1 +'</li>');
-    
-    var remove_space = value1.replace(/ /g,'');
-    $("#"+ remove_space+"").remove();
-  })
+  $('#co-author').selectpicker();
 
   // TAGS =============================================================================================
   $("#btn-tags").click(function () {
@@ -32,11 +22,11 @@ $(document).ready(function () {
     // INITIALIZE
     var title = $("#title").val();
     var main_author = $("#txtmain-author").val();
-    var co_author = $("#co-list").text();
-    var abstract = $("#abstract").text();
+    var co_author = $("#co-list").val();
+    var abstract = $("#abstract").val();
     var dpub = $("#dpub").val();
     var fstudy = $("#fstudy").val();
-    var tags = $("#tags-list").text();
+    var tags = $("#tags-list").val();
 
     // VALIDATE IF EMPTY
     if(title !="" && main_author != "" && co_author !="" && abstract != "" && dpub !="" && fstudy !="" && tags !="")
@@ -53,7 +43,7 @@ $(document).ready(function () {
       }
       $.ajax({
         type: "POST",
-        url: "../submitpost.php",
+        url: "../api/function.php",
         data: values,
         cache: false,
         success: function(data) {
