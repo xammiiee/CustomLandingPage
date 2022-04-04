@@ -52,11 +52,20 @@ if (empty($_SESSION['id'])) {
 <?php
 if (isset($_GET['del'])) {
   // change function to the designated function of your assign management
-  $result = delete_journalaction($connect,$_GET['del']);
+  $result = delete_accountaction($connect,$_GET['del']);
   if ($result =="1") {
     message("Account deleted successfully!","1");
   }
 }
+
+if (isset($_GET['act'])) {
+  // change function to the designated function of your assign management
+  $result = update_activeaction($connect,$_GET['act']);
+  if ($result =="1") {
+    message("Account Active!","1");
+  }
+}
+
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
     // change function to the designated function of your assign management
@@ -69,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     }
   }
 }
+
 
 ?>
 
@@ -159,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <th scope="col">Name</th>
        <th scope="col">Email</th>
        <th scope="col">Password</th>
-
+       <th scope="col">Status</th>
        <th scope="col">Category</th>
        <th scope="col">Membership</th>
        <th scope="col" align="center">Action</th>
@@ -176,6 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          <td><?php echo $data['name']?></a></td>
          <td><?php echo $data['email']?></a></td>
          <td><?php echo $data['pass']?></td>
+         <td><?php echo $data['status']?></td>
          <td><?php echo $data['ucategory']?></td>
          <td><?php echo $data['au_member']?></td>
          <td><?php
@@ -190,8 +201,9 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
            <i class="fa fa-ellipsis-h"></i>
          </button>
          <div class="dropdown-menu" aria-labelledby="option">
-           <a class="dropdown-item" href="action.php?id=<?php echo $data['id']?>">View</a>
-           <a class="dropdown-item" href="action.php?edit=<?php echo $data['id']?>">Edit</a>
+           <a class="dropdown-item" href="./api/action.php?edit=<?php echo $data['id']?>">Edit</a>
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#activate-<?php echo $data['id'];?>">Activate</a><?php } ?>
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#deactivate-<?php echo $data['id'];?>">Deactivate</a><?php } ?>
            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
@@ -203,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
    <div class="modal-dialog" role="document">
      <div class="modal-content">
        <div class="modal-header">
-         <h5 class="modal-title" id="deleteLabel">Delete Journal</h5>
+         <h5 class="modal-title" id="deleteLabel">Delete Account</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
@@ -218,7 +230,49 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
      </div>
    </div>
  </div>
-   <?php
+
+<!-- Activate Popup -->
+<div style="margin-top: 200px;width: 30%;margin-left: 35%;margin-right: 35%;" class="modal fade" id="activate-<?php echo $data['id'];?>" tabindex="-1" role="dialog" aria-labelledby="activateLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="activateLabel">Activate Account</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+         Are you sure you want to Activate?
+       </div>
+       <div class="modal-footer">
+         <a href="?act=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+<!-- Deactivate Popup -->
+ <div style="margin-top: 200px;width: 30%;margin-left: 35%;margin-right: 35%;" class="modal fade" id="deactivate-<?php echo $data['id'];?>" tabindex="-1" role="dialog" aria-labelledby="deactivateLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="deactivateLabel">Deactivate Account</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+         Are you sure you want to Deactivate?
+       </div>
+       <div class="modal-footer">
+         <a href="?deact=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+       </div>
+     </div>
+   </div>
+ </div>
+ <?php
  }
 }
  ?>

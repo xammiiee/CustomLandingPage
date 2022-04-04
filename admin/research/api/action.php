@@ -11,6 +11,7 @@ if (isset($_SESSION['id']))
 }
 
 include_once "../inc/header1.php";
+
 if (empty($_SESSION['id'])) {
 	// include""
 	header("Location: ../../../../login/login.php");
@@ -222,6 +223,11 @@ if (!empty($_GET['id']))
 <br><br><br><br>
 	<!--View Research-->
 	<div class="container">
+		<div id="result">
+		<a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
+		</div>	
+	</div><br><br>
+	<div class="container">
 	<div class="card">
 		<div class="card-body">
 		<div style="line-height: 20px;">
@@ -261,14 +267,7 @@ if (!empty($_GET['id']))
 	</div>
 
 	<br<br><br>
-	<div class="container">
-		<div id="result"></div>
-			<div class="modal-footer">
-				<!-- change location of href..-->
-				<a href="./admin/research/research.php"><button class="btn btn-dark btn-sm">Back</button></a>	
-			</div>	
-	</div>
-	
+
 	<!-- Related Studies -->
 	<br<br><br>
 	<div class="container">

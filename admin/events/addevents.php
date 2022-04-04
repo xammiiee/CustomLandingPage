@@ -19,7 +19,9 @@
 				
 		// Insert user data into table
 		$result = mysqli_query($mysqli, "INSERT INTO tblevents(event_name,event_description,date,time) VALUES('$event_name','$event_description','$date','$time')");
+		echo ("CREATED SUCCESSFULLY");
 		header("Location: index.php");
+		
 	}
 	?>
 </body>

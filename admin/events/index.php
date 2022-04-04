@@ -1,6 +1,8 @@
 <?php
 // include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+
 session_start();
+
 include "/xampp/htdocs/CustomLandingPage/admin/research/inc/db.php";
 include "/xampp/htdocs/CustomLandingPage/admin/research/functions/DB.func.php";
 include "/xampp/htdocs/CustomLandingPage/admin/research/functions/Message.func.php";
@@ -27,7 +29,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
-
+  
   <!-- Favicons -->
   <link href="../../resource/img/favicon.png" rel="icon">
   <link href="../../resource/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -50,6 +52,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
   <!-- Main Stylesheet File -->
   <link href="../../resource/css/style.css" rel="stylesheet">
   <link href="../../resource/css/addons.css" rel="stylesheet">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -222,18 +225,18 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
          </div>
          <div class="form-group">
            <label for="datepub">Date </label>
-           <input type="date" class="form-control" id="email" name="time">
+           <input type="date" class="form-control" id="email" name="date">
          </div>
          <div class="form-group">
            <label for="datepub">Time </label>
-           <input type="time" class="form-control" id="email" name="date">
+           <input type="time" class="form-control" id="email" name="time">
          </div>
        </div>
       
        <input type="hidden" name="create" value="create"/>
        <div class="modal-footer">
   
-         <button  type="submit" name="Submit" class="btn btn-primary" value="Add">Save</button>
+         <button  type="submit" name="Submit" class="btn btn-primary" value="Add" >Save</button>
          <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
        </div>
      </form>
@@ -276,8 +279,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
         </button>
 
          <div class="dropdown-menu" aria-labelledby="option">
-          <a class="dropdown-item" href="view.php?id=<?php echo $data['id'];?>">View</a>
-          <a class="dropdown-item" href="edit.php?edit=<?php echo $data['id'];?>">Edit</a>
+          <a class="dropdown-item" href="editevents.php?id=<?php echo $data['id'];?>">Edit</a>
           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
@@ -289,7 +291,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
    <div class="modal-dialog" role="document">
      <div class="modal-content">
        <div class="modal-header">
-         <h5 class="modal-title" id="deleteLabel">Delete Journal</h5>
+         <h5 class="modal-title" id="deleteLabel">Delete Events</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
@@ -298,7 +300,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
          Are you sure you want to delete?
        </div>
        <div class="modal-footer">
-         <a href="?del=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
+         <a href="deleteevents.php?id=<?php echo $data['id'];?>"> <button type="button" class="btn btn-danger">Yes</button></a>
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
        </div>
      </div>
@@ -393,7 +395,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
             <h4>Our Newsletter</h4>
             <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
             <form action="" method="post">
-              <input type="email" name="email"><input type="submit"  value="Subscribe">
+              <input type="email" name="email"><input type="submit" onclick="popUp()" value="Subscribe">
             </form>
           </div>
 
@@ -434,6 +436,16 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
 } );
   </script>
   <script src="../../resource/js/main.js"></script>
+
+<script>
+
+function popUp() {
+  Swal.fire(
+  'Good job!',
+  'You clicked the button!',
+  'success'
+  )}
+  </script>
 
 </body>
 </html>

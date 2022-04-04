@@ -1,5 +1,60 @@
 <?php
 include "/xampp/htdocs/CustomLandingPage/signup/inc/header.php";
+
+if(isset($_POST['btnsubmit']))
+{
+    //initiate the form
+    $name = isset($_POST['name']) && $_POST['name']!="";
+    $email = isset($_POST['email']) && $_POST['email']!="";
+    $password = isset($_POST['password']) && $_POST['password']!="";
+    $aumember = isset($_POST['aumember']) && $_POST['aumember']!="";
+    
+    //convert to post method for safety
+    if ($name && $email && $password && $aumember) 
+    {   
+        //value from db
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $aumember = $_POST['aumember'];
+        
+        // $id = date("YmdHis");
+
+        if($aumember == "Are you a member of Arellano Community?")
+        {
+          echo '<script>alert("Select if your a member of AU")</script>';
+        }
+        else
+        {
+            $sql = "SELECT * FROM tblaccount WHERE email = '$email'";
+            $result = mysqli_query($connect,$sql);
+            $count = mysqli_fetch_array($result);
+            // check email if exist
+            if($count >= 1) 
+            {
+              echo '<script>alert("Email Already Exist")</script>';
+            }
+            elseif ($count <= 0) 
+            {
+                //insert to db
+                $query = "INSERT INTO tblaccount VALUES ('','$name', '$email', '$password', 'Active', 'User','$aumember','','','')";
+                if(mysqli_query($connect, $query))
+                {
+                    echo "<script>alert('New account $email has successfully added.' );</script>";
+                    header("Location: ../index.php");
+                }
+                else
+                {
+                    echo "<script>alert('Error in creating new account.');</script>";
+                }
+            }
+        }    
+    } 
+    else
+    {
+      echo '<script>alert("Please provide all data on the form")</script>';
+    }
+}
 ?>
 
 <section id="intro" class="clearfix">
@@ -8,45 +63,13 @@ include "/xampp/htdocs/CustomLandingPage/signup/inc/header.php";
 	<div class="col-3"></div>
 	 <div class="col-6">
     <div class="card">
-          <?php
-          if (isset($_POST['btnsubmit'])) {
-
-            $name=$_POST['name'];
-            $email=$_POST['email'];
-
-            $query = "SELECT * FROM tblaccount WHERE email = '$email'";
-            $result = $connect->query($query);
-            if($result->num_rows>0)
-            {
-              message("Already exits",0);
-            }
-            else{
-
-                if ($_SERVER['REQUEST_METHOD']=="POST") 
-                { 
-                    // add if not exist
-                    $query = "INSERT INTO tblaccount (name, email, pass,status, ucategory, au_member) VALUES ('".$_POST['name']."','".$_POST['email']."','".$_POST['password']."','Inactive','User','".$_POST['aumember']."')";
-                    $result = $connect->query($query);
-                    if ($result->num_rows > 0) {
-                      add_data($query1,$connect,"You are successfully registered!");
-                      header("location: ../login/login.php");
-                    }
-
-                    if (isset($_SESSION['id'])) {
-                      // include "../";
-                      
-                    }
-                }
-              }
-              }
-              ?>
             <h5 class="card-header  text-center lead text-muted">Join us! Find your study here.</h5>
             <div class="card-body" id="margin-top">
               <?php 
               // echo "$query";
               ?>
-            <h5 class="card-title text-center">Signup</h5>
-            <form action="" method="POST">
+            <h3 class="card-title text-center">Signup</h3>
+            <form action="" method="POST" onsubmit="return validateForm()" name="Form">
             <div class="form-group">
                   <input type="text" class="form-control" id="name" placeholder="Name" name="name">
                 </div>
@@ -68,7 +91,7 @@ include "/xampp/htdocs/CustomLandingPage/signup/inc/header.php";
                 </div>
                 <button type="submit" class="btn btn-primary btn-block" name="btnsubmit">Register</button>
               <br>
-              Are you already registered? <a href="login.php">Login Now</a>
+              Are you already registered? <a href="../login/login.php">Login Now</a>
           </form>
           </div>
         </div>
@@ -81,7 +104,7 @@ include "/xampp/htdocs/CustomLandingPage/signup/inc/header.php";
   <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
+  <!-- <footer id="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -134,4 +157,4 @@ include "/xampp/htdocs/CustomLandingPage/signup/inc/header.php";
       </div>
       
     </div>
-  </footer>
+  </footer> -->
