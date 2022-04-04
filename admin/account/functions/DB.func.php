@@ -96,6 +96,18 @@ function create_accountaction($connect,$name,$email,$password,$ucategory,$aumemb
 	}
 }
 
+function update_accountaction($connect,$name,$email,$password,$ucategory,$aumember,$id){
+
+	$sql = "UPDATE tblaccount SET name='$name',email='$email',password='$password',ucategory='$ucategory',aumember='$aumember' WHERE id=$id";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+
 function delete_accountaction($connect,$id){
 	$sql = "DELETE FROM tblaccount WHERE id=$id";
 	$result = $connect->query($sql);
