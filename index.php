@@ -109,11 +109,19 @@
         <img src="/" alt="" class="img-fluid">
       </div>
       <form action="" method="GET" onsubmit="">
-      <input name="k" class="form-control form-control-lg" type="text" placeholder="Search Here!" aria-label=".form-control-lg example"><br>
+        <div class="form-group">
+          <input name="a" class="form-control form-control-lg d-inline" type="text" placeholder="Search Here!" aria-label=".form-control-lg example" style="width: 80%;">
+          <select class="custom-select-lg d-inline" id="search_type" name="u" style="width: 14%;">
+            <option selected>Researches</option>
+            <option>Journals</option>
+            <option>Articles</option>
+            <option>News</option>
+          </select>
+        </div>
         <div class="intro-info">    
           <h2>Arellano Research <span> Portal <span></h2>
           <div>
-            <a href="tblresult"><button class="btn-get-started scrollto" name="btn">Search</button></a>
+            <a href="tblresult"><button class="btn-get-started scrollto" name="b">Search</button></a>
             
       <!-- ============================================ -->
       <?php
@@ -199,43 +207,116 @@
           <table id="table_id" class="display">
             <tbody id="tblresult">
               <?php 
-              if(isset($_GET['btn']))
+              if(isset($_GET['b']))
               // function searching()
               {
-                if($_GET['k'] != "")
+                if($_GET['a'] != "")
                 {
-                  $title = $_GET['k'];
-                  $result = get_research_by_title($connect,$title);
-                  if ($result->num_rows>0) {
-                  while ($data = mysqli_fetch_array($result))
-                  {?>
-                    <tr>
-                      <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
-                        <div class="box">
-                          <h4 class="title"><a href="./view/action.php?id= <?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
-                            <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                              <li class="list-inline-item"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
+                  $title = $_GET['a'];
+                  
+                  if($_GET['u'] == "Researches")
+                  {
+                    $result = get_research_by_title($connect,$title);
+                      if ($result->num_rows>0) 
+                      {
+                      while ($data = mysqli_fetch_array($result))
+                      {
+                        ?>
+                        <tr>
+                          <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
+                            <div class="box">
+                              <h4 class="title"><a href="./view/action.php?id= <?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                  <li class="list-inline-item"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
 
-                              <li class="list-inline-item"><b><u><span><?php echo $data['co_authors'];?></span></u></b></li>
+                                  <li class="list-inline-item"><b><u><span><?php echo $data['co_authors'];?></span></u></b></li>
 
-                              <li class="list-inline-item"><b><span> * Publshed <?php echo $data['date_publish'];?></span></b></li>
-                              
-                              <li class="list-inline-item"><b><span> * <?php echo $data['field_of_study'];?></span></b></li>
-
-                              
-                            </ul>
-                            <p class="description"><span><?php echo $data['abstract'];?></span></p>
-                            <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                              <li class="list-inline-item"><b>Views: <?php echo $data['views'];?></b></li>
-                              <li class="list-inline-item"><b>Cite: <?php echo $data['cites'];?></b></li>
-                            </ul>
-                        </div>
-                      </div>
-                    </tr>
-                  <?php
+                                  <li class="list-inline-item"><b><span> * Published <?php echo $data['date_publish'];?></span></b></li>
+                                  
+                                  <li class="list-inline-item"><b><span> * <?php echo $data['field_of_study'];?></span></b></li>
+                                  
+                                </ul>
+                                <p class="description"><span><?php echo $data['abstract'];?></span></p>
+                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                  <li class="list-inline-item"><b>Views: <?php echo $data['views'];?></b></li>
+                                  <li class="list-inline-item"><b>Cite: <?php echo $data['cites'];?></b></li>
+                                </ul>
+                            </div>
+                          </div>
+                        </tr>
+                      <?php
+                      }
+                    }
                   }
-                }
-                }
+                  elseif($_GET['u'] == "Journals")
+                  {
+                    $result = get_journal_by_title($connect,$title);
+                      if ($result->num_rows>0) 
+                      {
+                      while ($data = mysqli_fetch_array($result))
+                      {
+                        ?>
+                        <tr>
+                          <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
+                            <div class="box">
+                              <h4 class="title"><a href="./view/action.php?id= <?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                  <li class="list-inline-item"><b><u><span><?php echo $data['author'];?></span></u></b></li>
+
+                                  <li class="list-inline-item"><b><span> * Published <?php echo $data['datepub'];?></span></b></li>
+                                  
+                                  <li class="list-inline-item"><b><span> * <?php //echo $data['field_of_study'];?></span></b></li>
+                                  
+                                </ul>
+                                <p class="description"><span><?php echo $data['description'];?></span></p>
+                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                  <li class="list-inline-item"><b>Views: <?php //echo $data['views'];?></b></li>
+                                  <li class="list-inline-item"><b>Cite: <?php //echo $data['cites'];?></b></li>
+                                </ul>
+                            </div>
+                          </div>
+                        </tr>
+                      <?php
+                      }
+                    }
+                  }
+                  elseif($_GET['u'] == "Articles")
+                  {
+                    $result = get_article_by_title($connect,$title);
+                      if ($result->num_rows>0) 
+                      {
+                      while ($data = mysqli_fetch_array($result))
+                      {
+                        ?>
+                        <tr>
+                          <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
+                            <div class="box">
+                              <h4 class="title"><a href="./view/action.php?id= <?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                  <li class="list-inline-item"><b><u><span><?php echo $data['author'];?></span></u></b></li>
+
+                                  <li class="list-inline-item"><b><span> * Publshed <?php echo $data['datepub'];?></span></b></li>
+                                  
+                                  <li class="list-inline-item"><b><span> * <?php //echo $data['field_of_study'];?></span></b></li>
+                                  
+                                </ul>
+                                <p class="description"><span><?php echo $data['description'];?></span></p>
+                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                  <li class="list-inline-item"><b>Views: <?php //echo $data['views'];?></b></li>
+                                  <li class="list-inline-item"><b>Cite: <?php //echo $data['cites'];?></b></li>
+                                </ul>
+                            </div>
+                          </div>
+                        </tr>
+                      <?php
+                      }
+                    }
+                  }
+                  elseif($_GET['u'] == "News")
+                  {
+                    
+                  }
+              }
                 
               }
               else

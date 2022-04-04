@@ -43,17 +43,14 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
 
 <!--  -->
-<!-- <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-
-<!-- <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
-<link rel= "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"/> -->
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
 
   <!-- Main Stylesheet File -->
-  <link href="../../resource/css/style.css" rel="stylesheet">
+  <link href="../../resource/css/style_management.css" rel="stylesheet">
   <link href="../../resource/css/addons.css" rel="stylesheet">
   <style type="text/css">
    .modal-dialog{
@@ -86,35 +83,35 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
             ?>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../account/account.php">Account Management</a>
+                  <a class="dropdown-item" href="../account/account.php">Account</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../research/research.php">Research Management</a>
+                  <a class="dropdown-item" href="../research/research.php">Research</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../author/author.php">Author</a>
                   <?php } ?>
                   
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="../journal/journal.php">Journal</a>
                   <?php } ?>
                   
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../article/article.php">Article Management</a>
+                  <a class="dropdown-item" href="../article/article.php">Article</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../author/author.php">Author</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../events/index.php">Events Management</a>
+                  <a class="dropdown-item" href="../events/index.php">Events</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../news/index.php">News Management</a>
+                  <a class="dropdown-item" href="../news/index.php">News</a>
                   <?php } ?>
                   </div>
                 </li>
@@ -149,7 +146,13 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
   <!-- JavaScript Libraries -->
   <script src="../../resource/lib/jquery/jquery.min.js"></script>
   <script src="../../resource/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="../../resource/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+  <!-- <script src="../../resource/lib/bootstrap/js/bootstrap.bundle.min.js"></script> -->
   <script src="../../resource/lib/easing/easing.min.js"></script>
   <script src="../../resource/lib/mobile-nav/mobile-nav.js"></script>
   <script src="../../resource/lib/wow/wow.min.js"></script>

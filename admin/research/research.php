@@ -67,7 +67,7 @@ else
   <br>
 <?php
 }
-// BACKEND CODE
+// ====BACKEND CODE=== //
 // for co-authors
 if(isset($_POST["prim_skills"]))
 {
@@ -125,27 +125,27 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['btnsubmit'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    if(isset($_POST["co-author"]))
-    {
-      $c_author = '';
-      foreach($_POST["co-author"] as $row)
-      {
-        $c_author .= $row . ', ';
-      }
-      $c_author = substr($c_author, 0, -2);
-    }
+    // if(isset($_POST["co-author"]))
+    // {
+    //   $c_author = '';
+    //   foreach($_POST["co-author"] as $row)
+    //   {
+    //     $c_author .= $row . ', ';
+    //   }
+    //   $c_author = substr($c_author, 0, -2);
+    // }
 
-    if(isset($_POST["tags"]))
-    {
-      $tagging = '';
-      foreach($_POST["tags"] as $row)
-      {
-        $tagging .= $row . ', ';
-      }
-      $tagging = substr($tagging, 0, -2);
-    }
-
-    $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$c_author,$_POST['dpub'],$_POST['fstudy'],$Pdf_file,"", "", $tagging);
+    // if(isset($_POST["tags"]))
+    // {
+    //   $tag = '';
+    //   foreach($_POST["tags"] as $row)
+    //   {
+    //     $tagging .= $row . ', ';
+    //   }
+    //   $tagging = substr($tagging, 0, -2);
+    // }
+      echo $_POST['co-author'];
+    $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$_POST["txtco-author"],$_POST['dpub'],$_POST['fstudy'],$Pdf_file,"", "", $_POST["tags"]);
       if ($result == 1) {
         message("Research created successfully!",1);
       } else {
@@ -153,6 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
       }
 }
 }
+// ===============================================================================================
 ?>
 
 <div class="container">
@@ -200,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
               while ($data = mysqli_fetch_array($result)) 
               {
                 {
-                  echo  "<option value=".$data['name'].">".$data['name']."</option>";
+                  echo  "<option>".$data['name']."</option>";
                 }
               }
             }
@@ -257,11 +258,11 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
             <label class="label">Field of Study *</label><br>
             <select class="custom-select" id="fstudy" name="fstudy">
             <option selected> </option>
-            <option value="Accounting and Finance">Accounting and Finance</option>
-            <option value="Business and Economics">Business and Economics</option>
-            <option value="Computer Studies">Computer Studies</option>
-            <option value="Hospitality">Hospitality</option>
-            <option value="Nursing">Nursing</option>
+            <option>Accounting and Finance</option>
+            <option>Business and Economics</option>
+            <option>Computer Studies</option>
+            <option>Hospitality</option>
+            <option>Nursing</option>
             </select>
           </div>
         </div>
@@ -274,9 +275,9 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
           <label class="label">Tag(s) *</label><br>
           <select class=" form-control selectpicker md" multiple data-live-search="true" id="tags" name="tags">
             <option selected disabled> </option>
-            <option value="Computer" id="Computer">Computer</option>
-            <option value="WebDesign" id="WebDesign">Web Design</option>
-            <option value="InternetSecurity" id="InternetSecurity">Internet Security</option>
+            <option>Computer</option>
+            <option>Web Design</option>
+            <option>Internet Security</option>
           </select>
         </div>
         

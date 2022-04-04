@@ -1,5 +1,5 @@
 <?php
-include_once "../inc/header1.php";
+include_once "/xampp/htdocs/CustomLandingPage/view/header1.php";
 if (empty($_SESSION['id'])) 
 {
 	// include""
