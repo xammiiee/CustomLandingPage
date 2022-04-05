@@ -9,6 +9,15 @@ $id = $_GET['id'];
 $result = mysqli_query($mysqli, "DELETE FROM tblnews WHERE id=$id");
 
 // After delete redirect to Home, so that latest user list will be displayed.
-header("Location:index.php");
+if($result)
+{
+    $_SESSION['status']= "Data Deleted Successfully";
+    header('Location: index.php');
+}
+else
+{
+    echo "Something went wrong";
+}
+
 ?>
 

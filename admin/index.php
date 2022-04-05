@@ -45,7 +45,11 @@
           <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
+<<<<<<< HEAD
+       <a href="/CustomLandingPage/admin/index.php" class="scrollto"><img src="../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+=======
        <a href="/CustomLandingPage/index.php" class="scrollto"><img src="../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+>>>>>>> b4fe1bb3c119aba74aba677fc31c9f35f45cb258
       </div>
       
       <nav class="main-nav float-right d-none d-lg-block" >

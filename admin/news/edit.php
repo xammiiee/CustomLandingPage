@@ -10,11 +10,6 @@
    }
  }
 
-// include_once "../inc/header1.php";
-// if (empty($_SESSION['id'])) {
-// 	// include""
-// 	header("Location: ../../../../login/login.php");
-// }
 
 include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
 
@@ -42,12 +37,22 @@ if(isset($_POST['update']))
 		if(empty($email)) {
 			echo "<font color='red'>Email field is empty.</font><br/>";
 		}		
-	} else {	
+	} else 
+	{	
 		//updating the table
 		$result = mysqli_query($mysqli, "UPDATE tblnews SET name='$name',mobile='$mobile',email='$email' WHERE id=$id");
-		
+
+
 		//redirectig to the display page. In our case, it is index.php
-		header("Location: ./index.php");
+		if($result)
+		{
+			$_SESSION['status']= "Data Updated Successfully";
+			header('Location: index.php');
+		}
+		else
+		{
+			echo "Something went wrong";
+		}
 	}
 }
 ?>
@@ -81,6 +86,7 @@ while($user_data = mysqli_fetch_array($result))
 			
 				<tr>
 					<th scope="cols" colspan="3" class="p-0">
+					
 						<!--  -->
 						<h5> <a href="index.php"><button class="btn btn-dark btn-sm">← Back to project</button></a> </h5>
 					</th>
@@ -108,7 +114,8 @@ while($user_data = mysqli_fetch_array($result))
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $_GET['id'];?>">
 
 						<div class="form-group" align="right">
-							<button class="btn btn-primary btn-sm" name="update" value="Update" href="index.php">Update</button> <a class="btn btn-dark btn-sm" href="index.php">Cancel</a>
+							
+						<button class="btn btn-primary btn-sm" name="update" value="Update" >Update</button> <a class="btn btn-dark btn-sm" href="index.php">Cancel</a>
 						</div>
 					</td>
 

@@ -45,9 +45,19 @@ if(isset($_POST['update_events']))
 	} else {	
 		//updating the table
 		$result = mysqli_query($mysqli, "UPDATE tblevents SET event_name=' $event_name ', event_description='$event_description', date='$date', time='$time' WHERE id=$id");
-
+		header('Location: index.php');
+		
 		//redirectig to the display page. In our case, it is index.php
-		header("Location: index.php");
+		if($result)
+		{
+			$_SESSION['status']= "Data Updated Successfully";
+			
+		}
+		else
+		{
+			echo "Something went wrong";
+		}
+	
 	}
 }
 
@@ -117,7 +127,7 @@ while($res = mysqli_fetch_array($result))
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $_GET['id'];?>">
 
 						<div class="form-group" align="right">
-							<button class="btn btn-primary btn-sm" name="update_events" value="Update">Update</button> <a class="btn btn-dark btn-sm" href="index.php">Cancel</a>
+							<button class="btn btn-primary btn-sm" name="update_events" href="index.php" value="Update">Update</button> <a class="btn btn-dark btn-sm" href="../../admin/events/index.php">Cancel</a>
 						</div>
 					</td>
 

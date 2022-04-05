@@ -22,7 +22,17 @@
 				
 		// Insert user data into table
 		$result = mysqli_query($mysqli, "INSERT INTO tblnews(name,email,mobile) VALUES('$name','$email','$mobile')");
-		header("Location: index.php");
+			
+		if($result)
+		{
+			$_SESSION['status']= "Data Inserted Successfully";
+			header('Location: index.php');
+		}
+		else
+		{
+			echo "Something went wrong";
+		}
+	
 		
 		
 	}

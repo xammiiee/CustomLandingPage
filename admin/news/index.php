@@ -18,6 +18,14 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
 
 ?>
 
+<?php 
+$sql = "SELECT * from tblnews";
+if ($result = mysqli_query($mysqli, $sql)) {
+  $rowcount = mysqli_num_rows( $result );
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +65,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
 <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="/CustomLandingPage/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+       <a href="/CustomLandingPage/admin/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
       
       <nav class="main-nav float-right d-none d-lg-block" >
@@ -142,7 +150,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
             <div class="card">
               <div class="card-body">
                 <!-- change function to the designated function of your assign management -->
-                <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                <i class="fa fa-book fa-2x " style="color:#007bff"> <?php  echo($rowcount); ?></i><h2 class="float-right"><?php 
                 // echo get_journal($connect)->num_rows;?></h2>
                  <h5 class="card-title">All News</h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -152,21 +160,9 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body"> 
-               <i class="fa fa-upload fa-2x" style="color:#007bff"></i>
-                <h5 class="card-title">Recent upload</h5>     
+               <i class="fa fa-upload fa-2x" style="color:#007bff">2 </i>
+                <h5 class="card-title">Recent News</h5>     
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-5">
-            <div class="card">
-              <div class="card-body">
-                <!-- change function to the designated function of your assign management -->
-               <i class="fa fa-user-plus fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php 
-              //  echo get_users($connect)->num_rows;?></h2>
-                <h5 class="card-title">All Creator</h5>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              
               </div>
             </div>
           </div>
@@ -176,6 +172,25 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
   
   <!-- #intro -->
   
+  <div class="col-md-12">
+<?php 
+    if(isset($_SESSION['status']))
+    {
+
+      ?>
+    <div class="alert alert-success  fade show" role="alert">
+   <?php  echo $_SESSION['status']; ?>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+      <?php 
+      unset ($_SESSION['status']);
+    }
+?>
+</div>
+
+
 
   <main id="main">
   <body>

@@ -21,6 +21,15 @@ include_once("config.php");
 $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
 ?>
 
+
+<?php 
+$sql = "SELECT * from tblevents";
+if ($result = mysqli_query($mysqli, $sql)) {
+  $rowcount = mysqli_num_rows( $result );
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +46,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <link rel="stylesheet" href='../../resource/package/dist/sweetalert2.min.css' media="screen" />
 
   <!-- Bootstrap CSS File -->
   <link rel="stylesheet" href="../../resource/css/bootstrap.min.css"> 
@@ -52,7 +62,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
   <!-- Main Stylesheet File -->
   <link href="../../resource/css/style.css" rel="stylesheet">
   <link href="../../resource/css/addons.css" rel="stylesheet">
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script  src="../../resource/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -60,7 +71,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
 <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="/CustomLandingPage/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+       <a href="/customlandingpage/admin/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
       
       <nav class="main-nav float-right d-none d-lg-block" >
@@ -145,7 +156,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
             <div class="card">
               <div class="card-body">
                 <!-- change function to the designated function of your assign management -->
-                <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                <i class="fa fa-book fa-2x " style="color:#007bff"> <?php  echo($rowcount); ?></i> <h2 class="float-right"><?php 
                 // echo get_journal($connect)->num_rows;?></h2>
                  <h5 class="card-title">All Events </h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -155,21 +166,9 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body"> 
-               <i class="fa fa-upload fa-2x" style="color:#007bff"></i>
-                <h5 class="card-title">Recent upload</h5>     
+               <i class="fa fa-upload fa-2x" style="color:#007bff">  12</i>
+                <h5 class="card-title"> Recent Events </h5>     
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-5">
-            <div class="card">
-              <div class="card-body">
-                <!-- change function to the designated function of your assign management -->
-               <i class="fa fa-user-plus fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php 
-              //  echo get_users($connect)->num_rows;?></h2>
-                <h5 class="card-title">All Creator</h5>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              
               </div>
             </div>
           </div>
@@ -178,7 +177,28 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
 </section>
   
   <!-- #intro -->
+  <BR><BR>
   
+<div class="col-md-12">
+<?php 
+    if(isset($_SESSION['status']))
+    {
+
+      ?>
+    <div class="alert alert-success  fade show" role="alert">
+   <?php  echo $_SESSION['status']; ?>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+      <?php 
+      unset ($_SESSION['status']);
+    }
+?>
+</div>
+
+
+
 
   <main id="main">
   <body>
@@ -197,6 +217,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
 
 <br/>
 <br/>
+
+
 
 <!-- Create New Research -->
 
@@ -236,7 +258,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
        <input type="hidden" name="create" value="create"/>
        <div class="modal-footer">
   
-         <button  type="submit" name="Submit" class="btn btn-primary" value="Add" >Save</button>
+         <button  type="submit" id="" name="Submit" class="btn btn-primary" value="Add" >Save</button>
          <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
        </div>
      </form>
@@ -313,11 +335,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
 </tbody>
 </table>
 </div>
-
-
 </div>
-
-
 </section>
 
 
@@ -342,11 +360,6 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
 
   </main>
 
-<!--==========================
-    View all Section
-  ============================-->
-  
-  
   <!--==========================
     Footer
   ============================-->
@@ -395,7 +408,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
             <h4>Our Newsletter</h4>
             <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
             <form action="" method="post">
-              <input type="email" name="email"><input type="submit" onclick="popUp()" value="Subscribe">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+           
             </form>
           </div>
 
@@ -427,25 +441,21 @@ $result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
 
   <!-- Contact Form JavaScript File -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
- 
-
-  <!-- Template Main Javascript File -->
-  <script>
-  $(document).ready( function () {
-    $('#table_id').DataTable();
-} );
-  </script>
   <script src="../../resource/js/main.js"></script>
 
-<script>
-
-function popUp() {
+<script> 
+$('#btn').on('click', function(){
   Swal.fire(
-  'Good job!',
-  'You clicked the button!',
+  'Event Created',
+  'Event Created Succesfully',
   'success'
-  )}
-  </script>
+)
+})
+
+</script>
+
+<script src="../../resource/jquery-3.6.0.min.js"></script>
+<script src="../../resource/sweetalert2.all.min.js"> </script>
 
 </body>
 </html>
