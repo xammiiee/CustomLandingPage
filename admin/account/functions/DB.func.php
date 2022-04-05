@@ -87,7 +87,18 @@ function get_role_name($connect,$id){
 
 function create_accountaction($connect,$name,$email,$password,$ucategory,$aumember){
 
-	$sql = "INSERT INTO tblaccount VALUES ('','$name','$email','$password','Inactive','$ucategory','$aumember','','','')";
+	$sql = "INSERT INTO tblaccount VALUES ('','$name','$email','$password','Inactive','$ucategory','$aumember')";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+function update_account($connect,$name,$email,$pass,$ucategory,$au_member,$id){
+
+	$sql = "UPDATE tblaccount SET name='$name',email='$email',pass='$pass',ucategory='$ucategory',au_member='$au_member' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

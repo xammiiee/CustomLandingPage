@@ -119,23 +119,13 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         <div class="modal-body">
           <div class="form-group">
             <label for="author">Select Author</label>
-              <select name="author" id="Select Author" class="form-control" required>
-                <option  selected>Choose...</option>
-                <?php 
-                  $authors = get_authors($connect);
-                  if ($result->num_rows>0) 
-                  { 
-                    while ($author = mysqli_fetch_array($authors)) 
-                    { 
-                      if ($author['role'] !="Administrator") 
-                      {
-                        ?>
-                        <option value="<?php echo $author['name'];?>"><?php echo $author['name'];?></option>
-                      <?php 
-                      }
-                    } 
-                  }
-                    ?>
+            <select name="author" id="Select Author" class="form-control" required>
+              <option  selected hidden>Choose...</option>
+              <?php $authors = get_authors($connect); while ($author = mysqli_fetch_array($authors)) { 
+                if ($author['role'] !="Administrator") {
+                  ?>
+                  <option value="<?php echo $author['name'];?>"><?php echo $author['name'];?></option>
+                <?php }} ?>
               </select>
           </div>
 
