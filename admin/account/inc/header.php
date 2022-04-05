@@ -63,68 +63,44 @@ include "/xampp/htdocs/CustomLandingPage/admin/account/functions/functions.php";
       <div class="logo float-left">
        <a href="/CustomLandingPage/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
+      
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-        <?php 
-          if (isset($_SESSION['id'])) 
-          { 
-            if ($_SESSION['role']=="Administrator")
-            { ?>
+        <?php if (isset($_SESSION['id'])) { if ($_SESSION['role']=="Administrator") { ?>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">Management</a>
-              <?php 
-            }
-            ?>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../account/account.php">Account Management</a>
-                  <?php } ?>
-
-                  <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../research/research.php">Research Management</a>
-                  <?php } ?>
-
-                  <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../author/author.php">Author Management</a>
-                  <?php } ?>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Management
+                </a>
+               
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/acount.php">Account Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/research/research.php">Research Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/article/article.php">Article Management</a>
+                  <a class="dropdown-item" href="#">Author Management</a>
+                  <a class="dropdown-item" href="#">Events Management</a>
+                  </li>
                   
-                  <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../journal/journal.php">Journal Management</a>
+                  <!-- <li class="nav-item active"><a class="dropdown-item" href="../../signup/logout.php">Signout</a></li> -->
                   <?php } ?>
-                  
-                  <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../article/article.php">Article Management</a>
-                  <?php } ?>
-
-                  <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../author/author.php">Author Management</a>
-                  <?php } ?>
-
-                  <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../events/index.php">Events Management</a>
-                  <?php } ?>
-
-                  <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../news/index.php">News Management</a>
-                  <?php } ?>
-                  </div>
-                </li>
-                  <li><a><?php echo $_SESSION['name'];?></a></li>
+                  <?php if ($_SESSION['role']=="Administrator" || $_SESSION['role']=="Visitor") { ?>
                   <li class="nav-item dropdown" >
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="../profile/profile.php">Profile</a>
-                      <a class="dropdown-item" href="#aboutus">About Us</a>
-                      <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
-                    </div>
+                    <a class="dropdown-item" href="#settings">Settings</a>
+                    <a class="dropdown-item" href="#aboutus">About Us</a>
+                   
+                    <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
+                  </div>
                   </li>
-                  <?php
-          } 
-          else 
-          { 
-            header("Location: ../../login/login.php");
-          }?>
+                  <?php } ?>
+                  <?php } else { ?>
+                <li><a href="/login/login.php">Login</a></li>
+                <li><a href="/signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
+          
+          <?php } ?>
         </ul>
       </nav><!-- .main-nav -->
     </div>
@@ -156,9 +132,11 @@ include "/xampp/htdocs/CustomLandingPage/admin/account/functions/functions.php";
   <!-- Template Main Javascript File -->
   <script>
   $(document).ready( function () {
-    $('#table_id').DataTable();
-    } );
+  } );
   </script>
+  <script language="javascript" type="text/javascript">
+  window.history.forward();
+</script>
   <script src="../../resource/js/main.js"></script>
   </body>
 </html>

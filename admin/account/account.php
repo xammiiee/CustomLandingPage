@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    $result = create_accountaction($connect,$_POST['name'],$_POST['email'],$_POST['pass'],$_SESSION['id'],$_POST['ucategory'],$_POST['au_member']);
+    $result = create_accountaction($connect,$_POST['name'],$_POST['email'],$_POST['pass'],$_POST['ucategory'],$_POST['au_member'],$_SESSION['id']);
     if ($result == 1) {
       message("Account created successfully!",1);
     } else {
