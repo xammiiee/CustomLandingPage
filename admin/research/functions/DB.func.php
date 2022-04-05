@@ -84,22 +84,80 @@ function get_research_by_title($connect,$title){
 	$bsearch = $title;
 	//save the keyword from the url
 	$trim_search = trim($bsearch);
-	// create a base query and words string
-	$sql_string = "SELECT * FROM tblresearch WHERE ";
+
 	$display_words = "";
 	// seperate each of the keywords
 	$keywords = explode(' ', $trim_search); 
 	//loop to search 
 	foreach($keywords as $word)
 	{
-		$sql_string .= " title LIKE '%".$word."%' OR ";
-		$display_words .= $word." ";
+		$sql_string = "SELECT * FROM tblresearch WHERE abstract LIKE '%" . $word . "%' OR title LIKE '%" . $word ."%' OR";
 	}
+
  	$sql_string = substr($sql_string, 0, strlen($sql_string) - 3);
 	$result = $connect->query($sql_string);
 		return $result;
 }
 
+function get_journal_by_title($connect,$title){
+	//value from db
+	$bsearch = $title;
+	//save the keyword from the url
+	$trim_search = trim($bsearch);
+
+	$display_words = "";
+	// seperate each of the keywords
+	$keywords = explode(' ', $trim_search); 
+	//loop to search 
+	foreach($keywords as $word)
+	{
+		$sql_string = "SELECT * FROM tbljournal WHERE description LIKE '%" . $word . "%' OR title LIKE '%" . $word ."%' OR";
+	}
+
+ 	$sql_string = substr($sql_string, 0, strlen($sql_string) - 3);
+	$result = $connect->query($sql_string);
+		return $result;
+}
+
+function get_article_by_title($connect,$title){
+	//value from db
+	$bsearch = $title;
+	//save the keyword from the url
+	$trim_search = trim($bsearch);
+
+	$display_words = "";
+	// seperate each of the keywords
+	$keywords = explode(' ', $trim_search); 
+	//loop to search 
+	foreach($keywords as $word)
+	{
+		$sql_string = "SELECT * FROM tblarticle WHERE description LIKE '%" . $word . "%' OR title LIKE '%" . $word ."%' OR";
+	}
+
+ 	$sql_string = substr($sql_string, 0, strlen($sql_string) - 3);
+	$result = $connect->query($sql_string);
+		return $result;
+}
+
+function get_news_by_title($connect,$title){
+	//value from db
+	$bsearch = $title;
+	//save the keyword from the url
+	$trim_search = trim($bsearch);
+
+	$display_words = "";
+	// seperate each of the keywords
+	$keywords = explode(' ', $trim_search); 
+	//loop to search 
+	foreach($keywords as $word)
+	{
+		$sql_string = "SELECT * FROM tblnews WHERE name LIKE '%" . $word . "%' OR mobile LIKE '%" . $word ."%' OR";
+	}
+
+ 	$sql_string = substr($sql_string, 0, strlen($sql_string) - 3);
+	$result = $connect->query($sql_string);
+		return $result;
+}
 // =====================================================================
 function get_author($connect){
 	//ORDER BY deadline ASC

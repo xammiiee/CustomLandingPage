@@ -87,7 +87,7 @@ function get_role_name($connect,$id){
 
 function create_accountaction($connect,$name,$email,$password,$ucategory,$aumember){
 
-	$sql = "INSERT INTO tblaccount VALUES ('','$name','$email','$password','Inactive','$ucategory','$aumember')";
+	$sql = "INSERT INTO tblaccount VALUES ('','$name','$email','$password','Inactive','$ucategory','$aumember','','','')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -95,6 +95,49 @@ function create_accountaction($connect,$name,$email,$password,$ucategory,$aumemb
 		return 0;
 	}
 }
+
+function delete_accountaction($connect,$id){
+	$sql = "DELETE FROM tblaccount WHERE id=$id";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return "1";
+	} else {
+		return "0";
+	}
+}
+
+function update_activeaction($connect,$id){
+
+	$sql = "UPDATE tblaccount SET `status`='Active' WHERE id=$id";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+function update_deactiveaction($connect,$id){
+
+	$sql = "UPDATE tblaccount SET `status`='Inactive' WHERE id=$id";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+function get_accountaction($connect,$id){
+	$sql = "SELECT * FROM tblaccount WHERE id='$id'";
+	$result = $connect->query($sql);
+	if ($result->num_rows > 0) {
+		return $result->fetch_assoc();
+	} else {
+		return "0";
+	}
+}
+
 
 ?>
 

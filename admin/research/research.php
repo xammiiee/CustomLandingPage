@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <?php
 if (isset($_SESSION['id'])) 
 { 
@@ -65,7 +67,23 @@ else
   <br>
 <?php
 }
-// BACKEND CODE
+// ====BACKEND CODE=== //
+// for co-authors
+if(isset($_POST["prim_skills"]))
+{
+ $prim_skills = '';
+ foreach($_POST["prim_skills"] as $row)
+ {
+  $prim_skills .= $row . ', ';
+ }
+ $prim_skills = substr($prim_skills, 0, -2);
+ $query = "INSERT INTO skills(skills) VALUES('".$prim_skills."')";
+ if(mysqli_query($connect, $query))
+ {
+  echo 'Data Inserted';
+ }
+}
+
 if (isset($_GET['del'])) {
   // change function to the designated function of your assign management
   $result = delete_researchaction($connect,$_GET['del']);
@@ -107,15 +125,35 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['btnsubmit'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
+    // if(isset($_POST["co-author"]))
+    // {
+    //   $c_author = '';
+    //   foreach($_POST["co-author"] as $row)
+    //   {
+    //     $c_author .= $row . ', ';
+    //   }
+    //   $c_author = substr($c_author, 0, -2);
+    // }
 
-    $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$_POST['#co-author-list'],$_POST['dpub'],$_POST['fstudy'],$Pdf_file,"", "", $tagging);
-    if ($result == 1) {
-      message("Research created successfully!",1);
-    } else {
-      message("Could not create Journal!",0);
-    }
-  }
+    // if(isset($_POST["tags"]))
+    // {
+    //   $tag = '';
+    //   foreach($_POST["tags"] as $row)
+    //   {
+    //     $tagging .= $row . ', ';
+    //   }
+    //   $tagging = substr($tagging, 0, -2);
+    // }
+      echo $_POST['co-author'];
+    $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$_POST["txtco-author"],$_POST['dpub'],$_POST['fstudy'],$Pdf_file,"", "", $_POST["tags"]);
+      if ($result == 1) {
+        message("Research created successfully!",1);
+      } else {
+        message("Could not create Research!",0);
+      }
 }
+}
+// ===============================================================================================
 ?>
 
 <div class="container">
@@ -129,13 +167,10 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 </button>
 </a>
 
-<br/>
-<br/>
-
 <!-- Create New Research -->
 
-<div class="modal fadeInDown  adding-research-lg " id="adding-research" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+<div class="modal fadeInDown  adding-research-lg " id="adding-research" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-lg" role="document" style="border-radius: 10px;">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -145,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
       <div class="modal-body">
       <div class="box">
       <center><h1>Add New Research Paper</h1></center>
-      <form action="" method="POST" name="form" enctype="multipart/form-data">
+      <form action="" method="POST" name="form" enctype="multipart/form-data" id="adding-research-form">
 
         <!-- TITLE -->
         <div class="form-group">
@@ -154,7 +189,8 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         </div>
 
         <!-- MAIN AUTHOR -->
-        <div class="form-group">
+          <div class="col">
+            <div class="form-group">
             <label class="label">Main Author *</label><br>
             <select class="custom-select" id="txtmain-author" name="txtmain-author">
             <option selected> </option>
@@ -165,52 +201,41 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
               while ($data = mysqli_fetch_array($result)) 
               {
                 {
-                  echo  "<option value=".$data['fullname'].">".$data['fullname']."</option>";
+                  echo  "<option>".$data['name']."</option>";
                 }
               }
             }
             ?>
             </select>
-          </div>
-        
-        <!-- CO AUTHOR -->
-        <div class="row">
-          
-          <div class="col">
-          <label class="label">Co-Author(s) *</label><br>
-          <select class="custom-select" id="txtco-authors" name="co-author">
-          <option selected disabled> </option>
-          <?php
-          $result = get_author($connect);
-          if ($result->num_rows>0) 
-          {
-            while ($data = mysqli_fetch_array($result)) 
-            {
-              {
-                echo  "<option value=".$data['id']." id=".$data['fullname'].">".$data['fullname']."</option>";
-              }
-            }
-          }
-          ?>
-          </select>
-          <div class="input-group-append">
-            <button class="btn btn-info" type="button" id="btn-co-author">Add</button>
-          </div>
+            </div>
           </div>
 
-          <div class="col" id="co-author-list" >
-            <label >--Co-Authors Added--</label>
-          <ul class="list-group" id='co-list' id="co-author-list">
-            <?php
-              $a="list-group-item";
-              foreach($result as $row)
+          <!-- CO-AUTHORS -->
+          <div class="col">
+          <label class="label">Co-Authors *</label><br>
+          <style>
+            #co-authors{
+              width: 100%;
+              color: black;
+            }
+          </style>
+          <select class="form-control selectpicker md" data-live-search="true" id="co-authors" name="txtco-authors">
+            <option selected disabled></option>
+          <?php
+            $result = get_author($connect);
+            if ($result->num_rows>0) 
+            {
+              while ($data = mysqli_fetch_array($result)) 
               {
-                echo  "<li class ='list-group-item' value='".$row['id']."' id='".$row['fullname']."'>".$row['fullname']."</li>";
+                {
+                  echo  "<option>".$data['name']."</option>";
+                }
               }
+            }
             ?>
-          </ul>
-          </div>
-        </div>
+        </select>
+        </div><br>
+        
 
         <!-- ABSTRACT -->
       <div class="form-group">
@@ -233,11 +258,11 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
             <label class="label">Field of Study *</label><br>
             <select class="custom-select" id="fstudy" name="fstudy">
             <option selected> </option>
-            <option value="Accounting and Finance">Accounting and Finance</option>
-            <option value="Business and Economics">Business and Economics</option>
-            <option value="Computer Studies">Computer Studies</option>
-            <option value="Hospitality">Hospitality</option>
-            <option value="Nursing">Nursing</option>
+            <option>Accounting and Finance</option>
+            <option>Business and Economics</option>
+            <option>Computer Studies</option>
+            <option>Hospitality</option>
+            <option>Nursing</option>
             </select>
           </div>
         </div>
@@ -247,22 +272,15 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 
         <!-- TAGS -->
         <div class="col">
-          <label class="label">Tag(s) *</label>
-          <select class="custom-select" id="drop-tags">
+          <label class="label">Tag(s) *</label><br>
+          <select class=" form-control selectpicker md" multiple data-live-search="true" id="tags" name="tags">
             <option selected disabled> </option>
-            <option value="Computer" id="Computer">Computer</option>
-            <option value="WebDesign" id="WebDesign">Web Design</option>
-            <option value="InternetSecurity" id="InternetSecurity">Internet Security</option>
+            <option>Computer</option>
+            <option>Web Design</option>
+            <option>Internet Security</option>
           </select>
-          <div class="input-group-append">
-            <button class="btn btn-info" type="button" id="btn-tags">Add</button>
-          </div>
         </div>
-        <div class="col">
-          <label>--Tags Added--</label>
-          <ul class="list-group" id="tags-list" >
-          </ul>
-        </div>
+        
       </div><br>
       <div class="form-group">
           <label for="files">Add (pdf, txt or docs)</label>
@@ -282,10 +300,10 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   </div>
 </div>
 
-
 <!--Journal-->
 <div class="table-responsive-lg">
   <!-- change table id based on your managemnet -->
+  <!-- <table class="table table-striped table-bordered" cellspacing="0" width="100%"> -->
  <table id="research" class="table table-hover">
    <thead>
      <tr>
@@ -301,7 +319,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <th scope="col" align="center">Action</th>
      </tr>
    </thead>
-   <tbody>
+   <tbody id="myTable">
      <?php
      
     //get author id inside research
@@ -324,11 +342,9 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         //  echo $user['name'];
          ?>
        </td>
-       
-       <td><?php 
-      //  echo date("Y-m-d",strtotime($data['created']));?></td>
        <!-- Action Column -->
-       <td align="center"><div class="dropdown">
+       <td>
+         <div class="dropdown"  style="float:left">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
          </button>
@@ -367,57 +383,94 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
  ?>
 </tbody>
 </table>
+<div class="col-md-12 text-center">
+  <ul class="pagination pagination-lg pager" id="myPager"></ul>
+</div>
 </div>
 </div>
 
 <script src="assets/datatables.min.js"></script>
 <script src="./script/main.js"></script>
 <script>
- $(function() {
-  //  change id with the id of the table
-   $('#research').DataTable();
-   $(function() {
-     var table = $('#example').DataTable({
-       "columnDefs": [{
-         "visible": false,
-         "targets": 2
-       }],
-       "ordering": false,
-       "displayLength": 25,
-       "drawCallback": function(settings) {
-         var api = this.api();
-         var rows = api.rows({
-           page: 'current'
-         }).nodes();
-         var last = null;
-         api.column(2, {
-           page: 'current'
-         }).data().each(function(group, i) {
-           if (last !== group) {
-             $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-             last = group;
-           }
-         });
-       }
-     });
-           // Order by the grouping
-           $('#example tbody').on('click', 'tr.group', function() {
-             var currentOrder = table.order()[0];
-             if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-               table.order([2, 'desc']).draw();
-             } else {
-               table.order([2, 'asc']).draw();
-             }
-           });
-       });
- });
- $('#example23').DataTable({
-   dom: 'Bfrtip',
-   buttons: [
-   'copy', 'csv', 'excel', 'pdf', 'print'
-   ]
- });
- $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+  $(document).ready(function () {
+    $('#myTable').pageMe({
+      pagerSelector:'#myPager',
+      showPrevNext:true,
+      hidePageNumbers:false,
+      perPage:4});
+});
+//  $(function() {
+//   //  change id with the id of the table
+//    $('#research').DataTable();
+//    $(function() {
+//      var table = $('#research').DataTable({
+//        "columnDefs": [{
+//          "visible": false,
+//          "targets": 2
+//        }],
+//        "ordering": false,
+//        "displayLength": 25,
+//        "drawCallback": function(settings) {
+//          var api = this.api();
+//          var rows = api.rows({
+//            page: 'current'
+//          }).nodes();
+//          var last = null;
+//          api.column(2, {
+//            page: 'current'
+//          }).data().each(function(group, i) {
+//            if (last !== group) {
+//              $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+//              last = group;
+//            }
+//          });
+//        }
+//      });
+//            // Order by the grouping
+//            $('#research tbody').on('click', 'tr.group', function() {
+//              var currentOrder = table.order()[0];
+//              if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+//                table.order([2, 'desc']).draw();
+//              } else {
+//                table.order([2, 'asc']).draw();
+//              }
+//            });
+//        });
+//  });
+//  $('#research').DataTable({
+//    dom: 'Bfrtip',
+//    buttons: [
+//    'copy', 'csv', 'excel', 'pdf', 'print'
+//    ]
+//  });
+//  $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+
+
+//  script for co-author
+$('#txtco-authors').multiselect({
+nonSelectedText: 'Select Your Skills',
+enableFiltering: true,
+enableCaseInsensitiveFiltering: true,
+buttonWidth:'400px'
+});
+
+$('#adding-research-form').on('submit', function(event){
+event.preventDefault();
+var form_data = $(this).serialize();
+$.ajax({
+url:"research.php",
+method:"POST",
+data:form_data,
+success:function(data)
+{
+$('#txtco-authors option:selected').each(function(){
+$(this).prop('selected', false);
+});
+$('#txtco-authors').multiselect('refresh');
+alert(data);
+}
+});
+});
 </script>
 
 
@@ -426,7 +479,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
+  <!-- <footer id="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -479,6 +532,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
       </div>
       
     </div>
-
+  </footer> -->
   
 
