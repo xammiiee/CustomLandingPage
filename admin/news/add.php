@@ -1,48 +1,33 @@
-<html>
-<head>
 
-	<title>Add News</title>
-</head>
+<?php
+//insert.php
 
-<body>
-	<a href="index2.php">Go to Home</a>
-	<br/><br/>
-
+if(isset($_POST["name"]))
+{
+    $email = $_POST['name'];
+    $email = $_POST['email'];
+    $mobile = $_POST['mobile'];
+    $author = $_POST['author'];
 	
-	<?php
+ $connect = new PDO("mysql:host=localhost;dbname=research_portal", "root", "");
+ $query = "INSERT INTO tblnews(name,email,mobile,author,tags) VALUES(:name,'$mobile','$email','$author', :skill)";
+ $statement = $connect->prepare($query);
+ $statement->execute(
+  array(
+   ':name'  => $_POST["name"],
+   ':skill' => $_POST["skill"]
+  )
+ );
 
-	// Check If form submitted, insert form data into users table.
-	if(isset($_POST['Submit'])) {
-		$name = $_POST['name'];
-		$email = $_POST['email'];
-		$mobile = $_POST['mobile'];
-		
-		// include database connection file
-		include_once("config.php");
-				
-		// Insert user data into table
-		$result = mysqli_query($mysqli, "INSERT INTO tblnews(name,email,mobile) VALUES('$name','$email','$mobile')");
-			
-		if($result)
-		{
-			$_SESSION['status']= "Data Inserted Successfully";
-			header('Location: index.php');
-		}
-		else
-		{
-			echo "Something went wrong";
-		}
-	
-		
-		
-	}
-	?>
-</body>
-</html>
+ $result = $statement->fetchAll();
+ $output = '';
+ if(isset($result))
+ {
+	$_SESSION['status']= "Data Inserted Successfully";
+	header('Location: index.php');
+  
+ }
+ echo $output;
+}
 
-<script>
-  $(function () {
-    $('#datetimepicker1').datetimepicker();
- });
-</script>
-
+?>

@@ -59,6 +59,9 @@ if ($result = mysqli_query($mysqli, $sql)) {
   <link href="../../resource/css/style.css" rel="stylesheet">
   <link href="../../resource/css/addons.css" rel="stylesheet">
 
+  
+
+
 </head>
 
 <body>
@@ -150,7 +153,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
             <div class="card">
               <div class="card-body">
                 <!-- change function to the designated function of your assign management -->
-                <i class="fa fa-book fa-2x " style="color:#007bff"> <?php  echo($rowcount); ?></i><h2 class="float-right"><?php 
+                <i class="fa fa-book fa-2x " style="color:#007bff"></i> <h2 class="float-right">  <?php  echo($rowcount); ?><?php 
                 // echo get_journal($connect)->num_rows;?></h2>
                  <h5 class="card-title">All News</h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -160,7 +163,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
           <div class="col-md-3 col-sm-5">
             <div class="card">
               <div class="card-body"> 
-               <i class="fa fa-upload fa-2x" style="color:#007bff">2 </i>
+               <i class="fa fa-upload fa-2x" style="color:#007bff"> </i> 2
                 <h5 class="card-title">Recent News</h5>     
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
@@ -176,7 +179,6 @@ if ($result = mysqli_query($mysqli, $sql)) {
 <?php 
     if(isset($_SESSION['status']))
     {
-
       ?>
     <div class="alert alert-success  fade show" role="alert">
    <?php  echo $_SESSION['status']; ?>
@@ -227,20 +229,37 @@ if ($result = mysqli_query($mysqli, $sql)) {
 
          <!-- change the form add based on your designated management -->
          <div class="form-group">
-           <label for="author">Headlines</label>
+           <label for="author">Headlines *</label>
            <input type="text" class="form-control" id="name" name="name" required>
+           
+         <div class="form-group">
+           <label for="author">Author *</label>
+           <input type="text" class="form-control" id="author" name="author" required>
+         </div>
+
            <div class="form-group">
-             <label for="title">Description</label>
-             <textarea type="text" class="form-control" rows="3" id="mobile" name="mobile"> </textarea>
+             <label for="title">Description *</label>
+             <textarea type="text" class="form-control" rows="3" id="mobile" name="mobile" required> </textarea>
            </div>
 
-         </div>
          <div class="form-group">
-           <label for="datepub">Date Published</label>
-           <input type="date" class="form-control" id="email" name="email">
+           <label for="datepub">Date Published *</label>
+           <input type="date" class="form-control" id="email" name="email" required>
          </div>
+
+         <div>
+
+         <div class="form-group">
+        <label>Tags</label>
+        <input type="text" name="skill" id="skill" class="form-control" />
        </div>
-      
+         </div>
+         
+       </div>
+       </div> 
+ 
+    <br>
+
        <input type="hidden" name="create" value="create"/>
        <div class="modal-footer">
   
@@ -264,6 +283,8 @@ if ($result = mysqli_query($mysqli, $sql)) {
        <th scope="col">Headlines</th>
        <th scope="col">Description</th>
        <th scope="col">Date Published</th>
+       <th scope="col">Author</th>
+       <th scope="col">Tags</th>
        <th scope="col" align="center">Action</th>
      </tr>
    </thead>
@@ -279,6 +300,8 @@ if ($result = mysqli_query($mysqli, $sql)) {
          <td><a href="action.php?id=<?php echo $data['id']?> &ref=research"><?php echo $data['name']?></a></td>    <!-- name is for headlines -->
          <td><?php echo $data['mobile']?></a></td>   <!-- mobile is for description -->
          <td><?php echo $data['email']?></a></td> <!-- mobile is for date -->
+         <td><?php echo $data['author']?></a></td>
+         <td><?php echo $data['tags']?></a></td>
       
  <!-- ACTION BUTTON -->
 
@@ -450,3 +473,60 @@ if ($result = mysqli_query($mysqli, $sql)) {
 
 </body>
 </html>
+
+
+
+<script>
+
+$(document).ready(function(){
+ 
+ $('#skill').tokenfield({
+  autocomplete:{
+   source: ['Technology','Game','Virtual Reality','Cybersecurity','Javascript','CSS','Mysql'],
+   delay:100
+  },
+  showAutocompleteOnFocus: true
+ });
+
+ $('#programmer_form').on('submit', function(event){
+  event.preventDefault();
+  if($.trim($('#name').val()).length == 0)
+  {
+   alert("Please Enter Your Name");
+   return false;
+  }
+  else if($.trim($('#skill').val()).length == 0)
+  {
+   alert("Please Enter Atleast one Skill");
+   return false;
+  }
+  else
+  {
+   var form_data = $(this).serialize();
+   $('#submit').attr("disabled","disabled");
+   $.ajax({
+    url:"add.php",
+    method:"POST",
+    data:form_data,
+    beforeSend:function(){
+     $('#submit').val('Submitting...');
+    },
+    success:function(data){
+     if(data != '')
+     {
+      $('#name').val('');
+      $('#skill').tokenfield('setTokens',[]);
+      $('#success_message').html(data);
+      $('#submit').attr("disabled", false);
+      $('#submit').val('Submit');
+     }
+    }
+   });
+   setInterval(function(){
+    $('#success_message').html('');
+   }, 5000);
+  }
+ });
+ 
+});
+</script>

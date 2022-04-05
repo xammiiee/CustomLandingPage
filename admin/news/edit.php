@@ -98,16 +98,22 @@ while($user_data = mysqli_fetch_array($result))
 					<td>
 						<!-- change this form to what must be edited to your assign management -->
 						<div class="form-group">
-							<label for="author">Headlines</label>
+							<label for="author">Headlines *</label>
 							<input type="text" class="form-control" id="headlines" name="name" value="<?php echo $name;?>">
 							
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="description">Description</label>
 						<input type="text" class="form-control" id="description" name="mobile" value="<?php echo $mobile;?>">
-	</div>
-						</div>
+	</div> -->
+						<!-- ABSTRACT -->
 						<div class="form-group">
-							<label for="datepub">Dated Created</label>
+						<label class="label">Description *</label>
+						<textarea rows="5" cols="60" type="text "name="mobile" id="description" class="form-control"></textarea>
+						</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="datepub">Dated Created *</label>
 							<input type="date" class="form-control" id="date" name="email" value="<?php echo $email;?>">
 						</div>
 
