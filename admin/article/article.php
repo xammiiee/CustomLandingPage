@@ -141,9 +141,16 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
           <input type="file" class="form-control-file" id="files" name="files" required="required">
         </div>
         <div class="form-group">
-             <label for="a_tagging">Tags</label>
-             <input type="text" class="form-control" id="a_tagging" name="a_tagging" required="required">
-           </div>
+            <label class="label">Tags</label><br>
+            <select class="custom-select" id="a_tagging" name="a_tagging">
+            <option selected hidden> </option>
+            <option>Study</option>
+            <option>Diseases</option>
+            <option>Technology</option>
+            <option>History</option>
+            <option>Computation</option>
+            </select>
+          </div>
        </div>
        <input type="hidden" name="a_created" value="<?php echo date("M-d-y"); ?>"/>
        <input type="hidden" name="create" value="create"/>

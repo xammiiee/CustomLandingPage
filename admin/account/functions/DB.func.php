@@ -139,6 +139,15 @@ function update_deactiveaction($connect,$id){
 	}
 }
 
+
+function get_accounts($connect){
+	//ORDER BY deadline ASC
+	$sql = "SELECT * FROM tblaccount";
+	$result = $connect->query($sql);
+		return $result;
+}
+
+
 function get_accountaction($connect,$id){
 	$sql = "SELECT * FROM tblaccount WHERE id='$id'";
 	$result = $connect->query($sql);

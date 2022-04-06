@@ -83,13 +83,14 @@ if(isset($_FILES['files'])){
 
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
-    $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$_POST['created'],$filelocation,"0");
+    $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$_POST['created'],$filelocation,"0",$_POST['tagging']);
     if ($result == 1) {
       message("Journal created successfully!",1);
     } else {
       message("Could not create Journal!",0);
     }
   }
+
 }
 ?>
 <div class="container">
@@ -148,6 +149,21 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
           <label for="files">Add (pdf, txt or docs)</label>
           <input type="file" class="form-control-file" id="files" name="files" oninvalid="alert('Hey, upload your file')" required="required">
         </div>
+        <div class="form-group">
+            <label class="label">Tags</label><br>
+            <?php
+              $arrstate = array
+              (
+                'AK' => 'Alaska',
+                'AL' => 'Alabama',
+                'AR' => 'Arkansas',
+                'AZ' => 'Arizona'   
+              ); ?>
+            <select name="tagging">
+                <?php foreach($arrstate as $key => $value) { ?>
+                  <option value="<?php echo $key; ?>"  <?=($value == $current_zip_entered ? "selected" : "" )?>><?php echo $value; ?></option>
+                <?php } ?></select>
+          </div>
        
         <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
         <input type="hidden" name="create" value="create"/>
@@ -162,7 +178,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     </div>
    </div>
    </div>
-
 
 <!--Journal-->
 <div class="table-responsive-lg">

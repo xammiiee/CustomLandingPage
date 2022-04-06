@@ -22,7 +22,10 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/functions.php";
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
   <!-- Bootstrap CSS File -->
   <link rel="stylesheet" href="../../resource/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../resource/css/mdb.min.css">
@@ -73,7 +76,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/functions.php";
                 </a>
                
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/acount.php">Account Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/account.php">Account Management</a>
                   <a class="dropdown-item" href="/CustomLandingPage/admin/research/research.php">Research Management</a>
                   <a class="dropdown-item" href="/CustomLandingPage/admin/author/author.php">Author Management</a>
                   <a class="dropdown-item" href="/CustomLandingPage/admin/journal/journal.php">Journal Management</a>

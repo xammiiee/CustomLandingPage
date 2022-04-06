@@ -73,7 +73,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/account/functions/functions.php";
                 </a>
                
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/acount.php">Account Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/account.php">Account Management</a>
                   <a class="dropdown-item" href="/CustomLandingPage/admin/research/research.php">Research Management</a>
                   <a class="dropdown-item" href="/CustomLandingPage/admin/author/author.php">Author Management</a>
                   <a class="dropdown-item" href="/CustomLandingPage/admin/journal/journal.php">Journal Management</a>

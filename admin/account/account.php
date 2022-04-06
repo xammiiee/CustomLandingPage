@@ -25,7 +25,7 @@ if (empty($_SESSION['id'])) {
             <div class="card">
               <div class="card-body">
                 <!-- change function to the designated function of your assign management -->
-                <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php echo get_accounts($connect)->num_rows;?><?php 
                 // echo get_journal($connect)->num_rows;?></h2>
                  <h5 class="card-title">All Account</h5>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -196,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        </td>
        
      
-       <td align="center"><div class="dropdown">
+       <td align="left"><div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
          </button>
