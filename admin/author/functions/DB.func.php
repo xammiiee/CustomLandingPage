@@ -121,8 +121,8 @@ function get_authors($connect,$id){
 	}
 }
 
-function create_authoraction($connect,$name, $email, $profession,$description,$fstudy,$created,$filelocation){
-	$sql = "INSERT INTO tblauthor VALUES ('','$name','$email','$profession','$description','$fstudy','$created','$filelocation')";
+function create_authoraction($connect,$name, $email, $profession,$description,$fstudy,$created){
+	$sql = "INSERT INTO tblauthor VALUES ('','$name','$email','$profession','$description','$fstudy','$created')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

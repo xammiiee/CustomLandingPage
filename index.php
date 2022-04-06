@@ -36,22 +36,17 @@
 <body>
 
 <?php
-  session_start();
-  if (!empty($_SESSION['id'])) 
-  {?>  
-    <?php 
-      if($_SESSION['role'] == "Administrator")
-      {?>
+session_start();
+include "../CustomLandingPage/admin/research/inc/db.php";
+include "../CustomLandingPage/admin/research/functions/DB.func.php";
+include "../CustomLandingPage/admin/research/functions/functions.php";
+include "../CustomLandingPage/admin/research/functions/Message.func.php";
 
-      <?php
-      }
-      elseif($_SESSION['role'] == "User")
-      {?>
-      
-      <?php
-      }
+  if (!empty($_SESSION['id'])) 
+  {
+
   }
-  elseif(empty($_SESSION['id']))
+  else
   {
     header("Location: ./login/login.php");
   }
@@ -108,7 +103,8 @@
       <div class="intro-img">
         <img src="/" alt="" class="img-fluid">
       </div>
-      <form action="result.php" method="GET" onsubmit="">
+      <div>
+      <form action="result.php" method="GET">
         <div class="form-group">
           <input name="a" class="form-control form-control-lg d-inline" type="text" placeholder="Search Here!" aria-label=".form-control-lg example" style="width: 80%;" value="">
           <select class="custom-select-lg d-inline" id="search_type" name="u" style="width: 14%;">
@@ -120,20 +116,16 @@
         </div>
         <div class="intro-info">    
           <h2>Arellano Research <span> Portal <span></h2>
-          <div>
-            
-            <!-- ============================================ -->
+          <button class="btn-get-started scrollto" name="b">Search</button>
+        
             <?php
-      if(empty($_SESSION['id'])) 
-      {
-        ?><a href="./login/login.php" class="btn-services scrollto">Login</a><?php
-      }
-      ?>
-      <!-- ============================================ -->
-    </form>
-    <a href=""><button class="btn-get-started scrollto" name="b">Search</button></a>
-          </div>
+            if(empty($_SESSION['id'])) 
+            {
+              ?><a href="./login/login.php" class="btn-services scrollto">Login</a><?php
+            }
+            ?>
         </div>
+      </div>
     </div>
   </section>
   
@@ -145,20 +137,6 @@
     <!--==========================
       Result Section
     ============================-->
-    <section id="services" class="section-bg">
-      <div class="container">
-        <?php
-          include "../CustomLandingPage/admin/research/inc/db.php";
-          include "../CustomLandingPage/admin/research/functions/DB.func.php";
-          include "../CustomLandingPage/admin/research/functions/functions.php";
-          include "../CustomLandingPage/admin/research/functions/Message.func.php";
-        ?>
-  
-  
-
-  
-      </div>
-    </section>
 
 <!--==========================
     View all Section

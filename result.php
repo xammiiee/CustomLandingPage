@@ -63,7 +63,7 @@
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="#intro" class="scrollto"><img src="./resource/img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
+       <a href="index.php" class="scrollto"><img src="./resource/img/logo.png" alt="" class="img-fluid">&nbsp;<strong>AURESPOR</strong></a>
       </div>
       <!-- Condition for user -->
       <nav class="main-nav float-right d-none d-lg-block" >
@@ -124,6 +124,7 @@
       padding-top: 95px; 
       width: 100%; 
       position: relative;
+      
      }
   </style>
   <header class="section-header">
@@ -186,48 +187,31 @@
       </form>
 </div><hr>
 <!----------------- Filtering Section ---------------------->
-
-          <!-- <ul class="list-inline" style="padding-left: 40px;" id="filtering">
+         <ul class="list-inline" id="filtering">
             <li class="list-inline-item" >
-              <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Sort by Relevance 
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Sort by Relevance</a></li>
-                <li><a class="dropdown-item" href="#">Sort by Most Views</a></li>
-                <li><a class="dropdown-item" href="#">Sorth by Citation Count</a></li>
-              </ul>
-            </div>
+            <select class="custom-select d-inline" id="filter1" name="u" style="width:190px;" value="">
+               <option>Sort by Relevance</option>
+               <option>Sort by Most Views</option>
+               <option>Sort by Citation Count</option>
+            </select>
             </li>
 
-            <li class="list-inline-item" id="fil_study">
-              <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Field of Study 
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
+            <li class="list-inline-item" >
+            <select class="custom-select d-inline" id="filter2" name="u" style="width:190px;" value="">
+               <option selected disabled>Field of Study</option>
+               <option>Art</option>
+               <option>Business</option>
+               <option>Computer Science</option>
+               <option>Education</option>
+               <option>Law</option>
+               <option>Medicine</option>
+               <option>Political Science</option>
+               <option>Psychology</option>
+            </select>
             </li>
-
-            <li class="list-inline-item" id="fil_date">
-              <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Date Published 
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
-            </li>
-
-          </ul> -->
+         
+            <a href=""><button class="btn btn-primary btn-sm  " id="filter-reset">Search</button></a>
+          </ul>
 <!-------------------- End of Filtering Section ---------------------------->
         </header><br>
 
@@ -470,7 +454,7 @@
   <script src="contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
-  <script src="../CustomLandingPage/login/script/main.js"></script>
+  <script src="/view/main.js"></script>
   <script src="./resource/js/main.js"></script>
 
 </body>

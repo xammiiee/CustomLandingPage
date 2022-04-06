@@ -1,5 +1,5 @@
 (function ($) {
-  window.history.forward();
+  // window.history.forward();
   
   "use strict";
 

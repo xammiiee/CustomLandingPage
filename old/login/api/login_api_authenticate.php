@@ -3,7 +3,7 @@
     // $con = mysqli_connect("localhost","root","","research_portal");
    
     if(isset($_GET['btn_login']))
-   {
+    {
       // username and password sent from form 
       $email = mysqli_real_escape_string($con,$_POST['email']);
       $password = mysqli_real_escape_string($con,$_POST['pass']); 
@@ -65,3 +65,6 @@
       }
    }
 ?>
+
+
+
