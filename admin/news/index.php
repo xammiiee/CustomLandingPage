@@ -47,6 +47,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
   <!-- Bootstrap CSS File -->
   <link rel="stylesheet" href="../../resource/css/bootstrap.min.css"> 
 	<link rel="stylesheet" href="../../resource/css/mdb.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
 
   <!-- Libraries CSS Files -->
   <link href="../../resource/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -445,6 +446,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
   <!-- <div id="preloader"></div> -->
   <!-- Tables CDN -->
   <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
 
   <!-- JavaScript Libraries -->
   <script src="../../resource/lib/jquery/jquery.min.js"></script>

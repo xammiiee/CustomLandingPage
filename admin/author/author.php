@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    $result = create_authoraction($connect,$_POST['name'],$_POST['email'],$_POST['profession'],$_POST['description'],$_POST['fstudy'],$_SESSION['id'],$_POST['created'],$filelocation);
+    $result = create_authoraction($connect,$_POST['name'],$_POST['email'],$_POST['profession'],$_POST['description'],$_POST['fstudy'],$_SESSION['id'],$_POST['created']);
     if ($result == 1) {
       message("Author created successfully!",1);
     } else {
@@ -158,11 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
              <input type="text" class="form-control" id="fstudy" name="fstudy" required="required">
            </div>
          </div>
-      
-         <div class="form-group">
-          <label for="files" class="control-label">Add (pdf only)</label><span style="color:red;"> &#42;</span>
-          <input type="file" class="form-control-file" id="files" name="files" required="required">
-        </div>
+
        </div>
        <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
        <input type="hidden" name="create" value="create"/>

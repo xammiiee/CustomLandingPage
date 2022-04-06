@@ -36,22 +36,17 @@
 <body>
 
 <?php
-  session_start();
-  if (!empty($_SESSION['id'])) 
-  {?>  
-    <?php 
-      if($_SESSION['role'] == "Administrator")
-      {?>
+session_start();
+include "../CustomLandingPage/admin/research/inc/db.php";
+include "../CustomLandingPage/admin/research/functions/DB.func.php";
+include "../CustomLandingPage/admin/research/functions/functions.php";
+include "../CustomLandingPage/admin/research/functions/Message.func.php";
 
-      <?php
-      }
-      elseif($_SESSION['role'] == "User")
-      {?>
-      
-      <?php
-      }
+  if (!empty($_SESSION['id'])) 
+  {
+
   }
-  elseif(empty($_SESSION['id']))
+  else
   {
     header("Location: ./login/login.php");
   }
@@ -108,11 +103,12 @@
       <div class="intro-img">
         <img src="/" alt="" class="img-fluid">
       </div>
-      <form action="" method="GET" onsubmit="">
+      <div>
+      <form action="result.php" method="GET">
         <div class="form-group">
-          <input name="a" class="form-control form-control-lg d-inline" type="text" placeholder="Search Here!" aria-label=".form-control-lg example" style="width: 80%;">
+          <input name="a" class="form-control form-control-lg d-inline" type="text" placeholder="Search Here!" aria-label=".form-control-lg example" style="width: 80%;" value="">
           <select class="custom-select-lg d-inline" id="search_type" name="u" style="width: 14%;">
-            <option selected>Researches</option>
+          <option selected>Researches</option>
             <option>Journals</option>
             <option>Articles</option>
             <option>News</option>
@@ -120,20 +116,16 @@
         </div>
         <div class="intro-info">    
           <h2>Arellano Research <span> Portal <span></h2>
-          <div>
-            <a href="tblresult"><button class="btn-get-started scrollto" name="b">Search</button></a>
-            
-      <!-- ============================================ -->
-      <?php
-      if(empty($_SESSION['id'])) 
-      {
-        ?><a href="./login/login.php" class="btn-services scrollto">Login</a><?php
-      }
-      ?>
-      <!-- ============================================ -->
-      </form>
-          </div>
+          <button class="btn-get-started scrollto" name="b">Search</button>
+        
+            <?php
+            if(empty($_SESSION['id'])) 
+            {
+              ?><a href="./login/login.php" class="btn-services scrollto">Login</a><?php
+            }
+            ?>
         </div>
+      </div>
     </div>
   </section>
   
@@ -145,196 +137,10 @@
     <!--==========================
       Result Section
     ============================-->
-    <section id="services" class="section-bg">
-      <div class="container">
-  <?php
-    include "../CustomLandingPage/admin/research/inc/db.php";
-    include "../CustomLandingPage/admin/research/functions/DB.func.php";
-    include "../CustomLandingPage/admin/research/functions/functions.php";
-    include "../CustomLandingPage/admin/research/functions/Message.func.php";
-  ?>
-  
-  <header class="section-header">
-
-<!----------------- Filtering Section ---------------------->
-
-          <!-- <ul class="list-inline" style="padding-left: 40px;" id="filtering">
-            <li class="list-inline-item" >
-              <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Sort by Relevance 
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Sort by Relevance</a></li>
-                <li><a class="dropdown-item" href="#">Sort by Most Views</a></li>
-                <li><a class="dropdown-item" href="#">Sorth by Citation Count</a></li>
-              </ul>
-            </div>
-            </li>
-
-            <li class="list-inline-item" id="fil_study">
-              <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Field of Study 
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
-            </li>
-
-            <li class="list-inline-item" id="fil_date">
-              <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle btn-md" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Date Published 
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
-            </li>
-
-          </ul> -->
-<!-------------------- End of Filtering Section ---------------------------->
-        </header><br>
-
-        <div class="row" id="rseult-tbl">
-<!--=============================== Search Result Section ===============================-->
-          <table id="table_id" class="display">
-            <tbody id="tblresult">
-              <?php 
-              if(isset($_GET['b']))
-              // function searching()
-              {
-                if($_GET['a'] != "")
-                {
-                  $title = $_GET['a'];
-                  
-                  if($_GET['u'] == "Researches")
-                  {
-                    $result = get_research_by_title($connect,$title);
-                      if ($result->num_rows>0) 
-                      {
-                      while ($data = mysqli_fetch_array($result))
-                      {
-                        ?>
-                        <tr>
-                          <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
-                            <div class="box">
-                              <h4 class="title"><a href="./view/action.php?id= <?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
-
-                                  <li class="list-inline-item"><b><u><span><?php echo $data['co_authors'];?></span></u></b></li>
-
-                                  <li class="list-inline-item"><b><span> * Published <?php echo $data['date_publish'];?></span></b></li>
-                                  
-                                  <li class="list-inline-item"><b><span> * <?php echo $data['field_of_study'];?></span></b></li>
-                                  
-                                </ul>
-                                <p class="description"><span><?php echo $data['abstract'];?></span></p>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b>Views: <?php echo $data['views'];?></b></li>
-                                  <li class="list-inline-item"><b>Cite: <?php echo $data['cites'];?></b></li>
-                                </ul>
-                            </div>
-                          </div>
-                        </tr>
-                      <?php
-                      }
-                    }
-                  }
-                  elseif($_GET['u'] == "Journals")
-                  {
-                    $result = get_journal_by_title($connect,$title);
-                      if ($result->num_rows>0) 
-                      {
-                      while ($data = mysqli_fetch_array($result))
-                      {
-                        ?>
-                        <tr>
-                          <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
-                            <div class="box">
-                              <h4 class="title"><a href="./view/action.php?id= <?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b><u><span><?php echo $data['author'];?></span></u></b></li>
-
-                                  <li class="list-inline-item"><b><span> * Published <?php echo $data['datepub'];?></span></b></li>
-                                  
-                                  <li class="list-inline-item"><b><span> * <?php //echo $data['field_of_study'];?></span></b></li>
-                                  
-                                </ul>
-                                <p class="description"><span><?php echo $data['description'];?></span></p>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b>Views: <?php //echo $data['views'];?></b></li>
-                                  <li class="list-inline-item"><b>Cite: <?php //echo $data['cites'];?></b></li>
-                                </ul>
-                            </div>
-                          </div>
-                        </tr>
-                      <?php
-                      }
-                    }
-                  }
-                  elseif($_GET['u'] == "Articles")
-                  {
-                    $result = get_article_by_title($connect,$title);
-                      if ($result->num_rows>0) 
-                      {
-                      while ($data = mysqli_fetch_array($result))
-                      {
-                        ?>
-                        <tr>
-                          <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
-                            <div class="box">
-                              <h4 class="title"><a href="./view/action.php?id= <?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b><u><span><?php echo $data['author'];?></span></u></b></li>
-
-                                  <li class="list-inline-item"><b><span> * Publshed <?php echo $data['datepub'];?></span></b></li>
-                                  
-                                  <li class="list-inline-item"><b><span> * <?php //echo $data['field_of_study'];?></span></b></li>
-                                  
-                                </ul>
-                                <p class="description"><span><?php echo $data['description'];?></span></p>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b>Views: <?php //echo $data['views'];?></b></li>
-                                  <li class="list-inline-item"><b>Cite: <?php //echo $data['cites'];?></b></li>
-                                </ul>
-                            </div>
-                          </div>
-                        </tr>
-                      <?php
-                      }
-                    }
-                  }
-                  elseif($_GET['u'] == "News")
-                  {
-                    
-                  }
-              }
-                
-              }
-              else
-              {
-                $title = "";
-              }?>
-            </tbody>
-          </table>
-<!--======================== End of Result Section ===========================-->
-        </div>
-
-      </div>
-    </section>
 
 <!--==========================
     View all Section
   ============================-->
-
   </main>
 
 

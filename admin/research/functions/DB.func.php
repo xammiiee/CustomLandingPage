@@ -186,6 +186,58 @@ function create_researchredirecting($connect,$a_id,$a_name, $r_id, $r_title){
 	$result = $connect->query($sql);
 		return $result;
 }
+
+// ================================================
+// Journal
+function get_journalaction($connect,$id){
+	$sql = "SELECT * FROM tbljournal WHERE id='$id'";
+	$result = $connect->query($sql);
+	if ($result->num_rows > 0) {
+		return $result->fetch_assoc();
+	} else {
+		return "0";
+	}
+}
+
+function get_journalrelated($connect, $fstudy, $tags){
+	$sql = "SELECT * FROM tbljournal WHERE field_of_study ='$fstudy' OR tagging = '$tags'";
+	$result1 = $connect->query($sql);
+		return $result1;
+}
+
+// Article
+function get_articleaction($connect,$id){
+	$sql = "SELECT * FROM tblarticle WHERE id='$id'";
+	$result = $connect->query($sql);
+	if ($result->num_rows > 0) {
+		return $result->fetch_assoc();
+	} else {
+		return "0";
+	}
+}
+
+function get_articlerelated($connect, $fstudy, $tags){
+	$sql = "SELECT * FROM tblarticle WHERE field_of_study ='$fstudy' OR tagging = '$tags'";
+	$result1 = $connect->query($sql);
+		return $result1;
+}
+
+// News
+function get_newsaction($connect,$id){
+	$sql = "SELECT * FROM tblnews WHERE id='$id'";
+	$result = $connect->query($sql);
+	if ($result->num_rows > 0) {
+		return $result->fetch_assoc();
+	} else {
+		return "0";
+	}
+}
+
+function get_newsrelated($connect, $fstudy, $tags){
+	$sql = "SELECT * FROM tblnews WHERE field_of_study ='$fstudy' OR tagging = '$tags'";
+	$result1 = $connect->query($sql);
+		return $result1;
+}
 ?>
 
 
