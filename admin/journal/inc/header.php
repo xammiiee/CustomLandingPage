@@ -40,7 +40,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/functions.php";
   <link href="../../resource/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="../../resource/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-
+  
   
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
@@ -76,13 +76,13 @@ include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/functions.php";
                 </a>
                
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/account.php">Account Management</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/research/research.php">Research Management</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/author/author.php">Author Management</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/journal/journal.php">Journal Management</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/article/article.php">Article Management</a>
-                  <a class="dropdown-item" href="#">Author Management</a>
-                  <a class="dropdown-item" href="#">Events Management</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/account.php">Account</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/research/research.php">Research</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/author/author.php">Author</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/journal/journal.php">Journal</a>
+                  <a class="dropdown-item" href="/CustomLandingPage/admin/article/article.php">Article</a>
+                  <a class="dropdown-item" href="#">News</a>
+                  <a class="dropdown-item" href="#">Events</a>
                   </li>
                   
                   <!-- <li class="nav-item active"><a class="dropdown-item" href="../../signup/logout.php">Signout</a></li> -->

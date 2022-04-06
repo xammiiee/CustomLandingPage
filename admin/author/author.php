@@ -177,9 +177,9 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 
 
 
-<!--Journal-->
+<!--Author-->
 <div class="table-responsive-lg">
- <table id="journal" class="table table-hover">
+ <table id="author" class="table table-hover">
    <thead>
      <tr>
        <th scope="col" class="d-none">Default Sort Fixer</th>
@@ -248,11 +248,12 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 </div>
 </div>
 
-<script src="assets/datatables.min.js"></script>
+
+<script src="../../resource/assets/datatables.min.js"></script>
 <script>
  $(function() {
   //  change id with the id of the table
-   $('#research').DataTable();
+   $('#author').DataTable();
    $(function() {
      var table = $('#example').DataTable({
        "columnDefs": [{

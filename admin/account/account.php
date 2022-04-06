@@ -196,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        </td>
        
      
-       <td align="left"><div class="dropdown">
+       <td align="center"><div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="fa fa-ellipsis-h"></i>
          </button>
@@ -281,7 +281,8 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 </div>
 </div>
 </div>
-<script src="assets/datatables.min.js"></script>
+
+<script src="../../resource/assets/datatables.min.js"></script>
 <script>
  $(function() {
   //  change id with the id of the table

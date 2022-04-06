@@ -239,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 </div>
 </div>
 
-<script src="assets/datatables.min.js"></script>
+<script src="../../resource/assets/datatables.min.js"></script>
 <script>
  $(function() {
    $('#article').DataTable();

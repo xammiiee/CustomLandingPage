@@ -151,18 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         </div>
         <div class="form-group">
             <label class="label">Tags</label><br>
-            <?php
-              $arrstate = array
-              (
-                'AK' => 'Alaska',
-                'AL' => 'Alabama',
-                'AR' => 'Arkansas',
-                'AZ' => 'Arizona'   
-              ); ?>
-            <select name="tagging">
-                <?php foreach($arrstate as $key => $value) { ?>
-                  <option value="<?php echo $key; ?>"  <?=($value == $current_zip_entered ? "selected" : "" )?>><?php echo $value; ?></option>
-                <?php } ?></select>
+            <input type="text" class="form-control" id="tagging" name="tagging"  required="required">
           </div>
        
         <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
@@ -179,6 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
    </div>
    </div>
 
+   
 <!--Journal-->
 <div class="table-responsive-lg">
  <table id="journal" class="table table-hover">
@@ -262,7 +252,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 
 
 
-<script src="assets/datatables.min.js"></script>
+<script src="../../resource/assets/datatables.min.js"></script>
 <script>
  $(function() {
    $('#journal').DataTable();
