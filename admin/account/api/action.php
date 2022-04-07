@@ -13,7 +13,7 @@ if (isset($_POST['id'])) {
 	$result = update_account($connect,$_POST['name'],$_POST['email'],$_POST['pass'],$_POST['ucategory'],$_POST['au_member'],$_POST['id']);
 	if ($result == "1") {
 		echo'<div style="position:relative;top: 100px;"';
-		message("Article updated successfully!",1);
+		message("Account updated successfully!",1);
 	}
 }
 // deleting of journal
@@ -22,8 +22,8 @@ if (isset($_POST['id'])) {
  	$result = delete_accountaction($connect,$_GET['del']);
  	if ($result =="1") {
 		//  change location to the page of your assign mangement
- 		header("Location: ./admin/research/research.php");
- 		message("Research deleted successfully!","1");
+ 		header("Location: ./admin/account/account.php");
+ 		message("Account deleted successfully!","1");
  	}
  }
 
