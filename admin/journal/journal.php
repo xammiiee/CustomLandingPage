@@ -94,16 +94,16 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 }
 ?>
 <div class="container">
-<!-- Create task button -->
-<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-project">
-<i  class="fa fa-plus"></i>
-</button>
-<a href="journal.php"><button type="button" class="btn btn-outline-primary btn-sm">
-<i class="fa fa-refresh" aria-hidden="true"></i>
-</button>
-</a>
-<br/>
-<br/>
+  <!-- Create task button -->
+  <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-project">
+  <i  class="fa fa-plus"></i>
+  </button>
+  <a href="journal.php"><button type="button" class="btn btn-outline-primary btn-sm">
+  <i class="fa fa-refresh" aria-hidden="true"></i>
+  </button>
+  </a>
+  <br/>
+  <br/>
 
 <!-- Modal New Journal -->
 <div class="modal fade" id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
@@ -167,6 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     </div>
    </div>
    </div>
+   
 
    
 <!--Journal-->
