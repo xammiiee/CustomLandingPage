@@ -16,7 +16,7 @@ if (isset($_POST['id'])) {
 		message("Account updated successfully!",1);
 	}
 }
-// deleting of journal
+// deleting of account
  if (isset($_GET['del'])) {
 	//  change function to the designated function of your assign management
  	$result = delete_accountaction($connect,$_GET['del']);
@@ -26,6 +26,25 @@ if (isset($_POST['id'])) {
  		message("Account deleted successfully!","1");
  	}
  }
+
+// activating of account 
+ if (isset($_POST['act'])) {
+	$result = update_activeaction($connect,$_POST['id']);
+	if ($result == "1") {
+		echo'<div style="position:relative;top: 100px;"';
+		message("Account activated successfully!",1);
+	}
+}
+
+// deactivating of account
+if (isset($_POST['deact'])) {
+	$result = update_activeaction($connect,$_POST['id']);
+	if ($result == "1") {
+		echo'<div style="position:relative;top: 100px;"';
+		message("Account deactivated successfully!",1);
+	}
+}
+
 
 // editing of Research
 if (isset($_GET['edit'])) {
