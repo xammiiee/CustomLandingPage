@@ -220,7 +220,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         //  echo $user['name'];
          ?>
        </td>
-       
      
        <td align="center"><div class="dropdown">
          <button class="btn btn-light btn-sm" type="button" id="option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -228,10 +227,35 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          </button>
          <div class="dropdown-menu" aria-labelledby="option">
            <a class="dropdown-item" href="./api/action.php?edit=<?php echo $data['id']?>">Edit</a>
-           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#activate-<?php echo $data['id'];?>">Activate</a><?php } ?>
-           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#deactivate-<?php echo $data['id'];?>">Deactivate</a><?php } ?>
-           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#subscribe-<?php echo $data['id'];?>">Subscribe</a><?php } ?>
-           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#unsubscribe-<?php echo $data['id'];?>">Unsubscribe</a><?php } ?>
+           <?php 
+          $status = $data['status'];
+          if($status == "Active")
+          {
+            // $stat1="Deactivate";
+            if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#deactivate-<?php echo $data['id'];?>">Deactivate</a><?php }
+          }
+          elseif($status =="Inactive")
+          {
+            // $stat1 = "Activate";
+            if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#activate-<?php echo $data['id'];?>">Activate</a><?php }
+          }
+          $id = $data['id'];
+        ?>
+
+<?php 
+          $status = $data['subcribe'];
+          if($status == "Yes")
+          {
+            // $stat1="Deactivate";
+            if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#subscribe-<?php echo $data['id'];?>">Subscribe</a><?php }
+          }
+          elseif($status =="No")
+          {
+            // $stat1 = "Activate";
+            if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#unsubscribe-<?php echo $data['id'];?>">Unsubscribe</a><?php }
+          }
+          $id = $data['id'];
+        ?>
            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
