@@ -16,7 +16,7 @@ if (empty($_SESSION['id'])) {
 }
 
 ?>
-<!-- #Journal-->
+<!-- #Account-->
 <section id="intro" class="clearfix">
   <div class="container">
   <h3 style="color:#fff;">&nbsp;<b> Account Management </b></h3>
@@ -431,7 +431,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
+  <!-- <footer id="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -483,7 +483,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         </div>
       </div>
       
-    </div>
+    </div> -->
 
   
 

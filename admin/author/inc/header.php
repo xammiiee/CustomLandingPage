@@ -45,7 +45,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/author/functions/Message.func.php
 
 
   <!-- Main Stylesheet File -->
-  <link href="../../resource/css/style.css" rel="stylesheet">
+  <link href="../../resource/css/style_management.css" rel="stylesheet">
   <link href="../../resource/css/addons.css" rel="stylesheet">
   <style type="text/css">
    .modal-dialog{
