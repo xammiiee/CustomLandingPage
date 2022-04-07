@@ -49,9 +49,8 @@ include "/xampp/htdocs/CustomLandingPage/admin/article/functions/functions.php";
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
 
-
   <!-- Main Stylesheet File -->
-  <link href="../../resource/css/style.css" rel="stylesheet">
+  <link href="../../resource/css/style_management.css" rel="stylesheet">
   <link href="../../resource/css/addons.css" rel="stylesheet">
   <style type="text/css">
    .modal-dialog{
@@ -138,7 +137,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/article/functions/functions.php";
   </header><!-- #header -->
 
 <!-- #footer -->
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
   <!-- Tables CDN -->
@@ -147,7 +146,13 @@ include "/xampp/htdocs/CustomLandingPage/admin/article/functions/functions.php";
   <!-- JavaScript Libraries -->
   <script src="../../resource/lib/jquery/jquery.min.js"></script>
   <script src="../../resource/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="../../resource/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+  <!-- <script src="../../resource/lib/bootstrap/js/bootstrap.bundle.min.js"></script> -->
   <script src="../../resource/lib/easing/easing.min.js"></script>
   <script src="../../resource/lib/mobile-nav/mobile-nav.js"></script>
   <script src="../../resource/lib/wow/wow.min.js"></script>
@@ -163,9 +168,11 @@ include "/xampp/htdocs/CustomLandingPage/admin/article/functions/functions.php";
   <!-- Template Main Javascript File -->
   <script>
   $(document).ready( function () {
-    $('#table_id').DataTable();
-    } );
+  } );
   </script>
+  <script language="javascript" type="text/javascript">
+  window.history.forward();
+</script>
   <script src="../../resource/js/main.js"></script>
   </body>
 </html>
