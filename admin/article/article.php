@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <?php
 include "/xampp/htdocs/CustomLandingPage/admin/article/inc/header.php";
 // include "../article/inc/header.php";
@@ -80,12 +82,17 @@ if(isset($_FILES['files'])){
      print_r($errors);
   }
 }
-
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
-    $result = create_article($connect,$_POST['a_title'],$_POST['a_description'],$_POST['a_author'],$_SESSION['id'],$_POST['a_datepub'],$_POST['a_created'],"0",$_POST['a_tagging'],$a_filelocation);
+    foreach($_POST['a_tagging'] as $tags) {
+      $tags= implode(',',$_POST['a_tagging']);
+    }
+    $result = create_article($connect,$_POST['a_title'],$_POST['a_description'],$_POST['a_author'],$_SESSION['id'],$_POST['a_datepub'],$_POST['a_created'],"0",$tags,$a_filelocation);
+  
+
+
     if ($result == 1) {
-      message("Journal created successfully!",1);
+      message("Article created successfully!",1);
     } else {
       message("Could not create Journal!",0);
     }
@@ -142,14 +149,19 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         </div>
         <div class="form-group">
             <label class="label">Tags</label><br>
-            <select class="custom-select" id="a_tagging" name="a_tagging">
-            <option selected hidden> </option>
-            <option>Study</option>
-            <option>Diseases</option>
-            <option>Technology</option>
-            <option>History</option>
-            <option>Computation</option>
-            </select>
+            <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="tags" name="a_tagging[]" value="">
+            <option selected disabled></option>
+            <option>#edchat</option>
+            <option>#K12</option>
+            <option>#learning</option>
+            <option>#edleadership</option>
+            <option>#edtech</option>
+            <option>#engchat</option>
+            <option>#literacy</option>
+            <option>#scichat</option>
+            <option>#mathchat</option>
+            <option>#edreform</option>
+        </select>
           </div>
        </div>
        <input type="hidden" name="a_created" value="<?php echo date("M-d-y"); ?>"/>
@@ -162,6 +174,13 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
    </div>
  </div>
 </div>
+<?php
+if(!empty($_POST["a_tagging"])) {
+    foreach($_POST['a_tagging'] as $tags) {
+        echo $tags;
+    }   
+}
+?>
 
 <!--Journal-->
 <div class="table-responsive-lg">
