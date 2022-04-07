@@ -87,7 +87,7 @@ function get_role_name($connect,$id){
 
 function create_accountaction($connect,$name,$email,$password,$ucategory,$aumember){
 
-	$sql = "INSERT INTO tblaccount VALUES ('','$name','$email','$password','Inactive','$ucategory','$aumember')";
+	$sql = "INSERT INTO tblaccount VALUES ('','$name','$email','$password','Inactive','$ucategory','$aumember','','','')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -117,9 +117,9 @@ function delete_accountaction($connect,$id){
 	}
 }
 
-function update_activeaction($connect,$id){
+function activate_action($connect,$id){
 
-	$sql = "UPDATE tblaccount SET `status`='Active' WHERE id=$id";
+	$sql = "UPDATE tblaccount SET status='Active' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -128,9 +128,9 @@ function update_activeaction($connect,$id){
 	}
 }
 
-function update_deactiveaction($connect,$id){
+function deactivate_action($connect,$id){
 
-	$sql = "UPDATE tblaccount SET `status`='Inactive' WHERE id=$id";
+	$sql = "UPDATE tblaccount SET status='Inactive' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

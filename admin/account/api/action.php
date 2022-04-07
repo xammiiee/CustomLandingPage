@@ -13,19 +13,39 @@ if (isset($_POST['id'])) {
 	$result = update_account($connect,$_POST['name'],$_POST['email'],$_POST['pass'],$_POST['ucategory'],$_POST['au_member'],$_POST['id']);
 	if ($result == "1") {
 		echo'<div style="position:relative;top: 100px;"';
-		message("Article updated successfully!",1);
+		message("Account updated successfully!",1);
 	}
 }
-// deleting of journal
+// deleting of account
  if (isset($_GET['del'])) {
 	//  change function to the designated function of your assign management
  	$result = delete_accountaction($connect,$_GET['del']);
  	if ($result =="1") {
 		//  change location to the page of your assign mangement
- 		header("Location: ./admin/research/research.php");
- 		message("Research deleted successfully!","1");
+ 		header("Location: ./admin/account/account.php");
+ 		message("Account deleted successfully!","1");
  	}
  }
+
+// activating of account 
+ if (isset($_POST['activate'])) {
+	$result = activate_action($connect,$_POST['id']);
+	if ($result == "1") {
+		echo'<div style="position:relative;top: 100px;"';
+		message("Account activated successfully!",1);
+	}
+}
+
+// deactivating of account
+if (isset($_POST['deactivate'])) {
+	$result = deactivate_action($connect,$_POST['id']);
+	if ($result == "1") {
+		echo'<div style="position:relative;top: 100px;"';
+		message("Account deactivated successfully!",1);
+	}
+}
+
+
 
 // editing of Research
 if (isset($_GET['edit'])) {
@@ -98,47 +118,3 @@ if (isset($_GET['edit'])) {
 		</div>
 
 <?php } ?>
-	
-
-
-<!-- Code for Active and Deactive -->
-<?php
-                         $sql = "SELECT * FROM tblaccount";
-                         $result = mysqli_query($con, $sql);
-                 
-                         if(mysqli_num_rows($result) > 0) {
-                             $account = mysqli_fetch_all($result,MYSQLI_ASSOC);
-                             foreach($account as $user) : ?>
-                                <tr id="result">
-                                    <td><?php echo $user['fname']; ?> </td>
-                                    <td><?php echo $user['lname']; ?> </td>
-                                    <td><?php echo $user['email']; ?> </td>
-                                    <td><?php echo $user['ucategory']; ?> </td>
-                                    <td><?php echo $user['au_member']; ?> </td>
-                                    <td><?php echo $user['status']; ?> </td>
-                                    <td>
-                                        <?php 
-                                          $status = $user['status'];
-                                          if($status == "Active")
-                                          {
-                                            $stat1="Deactivate";
-                                          }
-                                          elseif($status =="Inactive")
-                                          {
-                                            $stat1 = "Activate";
-                                          }
-                                          $id = $user['id'];
-                                        ?>
-                                            <a href="admin_dashboard.php?status=<?php echo $user['status']?>&id=<?php echo $user['id']?>"><input type="submit" class="btn btn-primary btn-sm" id="btn_edit1" value="<?php echo "$stat1" ?>" ></input></a>
-                                            <?php 
-                                          ?>
-                                          <a href="#editaccount"><input type="submit" class="btn btn-warning btn-sm" id="btn_edit" value="Edit" data-bs-toggle="modal" data-bs-target="#editaccount">
-                                          </input></a>
-                                          
-                                          <a href="admin_dashboard.php?delete=<?php echo $user['id'];?>"><input type="submit" class="btn btn-danger btn-sm" id="btn_delete" value="Delete">
-                                          </input></a>
-                                    </td>
-                                </tr>
-                          <?php endforeach; 
-                         }   
-                    ?>
