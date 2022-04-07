@@ -102,40 +102,23 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['btnsubmit'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    // if (isset($_POST["submit"]))
+    // foreach($_POST['txtco-authors'] as $c_author) 
     // {
-    //   $travel = $_POST["travel"];
-    //   $added = explode(",", $_POST["added"]);
-    //   $travel = array_merge($travel, $added);
-
-
-    //   echo "<p> Here is the list with your additions:</p>";
-
-    //   echo "<ul>";
-
-    //   foreach ($travel as $t)
-    //       {
-    //       echo "<li>$t</li>";
-    //       }
-
-    //   echo "</ul>";
+    //   $c_author= implode(',',$_POST['txtco-authors']);
     // }
-          $co = $_POST["txtco-authors"];
-          $added = explode(",", $_POST["added"]);
-          $co = array_merge($co, $added); 
-
-          $tags = $_POST["tags"];
-          $added1 = explode(",", $_POST["added1"]);
-          $tags = array_merge($tags, $added1);
-
-    $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$co,$_POST['dpub'],$_POST['fstudy'],$Pdf_file,"", "", $tags);
-      if ($result == 1) {
-        message("Research created successfully!",1);
-      } else {
-        message("Could not create Research!",0);
-      }
-}
-}
+    
+    foreach($_POST['tags'] as $tagging) 
+    {
+      $tagging= implode(',',$_POST['tags']);
+    }
+      $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$_POST['dpub'],$_POST['fstudy'],$Pdf_file,$tagging);
+        if ($result == 1) {
+          message("Research created successfully!",1);
+        } else {
+          message("Could not create Research!",0);
+        }
+    }
+    }
 // ===============================================================================================
 ?>
 
@@ -214,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
           <!-- CO-AUTHORS -->
           <div class="col">
           <label class="label">Co-Authors *</label><br>
-          <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="co-authors" name="txtco-authors">
+          <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="co-authors" name="txtco-authors[]">
             <option selected disabled></option>
           <?php
             $result = get_author($connect);
@@ -265,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 
       <div class="col">
           <label class="label">Tags *</label><br>
-          <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="tags" name="tags" value="">
+          <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="tags" name="tags[]" value="">
             <option selected disabled></option>
             <option>#edchat</option>
             <option>#K12</option>
@@ -297,6 +280,21 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     </div>
   </div>
 </div>
+<?php
+// if(!empty($_POST["tags"]) &&!empty($_POST["txtco-authors"])) {
+// foreach($_POST['txtco-authors'] as $c_author) 
+// {
+//   $c_author= implode(',',$_POST['txtco-authors']);
+//   // echo $c_author;
+// }
+
+// foreach($_POST['tags'] as $tags) 
+// {
+//   $tags= implode(',',$_POST['tags']);
+//   // echo $tags;
+// }
+// }
+?>
 <script>
   $("#cancel-1r").click(function () {
     var co = $("#co-authors").val();
@@ -308,6 +306,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 <div class="table-responsive-lg">
   <!-- change table id based on your managemnet -->
   <!-- <table class="table table-striped table-bordered" cellspacing="0" width="100%"> -->
+    
  <table id="research" class="table table-hover">
    <thead>
      <tr>

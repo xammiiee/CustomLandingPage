@@ -49,8 +49,8 @@ function get_researchrelated($connect, $fstudy, $tags){
 		return $result1;
 }
 
-function create_researchaction($connect,$title, $abstract, $main_author, $co_author, $datepub, $fstudy, $pdf_file, $views, $cite, $tagging){
-	$sql = "INSERT INTO tblresearch VALUES ('','$title','$abstract','$main_author','','$datepub','$fstudy','', '$pdf_file','$views','$cite', '')";
+function create_researchaction($connect,$title, $abstract, $main_author, $datepub, $fstudy, $pdf_file, $tags){
+	$sql = "INSERT INTO tblresearch VALUES ('','$title','$abstract','$main_author','','$datepub','$fstudy','', '$pdf_file','','', $tags)";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
