@@ -1,3 +1,5 @@
+
+
 <?php
 include ("/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php");
 if (empty($_SESSION['id'])) {
@@ -83,7 +85,10 @@ if(isset($_FILES['files'])){
 
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
-    $result = create_journalaction($connect,$_POST['author'],$_POST['title'],$_POST['description'],$_SESSION['id'],$_POST['datepub'],$_POST['created'],$filelocation,"0",$_POST['tagging']);
+    foreach($_POST['tagging'] as $tags) {
+      $tags= implode(',',$_POST['tagging']);
+    }
+    $result = create_journalaction($connect,$_POST['title'],$_POST['description'],$_POST['author'],$_POST['datepub'],$_SESSION['id'],$_POST['created'],$filelocation,$tags);
     if ($result == 1) {
       message("Journal created successfully!",1);
     } else {
@@ -150,8 +155,28 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
           <input type="file" class="form-control-file" id="files" name="files" oninvalid="alert('Hey, upload your file')" required="required">
         </div>
         <div class="form-group">
+        <label for="fstudy">Field of Study</label>
+        <select class="form-control">
+          <option selected="selected">orange</option>
+          <option>white</option>
+          <option>purple</option>
+        </select>
+        </div>
+        <div class="form-group">
             <label class="label">Tags</label><br>
-            <input type="text" class="form-control" id="tagging" name="tagging"  required="required">
+            <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="tags" name="tagging[]" value="">
+            <option selected disabled></option>
+            <option>#edchat</option>
+            <option>#K12</option>
+            <option>#learning</option>
+            <option>#edleadership</option>
+            <option>#edtech</option>
+            <option>#engchat</option>
+            <option>#literacy</option>
+            <option>#scichat</option>
+            <option>#mathchat</option>
+            <option>#edreform</option>
+        </select>
           </div>
        
         <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
@@ -167,6 +192,13 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     </div>
    </div>
    </div>
+   <?php
+// if(!empty($_POST["tagging"])) {
+//     foreach($_POST['tagging'] as $tags) {
+//         echo $tags;
+//     }   
+// }
+// ?>
 
    
 <!--Journal-->
@@ -253,6 +285,15 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 
 
 <script src="../../resource/assets/datatables.min.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $(".form-control").select2({
+  tags: true
+});
+});
+</script>
 <script>
  $(function() {
    $('#journal').DataTable();
