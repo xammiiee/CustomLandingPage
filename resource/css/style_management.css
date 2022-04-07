@@ -189,7 +189,8 @@ h6 {
   position: relative;
   background: url("../img/intro-bg.png") center bottom no-repeat;
   background-size: cover;
-  padding: 100px 0 1px 0;
+  padding: 125px 0 20px 0;
+  /* background-color: black; */
   
 }
 
@@ -681,14 +682,21 @@ h6 {
 #why-us .card {
   background: #00458f;
   border-color: #00458f;
-  border-radius: 10px;
+  border-radius: 15px;
   margin: 0 15px;
   padding: 15px 0;
   text-align: center;
   color: #fff;
   transition: 0.3s ease-in-out;
   height: 100%;
+  margin-bottom: 20;
 }
+.card-group{
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
 
 #why-us .card:hover {
   background: #003b7a;
@@ -1398,6 +1406,8 @@ h6 {
 
   #why-us .card {
     margin: 0;
+    /* margin-top: 20px; */
+
   }
 }
 
@@ -1440,5 +1450,8 @@ h6 {
 @media (max-width: 574px) {
   #intro {
     padding: 100px 0 20px 0;
+  }
+  .card{
+    margin-bottom: 20px;
   }
 }

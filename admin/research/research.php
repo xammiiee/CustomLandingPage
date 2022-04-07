@@ -1,16 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<?php
-if (isset($_SESSION['id'])) 
-{ 
-  if($_SESSION['role'] == "Administrator")
-  {
 
-  }
-  elseif($_SESSION['role'] == "User")
-  {
-  }
-}
+<?php
 // ==================================================================
 include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
 // include "../../resource/"
@@ -68,21 +59,6 @@ else
 <?php
 }
 // ====BACKEND CODE=== //
-// for co-authors
-if(isset($_POST["prim_skills"]))
-{
- $prim_skills = '';
- foreach($_POST["prim_skills"] as $row)
- {
-  $prim_skills .= $row . ', ';
- }
- $prim_skills = substr($prim_skills, 0, -2);
- $query = "INSERT INTO skills(skills) VALUES('".$prim_skills."')";
- if(mysqli_query($connect, $query))
- {
-  echo 'Data Inserted';
- }
-}
 
 if (isset($_GET['del'])) {
   // change function to the designated function of your assign management
@@ -126,27 +102,33 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['btnsubmit'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    $c_author = '';
-    if(isset($_POST["co-author"]))
-    {
-      foreach($_POST["co-author"] as $row)
-      {
-        $c_author .= $row . ', ';
-      }
-      $c_author = substr($c_author, 0, -2);
-    }
-    
-    $tagging = '';
-    if(isset($_POST["tags"]))
-    {
-      foreach($_POST["tags"] as $row)
-      {
-        $tagging .= $row . ', ';
-      }
-      $tagging = substr($tagging, 0, -2);
-    }
+    // if (isset($_POST["submit"]))
+    // {
+    //   $travel = $_POST["travel"];
+    //   $added = explode(",", $_POST["added"]);
+    //   $travel = array_merge($travel, $added);
 
-    $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$c_author,$_POST['dpub'],$_POST['fstudy'],$Pdf_file,"", "", $tagging);
+
+    //   echo "<p> Here is the list with your additions:</p>";
+
+    //   echo "<ul>";
+
+    //   foreach ($travel as $t)
+    //       {
+    //       echo "<li>$t</li>";
+    //       }
+
+    //   echo "</ul>";
+    // }
+          $co = $_POST["txtco-authors"];
+          $added = explode(",", $_POST["added"]);
+          $co = array_merge($co, $added); 
+
+          $tags = $_POST["tags"];
+          $added1 = explode(",", $_POST["added1"]);
+          $tags = array_merge($tags, $added1);
+
+    $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$co,$_POST['dpub'],$_POST['fstudy'],$Pdf_file,"", "", $tags);
       if ($result == 1) {
         message("Research created successfully!",1);
       } else {
@@ -167,7 +149,25 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 <i class="fa fa-refresh" aria-hidden="true"></i>
 </button>
 </a>
-
+<style>
+  .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active{
+    color: black;
+    background-color: #fff;
+    display: inline-block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    vertical-align: middle;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+  .filter-option > .filter-option-inner{
+    size: 3rem;
+  }
+</style>
 <!-- Create New Research -->
 
 <div class="modal fadeInDown  adding-research-lg " id="adding-research" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
@@ -214,13 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
           <!-- CO-AUTHORS -->
           <div class="col">
           <label class="label">Co-Authors *</label><br>
-          <style>
-            #co-authors{
-              width: 100%;
-              color: black;
-            }
-          </style>
-          <select class="form-control selectpicker md" data-live-search="true" id="co-authors" name="txtco-authors">
+          <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="co-authors" name="txtco-authors">
             <option selected disabled></option>
           <?php
             $result = get_author($connect);
@@ -269,10 +263,22 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Tags</label>
-        <input type="text" name="tags" id="tags" class="form-control"/>
-       </div>
+      <div class="col">
+          <label class="label">Tags *</label><br>
+          <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="tags" name="tags" value="">
+            <option selected disabled></option>
+            <option>#edchat</option>
+            <option>#K12</option>
+            <option>#learning</option>
+            <option>#edleadership</option>
+            <option>#edtech</option>
+            <option>#engchat</option>
+            <option>#literacy</option>
+            <option>#scichat</option>
+            <option>#mathchat</option>
+            <option>#edreform</option>
+        </select>
+        </div><br>
 
       <div class="form-group">
           <label for="files">Add (pdf, txt or docs)</label>
@@ -283,7 +289,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
       <input type="hidden" name="create" value="create"/>
       <div class="modal-footer">
          <button class="btn btn-primary" id="submit" name="btnsubmit">Save</button>
-         <button class="btn btn-secondary" data-dismiss="modal" >Cancel</button>
+         <button class="btn btn-secondary" data-dismiss="modal" id="cancel-1">Cancel</button>
       </div>
       </form>
     </div>
@@ -291,7 +297,13 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     </div>
   </div>
 </div>
+<script>
+  $("#cancel-1r").click(function () {
+    var co = $("#co-authors").val();
 
+    console.log("Letsgo");
+  });
+</script>
 <!--Journal-->
 <div class="table-responsive-lg">
   <!-- change table id based on your managemnet -->

@@ -210,7 +210,7 @@
             </select>
             </li>
          
-            <a href=""><button class="btn btn-primary btn-sm  " id="filter-reset">Search</button></a>
+            <a href=""><button class="btn btn-primary btn-sm  " id="filter-reset">Reset</button></a>
           </ul>
 <!-------------------- End of Filtering Section ---------------------------->
         </header><br>

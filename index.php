@@ -63,31 +63,66 @@ include "../CustomLandingPage/admin/research/functions/Message.func.php";
       <!-- Condition for user -->
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-<!-- ================================================ -->
-        <?php
-          if(!empty($_SESSION['id'])) 
+        <?php 
+          if (isset($_SESSION['id'])) 
           { 
-            if ($_SESSION['role']=="User" || $_SESSION['role']=="Administrator")
-            {?>
-              <li><a><?php echo $_SESSION['name'];?></a></li>
-              <li class="nav-item dropdown"><?php 
-              
+            if ($_SESSION['role']=="Administrator")
+            { ?>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">Management</a>
+              <?php 
             }
             ?>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              </li>
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="admin/account/account.php">Account</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="admin/research/research.php">Research</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="admin/author/author.php">Author</a>
+                  <?php } ?>
+                  
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="admin/journal/journal.php">Journal</a>
+                  <?php } ?>
+                  
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="admin/article/article.php">Article</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="admin/author/author.php">Author</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="admin/events/index.php">Events</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="admin/news/index.php">News</a>
+                  <?php } ?>
+                  </div>
+                </li>
+                  <li><a><?php echo $_SESSION['name'];?></a></li>
                   <li class="nav-item dropdown" >
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#profile">Profile</a>
-                    <a class="dropdown-item" href="#aboutus">About Us</a>
-                    <a class="dropdown-item" href="./signup/logout.php">Signout</a>
-                  </div>
+                      <a class="dropdown-item" href="../profile/profile.php">Profile</a>
+                      <a class="dropdown-item" href="#aboutus">About Us</a>
+                      <a class="dropdown-item" href="signup/logout.php">Signout</a>
+                    </div>
                   </li>
                   <?php
-          }
-        ?>
+          } 
+          else 
+          { 
+            header("Location: login/login.php");
+          }?>
         </ul>
       </nav>
     </div>

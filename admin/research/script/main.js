@@ -1,13 +1,9 @@
 $(document).ready(function () {
-    
-  // Tags
-  $('#tags').tokenfield({
-    autocomplete:{
-     source: ['Technology','Game','Virtual Reality','Cybersecurity','Javascript','CSS','Mysql'],
-     delay:100
-    },
-    showAutocompleteOnFocus: true
-   });
+  $("#cancel-1r").click(function () {
+    var co = $("#co-authors").val();
+
+    console.log("Letsgo");
+  });
 
   // SUBMIT FORM 
   $("#btnsubmit1").click(function(){
