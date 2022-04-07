@@ -58,11 +58,19 @@ if (isset($_GET['del'])) {
   }
 }
 
-if (isset($_GET['act'])) {
+if (isset($_GET['activate'])) {
   // change function to the designated function of your assign management
-  $result = update_activeaction($connect,$_GET['act']);
+  $result = activate_action($connect,$_GET['activate']);
   if ($result =="1") {
     message("Account Active!","1");
+  }
+}
+
+if (isset($_GET['deactivate'])) {
+  // change function to the designated function of your assign management
+  $result = deactivate_action($connect,$_GET['deactivate']);
+  if ($result =="1") {
+    message("Account Inactive!","1");
   }
 }
 
@@ -245,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          Are you sure you want to Activate?
        </div>
        <div class="modal-footer">
-         <a href="?act=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
+         <a href="?activate=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
        </div>
      </div>
@@ -253,11 +261,11 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
  </div>
 
 <!-- Deactivate Popup -->
- <div style="margin-top: 200px;width: 30%;margin-left: 35%;margin-right: 35%;" class="modal fade" id="deactivate-<?php echo $data['id'];?>" tabindex="-1" role="dialog" aria-labelledby="deactivateLabel" aria-hidden="true">
+<div style="margin-top: 200px;width: 30%;margin-left: 35%;margin-right: 35%;" class="modal fade" id="deactivate-<?php echo $data['id'];?>" tabindex="-1" role="dialog" aria-labelledby="deactivateLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
      <div class="modal-content">
        <div class="modal-header">
-         <h5 class="modal-title" id="deactivateLabel">Deactivate Account</h5>
+         <h5 class="modal-title" id="deactivateLabel">Activate Account</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
@@ -266,7 +274,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          Are you sure you want to Deactivate?
        </div>
        <div class="modal-footer">
-         <a href="?deact=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
+         <a href="?deactivate=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
        </div>
      </div>
