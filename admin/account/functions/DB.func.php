@@ -139,6 +139,27 @@ function deactivate_action($connect,$id){
 	}
 }
 
+function subscribe_action($connect,$id){
+
+	$sql = "UPDATE tblaccount SET subcribe='Yes' WHERE id=$id";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+function unsubscribe_action($connect,$id){
+
+	$sql = "UPDATE tblaccount SET subcribe='No' WHERE id=$id";
+	$result = $connect->query($sql);
+	if ($result === true) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
 
 function get_accounts($connect){
 	//ORDER BY deadline ASC

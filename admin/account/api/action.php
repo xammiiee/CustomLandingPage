@@ -45,7 +45,21 @@ if (isset($_POST['deactivate'])) {
 	}
 }
 
+if (isset($_POST['subscribe'])) {
+	$result = subscribe_action($connect,$_POST['id']);
+	if ($result == "1") {
+		echo'<div style="position:relative;top: 100px;"';
+		message("Account Subscribed successfully!",1);
+	}
+}
 
+if (isset($_POST['unsubscribe'])) {
+	$result = unsubscribe_action($connect,$_POST['id']);
+	if ($result == "1") {
+		echo'<div style="position:relative;top: 100px;"';
+		message("Account Unsubscribed successfully!",1);
+	}
+}
 
 // editing of Research
 if (isset($_GET['edit'])) {
