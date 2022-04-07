@@ -74,6 +74,22 @@ if (isset($_GET['deactivate'])) {
   }
 }
 
+if (isset($_GET['subscribe'])) {
+  // change function to the designated function of your assign management
+  $result = subscribe_action($connect,$_GET['subscribe']);
+  if ($result =="1") {
+    message("Account Subscribed!","1");
+  }
+}
+
+if (isset($_GET['unsubscribe'])) {
+  // change function to the designated function of your assign management
+  $result = unsubscribe_action($connect,$_GET['unsubscribe']);
+  if ($result =="1") {
+    message("Account Unsubscribed!","1");
+  }
+}
+
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
     // change function to the designated function of your assign management
@@ -180,6 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <th scope="col">Status</th>
        <th scope="col">Category</th>
        <th scope="col">Membership</th>
+       <th scope="col">Subscription</th>
        <th scope="col" align="center">Action</th>
      </tr>
    </thead>
@@ -197,6 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          <td><?php echo $data['status']?></td>
          <td><?php echo $data['ucategory']?></td>
          <td><?php echo $data['au_member']?></td>
+         <td><?php echo $data['subcribe']?></td>
          <td><?php
         //  $user = get_user_data($connect,$data['creator']);
         //  echo $user['name'];
@@ -212,6 +230,8 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
            <a class="dropdown-item" href="./api/action.php?edit=<?php echo $data['id']?>">Edit</a>
            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#activate-<?php echo $data['id'];?>">Activate</a><?php } ?>
            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#deactivate-<?php echo $data['id'];?>">Deactivate</a><?php } ?>
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#subscribe-<?php echo $data['id'];?>">Subscribe</a><?php } ?>
+           <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#unsubscribe-<?php echo $data['id'];?>">Unsubscribe</a><?php } ?>
            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
          </div>
        </div>
@@ -280,6 +300,48 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
      </div>
    </div>
  </div>
+
+<!-- Subscribe Popup -->
+ <div style="margin-top: 200px;width: 30%;margin-left: 35%;margin-right: 35%;" class="modal fade" id="subscribe-<?php echo $data['id'];?>" tabindex="-1" role="dialog" aria-labelledby="subscribeLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="subscribeLabel">Subscribe Account</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+         Are you sure you want to Subscribe?
+       </div>
+       <div class="modal-footer">
+         <a href="?subscribe=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+<!-- Unsubscribe Popup -->
+<div style="margin-top: 200px;width: 30%;margin-left: 35%;margin-right: 35%;" class="modal fade" id="unsubscribe-<?php echo $data['id'];?>" tabindex="-1" role="dialog" aria-labelledby="unsubscribeLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="unsubscribeLabel">Subscribe Account</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+         Are you sure you want to Unsubscribe?
+       </div>
+       <div class="modal-footer">
+         <a href="?unsubscribe=<?php echo $data['id'];?>"><button type="button" class="btn btn-danger">Yes</button></a>
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+       </div>
+     </div>
+   </div>
+ </div> 
  <?php
  }
 }
