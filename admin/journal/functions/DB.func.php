@@ -123,7 +123,7 @@ function get_journalaction($connect,$id){
 
 function create_journalaction($connect,$title,$description,$author,$datepub,$creator,$created,$filelocation,$tagging,$fstudy){
 	
-	$sql = "INSERT INTO tbljournal VALUES ('','$title','$description','$author','$creator','$datepub','$created','','$filelocation','$tagging','$fstudy')";
+	$sql = "INSERT INTO tbljournal VALUES ('','$title','$description','$author','$datepub','$creator','$created','','$filelocation','$tagging','$fstudy')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

@@ -183,9 +183,9 @@ function get_article($connect,$id){
 }
 
 
-function create_article($connect,$a_title,$a_description,$a_author,$a_creator,$a_datepub,$a_created,$a_filelocation,$a_tagging){
+function create_article($connect,$a_title,$a_description,$a_author,$a_datepub,$a_creator,$a_created,$a_tagging,$a_filelocation){
 
-	$sql = "INSERT INTO tblarticle VALUES ('','$a_title','$a_description','$a_author','$a_creator','$a_datepub','$a_created','$a_filelocation','$a_tagging','0')";
+	$sql = "INSERT INTO tblarticle VALUES ('','$a_title','$a_description','$a_author','$a_datepub','$a_creator','$a_created','$a_tagging','$a_filelocation')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

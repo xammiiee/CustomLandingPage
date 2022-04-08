@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     foreach($_POST['a_tagging'] as $tags) {
       $tags= implode(',',$_POST['a_tagging']);
     }
-    $result = create_article($connect,$_POST['a_title'],$_POST['a_description'],$_POST['a_author'],$_SESSION['id'],$_POST['a_datepub'],$_POST['a_created'],"0",$tags,$a_filelocation);
+    $result = create_article($connect,$_POST['a_title'],$_POST['a_description'],$_POST['a_author'],$_POST['a_datepub'],$_SESSION['id'],$_POST['a_created'],$tags,$a_filelocation);
     if ($result == 1) {
       message("Article created successfully!",1);
     } else {

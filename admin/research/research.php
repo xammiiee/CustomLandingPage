@@ -70,7 +70,7 @@ if (isset($_GET['del'])) {
   }
 }
 
-if ($_SERVER['REQUEST_METHOD'] =="POST") {
+
   // UPLOAD FILE
   if(isset($_FILES['files'])){
     $errors= array();
@@ -99,22 +99,21 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        print_r($errors);
     }
   }
-
-  // UPLOAD DATA FROM FORM
-  if (isset($_POST['btnsubmit'])) {
-    // change function to the designated function of your assign management
+ // change function to the designated function of your assign management
     // also correct each string of the sql with your form
+  // UPLOAD DATA FROM FORM
+  if ($_SERVER['REQUEST_METHOD'] =="POST") {
+  if (isset($_POST['create'])) {
+
     foreach($_POST['co-authors'] as $c_author) 
     {
       $c_author= implode(',',$_POST['co-authors']);
     }
-    
     foreach($_POST['tags'] as $tagging) 
     {
       $tagging= implode(',',$_POST['tags']);
     }
-    
-      $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$_POST['dpub'],$_POST['fstudy'],$Pdf_file, $c_author,$tagging);
+      $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$c_author,$_POST['dpub'],$_POST['fstudy'],$Pdf_file,$tagging);
         if ($result == 1) {
           message("Research created successfully!",1);
         } else {
@@ -151,6 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   .filter-option > .filter-option-inner{
     size: 3rem;
   }
+  .btn-new {margin:0;height:40px;border: solid 1px #ccc;-webkit-box-shadow: none;}
+  .btn-new:hover{-webkit-box-shadow: none;}
 </style>
 <!-- Create New Research -->
 
@@ -198,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
           <!-- CO-AUTHORS -->
           <div class="col">
           <label class="label">Co-Authors *</label><br>
-          <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="co-authors" name="co-authors">
+          <select class="form-control selectpicker lg" multiple data-style="btn-new" data-live-search="true" data-mdb-filter="true"id="co-authors" name="co-authors[]">
             <option selected disabled></option>
           <?php
             $result = get_author($connect);
@@ -249,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 
       <div class="col">
           <label class="label">Tags *</label><br>
-          <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="tags" name="tags[]" value="">
+          <select class="form-control selectpicker lg" multiple data-style="btn-new" data-live-search="true" data-mdb-filter="true"id="tags" name="tags[]" value="">
             <option selected disabled></option>
             <option>#edchat</option>
             <option>#K12</option>
@@ -318,8 +319,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <th scope="col">Co-Author(s)</th>
        <th scope="col">Date Published</th>
        <th scope="col">Field of Study</th>
-       <th scope="col">Views</th>
-       <th scope="col">Cited</th>
+       <th scope="col"></th>
        <th scope="col" align="center">Action</th>
      </tr>
    </thead>
@@ -332,15 +332,13 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
      while ($data = mysqli_fetch_array($result)) {
        ?>
        <tr>
-         <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['datepub']));?></td>
+         <td scope="row" class="d-none"><?php echo date("Y-m-d",strtotime($data['dpub']));?></td>
          <td><?php echo $data['id']?></td>
          <td><?php echo $data['title']?></td>
          <td><?php echo $data['main_author']?></td>
          <td><?php echo $data['co_authors']?></td>
-         <td><?php echo $data['date_publish']?></td>
+         <td><?php echo $data['dpub']?></td>
          <td><?php echo $data['field_of_study']?></td>
-         <td><?php echo $data['views']?></td>
-         <td><?php echo $data['cites']?></td>
          <td><?php
         //  $user = get_user_data($connect,$_SESSION['id']);
         //  echo $user['name'];
