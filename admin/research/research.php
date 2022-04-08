@@ -56,6 +56,8 @@ else
   </section>
             
   <br>
+
+<div class="container">
 <?php
 }
 // ====BACKEND CODE=== //
@@ -102,16 +104,17 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['btnsubmit'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
-    // foreach($_POST['txtco-authors'] as $c_author) 
-    // {
-    //   $c_author= implode(',',$_POST['txtco-authors']);
-    // }
+    foreach($_POST['co-authors'] as $c_author) 
+    {
+      $c_author= implode(',',$_POST['co-authors']);
+    }
     
     foreach($_POST['tags'] as $tagging) 
     {
       $tagging= implode(',',$_POST['tags']);
     }
-      $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$_POST['dpub'],$_POST['fstudy'],$Pdf_file,$tagging);
+    
+      $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$_POST['dpub'],$_POST['fstudy'],$Pdf_file, $c_author,$tagging);
         if ($result == 1) {
           message("Research created successfully!",1);
         } else {
@@ -121,8 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     }
 // ===============================================================================================
 ?>
-
-<div class="container">
 <!-- Create task button -->
 <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#adding-research">
 <i  class="fa fa-plus"></i>
@@ -197,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
           <!-- CO-AUTHORS -->
           <div class="col">
           <label class="label">Co-Authors *</label><br>
-          <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="co-authors" name="txtco-authors[]">
+          <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="co-authors" name="co-authors">
             <option selected disabled></option>
           <?php
             $result = get_author($connect);
