@@ -89,11 +89,16 @@ if (isset($_GET['unsubscribe'])) {
     message("Account Unsubscribed!","1");
   }
 }
-
+$nameErr = $emailErr = $passErr = $catErr = $memErr = "";
 if ($_SERVER['REQUEST_METHOD'] =="POST") {
   if (isset($_POST['create'])) {
     // change function to the designated function of your assign management
     // also correct each string of the sql with your form
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) 
+    {
+      message("Invalid format and please re-enter valid email","0"); 
+    }
+
     $result = create_accountaction($connect,$_POST['name'],$_POST['email'],$_POST['pass'],$_POST['ucategory'],$_POST['au_member'],$_SESSION['id']);
     if ($result == 1) {
       message("Account created successfully!",1);
@@ -139,14 +144,17 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          <div class="form-group">
            <label for="name">Name</label>
            <input type="text" class="form-control" id="name" name="name" required>
+           <span class = "error">* <?php echo $nameErr;?></span>
          </div>
            <div class="form-group">
              <label for="email">Email</label>
              <input type="text" class="form-control" id="email" name="email">
+             <span class = "error">* <?php echo $nameErr;?></span>
            </div>
            <div class="form-group">
 							<label for="pass">Password</label>
 							<input type="password" class="form-control" id="pass" name="pass"></input>
+              <span class = "error">* <?php echo $nameErr;?></span>
 					</div>
 
           <div class="form-group">
@@ -158,6 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
                   <option value="User">User</option>
                   <option value="Administrator">Administrator</option>
                 </select>
+                <span class = "error">* <?php echo $nameErr;?></span>
                 </div>
 
          <div class="form-group">
@@ -169,6 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
                 </select>
+                <span class = "error">* <?php echo $nameErr;?></span>
                 </div>
         </div>
       
@@ -192,7 +202,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <th scope="col">ID</th>
        <th scope="col">Name</th>
        <th scope="col">Email</th>
-       <th scope="col">Password</th>
        <th scope="col">Status</th>
        <th scope="col">Category</th>
        <th scope="col">Membership</th>
@@ -210,7 +219,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          <td><?php echo $data['id']?></td>
          <td><?php echo $data['name']?></a></td>
          <td><?php echo $data['email']?></a></td>
-         <td><?php echo $data['pass']?></td>
          <td><?php echo $data['status']?></td>
          <td><?php echo $data['ucategory']?></td>
          <td><?php echo $data['au_member']?></td>
@@ -247,12 +255,12 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
           if($status == "Yes")
           {
             // $stat1="Deactivate";
-            if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#subscribe-<?php echo $data['id'];?>">Subscribe</a><?php }
+            if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#unsubscribe-<?php echo $data['id'];?>">Unsubscribe</a><?php }
           }
           elseif($status =="No")
           {
             // $stat1 = "Activate";
-            if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#unsubscribe-<?php echo $data['id'];?>">Unsubscribe</a><?php }
+            if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#subscribe-<?php echo $data['id'];?>">Subscribe</a><?php }
           }
           $id = $data['id'];
         ?>
