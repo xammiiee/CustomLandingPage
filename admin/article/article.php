@@ -96,6 +96,11 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   }
 }
 ?>
+
+<style>
+  .btn-new {margin:0;height:40px;border: solid 1px #ccc;-webkit-box-shadow: none;}
+  .btn-new:hover{-webkit-box-shadow: none;}
+</style>
 <div class="container">
   <!-- Create task button -->
   <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-article">
@@ -107,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 
 <!-- Modal -->
 <div class="modal fade" id="create-article" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-article-label" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+ <div class="modal-dialog modal-dialog-centered modal-sm w-50" role="document">
    <div class="modal-content">
      <form method="post" name="AddJournal" action="article.php" enctype="multipart/form-data">
        <div class="modal-header">
@@ -146,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         </div>
         <div class="form-group">
             <label class="label">Tags</label><br>
-            <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="tags" name="a_tagging[]" value="">
+            <select class="selectpicker form-control"  title="Choose..." data-style="btn-new" multiple data-selected-text-format="count" data-live-search="true" data-mdb-filter="true"id="tags" name="a_tagging[]">
             <option selected disabled></option>
             <option>#edchat</option>
             <option>#K12</option>
