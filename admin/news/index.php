@@ -57,7 +57,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
   <link href="../../resource/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="../../resource/css/style.css" rel="stylesheet">
+  <link href="../../resource/css/style_management.css" rel="stylesheet">
   <link href="../../resource/css/addons.css" rel="stylesheet">
 
   
@@ -72,7 +72,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
        <a href="/CustomLandingPage/admin/index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
       
-      <nav class="main-nav float-right d-none d-lg-block" >
+      <nav class="main-nav float-right d-none d-lg-block " >
         <ul>
         <?php 
           if (isset($_SESSION['id'])) 
@@ -181,14 +181,14 @@ if ($result = mysqli_query($mysqli, $sql)) {
     if(isset($_SESSION['status']))
     {
       ?>
-    <div class="alert alert-success  fade show" role="alert">
-   <?php  echo $_SESSION['status']; ?>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+        <!-- <div class="alert alert-success  fade show" role="alert"> -->
+      <?php  //echo $_SESSION['status']; ?>
+      <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div> -->
       <?php 
-      unset ($_SESSION['status']);
+      //unset ($_SESSION['status']);
     }
 ?>
 </div>

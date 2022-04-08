@@ -107,11 +107,11 @@ if (isset($_GET['del'])) {
 
     foreach($_POST['co-authors'] as $c_author) 
     {
-      $c_author= implode(',',$_POST['co-authors']);
+      $c_author= implode(', ',$_POST['co-authors']);
     }
     foreach($_POST['tags'] as $tagging) 
     {
-      $tagging= implode(',',$_POST['tags']);
+      $tagging= implode(', ',$_POST['tags']);
     }
       $result = create_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['txtmain-author'],$c_author,$_POST['dpub'],$_POST['fstudy'],$Pdf_file,$tagging);
         if ($result == 1) {
@@ -308,7 +308,7 @@ if (isset($_GET['del'])) {
 <div class="table-responsive-lg">
   <!-- change table id based on your managemnet -->
   <!-- <table class="table table-striped table-bordered" cellspacing="0" width="100%"> -->
-    
+
  <table id="research" class="table table-hover">
    <thead>
      <tr>
@@ -337,7 +337,7 @@ if (isset($_GET['del'])) {
          <td><?php echo $data['title']?></td>
          <td><?php echo $data['main_author']?></td>
          <td><?php echo $data['co_authors']?></td>
-         <td><?php echo $data['dpub']?></td>
+         <td><?php echo $data['date_publish']?></td>
          <td><?php echo $data['field_of_study']?></td>
          <td><?php
         //  $user = get_user_data($connect,$_SESSION['id']);

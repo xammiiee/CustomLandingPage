@@ -21,12 +21,13 @@ if(isset($_POST['but_submit']))
       if($count == 1) 
       {
         $em = $row['email'];
-        $pass= $row['pass'];
+        $hash = $row['pass'];
         $status = $row['status'];
         $fname = $row['name'];
         $categ = $row['ucategory'];
-        
-        if($_POST['email'] == $em && $_POST['password'] == $pass)
+
+       
+        if($_POST['email'] == $em &&password_verify($_POST['password'], $hash))
         {
             if($status == "Active")
             {

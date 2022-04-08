@@ -55,7 +55,7 @@ function create_researchaction($connect,$title, $abstract, $main_author,$c_autho
 	if ($result === true) {
 		return 1;
 	} else {
-		return 0;
+		return $sql;
 	}
 }
 
@@ -166,9 +166,9 @@ function get_author($connect){
 		return $result;
 }
 
-function get_author_inside_research($connect,$m_author,$c_author){
+function get_author_inside_research($connect,$author){
 	//ORDER BY deadline ASC
-	$sql = "SELECT * FROM tblresearch WHERE main_author LIKE '%".$m_author."%' OR 'co_authors' LIKE '%".$c_author."%' ";
+	$sql = "SELECT * FROM tblresearch WHERE main_author LIKE '%".$author."%' OR co_authors LIKE '%".$author."%' ";
 	$result = $connect->query($sql);
 		return $result;
 }

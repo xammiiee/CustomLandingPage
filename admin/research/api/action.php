@@ -175,20 +175,20 @@ if (isset($_GET['edit'])) {
 						<div class="form-group">
 							<?php
 							// $travel = 
-							$added = explode(",", $_POST["added"]);
-							$travel = array_merge($travel, $added);
+							// $added = explode(",", $_POST["added"]);
+							// $travel = array_merge($travel, $added);
 							
 							
-							echo "<p> Here is the list with your additions:</p>";
+							// echo "<p> Here is the list with your additions:</p>";
 							
-							echo "<ul>";
+							// echo "<ul>";
 							
-							foreach ($travel as $t)
-								 {
-								 echo "<li>$t</li>";
-								 }
+							// foreach ($travel as $t)
+							// 	 {
+							// 	 echo "<li>$t</li>";
+							// 	 }
 							
-							echo "</ul>";
+							// echo "</ul>";
 							?>
 							<label for="files">Add (pdf, txt or docs)</label>
 							<input type="file" class="form-control-file" id="files" name="files">
@@ -253,7 +253,14 @@ if (!empty($_GET['id']))
 						<h2 class="text-left" style="margin-top:10px; font-family:'Lucida Sans';" ><b><?php echo $data['title']?></b></h2>
 						<ul class="list-inline" style="font-size: small;">
 							<li class="list-inline-item"><a href="author.php?author=<?php echo $data['main_author'];?>"><u><?php echo $data['main_author']?></u></a></li>
-							<li class="list-inline-item"><a href="author.php?author=<?php echo $data['co_authors'];?>"><u><?php echo $data['co_authors']?></u></a></li>
+							<?php
+									foreach (explode(",", $data['co_authors']) as $variable => $tk) {
+									$variable>0;
+									$variable++;
+									?><li class="list-inline-item"><a href="author.php?author=<?php echo "$tk";?>"><u><?php echo "$tk";?></u></a></li> <?php
+									// echo '$variable_'.$variable.' is ' .$tk.'<br>';
+									}
+							?>
 							<li class="list-inline-item ">* Published <?php echo $data['date_publish'];?></li>
 							<li class="list-inline-item">* <?php echo $data['field_of_study'];?></li>
 						</ul>
@@ -281,6 +288,7 @@ if (!empty($_GET['id']))
 			{
 				if($data1['id'] != $_GET['id'])
 				{
+					
 				?>
 				
 					<div class="col-md-3 col-sm-5">

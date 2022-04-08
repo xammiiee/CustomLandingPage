@@ -72,23 +72,52 @@
         <?php
           if(!empty($_SESSION['id'])) 
           { 
-            if ($_SESSION['role']=="User" || $_SESSION['role']=="Administrator")
+            if ($_SESSION['role']=="Administrator")
             {?>
-              <li><a><?php echo $_SESSION['name'];?></a></li>
-              <li class="nav-item dropdown"><?php 
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">Management</a>
+              <?php 
               
             }
             ?>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              </li>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <?php if ($_SESSION['role'] == "Administrator") { ?>
+              <a class="dropdown-item" href="../account/account.php">Account</a>
+              <?php } ?>
+              <?php if ($_SESSION['role'] == "Administrator") { ?>
+              <a class="dropdown-item" href="../research/research.php">Research</a>
+              <?php } ?>
+              <?php if ($_SESSION['role'] == "Administrator") { ?>
+              <a class="dropdown-item" href="../author/author.php">Author</a>
+              <?php } ?>
+              
+              <?php if ($_SESSION['role'] == "Administrator") { ?>
+              <a class="dropdown-item" href="../journal/journal.php">Journal</a>
+              <?php } ?>
+              
+              <?php if ($_SESSION['role'] == "Administrator") { ?>
+              <a class="dropdown-item" href="../article/article.php">Article</a>
+              <?php } ?>
+              <?php if ($_SESSION['role'] == "Administrator") { ?>
+              <a class="dropdown-item" href="../author/author.php">Author</a>
+              <?php } ?>
+              <?php if ($_SESSION['role'] == "Administrator") { ?>
+              <a class="dropdown-item" href="../events/index.php">Events</a>
+              <?php } ?>
+              <?php if ($_SESSION['role'] == "Administrator") { ?>
+              <a class="dropdown-item" href="../news/index.php">News</a>
+              <?php } ?>
+            </div>
+                </li>
+                  <li><a><?php echo $_SESSION['name'];?></a></li>
                   <li class="nav-item dropdown" >
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#profile">Profile</a>
-                    <a class="dropdown-item" href="#aboutus">About Us</a>
-                    <a class="dropdown-item" href="./signup/logout.php">Signout</a>
-                  </div>
+                      <a class="dropdown-item" href="../profile/profile.php">Profile</a>
+                      <a class="dropdown-item" href="#aboutus">About Us</a>
+                      <a class="dropdown-item" href="../CustomLandingPage/signup/logout.php">Signout</a>
+                    </div>
                   </li>
                   <?php
           }
@@ -210,7 +239,8 @@
             </select>
             </li>
          
-            <a href=""><button class="btn btn-primary btn-sm  " id="filter-reset">Reset</button></a>
+            <a href=""><button class="btn btn-primary btn-sm" id="filter-submit"><i class="fa fa-filter"></i>  Filter</button></a>
+            <a href=""><button class="btn btn-primary btn-sm" id="filter-reset"><i class="fa fa-refresh"></i>  Reset</button></a>
           </ul>
 <!-------------------- End of Filtering Section ---------------------------->
         </header><br>
@@ -324,7 +354,7 @@
                                 <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                                   <li class="list-inline-item"><b><u><span><?php echo $data['author'];?></span></u></b></li>
 
-                                  <li class="list-inline-item"><b><span> * Published <?php echo $data['datepub'];?></span></b></li>
+                                  <li class="list-inline-item"><b><span> * Published <?php echo $data['date_pub'];?></span></b></li>
                                   
                                   <li class="list-inline-item"><b><span> * <?php //echo $data['field_of_study'];?></span></b></li>
                                   

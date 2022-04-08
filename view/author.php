@@ -167,7 +167,7 @@ if (!empty($_GET['author']))
 				</div><br><hr>
 				<div class="card-group">
 				<?php
-					$result =  get_author_inside_research($connect,$_GET['author'],$_GET['author']);
+					$result =  get_author_inside_research($connect,$_GET['author']);
 					if ($result->num_rows>0) 
 					{
 						while ($data = mysqli_fetch_array($result))
