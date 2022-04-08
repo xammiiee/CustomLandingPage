@@ -1,5 +1,4 @@
 
-
 <?php
 include ("/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php");
 if (empty($_SESSION['id'])) {
@@ -88,7 +87,10 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
     foreach($_POST['tagging'] as $tags) {
       $tags= implode(',',$_POST['tagging']);
     }
-    $result = create_journalaction($connect,$_POST['title'],$_POST['description'],$_POST['author'],$_POST['datepub'],$_SESSION['id'],$_POST['created'],$filelocation,$tags);
+    foreach($_POST['fstudy'] as $fstudy) {
+      $fstudy= implode(',',$_POST['fstudy']);
+    }
+    $result = create_journalaction($connect,$_POST['title'],$_POST['description'],$_POST['author'],$_POST['datepub'],$_SESSION['id'],$_POST['created'],$filelocation,$tags,$fstudy);
     if ($result == 1) {
       message("Journal created successfully!",1);
     } else {
@@ -109,10 +111,13 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   </a>
   <br/>
   <br/>
-
+<style>
+  .btn-new {margin:0;height:40px;border: solid 1px #ccc;-webkit-box-shadow: none;}
+  .btn-new:hover{-webkit-box-shadow: none;}
+</style>
 <!-- Modal New Journal -->
-<div class="modal fade" id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+<div class="modal fade " id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered modal-sm w-50" role="document">
    <div class="modal-content">
      <form method="post" name="AddJournal" action="journal.php" enctype="multipart/form-data">
        
@@ -122,50 +127,68 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
            <span aria-hidden="true">&times;</span>
          </button>
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="author">Select Author</label>
-            <select name="author" id="Select Author" class="form-control" required>
-              <option  selected hidden>Choose...</option>
+        <div class="modal-body ">
+        <div class="form-group">
+           <label for="author">Select Author</label>
+                <select name="author"  id="Select Author" class="custom-select" required>
+              <option  selected>Choose...</option>
               <?php $authors = get_authors($connect); while ($author = mysqli_fetch_array($authors)) { 
                 if ($author['role'] !="Administrator") {
                   ?>
                   <option value="<?php echo $author['name'];?>"><?php echo $author['name'];?></option>
                 <?php }} ?>
               </select>
-          </div>
-
-          <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" oninvalid="alert('Hey, enter your title')" required="required">
+           <div class="form-group">
+             <label for="title">Title</label>
+             <input type="text" class="form-control" id="title" name="title"  required="required">
            </div>
-
-          <div class="form-group">
-						<label for="description">Description</label>
-						<textarea class="form-control" id="description" name="description" required="required"></textarea>
+           <div class="form-group">
+							<label for="description">Description</label>
+							<textarea class="form-control" id="description" name="description" required="required"></textarea>
 					</div>
-
+         </div>
           <div class="form-group">
            <label for="datepub">Date Published</label>
            <input type="date" class="form-control" id="datepub" name="datepub"  required="required">
          </div>
-
+         <div class="form-group">
+        <label for="fstudy">Field of Study</label>
+        <select class=" selectpicker form-control" title="Choose..." data-style="btn-new" multiple data-selected-text-format="count" data-live-search="true" data-mdb-filter="true"id="ftudy" name="fstudy[]" value="">
+          
+            <option>Agricultural and Food Sciences</option>
+            <option>Art</option>
+            <option>Biology</option>
+            <option>Business</option>
+            <option>Computer Science</option>
+            <option>Chemistry</option>
+            <option>Economics</option>
+            <option>Education</option>
+            <option>Engineering</option>
+            <option>Environmental Science</option>
+            <option>Geography</option>
+            <option>Geology</option>
+            <option>History</option>
+            <option>Law</option>
+            <option>Linguistics</option>
+            <option>Materials Science</option>
+            <option>Mathematics</option>
+            <option>Medicine</option>
+            <option>Philosophy</option>
+            <option>Physics</option>
+            <option>Political Science</option>
+            <option>Psychology</option>
+            <option>Sociology</option>
+        </select>
+        </div>
          <div class="form-group">
           <label for="files">Add (pdf, txt or docs)</label>
           <input type="file" class="form-control-file" id="files" name="files" oninvalid="alert('Hey, upload your file')" required="required">
         </div>
-        <div class="form-group">
-        <label for="fstudy">Field of Study</label>
-        <select class="form-control">
-          <option selected="selected">orange</option>
-          <option>white</option>
-          <option>purple</option>
-        </select>
-        </div>
+      
         <div class="form-group">
             <label class="label">Tags</label><br>
-            <select class="form-control selectpicker lg" multiple data-live-search="true" data-mdb-filter="true"id="tags" name="tagging[]" value="">
-            <option selected disabled></option>
+            <select class="selectpicker form-control"  title="Choose..." data-style="btn-new" multiple data-selected-text-format="count" data-live-search="true" data-mdb-filter="true"id="tags" name="tagging[]">
+          
             <option>#edchat</option>
             <option>#K12</option>
             <option>#learning</option>
@@ -178,6 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
             <option>#edreform</option>
         </select>
           </div>
+          
        
         <input type="hidden" name="created" value="<?php echo date("Y-m-d"); ?>"/>
         <input type="hidden" name="create" value="create"/>
