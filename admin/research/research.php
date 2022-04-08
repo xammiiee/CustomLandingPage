@@ -39,18 +39,18 @@ else
                 </div>
               </div>
             </div>
-            <div class="col-md-3 col-sm-5">
+            <!-- <div class="col-md-3 col-sm-5">
               <div class="card">
-                <div class="card-body">
+                <div class="card-body"> -->
                   <!-- change function to the designated function of your assign management -->
-                 <i class="fa fa-user-plus fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php 
-                //  echo get_users($connect)->num_rows;?></h2>
+                 <!-- <i class="fa fa-user-plus fa-2x" style="color:#007bff"></i><h2 class="float-right"><?php
+                 //echo get_users($connect)->num_rows;?></h2>
                   <h5 class="card-title">All Creator</h5>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                 
-                </div>
+                <!-- </div>
               </div>
-            </div>
+            </div> -->
         </div>
       </div>
   </section>

@@ -44,7 +44,7 @@ function get_researchaction($connect,$id){
 }
 
 function get_researchrelated($connect, $fstudy, $tags){
-	$sql = "SELECT * FROM tblresearch WHERE field_of_study ='$fstudy' OR tagging = '$tags'";
+	$sql = "SELECT * FROM tblresearch WHERE field_of_study LIKE '%" . $fstudy . "%' OR tagging LIKE '%" . $tags . "%'";
 	$result1 = $connect->query($sql);
 		return $result1;
 }
