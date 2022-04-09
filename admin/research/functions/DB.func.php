@@ -60,7 +60,7 @@ function create_researchaction($connect,$title, $abstract, $main_author,$c_autho
 }
 
 function update_researchaction($connect,$title, $abstract, $main_author, $co_author, $datepub, $fstudy, $pdf_file, $tagging,$id){
-	$sql = "UPDATE tblresearch SET title='$title',abstract='$abstract',main_author='$main_author',co_author='$co_author', date_publish='$datepub', field_of_study='$fstudy', tagging ='$tagging', pdf_file='$pdf_file' WHERE id=$id";
+	$sql = "UPDATE tblresearch SET title='$title', abstract='$abstract', main_author='$main_author', co_author='$co_author',  date_publish='$datepub', field_of_study='$fstudy', tagging ='$tagging', pdf_file='$pdf_file' WHERE id=$id";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
