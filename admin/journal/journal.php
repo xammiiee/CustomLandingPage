@@ -42,8 +42,6 @@ if (empty($_SESSION['id'])) {
       </div>
     </div>
 </section>
-          
-<br>
  <!--<header class="section-header">
       <h3>Journal Management</h3>
     </header> -->
@@ -112,8 +110,21 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
   <br/>
   <br/>
 <style>
-  .btn-new {margin:0;height:40px;border: solid 1px #ccc;-webkit-box-shadow: none;}
+   .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active{
+    background-color: #fff;
+    display: inline-block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    vertical-align: middle;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    -webkit-box-shadow: none;
+  }
   .btn-new:hover{-webkit-box-shadow: none;}
+
 </style>
 <!-- Modal New Journal -->
 <div class="modal fade " id="create-project" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="create-project-label" aria-hidden="true">
@@ -131,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
         <div class="form-group">
            <label for="author">Select Author</label>
                 <select name="author"  id="Select Author" class="custom-select" required>
-              <option  selected>Choose...</option>
+              <option  hidden>CHOOSE...</option>
               <?php $authors = get_authors($connect); while ($author = mysqli_fetch_array($authors)) { 
                 if ($author['role'] !="Administrator") {
                   ?>
@@ -299,15 +310,8 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 </tbody>
 </table>
 </div>
-
 </div>
-
 </div>
-
-
-
-
-
 <script src="../../resource/assets/datatables.min.js"></script>
 <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>

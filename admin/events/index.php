@@ -63,6 +63,9 @@ if ($result = mysqli_query($mysqli, $sql)) {
   <link href="../../resource/css/style.css" rel="stylesheet">
   <link href="../../resource/css/addons.css" rel="stylesheet">
 
+  <!-- Datatables -->
+  <link href="../../resource/assets/dataTables.bootstrap4.min.css" rel="stylesheet">
+
   <script  src="../../resource/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -337,89 +340,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
 </div>
 </div>
 </section>
-
-
-    <!--==========================
-      Result Section
-    ============================-->
-    <section id="services" class="section-bg">
-      <div class="container">
-
-        <header class="section-header">
-    
-        </header><br>
-
-        <div class="row">
-
-        </div>
-
-      </div>
-    </section>
-
-
-
   </main>
-
-  <!--==========================
-    Footer
-  ============================-->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 footer-info">
-            <h3>AURESPOR</h3>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Terms of service</a></li>
-              <li><a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br>
-              <b>Phone:</b> +1 5589 55488 55<br>
-              <b>Email:</b> info@example.com<br>
-            </p>
-
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
-
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-           
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </footer><!-- #footer -->
-
-
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
@@ -456,6 +377,53 @@ $('#btn').on('click', function(){
 
 <script src="../../resource/jquery-3.6.0.min.js"></script>
 <script src="../../resource/sweetalert2.all.min.js"> </script>
+<script>
+ $(function() {
+   $('#event').DataTable();
+   $(function() {
+     var table = $('#example').DataTable({
+       "columnDefs": [{
+         "visible": false,
+         "targets": 2
+       }],
+       "ordering": false,
+       "displayLength": 25,
+       "drawCallback": function(settings) {
+         var api = this.api();
+         var rows = api.rows({
+           page: 'current'
+         }).nodes();
+         var last = null;
+         api.column(2, {
+           page: 'current'
+         }).data().each(function(group, i) {
+           if (last !== group) {
+             $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+             last = group;
+           }
+         });
+       }
+     });
+           // Order by the grouping
+           $('#example tbody').on('click', 'tr.group', function() {
+             var currentOrder = table.order()[0];
+             if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+               table.order([2, 'desc']).draw();
+             } else {
+               table.order([2, 'asc']).draw();
+             }
+           });
+       });
+ });
+ $('#example23').DataTable({
+   dom: 'Bfrtip',
+   buttons: [
+   'copy', 'csv', 'excel', 'pdf', 'print'
+   ]
+ });
+ $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+</script>
+
 
 </body>
 </html>

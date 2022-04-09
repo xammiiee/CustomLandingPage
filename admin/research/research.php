@@ -130,33 +130,36 @@ if (isset($_GET['del'])) {
 <!-- change location of href -->
 <a href="./research.php"><button type="button" class="btn btn-outline-primary btn-sm">
 <i class="fa fa-refresh" aria-hidden="true"></i>
+
 </button>
+
 </a>
+
 <style>
   .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active{
-    color: black;
     background-color: #fff;
     display: inline-block;
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
     padding: 0.375rem 1.75rem 0.375rem 0.75rem;
-    font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     vertical-align: middle;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
+    -webkit-box-shadow: none;
   }
   .filter-option > .filter-option-inner{
     size: 3rem;
   }
-  .btn-new {margin:0;height:40px;border: solid 1px #ccc;-webkit-box-shadow: none;}
+ 
   .btn-new:hover{-webkit-box-shadow: none;}
 </style>
+
 <!-- Create New Research -->
 
 <div class="modal fadeInDown  adding-research-lg " id="adding-research" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-  <div class="modal-dialog modal-lg" role="document" style="border-radius: 10px;">
+  <div class="modal-dialog modal-lg w-50" role="document" style="border-radius: 10px;">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -165,7 +168,7 @@ if (isset($_GET['del'])) {
       </div>
       <div class="modal-body">
       <div class="box">
-      <center><h1>Add New Research Paper</h1></center>
+      <center><h3>Add New Research Paper</h3></center>
       <form action="" method="POST" name="form" enctype="multipart/form-data" id="adding-research-form">
 
         <!-- TITLE -->
@@ -175,11 +178,11 @@ if (isset($_GET['del'])) {
         </div>
 
         <!-- MAIN AUTHOR -->
-          <div class="col">
+        
             <div class="form-group">
             <label class="label">Main Author *</label><br>
             <select class="custom-select" id="txtmain-author" name="txtmain-author">
-            <option selected> </option>
+            <option hidden>Select... </option>
             <?php
             $result = get_author($connect);
             if ($result->num_rows>0) 
@@ -194,27 +197,28 @@ if (isset($_GET['del'])) {
             ?>
             </select>
             </div>
-          </div>
+       
 
           <!-- CO-AUTHORS -->
-          <div class="col">
+          
+          <div class="form-group">
           <label class="label">Co-Authors *</label><br>
-          <select class="form-control selectpicker lg" multiple data-style="btn-new" data-live-search="true" data-mdb-filter="true"id="co-authors" name="co-authors[]">
-            <option selected disabled></option>
-          <?php
-            $result = get_author($connect);
-            if ($result->num_rows>0) 
-            {
-              while ($data = mysqli_fetch_array($result)) 
-              {
+          <select class="selectpicker form-control" title="Choose..." multiple data-style="btn-new" data-selected-text-format="count" data-live-search="true" data-mdb-filter="true"id="co-authors" name="co-authors[]">
+          <option hidden></option>
+              <?php
+                $result = get_author($connect);
+                if ($result->num_rows>0) 
                 {
-                  echo  "<option>".$data['name']."</option>";
+                  while ($data = mysqli_fetch_array($result)) 
+                  {
+                    {
+                      echo  "<option>".$data['name']."</option>";
+                    }
+                  }
                 }
-              }
-            }
-            ?>
-        </select>
-        </div><br>
+                ?>
+          </select>
+          </div>
         
 
         <!-- ABSTRACT -->
@@ -237,7 +241,7 @@ if (isset($_GET['del'])) {
           <div class="form-group">
             <label class="label">Field of Study *</label><br>
             <select class="custom-select" id="fstudy" name="fstudy">
-            <option selected> </option>
+            <option hidden>Select... </option>
             <option>Accounting and Finance</option>
             <option>Business and Economics</option>
             <option>Computer Studies</option>
@@ -248,10 +252,10 @@ if (isset($_GET['del'])) {
         </div>
       </div>
 
-      <div class="col">
+      <div class="form-group">
           <label class="label">Tags *</label><br>
-          <select class="form-control selectpicker lg" multiple data-style="btn-new" data-live-search="true" data-mdb-filter="true"id="tags" name="tags[]" value="">
-            <option selected disabled></option>
+          <select class="selectpicker form-control" title="Choose..."  multiple data-selected-text-format="count" multiple data-style="btn-new" data-live-search="true" data-mdb-filter="true"id="tags" name="tags[]" value="">
+            <option hidden></option>
             <option>#edchat</option>
             <option>#K12</option>
             <option>#learning</option>
