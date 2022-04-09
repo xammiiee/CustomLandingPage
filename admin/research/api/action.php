@@ -129,74 +129,33 @@ if (isset($_GET['edit'])) {
 								echo $comma_separated;
 							}
 							?>
-							<label class="label">Tag(s) *</label>
-							<select class="custom-select" id="drop-tags">
-								<option selected disabled> </option>
-								<?php
-								$result = get_research_id($connect,$_GET['edit']);
-								if ($result->num_rows>0) 
-								{
-								  if($data['tagging'] != "Computer" || $data['tagging'] != "WebDesign" || $data['tagging'] != "InternetSecurity")
-								  {?>
-									<option value="Computer" id="Computer">Computer</option>
-									<option value="WebDesign" id="WebDesign">Web Design</option>
-									<option value="InternetSecurity" id="InternetSecurity">Internet Security</option>
-								  <?php
-								  }
-								}
-								?>
-								
-							</select>
-							<div class="input-group-append">
-								<button class="btn btn-info" type="button" id="btn-tags" name="btntags">Add</button>
+							<div class="form-group">
+							<label class="label">Tags *</label><br>
+							<select class="selectpicker form-control" title="Choose..."  multiple data-selected-text-format="count" multiple data-style="btn-new" data-live-search="true" data-mdb-filter="true"id="tags" name="tags[]" value="">
+								<option hidden></option>
+								<option>#edchat</option>
+								<option>#K12</option>
+								<option>#learning</option>
+								<option>#edleadership</option>
+								<option>#edtech</option>
+								<option>#engchat</option>
+								<option>#literacy</option>
+								<option>#scichat</option>
+								<option>#mathchat</option>
+								<option>#edreform</option>
+						</select>
 							</div>
-						</div>
-						<div class="col">
-							<label>--Tags Added--</label>
-							<ul class="list-group" id="tags-list" >
-								<?php
-								$mytags = array();
-
-								$result = get_research_id($connect,$_GET['edit']);
-								if ($result->num_rows>0) 
-								{
-								  while ($data = mysqli_fetch_array($result)) 
-								  {
-									 {
-										echo  "<option>".$data['tagging']."</option>";
-										$mytags =  array($data['tagging']);
-									 }
-								  }
-								}
-								?>
-							</ul>
 						</div>
 						</div><br>
 						<div class="form-group">
-							<?php
-							// $travel = 
-							// $added = explode(",", $_POST["added"]);
-							// $travel = array_merge($travel, $added);
-							
-							
-							// echo "<p> Here is the list with your additions:</p>";
-							
-							// echo "<ul>";
-							
-							// foreach ($travel as $t)
-							// 	 {
-							// 	 echo "<li>$t</li>";
-							// 	 }
-							
-							// echo "</ul>";
-							?>
 							<label for="files">Add (pdf, txt or docs)</label>
 							<input type="file" class="form-control-file" id="files" name="files">
 						</div>
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">
 
 						<div class="form-group" align="right">
-							<button class="btn btn-primary btn-sm">Save Edit</button> <a class="btn btn-dark btn-sm" href="/action.php?id=<?php echo $data['id'];?>&ref=research">Cancel</a>
+							<button class="btn btn-primary btn-sm" name="save-edit">Save Edit</button> 
+							<a class="btn btn-dark btn-sm" href="/action.php?id=<?php echo $data['id'];?>&ref=research">Cancel</a>
 						</div>
 					</td>
 				</tr>

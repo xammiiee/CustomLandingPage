@@ -50,7 +50,7 @@ function get_researchrelated($connect, $fstudy, $tags){
 }
 
 function create_researchaction($connect,$title, $abstract, $main_author,$c_author, $dpub, $fstudy, $pdf_file,$tags){
-	$sql = "INSERT INTO tblresearch VALUES ('','$title','$abstract','$main_author','$c_author','$dpub','$fstudy','$pdf_file','$tags')";
+	$sql = "INSERT INTO tblresearch VALUES ('','$title','$abstract','$main_author','$c_author','$dpub','$fstudy','$pdf_file','$tags','','')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -131,7 +131,7 @@ function get_article_by_title($connect,$title){
 	//loop to search 
 	foreach($keywords as $word)
 	{
-		$sql_string = "SELECT * FROM tblarticle WHERE description LIKE '%" . $word . "%' OR title LIKE '%" . $word ."%' OR";
+		$sql_string = "SELECT * FROM tblarticle WHERE a_description LIKE '%" . $word . "%' OR a_title LIKE '%" . $word ."%' OR";
 	}
 
  	$sql_string = substr($sql_string, 0, strlen($sql_string) - 3);

@@ -36,8 +36,12 @@ if(isset($_POST['btnsubmit']))
             }
             elseif ($count <= 0) 
             {
+
+              $options = [
+                'cost' => 12,];
+                $hash_pass = password_hash("$password", PASSWORD_BCRYPT, $options);
                 //insert to db
-                $query = "INSERT INTO tblaccount VALUES ('','$name', '$email', '$password', 'Active', 'User','$aumember','','','')";
+                $query = "INSERT INTO tblaccount VALUES ('','$name', '$email', '$hash_pass', 'Active', 'User','$aumember','','','')";
                 if(mysqli_query($connect, $query))
                 {
                     echo "<script>alert('New account $email has successfully added.' );</script>";

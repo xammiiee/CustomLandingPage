@@ -60,7 +60,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
   <link href="../../resource/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="../../resource/css/style.css" rel="stylesheet">
+  <link href="../../resource/css/style_management.css" rel="stylesheet">
   <link href="../../resource/css/addons.css" rel="stylesheet">
 
   <!-- Datatables -->
@@ -184,21 +184,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
   
 <div class="col-md-12">
 <?php 
-    if(isset($_SESSION['status']))
-    {
-
-      ?>
-       <div class="container">
-    <div class="alert alert-success  fade show" role="alert">
-   <?php  echo $_SESSION['status']; ?>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-</div>
-      <?php 
-      unset ($_SESSION['status']);
-    }
+    
 ?>
 </div>
 

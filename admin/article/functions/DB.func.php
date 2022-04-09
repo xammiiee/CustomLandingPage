@@ -123,7 +123,7 @@ function get_journalaction($connect,$id){
 
 function create_journalaction($connect,$author,$title,$description,$datepub,$creator,$created,$filelocation){
 
-	$sql = "INSERT INTO tbljournal VALUES ('','$title','$description','$author','$datepub','$creator','$created','0','$filelocation')";
+	$sql = "INSERT INTO tbljournal VALUES ('','$title','$description','$author','$datepub','$creator','$created','0','$filelocation','','')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;
@@ -185,7 +185,7 @@ function get_article($connect,$id){
 
 function create_article($connect,$a_title,$a_description,$a_author,$a_datepub,$a_creator,$a_created,$a_tagging,$a_filelocation){
 
-	$sql = "INSERT INTO tblarticle VALUES ('','$a_title','$a_description','$a_author','$a_datepub','$a_creator','$a_created','$a_tagging','$a_filelocation')";
+	$sql = "INSERT INTO tblarticle VALUES ('','$a_title','$a_description','$a_author','$a_datepub','$a_creator','$a_created','$a_tagging','$a_filelocation','','')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

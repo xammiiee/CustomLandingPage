@@ -13,6 +13,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
+  
   <!-- Favicons -->
   <link href="../resource/img/favicon.png" rel="icon">
   <link href="../resource/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -20,15 +21,17 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href='../../resource/package/dist/sweetalert2.min.css' media="screen" />
 
   <!-- Bootstrap CSS File -->
-  <link rel="stylesheet" href="../resource/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../resource/css/bootstrap.min.css"> 
 	<link rel="stylesheet" href="../resource/css/mdb.min.css">
 
-   <!-- Datatables -->
-   <link href="../resource/ts/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<!--  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
   <!-- Libraries CSS Files -->
   <link href="../resource/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -37,21 +40,12 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
   <link href="../resource/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="../resource/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-
-  
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
-
-
-
   <!-- Main Stylesheet File -->
-  <link href="../resource/css/style.css" rel="stylesheet">
+  <link href="../resource/css/style_management.css" rel="stylesheet">
   <link href="../resource/css/addons.css" rel="stylesheet">
-  <style type="text/css">
-   .modal-dialog{
-    max-width: 75%!important;
-  }
-</style>
+
+  <script  src="../resource/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
   <!--==========================
@@ -153,6 +147,11 @@ if (!empty($_GET['id']))
 			<br><br><br><br>
 			<!--View Research-->
 			<div class="container">
+		<div id="result">
+		<a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
+		</div>	
+	</div><br><br>
+			<div class="container">
 			<div class="card">
 				<div class="card-body">
 				<div style="line-height: 20px;">
@@ -197,34 +196,78 @@ if (!empty($_GET['id']))
 								
 								<!--  -->
 								<div>
-								<h2 class="text-left" style="margin-top:10px; font-family:'Lucida Sans';" ><b><?php echo $data['title']?></b></h2>
+								<h2 class="text-left" style="margin-top:10px; font-family:'Lucida Sans';" id="r-title" ><b><?php echo $data['title']?></b></h2>
 								<ul class="list-inline" style="font-size: small;">
 									<li class="list-inline-item"><a href="author.php?u=r&author=<?php echo $data['main_author'];?>"><u><?php echo $data['main_author']?></u></a></li>
-									<li class="list-inline-item"><a href="author.php?u=r&author=<?php echo $data['co_authors'];?>"><u><?php echo $data['co_authors']?></u></a></li>
-									<li class="list-inline-item ">* Published <?php echo $data['date_publish'];?></li>
+									<?php
+									foreach (explode(",", $data['co_authors']) as $variable => $tk) {
+									$variable>0;
+									$variable++;
+									?><li class="list-inline-item" id="coauth-<?php echo "$variable";?>"><a href="author.php?author=<?php echo "$tk";?>"><u><?php echo "$tk";?></u></a></li> <?php
+									// echo '$variable_'.$variable.' is ' .$tk.'<br>';
+									}
+									?>
+									<li class="list-inline-item " id="r-date">* Published <?php echo $data['date_publish'];?></li>
 									<li class="list-inline-item">* <?php echo $data['field_of_study'];?></li>
 								</ul>
 							</div>
 							<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['abstract']); ?></p><br>
-							<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-bs-toggle="modal" data-bs-target="#modalciting"><span>Cite</span></button>
+							<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#research-citing" id="r-citing"><span>Cite</span></button>
+<script>
+	$(document).ready(function () {
+   // Filtering Reset
+   $("#filter-reset").on(click(function(){
+      console.log("Hello World");
+      $('#filter1').append("<option selected>Sort by Relevance</option>");
+      $('#filter1').append("<option selected disabled>Field of Study</option>");
+   }));
+   
+   $("#r-citing").click(function () {
+      var coauth = $("#coauth-1").val();
+      var title = $("#r-title").val();
+      var date = $("#r-date").val();
+      console.log("Gumana");
+      $("#r-citing-area").append(coauth +' "'+ title + '." '+ date);
+      $("#r-citing-area").append("<textarea class='form-control' aria-label='With textarea' id=''>Hello po sainyo</textarea>");
+   });
+});
+</script>
+							<!-- Modal for Citing -->
+							<div class="modal fade" id="research-citing" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalCenterTitle">Cite Paper</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									</div>
+									<div class="modal-body">
+									<!-- Navigation -->
+									<nav class="navbar navbar-expand-lg navbar-light bg-light">
+										<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+											<span class="navbar-toggler-icon"></span>
+										</button>
+										<div class="collapse navbar-collapse" id="navbarNav">
+											<ul class="navbar-nav">
+												<li class="nav-item active">
+												<a class="nav-link" href="#">MLA <span></span></a>
+												</li>
+												<li class="nav-item">
+												<a class="nav-link" href="#">APA</a>
+												</li>
+											</ul>
+										</div>
+									</nav>
+									<!-- Body -->
+									<div class="input-group" id="r-cite-area">
+										<textarea class="form-control" aria-label="With textarea" id="">Hello world</textarea>
+									</div>
+									<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left"><span>Copy</span></button>
 
-							<!-- Citation Modal -->
-							<div class="modal fade" id="modalciting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-										</div>
-										<div class="modal-body">
-										...
-										</div>
-										<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save changes</button>
-										</div>
 									</div>
 								</div>
+							</div>
 							</div>
 		<!-- ============================================================== -->
 				</div>
@@ -232,15 +275,6 @@ if (!empty($_GET['id']))
 			</div>
 			</div>
 
-			<br<br><br>
-			<div class="container">
-				<div id="result"></div>
-					<div class="modal-footer">
-						<!-- change location of href..-->
-						<a href="../index.php"><button class="btn btn-dark btn-sm">Back</button></a>	
-					</div>	
-			</div>
-			
 			<!-- Related Studies -->
 			<br<br><br>
 			<div class="container">
@@ -254,16 +288,15 @@ if (!empty($_GET['id']))
 					{
 						if($data1['id'] != $_GET['id'])
 						{
-						?>
-						
+							?>
 							<div class="col-md-3 col-sm-5">
-							<div class="card">
-								<div class="card-body">
-									<!-- change function to the designated function ofyouassign management -->
-									<a href="action.php?id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data1['title'];?></p></a>
-									<p class="card-text"><small class="text-muted"><?php ?></small></p>
+								<div class="card">
+									<div class="card-body">
+										<!-- change function to the designated function ofyouassign management -->
+										<a href="action.php?id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data['title'];?></p></a>
+										<p class="card-text"><small class="text-muted"><?php ?></small></p>
+									</div>
 								</div>
-							</div>
 							</div>
 					<?php
 						}
@@ -287,6 +320,11 @@ if (!empty($_GET['id']))
 		?>
 			<br><br><br><br>
 			<!--View Research-->
+			<div class="container">
+		<div id="result">
+		<a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
+		</div>	
+	</div><br><br>
 			<div class="container">
 			<div class="card">
 				<div class="card-body">
@@ -334,47 +372,46 @@ if (!empty($_GET['id']))
 								<div>
 								<h2 class="text-left" style="margin-top:10px; font-family:'Lucida Sans';" ><b><?php echo $data['title']?></b></h2>
 								<ul class="list-inline" style="font-size: small;">
+								<?php
+									foreach (explode(",", $data['author']) as $variable => $tk) {
+									$variable>0;
+									$variable++;
+									?><li class="list-inline-item"><a href="author.php?author=<?php echo "$tk";?>"><u><?php echo "$tk";?></u></a></li> <?php
+									}
+									?>
 									<li class="list-inline-item"><a href="author.php?u=j&author=<?php echo $data['author'];?>"><u><?php echo $data['author']?></u></a></li>
 									<li class="list-inline-item ">* Published <?php echo $data['datepub'];?></li>
 									<li class="list-inline-item"><?php //echo $data['field_of_study'];?></li>
 								</ul>
 							</div>
 							<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['description']); ?></p><br>
-							<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-bs-toggle="modal" data-bs-target="#modalciting"><span>Cite</span></button>
+							
+							<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#journal-citing"><span>Cite</span></button>
 
-							<!-- Citation Modal -->
-							<div class="modal fade" id="modalciting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-										</div>
-										<div class="modal-body">
-										...
-										</div>
-										<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save changes</button>
-										</div>
+							<!-- Modal for Citing -->
+							<div class="modal fade" id="journal-citing" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalCenterTitle">Citation</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									</div>
+									<div class="modal-body">
+									...
 									</div>
 								</div>
 							</div>
+							</div>
+
+							
 		<!-- ============================================================== -->
 				</div>
 				</div>
 			</div>
 			</div>
 
-			<br<br><br>
-			<div class="container">
-				<div id="result"></div>
-					<div class="modal-footer">
-						<!-- change location of href..-->
-						<a href="../index.php"><button class="btn btn-dark btn-sm">Back</button></a>	
-					</div>	
-			</div>
-			
 			<!-- Related Studies -->
 			<br<br><br>
 			<div class="container">
@@ -415,12 +452,17 @@ if (!empty($_GET['id']))
 	{
 		$data = get_articleaction($connect,$_GET['id']);
 		// include "";
-		// $pdf_file = $data['pdf_file'];
+		$pdf_file = $data['pdf_file'];
 		// $fstudy = $data['field_of_study'];
 		// $tags = $data['tagging'];
 		?>
 			<br><br><br><br>
 			<!--View Research-->
+			<div class="container">
+				<div id="result">
+				<a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
+				</div>	
+			</div><br><br>
 			<div class="container">
 			<div class="card">
 				<div class="card-body">
@@ -453,10 +495,11 @@ if (!empty($_GET['id']))
 								{
 									if($subscribe =="Yes")
 									{
+										echo $count['pdf_file'];
 										?>
 										<div>
 											<!-- <button type ="button" class="btn btn-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-download"><span class="fa fa-download"> Download Fulltext PDF&nbsp;</span></button> -->
-											<a href="../admin/article/<?php echo $data['pdf_file']?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View FullArticle PDF&nbsp;</i></button></a>
+											<a href="../admin/article/<?php //echo $data['pdf_file'];?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View FullArticle PDF&nbsp;</i></button></a>
 										</div>
 										<?php
 									}
@@ -466,14 +509,14 @@ if (!empty($_GET['id']))
 								
 								<!--  -->
 								<div>
-								<h2 class="text-left" style="margin-top:10px; font-family:'Lucida Sans';" ><b><?php echo $data['title']?></b></h2>
+								<h2 class="text-left" style="margin-top:10px; font-family:'Lucida Sans';" ><b><?php echo $data['a_title']?></b></h2>
 								<ul class="list-inline" style="font-size: small;">
-									<li class="list-inline-item"><a href="author.php?author=<?php echo $data['author'];?>"><u><?php echo $data['author']?></u></a></li>
-									<li class="list-inline-item ">* Published <?php echo $data['date_pub'];?></li>
+									<li class="list-inline-item"><a href="author.php?author=<?php echo $data['a_author'];?>"><u><?php echo $data['author']?></u></a></li>
+									<li class="list-inline-item ">* Published <?php echo $data['a_datepub'];?></li>
 									<li class="list-inline-item"><?php //echo $data['field_of_study'];?></li>
 								</ul>
 							</div>
-							<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['description']); ?></p><br>
+							<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['a_description']); ?></p><br>
 							<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-bs-toggle="modal" data-bs-target="#modalciting"><span>Cite</span></button>
 
 							<!-- Citation Modal -->
@@ -500,15 +543,6 @@ if (!empty($_GET['id']))
 			</div>
 			</div>
 
-			<br<br><br>
-			<div class="container">
-				<div id="result"></div>
-					<div class="modal-footer">
-						<!-- change location of href..-->
-						<a href="../index.php"><button class="btn btn-dark btn-sm">Back</button></a>	
-					</div>	
-			</div>
-			
 			<!-- Related Studies -->
 			<br<br><br>
 			<div class="container">
@@ -554,6 +588,11 @@ if (!empty($_GET['id']))
 		?>
 			<br><br><br><br>
 			<!--View Research-->
+			<div class="container">
+				<div id="result">
+				<a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
+			</div>	
+			</div><br><br>
 			<div class="container">
 			<div class="card">
 				<div class="card-body">
@@ -633,15 +672,6 @@ if (!empty($_GET['id']))
 			</div>
 			</div>
 
-			<br<br><br>
-			<div class="container">
-				<div id="result"></div>
-					<div class="modal-footer">
-						<!-- change location of href..-->
-						<a href="../index.php"><button class="btn btn-dark btn-sm">Back</button></a>	
-					</div>	
-			</div>
-			
 			<!-- Related Studies -->
 			<br<br><br>
 			<div class="container">
@@ -690,7 +720,7 @@ if (!empty($_GET['id']))
 
   <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
   <!-- JavaScript Libraries -->
-  <script src="../resource/lib/jquery/jquery.min.js"></script>  
+  <!-- <script src="../resource/lib/jquery/jquery.min.js"></script>   -->
   <script src="../resource/lib/jquery/jquery-migrat.min.js"></script>
   <script src="../resource/lib/bootstrap/js/bootstrap.bunle.min.js"></script>
   <script src="../resource/lib/easing/easing.min.js"></script> 
@@ -713,5 +743,6 @@ if (!empty($_GET['id']))
   </script>
   <script src="../resource/js/main.js"></script>
   <script src="../script/main.js"></script>
+  <script src="main.js"></script>
 
 

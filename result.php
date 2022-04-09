@@ -82,30 +82,30 @@
             ?>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <?php if ($_SESSION['role'] == "Administrator") { ?>
-              <a class="dropdown-item" href="../account/account.php">Account</a>
+              <a class="dropdown-item" href="../CustomLandingPage/admin/account/account.php">Account</a>
               <?php } ?>
               <?php if ($_SESSION['role'] == "Administrator") { ?>
-              <a class="dropdown-item" href="../research/research.php">Research</a>
+              <a class="dropdown-item" href="../CustomLandingPage/admin/research/research.php">Research</a>
               <?php } ?>
               <?php if ($_SESSION['role'] == "Administrator") { ?>
-              <a class="dropdown-item" href="../author/author.php">Author</a>
-              <?php } ?>
-              
-              <?php if ($_SESSION['role'] == "Administrator") { ?>
-              <a class="dropdown-item" href="../journal/journal.php">Journal</a>
+              <a class="dropdown-item" href="../CustomLandingPage/admin/author/author.php">Author</a>
               <?php } ?>
               
               <?php if ($_SESSION['role'] == "Administrator") { ?>
-              <a class="dropdown-item" href="../article/article.php">Article</a>
+              <a class="dropdown-item" href="../CustomLandingPage/admin/journal/journal.php">Journal</a>
+              <?php } ?>
+              
+              <?php if ($_SESSION['role'] == "Administrator") { ?>
+              <a class="dropdown-item" href="../CustomLandingPage/admin/article/article.php">Article</a>
               <?php } ?>
               <?php if ($_SESSION['role'] == "Administrator") { ?>
-              <a class="dropdown-item" href="../author/author.php">Author</a>
+              <a class="dropdown-item" href="../CustomLandingPage/admin/author/author.php">Author</a>
               <?php } ?>
               <?php if ($_SESSION['role'] == "Administrator") { ?>
-              <a class="dropdown-item" href="../events/index.php">Events</a>
+              <a class="dropdown-item" href="../CustomLandingPage/admin/events/index.php">Events</a>
               <?php } ?>
               <?php if ($_SESSION['role'] == "Administrator") { ?>
-              <a class="dropdown-item" href="../news/index.php">News</a>
+              <a class="dropdown-item" href="../CustomLandingPage/admin/news/index.php">News</a>
               <?php } ?>
             </div>
                 </li>
@@ -160,7 +160,7 @@
 <div id="header-one">
 <form action="" method="GET" onsubmit="">
         <div class="form-group">
-          <input name="a" class="form-control form-control-md d-inline" type="text" placeholder="<?php echo $_GET['a'];?>" aria-label=".form-control-lg example" style="width: 35%;" value="<?php echo $_GET['a'];?>">
+          <input name="a" class="form-control form-control-md d-inline" type="text" placeholder="<?php //echo $_GET['a'];?>" aria-label=".form-control-lg example" style="width: 35%;" value="<?php echo $_GET['a'];?>">
           <select class="custom-select d-inline" id="search_type" name="u" style="width: 10%; margin-bottom:2.5px;">
           <?php
           if($_GET['u'] =="Researches")
@@ -271,8 +271,14 @@
                                  <h4 class="title"><a href="./view/action.php?u=r&id=<?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
                                  <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                                     <li class="list-inline-item"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
-
-                                    <li class="list-inline-item"><b><u><span><?php echo $data['co_authors'];?></span></u></b></li>
+                                    
+                                    <?php
+                                    foreach (explode(",", $data['co_authors']) as $variable => $tk) {
+                                    $variable>0;
+                                    $variable++;
+                                    ?><li class="list-inline-item"><u><?php echo ",$tk";?></u></li> <?php
+                                    }
+                                    ?>
 
                                     <li class="list-inline-item"><b><span> * Published <?php echo $data['date_publish'];?></span></b></li>
                                     
@@ -352,17 +358,17 @@
                             <div class="box">
                               <h4 class="title"><a href="./view/action.php?u=a&id=<?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
                                 <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b><u><span><?php echo $data['author'];?></span></u></b></li>
+                                  <li class="list-inline-item"><b><u><span><?php echo $data['a_author'];?></span></u></b></li>
 
-                                  <li class="list-inline-item"><b><span> * Published <?php echo $data['date_pub'];?></span></b></li>
+                                  <li class="list-inline-item"><b><span> * Published <?php echo $data['a_date_pub'];?></span></b></li>
                                   
                                   <li class="list-inline-item"><b><span> * <?php //echo $data['field_of_study'];?></span></b></li>
                                   
                                 </ul>
-                                <p class="description"><span><?php echo $data['description'];?></span></p>
+                                <p class="description"><span><?php echo $data['a_description'];?></span></p>
                                 <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b>Views: <?php //echo $data['views'];?></b></li>
-                                  <li class="list-inline-item"><b>Cite: <?php //echo $data['cites'];?></b></li>
+                                  <li class="list-inline-item"><b>Views: <?php echo $data['a_views'];?></b></li>
+                                  <li class="list-inline-item"><b>Cite: <?php echo $data['a_cites'];?></b></li>
                                 </ul>
                             </div>
                           </div>
@@ -390,7 +396,7 @@
                         <tr>
                           <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
                             <div class="box">
-                              <h4 class="title"><a href="./view/action.php?u=n&id=<?php echo $data['name'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                              <h4 class="title"><a href="./view/action.php?u=n&id=<?php echo $data['name'];?>"><span><?php echo $data['name'];?></span></a></h4>
                                 <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                                   <li class="list-inline-item"><b><u><span><?php echo $data['author'];?></span></u></b></li>
 
@@ -401,8 +407,8 @@
                                 </ul>
                                 <p class="description"><span><?php echo $data['mobile'];?></span></p>
                                 <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b>Views: <?php //echo $data['views'];?></b></li>
-                                  <li class="list-inline-item"><b>Cite: <?php //echo $data['cites'];?></b></li>
+                                  <li class="list-inline-item"><b>Views: <?php echo $data['views'];?></b></li>
+                                  <li class="list-inline-item"><b>Cite: <?php echo $data['cites'];?></b></li>
                                 </ul>
                             </div>
                           </div>

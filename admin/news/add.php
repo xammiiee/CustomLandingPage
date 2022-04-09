@@ -10,7 +10,7 @@ if(isset($_POST["name"]))
     $author = $_POST['author'];
 	
  $connect = new PDO("mysql:host=localhost;dbname=research_portal", "root", "");
- $query = "INSERT INTO tblnews(name,email,mobile,author,tags) VALUES(:name,'$mobile','$email','$author', :skill)";
+ $query = "INSERT INTO tblnews(name,email,mobile,author,tags) VALUES(:name,'$mobile','$email','$author', :skill,'','')";
  $statement = $connect->prepare($query);
  $statement->execute(
   array(
