@@ -262,6 +262,9 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
             // $stat1 = "Activate";
             if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#subscribe-<?php echo $data['id'];?>">Subscribe</a><?php }
           }
+          elseif($status ==""){
+            if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#subscribe-<?php echo $data['id'];?>">Subscribe</a><?php }
+          }
           $id = $data['id'];
         ?>
            <?php if ($_SESSION['role']=="Administrator") {?><a class="dropdown-item" href="#<?php echo $data['id'];?>" data-toggle="modal" data-target="#delete-<?php echo $data['id'];?>">Delete</a><?php } ?>
