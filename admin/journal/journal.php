@@ -45,6 +45,8 @@ if (empty($_SESSION['id'])) {
  <!--<header class="section-header">
       <h3>Journal Management</h3>
     </header> -->
+
+<div class="container">
 <?php
 if (isset($_GET['del'])) {
   $result = delete_journalaction($connect,$_GET['del']);
@@ -98,7 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
 
 }
 ?>
-<div class="container">
   <!-- Create task button -->
   <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-project">
   <i  class="fa fa-plus"></i>
