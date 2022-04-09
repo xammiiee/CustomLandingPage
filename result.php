@@ -268,27 +268,27 @@
                            <tr>
                            <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
                               <div class="box">
-                                 <h4 class="title"><a href="./view/action.php?u=r&id=<?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                                 <h4 class="title"><a href="./view/action.php?u=r&id=<?php echo $data['id'];?>" class="cls" id="<?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
                                  <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                    <li class="list-inline-item"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
+                                    <li class="list-inline-item" value="<?php echo $data['main_author'];?>"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
                                     
                                     <?php
                                     foreach (explode(",", $data['co_authors']) as $variable => $tk) {
                                     $variable>0;
                                     $variable++;
-                                    ?><li class="list-inline-item"><u><?php echo ",$tk";?></u></li> <?php
+                                    ?><li class="list-inline-item" value="<?php echo $tk;?>"><u><?php echo ",$tk";?></u></li> <?php
                                     }
                                     ?>
 
-                                    <li class="list-inline-item"><b><span> * Published <?php echo $data['date_publish'];?></span></b></li>
+                                    <li class="list-inline-item" value="<?php echo $data['date_publish'];?>"><b> * Published <span><?php echo $data['date_publish'];?></span></b></li>
                                     
-                                    <li class="list-inline-item"><b><span> * <?php echo $data['field_of_study'];?></span></b></li>
+                                    <li class="list-inline-item" value="<?php echo $data['field_of_study'];?>"><b> * <span><?php echo $data['field_of_study'];?></span></b></li>
                                     
                                  </ul>
-                                 <p class="description"><span><?php echo $data['abstract'];?></span></p>
+                                 <p class="description" value="<?php echo $data['abstract'];?>"><span><?php echo $data['abstract'];?></span></p>
                                  <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                    <li class="list-inline-item"><b>Views: <?php echo $data['views'];?></b></li>
-                                    <li class="list-inline-item"><b>Cite: <?php echo $data['cites'];?></b></li>
+                                    <li class="list-inline-item" id="rView<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
+                                    <li class="list-inline-item" id="rCite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>
                                  </ul>
                               </div>
                            </div>
@@ -315,22 +315,22 @@
                         ?>
                         <tr>
                           <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
-                            <div class="box">
-                              <h4 class="title"><a href="./view/action.php?u=j&id=<?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b><u><span><?php echo $data['author'];?></span></u></b></li>
-
-                                  <li class="list-inline-item"><b><span> * Published <?php echo $data['datepub'];?></span></b></li>
-                                  
-                                  <li class="list-inline-item"><b><span> * <?php //echo $data['field_of_study'];?></span></b></li>
-                                  
-                                </ul>
-                                <p class="description"><span><?php echo $data['description'];?></span></p>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b>Views: <?php //echo $data['views'];?></b></li>
-                                  <li class="list-inline-item"><b>Cite: <?php //echo $data['cites'];?></b></li>
-                                </ul>
-                            </div>
+                          <div class="box">
+                                 <h4 class="title"><a href="./view/action.php?u=j&id=<?php echo $data['id'];?>" class="cls" id="<?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                                 <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                    <li class="list-inline-item" value="<?php echo $data['author'];?>"><b><u><span><?php echo $data['author'];?></span></u></b></li>
+                                    
+                                    <li class="list-inline-item" value="<?php echo $data['datepub'];?>"><b> * Published <span><?php echo $data['datepub'];?></span></b></li>
+                                    
+                                    <li class="list-inline-item" value="<?php echo $data['fstudy'];?>"><b> * <span><?php echo $data['fstudy'];?></span></b></li>
+                                    
+                                 </ul>
+                                 <p class="description" value="<?php echo $data['decription'];?>"><span><?php echo $data['decription'];?></span></p>
+                                 <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                    <li class="list-inline-item" id="jView<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
+                                    <li class="list-inline-item" id="jCite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>
+                                 </ul>
+                              </div>
                           </div>
                         </tr>
                       <?php
@@ -355,22 +355,22 @@
                         ?>
                         <tr>
                           <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
-                            <div class="box">
-                              <h4 class="title"><a href="./view/action.php?u=a&id=<?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b><u><span><?php echo $data['a_author'];?></span></u></b></li>
 
-                                  <li class="list-inline-item"><b><span> * Published <?php echo $data['a_date_pub'];?></span></b></li>
-                                  
-                                  <li class="list-inline-item"><b><span> * <?php //echo $data['field_of_study'];?></span></b></li>
-                                  
-                                </ul>
-                                <p class="description"><span><?php echo $data['a_description'];?></span></p>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b>Views: <?php echo $data['a_views'];?></b></li>
-                                  <li class="list-inline-item"><b>Cite: <?php echo $data['a_cites'];?></b></li>
-                                </ul>
-                            </div>
+                          <div class="box">
+                            <h4 class="title"><a href="./view/action.php?u=a&id=<?php echo $data['id'];?>" class="cls" id="<?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                              <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                <li class="list-inline-item" value="<?php echo $data['a_author'];?>"><b><u><span><?php echo $data['a_author'];?></span></u></b></li>
+                                    
+                                <li class="list-inline-item" value="<?php echo $data['a_date_pub'];?>"><b> * Published <span><?php echo $data['a_date_pub'];?></span></b></li>
+                                    
+                                <li class="list-inline-item" value="<?php echo $data['field_of_study'];?>"><b> * <span><?php echo $data['field_of_study'];?></span></b></li>
+                              </ul>
+                                 <p class="description" value="<?php echo $data['a_description'];?>"><span><?php echo $data['a_description'];?></span></p>
+                                 <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                    <li class="list-inline-item" id="aView<?php echo $data['id'];?>" value="<?php echo $data['a_views'];?>"><b>Views: <?php echo $data['a_views'];?></b></li>
+                                    <li class="list-inline-item" id="aCite<?php echo $data['id'];?>" value="<?php echo $data['a_cites'];?>"><b>Cite: <?php echo $data['a_cites'];?></b></li>
+                              </ul>
+                              </div>
                           </div>
                         </tr>
                       <?php
@@ -396,20 +396,18 @@
                         <tr>
                           <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
                             <div class="box">
-                              <h4 class="title"><a href="./view/action.php?u=n&id=<?php echo $data['name'];?>"><span><?php echo $data['name'];?></span></a></h4>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b><u><span><?php echo $data['author'];?></span></u></b></li>
-
-                                  <li class="list-inline-item"><b><span> * Published <?php echo $data['email'];?></span></b></li>
-                                  
-                                  <li class="list-inline-item"><b><span> * <?php //echo $data['field_of_study'];?></span></b></li>
-                                  
-                                </ul>
-                                <p class="description"><span><?php echo $data['mobile'];?></span></p>
-                                <ul class="list-inline" style="padding-left: 40px; font-size: small;">
-                                  <li class="list-inline-item"><b>Views: <?php echo $data['views'];?></b></li>
-                                  <li class="list-inline-item"><b>Cite: <?php echo $data['cites'];?></b></li>
-                                </ul>
+                              <h4 class="title"><a href="./view/action.php?u=n&id=<?php echo $data['id'];?>" class="cls" id="<?php echo $data['id'];?>"><span><?php echo $data['name'];?></span></a></h4>
+                              <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                <li class="list-inline-item" value="<?php echo $data['author'];?>"><b><u><span><?php echo $data['author'];?></span></u></b></li>
+                                   
+                                <li class="list-inline-item" value="<?php echo $data['email'];?>"><b> * Published <span><?php echo $data['email'];?></span></b></li>
+                                    
+                              </ul>
+                              <p class="description" value="<?php echo $data['mobile'];?>"><span><?php echo $data['mobile'];?></span></p>
+                              <ul class="list-inline" style="padding-left: 40px; font-size: small;">
+                                <li class="list-inline-item" id="nView<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
+                                <li class="list-inline-item" id="nCite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>
+                              </ul>
                             </div>
                           </div>
                         </tr>
@@ -490,7 +488,14 @@
   <script src="contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
-  <script src="/view/main.js"></script>
+  <script src="../CustomLandingPage/view/main.js"></script>
+  <!-- <script>
+    $(document).ready(function(){
+      $('a.cls').click(function() {
+      alert("I click This");
+    });
+    });
+  </script> -->
   <script src="./resource/js/main.js"></script>
 
 </body>
