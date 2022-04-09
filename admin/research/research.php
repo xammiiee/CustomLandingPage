@@ -304,11 +304,10 @@ if (isset($_GET['del'])) {
     console.log("Letsgo");
   });
 </script>
-<!--Journal-->
+<!--Research-->
 <div class="table-responsive-lg">
   <!-- change table id based on your managemnet -->
   <!-- <table class="table table-striped table-bordered" cellspacing="0" width="100%"> -->
-
  <table id="research" class="table table-hover">
    <thead>
      <tr>
@@ -323,7 +322,7 @@ if (isset($_GET['del'])) {
        <th scope="col" align="center">Action</th>
      </tr>
    </thead>
-   <tbody id="myTable">
+   <tbody>
      <?php
      
     //get author id inside research
@@ -385,69 +384,68 @@ if (isset($_GET['del'])) {
  ?>
 </tbody>
 </table>
-<div class="col-md-12 text-center">
+<!-- <!-- <div class="col-md-12 text-center">
   <ul class="pagination pagination-lg pager" id="myPager"></ul>
-</div>
+</div> -->
 </div>
 </div>
 
-<script src="assets/datatables.min.js"></script>
-<script src="./script/main.js"></script>
+<script src="../../resource/assets/datatables.min.js"></script>
+<!-- <script src="./script/main.js"></script> -->
 <script>
-  $(document).ready(function () {
-    $('#myTable').pageMe({
-      pagerSelector:'#myPager',
-      showPrevNext:true,
-      hidePageNumbers:false,
-      perPage:4});
-});
-//  $(function() {
-//   //  change id with the id of the table
-//    $('#research').DataTable();
-//    $(function() {
-//      var table = $('#research').DataTable({
-//        "columnDefs": [{
-//          "visible": false,
-//          "targets": 2
-//        }],
-//        "ordering": false,
-//        "displayLength": 25,
-//        "drawCallback": function(settings) {
-//          var api = this.api();
-//          var rows = api.rows({
-//            page: 'current'
-//          }).nodes();
-//          var last = null;
-//          api.column(2, {
-//            page: 'current'
-//          }).data().each(function(group, i) {
-//            if (last !== group) {
-//              $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-//              last = group;
-//            }
-//          });
-//        }
-//      });
-//            // Order by the grouping
-//            $('#research tbody').on('click', 'tr.group', function() {
-//              var currentOrder = table.order()[0];
-//              if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-//                table.order([2, 'desc']).draw();
-//              } else {
-//                table.order([2, 'asc']).draw();
-//              }
-//            });
-//        });
-//  });
-//  $('#research').DataTable({
-//    dom: 'Bfrtip',
-//    buttons: [
-//    'copy', 'csv', 'excel', 'pdf', 'print'
-//    ]
-//  });
-//  $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
-
-
+//   $(document).ready(function () {
+//     $('#myTable').pageMe({
+//       pagerSelector:'#myPager',
+//       showPrevNext:true,
+//       hidePageNumbers:false,
+//       perPage:4});
+// });
+$(function() {
+   $('#research').DataTable();
+   $(function() {
+     var table = $('#example').DataTable({
+       "columnDefs": [{
+         "visible": false,
+         "targets": 2
+       }],
+       "ordering": false,
+       "displayLength": 25,
+       "drawCallback": function(settings) {
+         var api = this.api();
+         var rows = api.rows({
+           page: 'current'
+         }).nodes();
+         var last = null;
+         api.column(2, {
+           page: 'current'
+         }).data().each(function(group, i) {
+           if (last !== group) {
+             $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+             last = group;
+           }
+         });
+       }
+     });
+           // Order by the grouping
+           $('#example tbody').on('click', 'tr.group', function() {
+             var currentOrder = table.order()[0];
+             if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+               table.order([2, 'desc']).draw();
+             } else {
+               table.order([2, 'asc']).draw();
+             }
+           });
+       });
+ });
+ $('#example23').DataTable({
+   dom: 'Bfrtip',
+   buttons: [
+   'copy', 'csv', 'excel', 'pdf', 'print'
+   ]
+ });
+ $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+</script>
+<script>
 //  script for co-author
 $('#txtco-authors').multiselect({
 nonSelectedText: 'Select Your Skills',

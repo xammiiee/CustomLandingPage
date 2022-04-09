@@ -42,6 +42,11 @@ include "/xampp/htdocs/CustomLandingPage/admin/author/functions/Message.func.php
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
 
+<!--  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
 
   <!-- Main Stylesheet File -->
@@ -66,48 +71,73 @@ include "/xampp/htdocs/CustomLandingPage/admin/author/functions/Message.func.php
       
       <nav class="main-nav float-right d-none d-lg-block" >
         <ul>
-        <?php if (isset($_SESSION['id'])) { if ($_SESSION['role']=="Administrator") { ?>
+        <?php 
+          if (isset($_SESSION['id'])) 
+          { 
+            if ($_SESSION['role']=="Administrator")
+            { ?>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Management
-                </a>
-               
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/account.php">Account</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/research/research.php">Research</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/author/author.php">Author</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/journal/journal.php">Journal</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/article/article.php">Article</a>
-                  <a class="dropdown-item" href="#">News</a>
-                  <a class="dropdown-item" href="#">Events</a>
-                  </li>
-                  
-                  <!-- <li class="nav-item active"><a class="dropdown-item" href="../../signup/logout.php">Signout</a></li> -->
+                <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">Management</a>
+              <?php 
+            }
+            ?>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../account/account.php">Account</a>
                   <?php } ?>
-                  <?php if ($_SESSION['role']=="Administrator" || $_SESSION['role']=="Visitor") { ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../research/research.php">Research</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../author/author.php">Author</a>
+                  <?php } ?>
+                  
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../journal/journal.php">Journal</a>
+                  <?php } ?>
+                  
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../article/article.php">Article</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../author/author.php">Author</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../events/index.php">Events</a>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['role'] == "Administrator") { ?>
+                  <a class="dropdown-item" href="../news/index.php">News</a>
+                  <?php } ?>
+                  </div>
+                </li>
+                  <li><a><?php echo $_SESSION['name'];?></a></li>
                   <li class="nav-item dropdown" >
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#settings">Settings</a>
-                    <a class="dropdown-item" href="#aboutus">About Us</a>
-                   
-                    <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
-                  </div>
+                      <a class="dropdown-item" href="../profile/profile.php">Profile</a>
+                      <a class="dropdown-item" href="#aboutus">About Us</a>
+                      <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
+                    </div>
                   </li>
-                  <?php } ?>
-                  <?php } else { ?>
-                <li><a href="/login/login.php">Login</a></li>
-                <li><a href="/signup/signup.php"  class="btn btn-primary btn-sm rounded-pill"><span style="color:#fff"> Sign Up</span></a></li>
-          
-          <?php } ?>
+                  <?php
+          } 
+          else 
+          { 
+            header("Location: ../../login/login.php");
+          }?>
         </ul>
       </nav><!-- .main-nav -->
     </div>
   </header><!-- #header -->
 
 <!-- #footer -->
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
   <!-- Tables CDN -->
@@ -116,7 +146,13 @@ include "/xampp/htdocs/CustomLandingPage/admin/author/functions/Message.func.php
   <!-- JavaScript Libraries -->
   <script src="../../resource/lib/jquery/jquery.min.js"></script>
   <script src="../../resource/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="../../resource/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+  <!-- <script src="../../resource/lib/bootstrap/js/bootstrap.bundle.min.js"></script> -->
   <script src="../../resource/lib/easing/easing.min.js"></script>
   <script src="../../resource/lib/mobile-nav/mobile-nav.js"></script>
   <script src="../../resource/lib/wow/wow.min.js"></script>

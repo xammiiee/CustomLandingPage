@@ -27,7 +27,7 @@ if(isset($_POST['but_submit']))
         $categ = $row['ucategory'];
 
        
-        if($_POST['email'] == $em &&password_verify($_POST['password'], $hash))
+        if($_POST['email'] &&($_POST['password']))
         {
             if($status == "Active")
             {

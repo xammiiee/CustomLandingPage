@@ -62,35 +62,31 @@
             ?>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../admin/account/account.php">Account Management</a>
+                  <a class="dropdown-item" href="../admin/account/account.php">Account</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../admin/research/research.php">Research Management</a>
+                  <a class="dropdown-item" href="../admin/research/research.php">Research</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../admin/author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../admin/author/author.php">Author</a>
                   <?php } ?>
                   
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../admin/journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="../admin/journal/journal.php">Journal</a>
                   <?php } ?>
                   
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../admin/article/article.php">Article Management</a>
+                  <a class="dropdown-item" href="../admin/article/article.php">Article</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../admin/author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../admin/events/index.php">Events</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../admin/events/index.php">Events Management</a>
-                  <?php } ?>
-
-                  <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../admin/news/index.php">News Management</a>
+                  <a class="dropdown-item" href="../admin/news/index.php">News</a>
                   <?php } ?>
                   </div>
                 </li>
