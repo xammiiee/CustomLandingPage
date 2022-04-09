@@ -103,10 +103,6 @@ include "/xampp/htdocs/CustomLandingPage/admin/author/functions/Message.func.php
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../author/author.php">Author</a>
-                  <?php } ?>
-
-                  <?php if ($_SESSION['role'] == "Administrator") { ?>
                   <a class="dropdown-item" href="../events/index.php">Events</a>
                   <?php } ?>
 

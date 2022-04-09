@@ -111,10 +111,6 @@ if ($result = mysqli_query($mysqli, $sql)) {
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../author/author.php">Author </a>
-                  <?php } ?>
-
-                  <?php if ($_SESSION['role'] == "Administrator") { ?>
                   <a class="dropdown-item" href="../events/index.php">Events </a>
                   <?php } ?>
 
