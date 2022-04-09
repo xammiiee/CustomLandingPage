@@ -59,7 +59,7 @@ if (isset($_POST['id'])) {
     {
       $tagging= implode(', ',$_POST['tags']);
     }
- 		$result = update_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['m_author'],$_POST['c_authors'],$_POST['dpub'],$_POST['fstudy'],$Pdf_file,$tagging,$_POST['id']);
+ 		$result = update_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['fstudy'],$Pdf_file,$tagging,$_POST['id']);
  		if ($result == "1") {
 			echo'<div style="position:relative;top: 100px;"';
  			message("Research updated successfully!",1);
