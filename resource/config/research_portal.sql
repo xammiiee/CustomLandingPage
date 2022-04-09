@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2022 at 05:03 PM
+-- Generation Time: Apr 09, 2022 at 11:33 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -45,8 +45,12 @@ CREATE TABLE `tblaccount` (
 --
 
 INSERT INTO `tblaccount` (`id`, `name`, `email`, `pass`, `status`, `ucategory`, `au_member`, `subcribe`, `datesub_start`, `datesub_end`) VALUES
-(1, 'Jaren Heruela', 'jaren@gmail.com', 'admin', 'Active', 'Administrator', 'Yes', '', '', ''),
-(2, 'trylang', 'anton-gramm-324@haebom.ga', 'admin', 'Active', 'User', 'No', '', '', '');
+(1, 'Jaren', 'jarenloydla@gmail.com', '$2y$12$4.GiSCWvibjcXbwg99nweuqt439gwPPh7TeAk6yJVeNExJveTXW.e', 'Inactive', 'Administrator', 'Yes', 'No', '', ''),
+(14, 'Jaren Heruela', 'jarenloydheruela@gmail.com', '$2y$12$DNIamupYUhvpfu3dwD6rHeguw.PYbkUhSgSTIkEf3Sb30T0v8dj.W', 'Active', 'Administrator', 'Yes', 'No', '', ''),
+(16, 'Admin', 'admin@gmail.com', '$2y$12$rBhHUN7rJbgbIgBFKHcr9O/D9ymes5sACQs7rvTROCOUEcr55g.nq', 'Active', 'Administrator', 'Yes', 'No', '', ''),
+(17, 'User', 'user@gmail.com', '$2y$12$ZTjDKMwr6w6.YkGVsIa1n.5ZfFAKGcCGoV4rpxLiliEk4WsyhrKDm', 'Active', 'User', 'Yes', 'No', '', ''),
+(24, 'sample1', 'sample1@yahoo.com', '$2y$12$OSzAPoj6aPNX.6K4lbotk.aJAwc4dwzy3gW4hwo4BhmMaS0Y9ZmEa', 'Inactive', 'User', 'No', 'No', '', ''),
+(26, 'D. Saraswathi', 'DSaraswathi@gmail.com', '$2y$12$kTPKFchYVxf4KX0BnKjX5.dnNvG5GtdI1oCNsS2w4pPYQ1U6oLnzK', 'Active', 'User', 'Yes', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -56,13 +60,16 @@ INSERT INTO `tblaccount` (`id`, `name`, `email`, `pass`, `status`, `ucategory`, 
 
 CREATE TABLE `tblarticle` (
   `id` int(100) NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `description` longtext NOT NULL,
-  `author` varchar(100) NOT NULL,
-  `date_pub` varchar(20) NOT NULL,
-  `created_by` varchar(100) NOT NULL,
-  `tagging` varchar(100) NOT NULL,
-  `status` varchar(10) NOT NULL
+  `a_title` varchar(200) NOT NULL,
+  `a_description` longtext NOT NULL,
+  `a_author` varchar(100) NOT NULL,
+  `a_datepub` varchar(20) NOT NULL,
+  `a_creator` varchar(100) NOT NULL,
+  `a_created` varchar(20) NOT NULL,
+  `a_tagging` varchar(100) NOT NULL,
+  `a_pdf_file` varchar(10) NOT NULL,
+  `a_cites` varchar(20) NOT NULL,
+  `a_views` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -72,13 +79,12 @@ CREATE TABLE `tblarticle` (
 --
 
 CREATE TABLE `tblauthor` (
-  `id` varchar(20) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `profession` varchar(100) NOT NULL,
   `description` longtext NOT NULL,
   `fstudy` varchar(100) NOT NULL,
-  `pdf_file` varchar(100) NOT NULL,
   `created` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -86,8 +92,14 @@ CREATE TABLE `tblauthor` (
 -- Dumping data for table `tblauthor`
 --
 
-INSERT INTO `tblauthor` (`id`, `name`, `email`, `profession`, `description`, `fstudy`, `pdf_file`, `created`) VALUES
-('1', 'Jaren Heruela', 'jaren@gmail.com', '', '', '', '', '');
+INSERT INTO `tblauthor` (`id`, `name`, `email`, `profession`, `description`, `fstudy`, `created`) VALUES
+(1, 'Jaren Heruela', 'jarenloydheruela@gmail.com', 'Professor', 'dfgbn bf', 'Computer ', '1'),
+(2, 'D. Saraswathi', 'D. Saraswathi@gmail.com', 'Analyst', 'ghg', 'Analyst', '1'),
+(3, 'Ernest Hemmingway', 'ernest@gmail.com', 'Novelist', 'gnm,nhg', 'Novel', '1'),
+(4, 'Yongli Cui', 'Yongli Cui@gmail.com', 'Professor', 'fghm', 'Computer ', '1'),
+(5, 'Shubin Song', 'Shubin Song@gamail.com', 'Analyst', 'hmb ', 'Novel', '1'),
+(6, 'Liang He', 'Liang He', 'Analyst', 'eghjhgds', 'Computer Technology', '1'),
+(7, 'Guorong Li', 'Guorong Li@yahoo.com', 'Professor', 'dfbn ', 'Analyst', '1');
 
 -- --------------------------------------------------------
 
@@ -118,15 +130,6 @@ CREATE TABLE `tblevents` (
   `time` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tblevents`
---
-
-INSERT INTO `tblevents` (`id`, `event_name`, `event_description`, `date`, `time`) VALUES
-(2, 'sample1', ' wertyuio', '2022-03-26', '2022-03-08'),
-(3, 'sample1', ' poiuytrew', '06:09', '2022-03-03'),
-(4, 'sample2', ' lkjljlkkgjb ', '2022-03-02', '04:11');
-
 -- --------------------------------------------------------
 
 --
@@ -142,8 +145,19 @@ CREATE TABLE `tbljournal` (
   `creator` varchar(100) NOT NULL,
   `created` varchar(100) NOT NULL,
   `status` varchar(10) NOT NULL,
-  `pdf_file` varchar(100) NOT NULL
+  `pdf_file` varchar(100) NOT NULL,
+  `tagging` varchar(100) NOT NULL,
+  `fstudy` varchar(20) NOT NULL,
+  `cites` varchar(20) NOT NULL,
+  `views` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbljournal`
+--
+
+INSERT INTO `tbljournal` (`id`, `title`, `description`, `author`, `datepub`, `creator`, `created`, `status`, `pdf_file`, `tagging`, `fstudy`, `cites`, `views`) VALUES
+(8, 'sample2', 'qwertyuioppoidsasdfghjk', 'Yongli Cui', '2022-04-29', '16', '2022-04-09', '', 'uploads/20090202_ismael_pena-lopez_personal_research_portal.pdf', '#scichat, #mathchat, #edreform', 'Agricultural and Foo', '', '');
 
 -- --------------------------------------------------------
 
@@ -169,18 +183,12 @@ CREATE TABLE `tblnews` (
   `id` int(100) NOT NULL,
   `name` varchar(200) NOT NULL,
   `mobile` longtext NOT NULL,
-  `email` varchar(100) NOT NULL
+  `email` varchar(100) NOT NULL,
+  `author` varchar(100) NOT NULL,
+  `tags` varchar(200) NOT NULL,
+  `cites` varchar(20) NOT NULL,
+  `views` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tblnews`
---
-
-INSERT INTO `tblnews` (`id`, `name`, `mobile`, `email`) VALUES
-(1, 'sample1', ' sample1sample1sample1sample1sample1sample1sample1sample1sample1sample1sample1', '2022-03-12'),
-(2, 'sampl2', ' wertyuio', '2022-04-07'),
-(3, 'poiuyt', ' ertyu', '2022-03-01'),
-(4, 'dfghjk', ' uytrewqwerty', '2022-03-09');
 
 -- --------------------------------------------------------
 
@@ -196,20 +204,18 @@ CREATE TABLE `tblresearch` (
   `co_authors` varchar(100) NOT NULL,
   `date_publish` varchar(20) NOT NULL,
   `field_of_study` varchar(100) NOT NULL,
-  `status` varchar(20) NOT NULL,
   `pdf_file` varchar(100) NOT NULL,
-  `views` varchar(20) NOT NULL,
-  `cites` varchar(20) NOT NULL,
-  `tagging` varchar(100) NOT NULL
+  `tagging` varchar(100) NOT NULL,
+  `cites` varchar(100) NOT NULL,
+  `views` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tblresearch`
 --
 
-INSERT INTO `tblresearch` (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `status`, `pdf_file`, `views`, `cites`, `tagging`) VALUES
-(1, 'A STUDY ON ONLINE SEARCH BY PEOPLE USING SEARCH ENGINE', 'Thepurpose of this study is to understand how users search for online information \r\nfrom search engine through their own experience using the Internet.', 'Jaren', '', '2022-03-02', 'Computer Studies', '', 'uploads/A Multifunctional Online Research Portal for Facilitation of.pdf', '', '', ''),
-(2, 'The Collaborative Filtering Recommendation Algorithm Based on BP Neural', 'Collaborative filtering is one of the most successful \r\ntechnologies in recommender systems, and widely used in \r\nmany personalized recommender areas with the development \r\nof Internet, such as e-commerce, digital library and so on. The \r\nK-nearest neighbor method is a popular way for the \r\ncollaborative filtering realizations. Its key technique is to find k \r\nnearest neighbors for a given user to predict his interests. \r\nHowever, most collaborative filtering algorithms suffer from \r\ndata sparsity which leads to inaccuracy of recommendation. \r\nAiming at the problem of data sparsity for collaborative \r\nfiltering, a collaborative filtering algorithm based on BP neural \r\nnetworks is presented. This method uses the BP neural \r\nnetworks to fill the vacant ratings at first, then uses \r\ncollaborative filtering to form nearest neighborhood, and lastly \r\ngenerates recommendations. The collaborative filtering based \r\non BP neural networks smoothing can produce more accuracy \r\nrecommendation than the traditional method. ', 'Jaren', '', '2022-03-03', 'Computer Studies', '', 'uploads/The Collaborative Filtering Recommendation Algorithm Based on BP Neural Networks.pdf', '', '', '');
+INSERT INTO `tblresearch` (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `pdf_file`, `tagging`, `cites`, `views`) VALUES
+(1, 'A Collaborative Filtering Algorithm Based on User Activity Level', 'Collaborative Filtering Algorithm is one of the most \r\nsuccessful recommender technologies, and has been widely \r\nused in E-commerce. However, traditional Collaborative \r\nFiltering often focus on user-item ratings, but ignore the \r\ninformation implicated in user activity which means how and \r\nhow often a user makes operations in a system, so it misses \r\nsome important information to improve the prediction quality. \r\nTo solve this problem, we bring user activity factor into \r\ncollaborative filtering and propose a new collaborative filtering \r\nalgorithm based on user activity level (UACF) . Finally, \r\nexperiments have shown that our new algorithm UACF \r\nimproves the precision of traditional collaborative filtering', 'D. Saraswathi', 'Liang He, Guorong Li', '2022-04-04', 'Computer Studies', 'uploads/A Collaborative Filtering Algorithm Based on User Activity Level.pdf', '#K12, #edtech, #edreform', '', '');
 
 --
 -- Indexes for dumped tables
@@ -271,13 +277,19 @@ ALTER TABLE `tblresearch`
 -- AUTO_INCREMENT for table `tblaccount`
 --
 ALTER TABLE `tblaccount`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `tblarticle`
 --
 ALTER TABLE `tblarticle`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tblauthor`
+--
+ALTER TABLE `tblauthor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tblauthorredirect`
@@ -289,25 +301,25 @@ ALTER TABLE `tblauthorredirect`
 -- AUTO_INCREMENT for table `tblevents`
 --
 ALTER TABLE `tblevents`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbljournal`
 --
 ALTER TABLE `tbljournal`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tblnews`
 --
 ALTER TABLE `tblnews`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tblresearch`
 --
 ALTER TABLE `tblresearch`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
