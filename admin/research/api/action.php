@@ -20,15 +20,50 @@ if (empty($_SESSION['id'])) {
 <!--View Research-->
 <?php 
 //updating of Research
+// UPLOAD FILE
+
+if(isset($_FILES['files'])){
+    $errors= array();
+    $file_name_array = explode('.',$_FILES['files']['name']);
+    $file_size =$_FILES['files']['size'];
+    $file_tmp =$_FILES['files']['tmp_name'];
+    $file_type=$_FILES['files']['type'];
+    $file_ext=strtolower(end($file_name_array));
+    
+    $extensions= array("pdf","txt","docx");
+    
+    if(in_array($file_ext,$extensions)=== false){
+       $errors[]="extension not allowed, please choose a PDF or DOCX file.";
+    }
+    
+    if($file_size > 9097152){
+       $errors[]='File size must be less than 9 MB';
+    }
+    
+    if(empty($errors)==true){
+      // location
+       move_uploaded_file($file_tmp,"uploads/".$_FILES['files']['name']);
+      //  include ""
+       $Pdf_file = "uploads/".$_FILES['files']['name']."";
+    }else{
+       print_r($errors);
+    }
+  }
+  if ($_SERVER['REQUEST_METHOD'] =="POST") {
 if (isset($_POST['id'])) {
+	foreach($_POST['tags'] as $tagging) 
+    {
+      $tagging = implode(', ',$_POST['tags']);
+    }
 	// change function to the designated function of your assign management
 	// also correct each string of the sql with your form
- 		$result = update_researchaction($connect,$title, $abstract, $main_author, $co_author, $datepub, $fstudy, $pdf_file, $views, $cite, $tagging);
+ 		$result = update_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['fstudy'],$Pdf_file,$tagging,$_POST['id']);
  		if ($result == "1") {
 			echo'<div style="position:relative;top: 100px;"';
  			message("Research updated successfully!",1);
  		}
  	}
+}
 
 // deleting of journal
  if (isset($_GET['del'])) {
@@ -58,7 +93,7 @@ if (isset($_GET['edit'])) {
 					</th>
 				</tr>
 			</thead>
-			<form method="post">
+			<form method="POST">
 			<tbody>
 				<tr>
 					<td>
@@ -80,7 +115,7 @@ if (isset($_GET['edit'])) {
 							
 							<div class="col">
 								<label class="label">Co-Author(s) *</label><br>
-								<input class="form-control" id="c_authors" name="c_authors" value="<?php echo $data['co_authors'];?>" disabled>
+								<input type="text" name="dpub" id="dpub" class="form-control" value="<?php echo $data['co_authors'];?>" disabled/>
 							</div>
 							<div class="col" id="co-author-list" >
 
@@ -106,8 +141,8 @@ if (isset($_GET['edit'])) {
 						<div class="col">
 							<div class="form-group">
 								<label class="label">Field of Study *</label><br>
-								<select class="custom-select" id="fstudy" name="fstudy">
-								<option selected disabled><?php echo $data['field_of_study'];?></option>
+								<select class="custom-select" id="fstudy" name="fstudy" required>
+								<option selected ><?php echo $data['field_of_study'];?></option>
 								<option value="Accounting and Finance">Accounting and Finance</option>
 								<option value="Business and Economics">Business and Economics</option>
 								<option value="Computer Studies">Computer Studies</option>
@@ -123,11 +158,7 @@ if (isset($_GET['edit'])) {
 						<!-- TAGS -->
 						<div class="col">
 							<?php
-							if(isset($_GET['bt']))
-							{
-								$comma_separated = implode(",", $mytags);
-								echo $comma_separated;
-							}
+							
 							?>
 							<div class="form-group">
 							<label class="label">Tags *</label><br>
