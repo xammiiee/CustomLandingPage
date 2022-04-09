@@ -86,35 +86,35 @@ if ($result = mysqli_query($mysqli, $sql)) {
             ?>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../account/account.php">Account Management</a>
+                  <a class="dropdown-item" href="../account/account.php">Account </a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../research/research.php">Research Management</a>
+                  <a class="dropdown-item" href="../research/research.php">Research </a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../author/author.php">Author </a>
                   <?php } ?>
                   
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="../journal/journal.php">Journal </a>
                   <?php } ?>
                   
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../article/article.php">Article Management</a>
+                  <a class="dropdown-item" href="../article/article.php">Article </a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../author/author.php">Author </a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../events/index.php">Events Management</a>
+                  <a class="dropdown-item" href="../events/index.php">Events </a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../news/index.php">News Management</a>
+                  <a class="dropdown-item" href="../news/index.php">News </a>
                   <?php } ?>
                   </div>
                 </li>
@@ -181,19 +181,19 @@ if ($result = mysqli_query($mysqli, $sql)) {
     if(isset($_SESSION['status']))
     {
       ?>
-        <!-- <div class="alert alert-success  fade show" role="alert"> -->
-      <?php  //echo $_SESSION['status']; ?>
-      <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <div class="container">
+        <div class="alert alert-success  fade show" role="alert"> 
+               <?php  echo $_SESSION['status']; ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div> -->
-      <?php 
-      //unset ($_SESSION['status']);
+    </div>
+    </div>
+        <?php 
+      unset ($_SESSION['status']);
     }
 ?>
 </div>
-
-
 
   <main id="main">
   <body>
@@ -240,12 +240,12 @@ if ($result = mysqli_query($mysqli, $sql)) {
 
            <div class="form-group">
              <label for="title">Description *</label>
-             <textarea type="text" class="form-control" rows="3" id="mobile" name="mobile" required> </textarea>
+             <textarea type="text" class="form-control" rows="3" id="mobile" name="email" required> </textarea>
            </div>
 
          <div class="form-group">
            <label for="datepub">Date Published *</label>
-           <input type="date" class="form-control" id="email" name="email" required>
+           <input type="date" class="form-control" id="email" name="mobile" required>
          </div>
 
          <div>
@@ -301,7 +301,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
          <td><a href="action.php?id=<?php echo $data['id']?> &ref=research"><?php echo $data['name']?></a></td>    <!-- name is for headlines -->
          <td><?php echo $data['mobile']?></a></td>   <!-- mobile is for description -->
          <td><?php echo $data['email']?></a></td> <!-- mobile is for date -->
-         <td><?php echo $data['author']?></a></td>
+         <td><?php echo $data['author']?></a></td> 
          <td><?php echo $data['tags']?></a></td>
       
  <!-- ACTION BUTTON -->

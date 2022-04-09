@@ -91,35 +91,35 @@ if ($result = mysqli_query($mysqli, $sql)) {
             ?>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../account/account.php">Account Management</a>
+                  <a class="dropdown-item" href="../account/account.php">Account </a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../research/research.php">Research Management</a>
+                  <a class="dropdown-item" href="../research/research.php">Research </a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../author/author.php">Author </a>
                   <?php } ?>
                   
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="../journal/journal.php">Journal </a>
                   <?php } ?>
                   
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../article/article.php">Article Management</a>
+                  <a class="dropdown-item" href="../article/article.php">Article </a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../author/author.php">Author </a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../events/index.php">Events Management</a>
+                  <a class="dropdown-item" href="../events/index.php">Events </a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../news/index.php">News Management</a>
+                  <a class="dropdown-item" href="../news/index.php">News </a>
                   <?php } ?>
                   </div>
                 </li>
@@ -188,11 +188,13 @@ if ($result = mysqli_query($mysqli, $sql)) {
     {
 
       ?>
+       <div class="container">
     <div class="alert alert-success  fade show" role="alert">
    <?php  echo $_SESSION['status']; ?>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
+</div>
 </div>
       <?php 
       unset ($_SESSION['status']);
