@@ -72,35 +72,35 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
             ?>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../../account/account.php">Account Management</a>
+                  <a class="dropdown-item" href="../admin/account/account.php">Account Management</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../../research/research.php">Research Management</a>
+                  <a class="dropdown-item" href="../admin/research/research.php">Research Management</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../../author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../admin/author/author.php">Author Management</a>
                   <?php } ?>
                   
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../../journal/journal.php">Journal Management</a>
+                  <a class="dropdown-item" href="../admin/journal/journal.php">Journal Management</a>
                   <?php } ?>
                   
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../../article/article.php">Article Management</a>
+                  <a class="dropdown-item" href="../admin/article/article.php">Article Management</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../../author/author.php">Author Management</a>
+                  <a class="dropdown-item" href="../admin/author/author.php">Author Management</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../../events/index.php">Events Management</a>
+                  <a class="dropdown-item" href="../admin/events/index.php">Events Management</a>
                   <?php } ?>
 
                   <?php if ($_SESSION['role'] == "Administrator") { ?>
-                  <a class="dropdown-item" href="../../news/index.php">News Management</a>
+                  <a class="dropdown-item" href="../admin/news/index.php">News Management</a>
                   <?php } ?>
                   </div>
                 </li>
@@ -111,14 +111,14 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="../../profile/profile.php">Profile</a>
                       <a class="dropdown-item" href="#aboutus">About Us</a>
-                      <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
+                      <a class="dropdown-item" href="../signup/logout.php">Signout</a>
                     </div>
                   </li>
                   <?php
           } 
           else 
           { 
-            header("Location: ../../login/login.php");
+            header("Location: ../login/login.php");
           }?>
         </ul>
       </nav><!-- .main-nav -->
@@ -181,7 +181,7 @@ if (!empty($_GET['id']))
 							}
 								if(!empty($logged_id) || $subscribe != "No")
 								{
-									if($subscribe =="Yes")
+									if($subscribe =="Yes" || $count['ucategory'] == "Administrator")
 									{
 										?>
 										<div>
@@ -212,26 +212,9 @@ if (!empty($_GET['id']))
 								</ul>
 							</div>
 							<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['abstract']); ?></p><br>
+							
 							<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#research-citing" id="r-citing"><span>Cite</span></button>
-<script>
-	$(document).ready(function () {
-   // Filtering Reset
-   $("#filter-reset").on(click(function(){
-      console.log("Hello World");
-      $('#filter1').append("<option selected>Sort by Relevance</option>");
-      $('#filter1').append("<option selected disabled>Field of Study</option>");
-   }));
-   
-   $("#r-citing").click(function () {
-      var coauth = $("#coauth-1").val();
-      var title = $("#r-title").val();
-      var date = $("#r-date").val();
-      console.log("Gumana");
-      $("#r-citing-area").append(coauth +' "'+ title + '." '+ date);
-      $("#r-citing-area").append("<textarea class='form-control' aria-label='With textarea' id=''>Hello po sainyo</textarea>");
-   });
-});
-</script>
+
 							<!-- Modal for Citing -->
 							<div class="modal fade" id="research-citing" tabindex="-1" role="dialog" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered" role="document">

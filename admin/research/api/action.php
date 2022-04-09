@@ -22,42 +22,44 @@ if (empty($_SESSION['id'])) {
 //updating of Research
 // UPLOAD FILE
 
-if(isset($_FILES['files'])){
-    $errors= array();
-    $file_name_array = explode('.',$_FILES['files']['name']);
-    $file_size =$_FILES['files']['size'];
-    $file_tmp =$_FILES['files']['tmp_name'];
-    $file_type=$_FILES['files']['type'];
-    $file_ext=strtolower(end($file_name_array));
-    
-    $extensions= array("pdf","txt","docx");
-    
-    if(in_array($file_ext,$extensions)=== false){
-       $errors[]="extension not allowed, please choose a PDF or DOCX file.";
-    }
-    
-    if($file_size > 9097152){
-       $errors[]='File size must be less than 9 MB';
-    }
-    
-    if(empty($errors)==true){
-      // location
-       move_uploaded_file($file_tmp,"uploads/".$_FILES['files']['name']);
-      //  include ""
-       $Pdf_file = "uploads/".$_FILES['files']['name']."";
-    }else{
-       print_r($errors);
-    }
-  }
   if ($_SERVER['REQUEST_METHOD'] =="POST") {
 if (isset($_POST['id'])) {
-	foreach($_POST['tags'] as $tagging) 
-    {
-      $tagging = implode(', ',$_POST['tags']);
-    }
+	// file
+	if(isset($_FILES['files'])){
+		$errors= array();
+		$file_name_array = explode('.',$_FILES['files']['name']);
+		$file_size =$_FILES['files']['size'];
+		$file_tmp =$_FILES['files']['tmp_name'];
+		$file_type=$_FILES['files']['type'];
+		$file_ext=strtolower(end($file_name_array));
+		
+		$extensions= array("pdf","txt","docx");
+		
+		if(in_array($file_ext,$extensions)=== false){
+			$errors[]="extension not allowed, please choose a PDF or DOCX file.";
+		}
+		
+		if($file_size > 9097152){
+			$errors[]='File size must be less than 9 MB';
+		}
+		
+		if(empty($errors)==true){
+		  // location
+			move_uploaded_file($file_tmp,"../uploads/".$_FILES['files']['name']);
+		  //  include ""
+			$Pdf_file = "uploads/".$_FILES['files']['name']."";
+			
+		}else{
+			print_r($errors);
+		}
+	 }
 	// change function to the designated function of your assign management
 	// also correct each string of the sql with your form
- 		$result = update_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['fstudy'],$Pdf_file,$tagging,$_POST['id']);
+	foreach($_POST['tags'] as $tagging) 
+    {
+      $tagging= implode(', ',$_POST['tags']);
+    }
+ 		$result = update_researchaction($connect,$_POST['title'],$_POST['abstract'],$_POST['m_author'],$_POST['c_authors'],$_POST['dpub'],$_POST['fstudy'],$Pdf_file,$tagging,$_POST['id']);
  		if ($result == "1") {
 			echo'<div style="position:relative;top: 100px;"';
  			message("Research updated successfully!",1);
@@ -77,7 +79,8 @@ if (isset($_POST['id'])) {
  }
 
 // editing of Research
-if (isset($_GET['edit'])) {
+if (isset($_GET['edit'])) 
+{
 	// change function to the designated function of your assign management
 	$data = get_researchaction($connect,$_GET['edit']);
 	?>
@@ -236,7 +239,7 @@ if (!empty($_GET['id']))
 					<span >Research</span>
 					</div>
 					<div>
-						<button type ="button" class="btn btn-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-download"><span class="fa fa-download"> Download Fulltext PDF&nbsp;</span></button>
+						<!-- <button type ="button" class="btn btn-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-download"><span class="fa fa-download"> Download Fulltext PDF&nbsp;</span></button> -->
 						<a href="../../research/<?php echo $data['pdf_file']?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View Fulltext PDF&nbsp;</i></button></a>
 					</div>
 					<div>
@@ -256,15 +259,52 @@ if (!empty($_GET['id']))
 						</ul>
 						
 					</div>
-					<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['abstract']); ?></p>
-					<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:right"><span>Cite</span></button>
+					<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['abstract']); ?></p><br>
+				
+					<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#research-citing" id="r-citing"><span>Cite</span></button>
+
+							<!-- Modal for Citing -->
+							<div class="modal fade" id="research-citing" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalCenterTitle">Cite Paper</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									</div>
+									<div class="modal-body">
+									<!-- Navigation -->
+									<nav class="navbar navbar-expand-lg navbar-light bg-light">
+										<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+											<span class="navbar-toggler-icon"></span>
+										</button>
+										<div class="collapse navbar-collapse" id="navbarNav">
+											<ul class="navbar-nav">
+												<li class="nav-item active">
+												<a class="nav-link" href="#">MLA <span></span></a>
+												</li>
+												<li class="nav-item">
+												<a class="nav-link" href="#">APA</a>
+												</li>
+											</ul>
+										</div>
+									</nav>
+									<!-- Body -->
+									<div class="input-group" id="r-cite-area">
+										<textarea class="form-control" aria-label="With textarea" id="">Hello world</textarea>
+									</div>
+									<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left"><span>Copy</span></button>
+
+									</div>
+								</div>
+							</div>
+							</div>
 		</div>
 		</div>
 	</div>
 	</div>
-
-	<br<br><br>
-
+	
 	<!-- Related Studies -->
 	<br<br><br>
 	<div class="container">
