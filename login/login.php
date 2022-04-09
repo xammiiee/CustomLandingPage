@@ -20,14 +20,14 @@ if(isset($_POST['but_submit']))
       // check email if exist
       if($count == 1) 
       {
-        $em = $row['email'];
-        $hash = $row['pass'];
+        // $em = $row['email'];
+        // $hash = $row['pass'];
         $status = $row['status'];
         $fname = $row['name'];
         $categ = $row['ucategory'];
 
        
-        if($_POST['email'] &&($_POST['password']))
+        if($_POST['email'] && ($_POST['password']))
         {
             if($status == "Active")
             {
