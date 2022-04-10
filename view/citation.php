@@ -55,7 +55,7 @@ if (isset($_POST['view_n']) && isset($_POST['id_n'])) {
  
     $result = mysqli_query($con, "UPDATE tblnews set views = '$viewcount' WHERE id = '$id'");
     if($result > 0){
-     response("Success");
+     response("Succes");
     }else{
        response("Failed");
     }
@@ -98,7 +98,7 @@ if (isset($_POST['cite_r']) && isset($_POST['id_r'])) {
  //  Articles
  if (isset($_POST['cite_a']) && isset($_POST['id_a'])) {
     $id = $_POST['id_a'];
-    $vciteount = $_POST['cite_a'];
+    $citecount = $_POST['cite_a'];
   
      $result = mysqli_query($con, "UPDATE tblarticle set a_cites = '$citecount' WHERE id = '$id'");
      if($result > 0){

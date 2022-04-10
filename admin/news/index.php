@@ -182,12 +182,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
     {
       ?>
        <div class="container">
-        <div class="alert alert-success  fade show" role="alert"> 
-               <?php  echo $_SESSION['status']; ?>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+        
     </div>
         <?php 
       unset ($_SESSION['status']);

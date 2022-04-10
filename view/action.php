@@ -21,7 +21,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <link rel="stylesheet" href='../../resource/package/dist/sweetalert2.min.css' media="screen" />
+  <!-- <link rel="stylesheet" href='../../resource/package/dist/sweetalert2.min.css' media="screen" /> -->
 
   <!-- Bootstrap CSS File -->
   <link rel="stylesheet" href="../resource/css/bootstrap.min.css"> 
@@ -44,7 +44,7 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
   <link href="../resource/css/style_management.css" rel="stylesheet">
   <link href="../resource/css/addons.css" rel="stylesheet">
 
-  <script  src="../resource/jquery-3.6.0.min.js"></script>
+  <!-- <script  src="../resource/jquery-3.6.0.min.js"></script> -->
 
 </head>
 <body>
@@ -135,7 +135,7 @@ $_SESSION['id'];
 // Get Research id
 if (!empty($_GET['id'])) 
 {
-	// RESEARCH
+	// ==========================================================RESEARCH=======================================================//
 	if($_GET['u'] == "r")
 	{
 		$data = get_researchaction($connect,$_GET['id']);
@@ -143,12 +143,13 @@ if (!empty($_GET['id']))
 		$pdf_file = $data['pdf_file'];
 		$fstudy = $data['field_of_study'];
 		$tags = $data['tagging'];
+		$id= $_GET['id']
 		?>
 			<br><br><br><br>
 			<!--View Research-->
 			<div class="container">
 		<div id="result">
-		<a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
+		<!-- <a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a> -->
 		</div>	
 	</div><br><br>
 			<div class="container">
@@ -181,12 +182,17 @@ if (!empty($_GET['id']))
 							}
 								if(!empty($logged_id) || $subscribe != "No")
 								{
-									if($subscribe =="Yes" || $count['ucategory'] == "Administrator")
-									{
+									if($subscribe =="Yes" || $count['ucategory'] == "Administrator"){
 										?>
 										<div>
-											<!-- <button type ="button" class="btn btn-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-download"><span class="fa fa-download"> Download Fulltext PDF&nbsp;</span></button> -->
 											<a href="../admin/research/<?php echo $data['pdf_file']?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View Fulltext PDF&nbsp;</i></button></a>
+										</div>
+										<?php
+									}
+									elseif($subscribe =="No"){
+										?>
+										<div  id="disabled-fullview-R" style="background-color: black;">
+											<a href=""><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"  ><i class="fa fa-file-text"> View Fulltext PDF&nbsp;</i></button></a>
 										</div>
 										<?php
 									}
@@ -196,6 +202,7 @@ if (!empty($_GET['id']))
 								
 								<!--  -->
 								<div>
+									<h5 class="cls" id="<?php echo "$id";?>"></h5>
 								<h2 class="text-left" style="margin-top:10px; font-family:'Lucida Sans';" id="r-title" ><b><?php echo $data['title']?></b></h2>
 								<ul class="list-inline" style="font-size: small;">
 									<li class="list-inline-item"><a href="author.php?u=r&author=<?php echo $data['main_author'];?>"><u><?php echo $data['main_author']?></u></a></li>
@@ -212,11 +219,18 @@ if (!empty($_GET['id']))
 								</ul>
 							</div>
 							<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['abstract']); ?></p><br>
-							
-							<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#research-citing" id="r-citing"><span>Cite</span></button>
+							<ul class="list-inline" style="font-size: small;">
+                     	<li class="list-inline-item" id="View<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
+                     	<li class="list-inline-item" id="Cite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>
+                              </ul>
+							<button type="button" class="btn btn-md badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#research-citing" id="r-citing"><span>Cite</span></button>
+				</div>
+				</div>
+			</div>
+			</div>
 
-							<!-- Modal for Citing -->
-							<div class="modal fade" id="research-citing" tabindex="-1" role="dialog" aria-hidden="true">
+			<!-- Modal for Citing -->
+			<div class="modal fade" id="research-citing" tabindex="-1" role="dialog" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -227,7 +241,7 @@ if (!empty($_GET['id']))
 									</div>
 									<div class="modal-body">
 									<!-- Navigation -->
-									<nav class="navbar navbar-expand-lg navbar-light bg-light">
+									<nav class="navbar navbar-expand-md navbar-light bg-light">
 										<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 											<span class="navbar-toggler-icon"></span>
 										</button>
@@ -244,19 +258,16 @@ if (!empty($_GET['id']))
 									</nav>
 									<!-- Body -->
 									<div class="input-group" id="r-cite-area">
-										<textarea class="form-control" aria-label="With textarea" id="">Hello world</textarea>
+										<textarea rows="7" cols="60"class="form-control" aria-label="With textarea" id="cite-textarea">
+										Author's Last name, First name. "Title of Source." Title of Container, Other Contributors, Version, Numbers, Publisher, Publication Date, Location. Title of Second Container, Other Contributors, Version, Number, Publisher, Publication Date, Location.	
+										</textarea>
 									</div>
-									<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left"><span>Copy</span></button>
+									<button type="button" class="btn btn-md badge badge-info text-wrap cls" style="width: 7rem; padding:6px; float:left" id="id-copy-cite"><span>Copy Citation</span></button>
 
 									</div>
 								</div>
 							</div>
 							</div>
-		<!-- ============================================================== -->
-				</div>
-				</div>
-			</div>
-			</div>
 
 			<!-- Related Studies -->
 			<br<br><br>
@@ -292,7 +303,8 @@ if (!empty($_GET['id']))
 			<br><br>
 		<?php
 	}
-	// JOURNAL
+	
+	//========================================================== JOURNAL ======================================================//
 	elseif($_GET['u'] == "j")
 	{
 		$data = get_journalaction($connect,$_GET['id']);
@@ -342,8 +354,14 @@ if (!empty($_GET['id']))
 									{
 										?>
 										<div>
-											<!-- <button type ="button" class="btn btn-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-download"><span class="fa fa-download"> Download Fulltext PDF&nbsp;</span></button> -->
-											<a href="../admin/journal/<?php echo $data['pdf_file']?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View Fulltext PDF&nbsp;</i></button></a>
+											<a href="../admin/journal/<?php echo $data['pdf_file']?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View FullJournal PDF&nbsp;</i></button></a>
+										</div>
+										<?php
+									}
+									elseif($subscribe =="No"){
+										?>
+										<div  id="disabled-fullview-R" style="background-color: black;">
+											<a href=""><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"  ><i class="fa fa-file-text"> View FullJournal PDF&nbsp;</i></button></a>
 										</div>
 										<?php
 									}
@@ -387,9 +405,6 @@ if (!empty($_GET['id']))
 								</div>
 							</div>
 							</div>
-
-							
-		<!-- ============================================================== -->
 				</div>
 				</div>
 			</div>
@@ -430,7 +445,8 @@ if (!empty($_GET['id']))
 			<br><br>
 		<?php
 	}
-	// ARTICLE
+	
+	// ==========================================================ARTICLE================================================ //
 	elseif($_GET['u'] == "a")
 	{
 		$data = get_articleaction($connect,$_GET['id']);
@@ -481,8 +497,14 @@ if (!empty($_GET['id']))
 										echo $count['pdf_file'];
 										?>
 										<div>
-											<!-- <button type ="button" class="btn btn-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-download"><span class="fa fa-download"> Download Fulltext PDF&nbsp;</span></button> -->
 											<a href="../admin/article/<?php //echo $data['pdf_file'];?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View FullArticle PDF&nbsp;</i></button></a>
+										</div>
+										<?php
+									}
+									elseif($subscribe =="No"){
+										?>
+										<div  id="disabled-fullview-R" style="background-color: black;">
+											<a href=""><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"  ><i class="fa fa-file-text"> View FullArticle PDF&nbsp;</i></button></a>
 										</div>
 										<?php
 									}
@@ -561,6 +583,7 @@ if (!empty($_GET['id']))
 			<br><br>
 		<?php
 	}
+	// ==========================================================NEWS========================================================//
 	elseif($_GET['u'] == "n")
 	{
 		$data = get_newsaction($connect,$_GET['id']);
@@ -610,8 +633,8 @@ if (!empty($_GET['id']))
 									{
 										?>
 										<div>
-											<!-- <button type ="button" class="btn btn-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-download"><span class="fa fa-download"> Download Fulltext PDF&nbsp;</span></button> -->
-											<a href="../admin/news/<?php //echo $data['pdf_file']?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View FullNews PDF&nbsp;</i></button></a>
+											
+											<a href="../admin/news/<?php //echo $data['pdf_file']?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View FullNews&nbsp;</i></button></a>
 										</div>
 										<?php
 									}
@@ -704,7 +727,7 @@ if (!empty($_GET['id']))
   <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
   <!-- JavaScript Libraries -->
   <!-- <script src="../resource/lib/jquery/jquery.min.js"></script>   -->
-  <script src="../resource/lib/jquery/jquery-migrat.min.js"></script>
+  <!-- <script src="../resource/lib/jquery/jquery-migrat.min.js"></script>
   <script src="../resource/lib/bootstrap/js/bootstrap.bunle.min.js"></script>
   <script src="../resource/lib/easing/easing.min.js"></script> 
   <script src="../resource/lib/mobile-nav/mobile-nav.js"></script>
@@ -713,10 +736,10 @@ if (!empty($_GET['id']))
   <script src="../resource/lib/counterup/counterup.minjs"></script>
   <script src="../resource/lib/owlcarousel/owl.carousel.min.s"></script>
   <script src="../resource/lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="../resource/lib/lightbox/js/lightbox.min.js"></script>
+  <script src="../resource/lib/lightbox/js/lightbox.min.js"></script> -->
   <!-- Contact Form JavaScript File -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <script src="contactform/contactform.js"></script>
+  <!-- <script src="contactform/contactform.js"></script> -->
 
   <!-- Template Main Javascript File -->
   <script>
@@ -725,7 +748,7 @@ if (!empty($_GET['id']))
     } );
   </script>
   <script src="../resource/js/main.js"></script>
-  <script src="../script/main.js"></script>
+  <!-- <script src="../script/main.js"></script> -->
   <script src="main.js"></script>
 
 

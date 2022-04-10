@@ -28,7 +28,7 @@
   <link href="./resource/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="./resource/css/style_result.css" rel="stylesheet">
+  <link href="./resource/css/style.css" rel="stylesheet">
   <link href="./resource/css/addons.css" rel="stylesheet">
 
 </head>
@@ -293,6 +293,7 @@
                               </div>
                            </div>
                            </tr>
+                           
                         <?php
                         }
                      }
@@ -485,17 +486,10 @@
 
   <!-- Contact Form JavaScript File -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <script src="contactform/contactform.js"></script>
+  <!-- <script src="contactform/contactform.js"></script> -->
 
   <!-- Template Main Javascript File -->
   <script src="../CustomLandingPage/view/main.js"></script>
-  <!-- <script>
-    $(document).ready(function(){
-      $('a.cls').click(function() {
-      alert("I click This");
-    });
-    });
-  </script> -->
   <script src="./resource/js/main.js"></script>
 
 </body>
