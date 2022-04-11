@@ -24,7 +24,7 @@ else
                 <div class="card-body">
                   <!-- change function to the designated function of your assign management -->
                   <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
-                  echo get_research($connect)->num_rows;?></h2>
+                    echo get_research($connect)->num_rows;?></h2>
                    <h5 class="card-title">All Research</h5>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>

@@ -29,7 +29,7 @@ if(isset($_POST['but_submit']))
        
         if($_POST['email'] && password_verify($_POST['password'], $hash))
         {
-            if($status == "Active")
+            if($status == "Active" || $status == "Inactive")
             {
                 if($categ == "Administrator")
                 {
@@ -52,7 +52,7 @@ if(isset($_POST['but_submit']))
             }
             else
             {
-              echo '<script>alert("Account Inactive")</script>';
+              // echo '<script>alert("Account Inactive")</script>';
             }
         }
         else

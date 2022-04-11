@@ -114,7 +114,7 @@
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="../profile/profile.php">Profile</a>
+                      <a class="dropdown-item" href="../profile/profile.php" >Profile</a>
                       <a class="dropdown-item" href="#aboutus">About Us</a>
                       <a class="dropdown-item" href="../CustomLandingPage/signup/logout.php">Signout</a>
                     </div>
@@ -267,8 +267,8 @@
                            ?>
                            <tr>
                            <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
-                              <div class="box">
-                                 <h4 class="title"><a href="./view/action.php?u=r&id=<?php echo $data['id'];?>" class="cls" id="<?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                              <div class="box" >
+                                 <h4 class="title"><a href="./view/action.php?u=r&id=<?php echo $data['id'];?>" class="cls" id="<?php echo $data['id'];?>" ><span ><?php echo $data['title'];?></span></a></h4>
                                  <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                                     <li class="list-inline-item" value="<?php echo $data['main_author'];?>"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
                                     

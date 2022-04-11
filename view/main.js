@@ -1,4 +1,28 @@
 $(document).ready(function () {
+   // alert("Cannot Copy");
+  
+   // Disable Keypress Copy, Paste, Cut
+   // var ctrlDown = false,
+   //      ctrlKey = 17,
+   //      cmdKey = 91,
+   //      vKey = 86,
+   //      cKey = 67;
+
+   //  $(document).keydown(function(e) {
+   //      if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = true;
+   //  }).keyup(function(e) {
+   //      if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = false;
+   //  });
+
+   //  $("table").keydown(function(e) {
+   //      if (ctrlDown && (e.keyCode == vKey || e.keyCode == cKey)) return false;
+   //  });
+    
+   //  // Document Ctrl + C/V 
+   //  $(document).keydown(function(e) {
+   //      if (ctrlDown && (e.keyCode == cKey)) console.log("Document catch Ctrl+C");
+   //      if (ctrlDown && (e.keyCode == vKey)) console.log("Document catch Ctrl+V");
+   //  });
    // Research
    $("#disabled-fullview-R").click(function () {
       alert("You must be Subscribe to View Fulltext")
@@ -91,10 +115,10 @@ $(document).ready(function () {
          }
         });
    });
-
    // Register Copied
     // Research
    $('#id-copy-cite').click(function () {
+      // alert("Cited");
       var copyTextarea = document.querySelector('#cite-textarea');
       copyTextarea.select();
        try
@@ -104,23 +128,29 @@ $(document).ready(function () {
           console.log('Copying text command was ' + msg);
 
           if (msg == "successful") {
+            alert("Cited1");
+            //  alert($("#cited_byR").val());
+             
+            var logged_id = $("#cited_byR").attr("value");
             var id_r = $('h5.cls').attr('id');
             var cite = $("#Cite" + id_r).val();
-            if(isNaN(cite)) {
-               var cite = 0;
-            } 
-            cite = parseInt(cite);
-            cite_r = cite + 1;
-            
-            // alert("Copied "+cite);
-            $.ajax({
-               url:"http://localhost/CustomLandingPage/view/citation.php",
-               method:"POST",
-               data:{cite_r:cite_r,id_r:id_r},
-               success: function (data) {
+                  if(isNaN(cite)) {
+                     var cite = 0;
+                  } 
+                  cite = parseInt(cite);
+                  cite_r = cite + 1;
                   
-               }
-            });
+                  // alert("Cite: "+cite_r);
+                  alert("Logged: "+logged_id);
+                  $.ajax({
+                     url:"http://localhost/CustomLandingPage/view/citation.php",
+                     method:"POST",
+                     data:{cite_r:cite_r,id_r:id_r,logged_id:logged_id},
+                     success: function (data) {
+                        alert("Cited3: Success");
+                        alert("Cited2:"+data);
+                     }
+                  });
           }
           else {
              

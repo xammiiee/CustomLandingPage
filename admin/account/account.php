@@ -399,7 +399,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          "targets": 2
        }],
        "ordering": false,
-       "displayLength": 25,
+       "displayLength": 5,
        "drawCallback": function(settings) {
          var api = this.api();
          var rows = api.rows({

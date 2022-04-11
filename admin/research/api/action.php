@@ -275,7 +275,7 @@ if (!empty($_GET['id']))
 									</div>
 									<div class="modal-body">
 									<!-- Navigation -->
-									<nav class="navbar navbar-expand-lg navbar-light bg-light">
+									<nav class="navbar navbar-expand-md navbar-light bg-light">
 										<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 											<span class="navbar-toggler-icon"></span>
 										</button>
@@ -294,7 +294,7 @@ if (!empty($_GET['id']))
 									<div class="input-group" id="r-cite-area">
 										<textarea class="form-control" aria-label="With textarea" id="">Hello world</textarea>
 									</div>
-									<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left"><span>Copy</span></button>
+									<!-- <button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left"><span>Copy</span></button> -->
 
 									</div>
 								</div>

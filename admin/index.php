@@ -33,7 +33,7 @@
           <link href="../resource/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
           <!-- Main Stylesheet File -->
-          <link href="../resource/css/management.css" rel="stylesheet">
+          <link href="../resource/css/style_management.css" rel="stylesheet">
           <link href="../resource/css/addons.css" rel="stylesheet">
 
         </head>
@@ -123,11 +123,94 @@
                 <img src="../" alt="" class="img-fluid">
               </div>
               <div class="intro-info">    
-                  <h2>Arellano Research <span> Portal <span></h2>
-                  <h2>
-                  <div>
+                  <!-- <h2>Arellano Research <span> Portal <span></h2> -->
+                  <div class="card-group d-flex justify-content-center">
+                  <div class="col-md-3 col-sm-5">
+                      <div class="card">
+                        <div class="card-body">
+                          <!-- change function to the designated function of your assign management -->
+                          <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                            // echo get_research($connect)->num_rows;?></h2>
+                          <h5 class="card-title">All Account</h5>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                    </div>
 
+                    <div class="col-md-3 col-sm-5">
+                      <div class="card">
+                        <div class="card-body">
+                          <!-- change function to the designated function of your assign management -->
+                          <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                            // echo get_research($connect)->num_rows;?></h2>
+                          <h5 class="card-title">All Authors</h5>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-5">
+                      <div class="card">
+                        <div class="card-body">
+                          <!-- change function to the designated function of your assign management -->
+                          <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                            // echo get_research($connect)->num_rows;?></h2>
+                          <h5 class="card-title">All Research</h5>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-5">
+                      <div class="card">
+                        <div class="card-body">
+                          <!-- change function to the designated function of your assign management -->
+                          <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                            // echo get_research($connect)->num_rows;?></h2>
+                          <h5 class="card-title">All Journal</h5>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
+                  <div class="card-group d-flex justify-content-center ">
+                    <div class="col-md-3 col-sm-5">
+                      <div class="card">
+                        <div class="card-body">
+                          <!-- change function to the designated function of your assign management -->
+                          <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                            // echo get_research($connect)->num_rows;?></h2>
+                          <h5 class="card-title">All Articles</h5>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-5">
+                      <div class="card">
+                        <div class="card-body">
+                          <!-- change function to the designated function of your assign management -->
+                          <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                            // echo get_research($connect)->num_rows;?></h2>
+                          <h5 class="card-title">All News</h5>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-5">
+                      <div class="card">
+                        <div class="card-body">
+                          <!-- change function to the designated function of your assign management -->
+                          <i class="fa fa-book fa-2x " style="color:#007bff"></i><h2 class="float-right"><?php 
+                            // echo get_research($connect)->num_rows;?></h2>
+                          <h5 class="card-title">All Events</h5>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
                 </div>
             </div>
           </section>
@@ -165,7 +248,7 @@
           <!--==========================
             Footer
           ============================-->
-          <footer id="footer">
+          <!-- <footer id="footer">
             <div class="footer-top">
               <div class="container">
                 <div class="row">
@@ -218,7 +301,7 @@
               </div>
             </div>
 
-          </footer><!-- #footer -->
+          </footer>#footer -->
 
           <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
           <!-- Uncomment below i you want to use a preloader -->

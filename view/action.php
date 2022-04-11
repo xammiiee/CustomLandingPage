@@ -45,7 +45,18 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
   <link href="../resource/css/addons.css" rel="stylesheet">
 
   <!-- <script  src="../resource/jquery-3.6.0.min.js"></script> -->
-
+  <!-- <script>
+  $(document).ready( function () {
+   //  $('#table_id').DataTable();
+	 
+	 $(document).bind("keypress", function (e) {
+		if (e.keyCode == 13) {
+			alert("Cannot Copy");
+		return false;
+		}
+		});
+    } );
+  </script> -->
 </head>
 <body>
   <!--==========================
@@ -124,13 +135,15 @@ include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php"
       </nav><!-- .main-nav -->
     </div>
   </header>
+
+  <h3 hidden name="logged_id" hidden><?php echo $_SESSION['id'];?></h3>
 <?php
 
 if(empty($_SESSION['id']))
 {
 	echo "Empty";
 }
-$_SESSION['id'];
+
 
 // Get Research id
 if (!empty($_GET['id'])) 
@@ -179,6 +192,9 @@ if (!empty($_GET['id']))
 							if($count >= 1)
 							{
 								$subscribe = $count['subcribe'];
+								$status = $count['status'];
+								$name = $count['name'];
+								$email = $count['email'];
 							}
 								if(!empty($logged_id) || $subscribe != "No")
 								{
@@ -203,6 +219,7 @@ if (!empty($_GET['id']))
 								<!--  -->
 								<div>
 									<h5 class="cls" id="<?php echo "$id";?>"></h5>
+									<h5 id="cited_byR" value="<?php echo $_SESSION['id'];?>"></h5>
 								<h2 class="text-left" style="margin-top:10px; font-family:'Lucida Sans';" id="r-title" ><b><?php echo $data['title']?></b></h2>
 								<ul class="list-inline" style="font-size: small;">
 									<li class="list-inline-item"><a href="author.php?u=r&author=<?php echo $data['main_author'];?>"><u><?php echo $data['main_author']?></u></a></li>
@@ -223,7 +240,15 @@ if (!empty($_GET['id']))
                      	<li class="list-inline-item" id="View<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
                      	<li class="list-inline-item" id="Cite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>
                               </ul>
-							<button type="button" class="btn btn-md badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#research-citing" id="r-citing"><span>Cite</span></button>
+							<?php
+							if($status == "Active")
+							{
+								?>
+									<button type="button" class="btn btn-md badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#research-citing" id="r-citing"><span>Cite</span></button>
+								<?php
+							}
+							?>
+										
 				</div>
 				</div>
 			</div>
@@ -742,13 +767,10 @@ if (!empty($_GET['id']))
   <!-- <script src="contactform/contactform.js"></script> -->
 
   <!-- Template Main Javascript File -->
-  <script>
-  $(document).ready( function () {
-    $('#table_id').DataTable();
-    } );
-  </script>
+  
   <script src="../resource/js/main.js"></script>
   <!-- <script src="../script/main.js"></script> -->
   <script src="main.js"></script>
+  
 
 
