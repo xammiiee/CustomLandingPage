@@ -44,7 +44,8 @@ include "./admin/research/functions/Message.func.php";
 
   if (empty($_SESSION['id'])) 
   {
-    header("Location: login/login.php");
+    // include "./login"
+    header("Location: ./login/login.php");
   }
 ?>
 
