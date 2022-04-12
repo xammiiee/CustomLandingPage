@@ -1,9 +1,9 @@
 <?php
-session_start();
-include "/xampp/htdocs/CustomLandingPage/admin/account/inc/db.php";
-include "/xampp/htdocs/CustomLandingPage/admin/account/functions/DB.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/account/functions/Message.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/account/functions/functions.php";
+// session_start();
+include "./admin/account/inc/db.php";
+include "./admin/account/functions/DB.func.php";
+include "./admin/account/functions/Message.func.php";
+include "./admin/account/functions/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

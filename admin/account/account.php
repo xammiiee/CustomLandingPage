@@ -3,6 +3,7 @@ if (isset($_SESSION['id']))
 { 
   if($_SESSION['role'] == "Administrator")
   {
+    include "../account/inc/db.php"
   }
   elseif($_SESSION['role'] == "User")
   {

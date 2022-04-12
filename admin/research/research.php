@@ -3,7 +3,7 @@
 
 <?php
 // ==================================================================
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+include "./admin/research/inc/header.php";
 // include "../../resource/"
 $loggedUser = $_SESSION['id'];
 if ($loggedUser == "") 

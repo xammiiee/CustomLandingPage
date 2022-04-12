@@ -1,5 +1,10 @@
 <?php
-  session_start();
+  // session_start();
+  include "research/inc/db.php";
+  include "research/functions/DB.func.php";
+  include "research/functions/functions.php";
+  include "research/functions/Message.func.php";
+  
   if (isset($_SESSION['id'])) 
   { 
     if($_SESSION['role'] == "Administrator")

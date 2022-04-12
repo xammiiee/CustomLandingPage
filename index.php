@@ -36,11 +36,11 @@
 <body>
 
 <?php
-session_start();
-include "../CustomLandingPage/admin/research/inc/db.php";
-include "../CustomLandingPage/admin/research/functions/DB.func.php";
-include "../CustomLandingPage/admin/research/functions/functions.php";
-include "../CustomLandingPage/admin/research/functions/Message.func.php";
+// session_start();
+include "./admin/research/inc/db.php";
+include "./admin/research/functions/DB.func.php";
+include "./admin/research/functions/functions.php";
+include "./admin/research/functions/Message.func.php";
 
   if (!empty($_SESSION['id'])) 
   {
@@ -48,7 +48,7 @@ include "../CustomLandingPage/admin/research/functions/Message.func.php";
   }
   else
   {
-    header("Location: ./login/login.php");
+    header("Location: login/login.php");
   }
 ?>
 
