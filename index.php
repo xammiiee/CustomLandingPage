@@ -42,11 +42,7 @@ include "./admin/research/functions/DB.func.php";
 include "./admin/research/functions/functions.php";
 include "./admin/research/functions/Message.func.php";
 
-  if (!empty($_SESSION['id'])) 
-  {
-
-  }
-  else
+  if (empty($_SESSION['id'])) 
   {
     header("Location: login/login.php");
   }

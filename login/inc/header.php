@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include "../login/inc/db.php";
 include "../login/functions/DB.func.php";
 include "../login/functions/Message.func.php";

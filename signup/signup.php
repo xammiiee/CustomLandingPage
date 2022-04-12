@@ -1,5 +1,5 @@
 <?php
-include "/xampp/htdocs/CustomLandingPage/signup/inc/header.php";
+include "../signup/inc/header.php";
 
 if(isset($_POST['btnsubmit']))
 {

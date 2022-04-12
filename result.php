@@ -42,21 +42,7 @@
   include "./admin/research/functions/functions.php";
   include "./admin/research/functions/Message.func.php";
   
-  if (!empty($_SESSION['id'])) 
-  {?>  
-    <?php 
-      if($_SESSION['role'] == "Administrator")
-      {?>
-
-      <?php
-      }
-      elseif($_SESSION['role'] == "User")
-      {?>
-      
-      <?php
-      }
-  }
-  elseif(empty($_SESSION['id']))
+  if(empty($_SESSION['id']))
   {
     header("Location: ./login/login.php");
   }

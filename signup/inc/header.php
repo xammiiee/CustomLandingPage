@@ -1,6 +1,6 @@
 <?php
 // session_start();
-include ("/xampp/htdocs/CustomLandingPage/signup/inc/core.php");
+include ("../signup/inc/core.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
