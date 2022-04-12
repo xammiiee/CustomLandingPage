@@ -1,31 +1,3 @@
-<?php
-
-include_once("config.php");
-include "../research/functions/DB.func.php";
-include "../research/functions/Message.func.php";
-include "../research/functions/functions.php";
-// include "../../resource/"
-if (empty($_SESSION['id'])) 
-{
-// include "";
-header("Location: ../../login/login.php");
-}
-
-// Create database connection using config file
-
-// Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT * FROM tblevents ORDER BY id DESC");
-?>
-
-
-<?php 
-$sql = "SELECT * from tblevents";
-if ($result = mysqli_query($mysqli, $sql)) {
-  $rowcount = mysqli_num_rows( $result );
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,7 +37,23 @@ if ($result = mysqli_query($mysqli, $sql)) {
   <script  src="../../resource/jquery-3.6.0.min.js"></script>
 
 </head>
+<?php
+include_once("config.php");
+include "../research/functions/DB.func.php";
+include "../research/functions/Message.func.php";
+include "../research/functions/functions.php";
+// include "../../resource/"
+if (empty($_SESSION['id'])) 
+{
+// include "";
+header("Location: ../../login/login.php");
+}
 
+$sql = "SELECT * from tblevents";
+if ($result = mysqli_query($mysqli, $sql)) {
+  $rowcount = mysqli_num_rows( $result );
+}
+?>
 <body>
 <header id="header" class="fixed-top">
     <div class="container">

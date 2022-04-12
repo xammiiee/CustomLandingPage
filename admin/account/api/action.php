@@ -1,7 +1,7 @@
 <?php
 include_once "../inc/header1.php";
 if (empty($_SESSION['id'])) {
-
+	header("Location: ../../login/login.php");
 }
 ?>
 

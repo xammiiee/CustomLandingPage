@@ -75,7 +75,7 @@ if (isset($_GET['edit'])) {
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">
 
 						<div class="form-group" align="right">
-							<button class="btn btn-primary btn-sm">Save Project</button> <a class="btn btn-dark btn-sm" href="/CustomLandingPage/admin/article/api/article_backend.php?id=<?php echo $data['id'];?>&ref=article">Cancel</a>
+							<button class="btn btn-primary btn-sm">Save Project</button> <a class="btn btn-dark btn-sm" href="../api/article_backend.php">Cancel</a>
 						</div>
 					</form>
 			</div>	

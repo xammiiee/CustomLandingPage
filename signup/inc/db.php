@@ -9,7 +9,7 @@ session_start();
 	  die();
   	}
 	  else{
-		  echo "Success";
+		//   echo "Success";
 	}
 
 	// $connect = mysqli_connect("localhost","root","","research_portal");

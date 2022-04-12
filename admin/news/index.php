@@ -1,32 +1,3 @@
-<?php
-// include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
-// session_start();
-include_once("config.php");
-include "../research/functions/DB.func.php";
-include "../research/functions/Message.func.php";
-include "../research/functions/functions.php";
-
-// include "../../resource/"
-if (empty($_SESSION['id'])) {
-// include ""
-}
-
-// Create database connection using config file
-include_once("config.php");
-// Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT * FROM tblnews ORDER BY id DESC");
-
-?>
-
-<?php 
-$sql = "SELECT * from tblnews";
-if ($result = mysqli_query($mysqli, $sql)) {
-  $rowcount = mysqli_num_rows( $result );
-}
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,12 +30,23 @@ if ($result = mysqli_query($mysqli, $sql)) {
   <!-- Main Stylesheet File -->
   <link href="../../resource/css/style_management.css" rel="stylesheet">
   <link href="../../resource/css/addons.css" rel="stylesheet">
-
-  
-
-
 </head>
+<?php
+include_once("config.php");
+include "../research/functions/DB.func.php";
+include "../research/functions/Message.func.php";
+include "../research/functions/functions.php";
 
+// include "../../resource/"
+if (empty($_SESSION['id'])) {
+  header("Location: ../../login/login.php");
+}
+
+$sql = "SELECT * from tblnews";
+if ($result = mysqli_query($mysqli, $sql)) {
+  $rowcount = mysqli_num_rows( $result );
+}
+?>
 <body>
 <header id="header" class="fixed-top">
     <div class="container">

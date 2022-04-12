@@ -1,6 +1,6 @@
 
 <?php
-include ("/xampp/htdocs/CustomLandingPage/admin/journal/inc/header.php");
+include ("inc/header.php");
 if (empty($_SESSION['id'])) {
   // include""
   header("Location: ../../login/login.php");

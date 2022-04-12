@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include "/xampp/htdocs/CustomLandingPage/admin/journal/inc/db.php";
 include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/DB.func.journal.php";
 include "/xampp/htdocs/CustomLandingPage/admin/journal/functions/functions.php";
