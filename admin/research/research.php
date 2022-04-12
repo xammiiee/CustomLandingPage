@@ -3,7 +3,7 @@
 
 <?php
 // ==================================================================
-include "./admin/research/inc/header.php";
+include "inc/header.php";
 // include "../../resource/"
 $loggedUser = $_SESSION['id'];
 if ($loggedUser == "") 

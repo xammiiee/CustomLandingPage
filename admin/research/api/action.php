@@ -1,17 +1,6 @@
 <?php
-if (isset($_SESSION['id'])) 
-{ 
-  if($_SESSION['role'] == "Administrator")
-  {
-
-  }
-  elseif($_SESSION['role'] == "User")
-  {
-  }
-}
 
 include_once "../inc/header1.php";
-
 if (empty($_SESSION['id'])) {
 	// include""
 	header("Location: ../../../../login/login.php");
