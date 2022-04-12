@@ -1,10 +1,10 @@
 <?php
 // include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
-session_start();
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/db.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/DB.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/Message.func.php";
-include "/xampp/htdocs/CustomLandingPage/admin/research/functions/functions.php";
+// session_start();
+include_once("config.php");
+include "../research/functions/DB.func.php";
+include "../research/functions/Message.func.php";
+include "../research/functions/functions.php";
 
 // include "../../resource/"
 if (empty($_SESSION['id'])) {

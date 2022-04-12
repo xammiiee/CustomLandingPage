@@ -80,7 +80,7 @@ if (isset($_GET['edit']))
 				<tr>
 					<th scope="cols" colspan="3" class="p-0">
 						<!--  -->
-						<h5> <a href=""><button class="btn btn-dark btn-sm">← Back to project</button></a> </h5>
+						<h5> <a href="../research.php"><button class="btn btn-dark btn-sm">← Back to project</button></a> </h5>
 						<center><h5><span>EDIT RESEARCH</span></h5></center>
 					</th>
 				</tr>
@@ -178,7 +178,7 @@ if (isset($_GET['edit']))
 
 						<div class="form-group" align="right">
 							<button class="btn btn-primary btn-sm" name="save-edit">Save Edit</button> 
-							<a class="btn btn-dark btn-sm" href="/action.php?id=<?php echo $data['id'];?>&ref=research">Cancel</a>
+							<a class="btn btn-dark btn-sm" href="../research.php">Cancel</a>
 						</div>
 					</td>
 				</tr>
@@ -206,7 +206,7 @@ if (!empty($_GET['id']))
 	<!--View Research-->
 	<div class="container">
 		<div id="result">
-		<a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
+		<a href="/admin/research/research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
 		</div>	
 	</div><br><br>
 	<div class="container">

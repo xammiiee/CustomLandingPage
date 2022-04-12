@@ -1,9 +1,9 @@
 <?php
 // session_start();
-include "../article/inc/db.php";
-include "../article/functions/DB.func.php";
-include "../article/functions/Message.func.php";
-include "../article/functions/functions.php";
+include "../inc/db.php";
+include "../functions/DB.func.php";
+include "../functions/Message.func.php";
+include "../functions/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

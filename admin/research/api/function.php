@@ -1,5 +1,5 @@
 <?php
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/core.php";
+include "../inc/core.php";
 
 if(isset($_POST['btnsubmit']))
 {

@@ -8,9 +8,9 @@
 
 	<?php
 
-	session_start();
+	// session_start();
 	// Check If form submitted, insert form data into users table.
-
+	include_once("config.php");
 	if(isset($_POST['Submit'])) {
 		$event_name = $_POST['event_name'];
 		$event_description = $_POST['event_description'];
@@ -18,7 +18,7 @@
         $time = $_POST['time'];
 		
 		// include database connection file
-		include_once("config.php");
+		
 				
 		// Insert user data into table
 		$result = mysqli_query($mysqli, "INSERT INTO tblevents(event_name,event_description,date,time) VALUES('$event_name','$event_description','$date','$time')");

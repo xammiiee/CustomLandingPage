@@ -1,10 +1,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <?php
-include "/xampp/htdocs/CustomLandingPage/admin/article/inc/header.php";
+include "inc/header.php";
 // include "../article/inc/header.php";
 if (empty($_SESSION['id'])) {
-  header("Location: login.php");
+  // header("Location: login.php");
 }
 ?>
 <!-- #Article-->

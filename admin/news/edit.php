@@ -1,17 +1,6 @@
 <?php
- if (isset($_SESSION['id'])) 
- { 
-   if($_SESSION['role'] == "Administrator")
-   {
 
-   }
-   elseif($_SESSION['role'] == "User")
-   {
-   }
- }
-
-
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
+include "../research/inc/header.php";
 
 include_once("config.php");
 

@@ -1,8 +1,7 @@
 <?php
 include_once "../inc/header1.php";
 if (empty($_SESSION['id'])) {
-	// include""
-	
+
 }
 ?>
 
@@ -120,7 +119,7 @@ if (isset($_GET['edit'])) {
 						<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id'];?>">
 
 						<div class="form-group" align="right">
-							<button class="btn btn-primary btn-sm">Save Project</button> <a class="btn btn-dark btn-sm" href="/project.php?id=<?php echo $data['id'];?>&ref=journal">Cancel</a>
+							<button class="btn btn-primary btn-sm">Save Project</button> <a class="btn btn-dark btn-sm" href="../account.php">Cancel</a>
 						</div>
 					</td>
 
