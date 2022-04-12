@@ -12,7 +12,7 @@ session_start();
 // 		//   echo "Successful to connect to MySQL";
 // 	}
 
-	$mysql = mysqli_connect("localhost","root","","research_portal");
+	$mysqli = mysqli_connect("localhost","root","","research_portal");
 	
 	if (mysqli_connect_errno())
 	{
