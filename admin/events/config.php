@@ -9,7 +9,7 @@ $mysql = mysqli_connect("remotemysql.com","HV9Jv6X0OX","1mlYPFrQoR","HV9Jv6X0OX"
 	  die();
   	}
 	  else{
-		//   echo "Successful to connect to MySQL";
+		  echo "Successful to connect to MySQL";
 	}
 
 	// $mysql = mysqli_connect("localhost","root","","research_portal");

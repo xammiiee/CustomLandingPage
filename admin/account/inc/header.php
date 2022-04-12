@@ -73,13 +73,13 @@ include "functions/functions.php";
                 </a>
                
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/account/account.php">Account</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/research/research.php">Research</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/author/author.php">Author</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/journal/journal.php">Journal</a>
-                  <a class="dropdown-item" href="/CustomLandingPage/admin/article/article.php">Article</a>
-                  <a class="dropdown-item" href="#">News</a>
-                  <a class="dropdown-item" href="#">Events</a>
+                  <a class="dropdown-item" href="../account/account.php">Account</a>
+                  <a class="dropdown-item" href="../research/research.php">Research</a>
+                  <a class="dropdown-item" href="../author/author.php">Author</a>
+                  <a class="dropdown-item" href="../journal/journal.php">Journal</a>
+                  <a class="dropdown-item" href="../article/article.php">Article</a>
+                  <a class="dropdown-item" href="../news/index.php">News</a>
+                  <a class="dropdown-item" href="../events/index.php">Events</a>
                   </li>
                   
                   <!-- <li class="nav-item active"><a class="dropdown-item" href="../../signup/logout.php">Signout</a></li> -->
@@ -135,7 +135,7 @@ include "functions/functions.php";
   } );
   </script>
   <script language="javascript" type="text/javascript">
-  window.history.forward();
+  // window.history.forward();
 </script>
   <script src="../../resource/js/main.js"></script>
   </body>
