@@ -50,7 +50,7 @@ function get_researchrelated($connect, $fstudy, $tags){
 }
 
 function create_researchaction($connect,$title, $abstract, $main_author,$c_author, $dpub, $fstudy, $pdf_file,$tags){
-	$sql = "INSERT INTO tblresearch VALUES ('','$title','$abstract','$main_author','$c_author','$dpub','$fstudy','$pdf_file','$tags','','')";
+	$sql = "INSERT INTO tblresearch VALUES ('','$title','$abstract','$main_author','$c_author','$dpub','$fstudy','$pdf_file','$tags','0','0')";
 	$result = $connect->query($sql);
 	if ($result === true) {
 		return 1;

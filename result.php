@@ -149,41 +149,41 @@
           <input name="a" class="form-control form-control-md d-inline" type="text" placeholder="<?php //echo $_GET['a'];?>" aria-label=".form-control-lg example" style="width: 35%;" value="<?php echo $_GET['a'];?>">
           <select class="custom-select d-inline" id="search_type" name="u" style="width: 10%; margin-bottom:2.5px;">
           <?php
-          if($_GET['u'] =="Researches")
+          if($_GET['u'] =="r")
           {
-            ?><option selected>Researches</option>
-            <option>Journals</option>
-            <option>Articles</option>
-            <option>News</option>><?php
+            ?><option selected value="r">Researches</option>
+            <option value="j">Journals</option>
+            <option value="a">Articles</option>
+            <option value="n">News</option>><?php
           }
-          elseif($_GET['u'] =="Journals")
+          elseif($_GET['u'] =="j")
           {
-            ?><option>Researches</option>
-            <option selected>Journals</option>
-            <option>Articles</option>
-            <option>News</option><?php
+            ?><option value="r">Researches</option>
+            <option selected value="j">Journals</option>
+            <option value="a">Articles</option>
+            <option value="n">News</option><?php
           }
-          elseif($_GET['u'] =="Articles")
+          elseif($_GET['u'] =="a")
           {
-            ?><option>Researches</option>
-            <option>Journals</option>
-            <option selected>Articles</option>
-            <option>News</option><?php
+            ?><option value="r">Researches</option>
+            <option value="j">Journals</option>
+            <option selected value="a">Articles</option>
+            <option value="n">News</option><?php
           }
-          elseif($_GET['u'] =="News")
+          elseif($_GET['u'] =="n")
           {
-            ?><option>Researches</option>
-            <option>Journals</option>
-            <option>Articles</option>
-            <option selected>News</option><?php
+            ?><option value="r">Researches</option>
+            <option value="j">Journals</option>
+            <option value="a">Articles</option>
+            <option selected value="n">News</option><?php
           }
           else
           {
             ?>
-            <option selected>Researches</option>
-            <option>Journals</option>
-            <option>Articles</option>
-            <option>News</option>
+            <option selected value="r">Researches</option>
+            <option value="j">Journals</option>
+            <option value="a">Articles</option>
+            <option value="n">News</option>
             <?php
           }
           ?>
@@ -211,8 +211,8 @@
             </select>
             </li>
 
-            <li class="list-inline-item" >
-            <select class="custom-select d-inline" id="filter2" name="u" style="width:190px;" value="">
+            <li class="list-inline-item" id="filtering1">
+            <select class="custom-select d-inline" id="filter2" name="x" style="width:190px;" value="">
                <option selected disabled>Field of Study</option>
                <option>Art</option>
                <option>Business</option>
@@ -243,7 +243,7 @@
                 {
                   $title = $_GET['a'];
                   
-                  if($_GET['u'] == "Researches")
+                  if($_GET['u'] == "r")
                   {
                     $result = get_research_by_title($connect,$title);
                       if ($result->num_rows>0) 
@@ -253,7 +253,7 @@
                            ?>
                            <tr>
                            <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
-                              <div class="box" >
+                              <div class="box">
                                  <h4 class="title"><a href="./view/action.php?u=r&id=<?php echo $data['id'];?>" class="cls" id="<?php echo $data['id'];?>" ><span ><?php echo $data['title'];?></span></a></h4>
                                  <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                                     <li class="list-inline-item" value="<?php echo $data['main_author'];?>"><b><u><span><?php echo $data['main_author'];?></span></u></b></li>
@@ -268,7 +268,7 @@
 
                                     <li class="list-inline-item" value="<?php echo $data['date_publish'];?>"><b> * Published <span><?php echo $data['date_publish'];?></span></b></li>
                                     
-                                    <li class="list-inline-item" value="<?php echo $data['field_of_study'];?>"><b> * <span><?php echo $data['field_of_study'];?></span></b></li>
+                                    <li class="list-inline-item" value="<?php echo $data['field_of_study'];?>" id="display-fstudy"><b> * <span><?php echo $data['field_of_study'];?></span></b></li>
                                     
                                  </ul>
                                  <p class="description" value="<?php echo $data['abstract'];?>"><span><?php echo $data['abstract'];?></span></p>
@@ -292,7 +292,7 @@
                         <?php
                      }
                   }
-                  elseif($_GET['u'] == "Journals")
+                  elseif($_GET['u'] == "j")
                   {
                     $result = get_journal_by_title($connect,$title);
                       if ($result->num_rows>0) 
@@ -332,7 +332,7 @@
                         <?php
                      }
                   }
-                  elseif($_GET['u'] == "Articles")
+                  elseif($_GET['u'] == "a")
                   {
                     $result = get_article_by_title($connect,$title);
                       if ($result->num_rows>0) 
@@ -372,7 +372,7 @@
                         <?php
                      }
                   }
-                  elseif($_GET['u'] == "News")
+                  elseif($_GET['u'] == "n")
                   {
                     $result = get_news_by_title($connect,$title);
                       if ($result->num_rows>0) 
@@ -475,7 +475,8 @@
   <!-- <script src="contactform/contactform.js"></script> -->
 
   <!-- Template Main Javascript File -->
-  <script src="../CustomLandingPage/view/main.js"></script>
+  <script src="./view/main.js"></script>
+  <script src="./view/filter.js"></script>
   <script src="./resource/js/main.js"></script>
 
 </body>

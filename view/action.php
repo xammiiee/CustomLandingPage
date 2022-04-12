@@ -43,20 +43,6 @@ include "../admin/research/functions/functions.php";
   <!-- Main Stylesheet File -->
   <link href="../resource/css/style_management.css" rel="stylesheet">
   <link href="../resource/css/addons.css" rel="stylesheet">
-
-  <!-- <script  src="../resource/jquery-3.6.0.min.js"></script> -->
-  <!-- <script>
-  $(document).ready( function () {
-   //  $('#table_id').DataTable();
-	 
-	 $(document).bind("keypress", function (e) {
-		if (e.keyCode == 13) {
-			alert("Cannot Copy");
-		return false;
-		}
-		});
-    } );
-  </script> -->
 </head>
 <body>
   <!--==========================
@@ -235,7 +221,7 @@ if (!empty($_GET['id']))
 									<li class="list-inline-item">* <?php echo $data['field_of_study'];?></li>
 								</ul>
 							</div>
-							<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['abstract']); ?></p><br>
+							<p class="font-weight-normal text-left" style="width:80%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" maxlength="200"><?php echo ($data['abstract']);?></p><br>
 							<ul class="list-inline" style="font-size: small;">
                      	<li class="list-inline-item" id="View<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
                      	<li class="list-inline-item" id="Cite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>

@@ -1,39 +1,29 @@
 $(document).ready(function () {
-   // alert("Cannot Copy");
-  
-   // Disable Keypress Copy, Paste, Cut
-   // var ctrlDown = false,
-   //      ctrlKey = 17,
-   //      cmdKey = 91,
-   //      vKey = 86,
-   //      cKey = 67;
+   //Override Clipboard
+   // $(document).addEventListener('copy', function(e){
+   //    var text = window.getSelection().toString().replace(/[\n\r]+/g, '');
+   //    e.clipboardData.setData('text/plain', text).delay(800);
+   //    e.preventDefault();
+   // });
 
-   //  $(document).keydown(function(e) {
-   //      if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = true;
-   //  }).keyup(function(e) {
-   //      if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = false;
-   //  });
-
-   //  $("table").keydown(function(e) {
-   //      if (ctrlDown && (e.keyCode == vKey || e.keyCode == cKey)) return false;
-   //  });
-    
-   //  // Document Ctrl + C/V 
-   //  $(document).keydown(function(e) {
-   //      if (ctrlDown && (e.keyCode == cKey)) console.log("Document catch Ctrl+C");
-   //      if (ctrlDown && (e.keyCode == vKey)) console.log("Document catch Ctrl+V");
-   //  });
    // Research
    $("#disabled-fullview-R").click(function () {
       alert("You must be Subscribe to View Fulltext")
    });
-
-
+   
+   $("#select_type").click(function () {
+      var filter_type = $('#select_type').val();
+      alert(filter_type);
+   });   
+   if (filter_type == "Articles" || filter_type == "News")
+   {
+      $("filtering1").hide();
+   }
    
    // Register View
    // Research
    $('a.cls').click(function () {
-      
+      // alert("Click")
       var id_r = $(this).attr('id');
       var view = $("#rView" + id_r).val();
       if(isNaN(view)) {

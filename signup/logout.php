@@ -1,7 +1,7 @@
 <?php
 session_start();
 session_destroy();
-if (isset($_SESSION['id'])) {
+if (empty($_SESSION['id'])) {
     header("Location: ../login/login.php");
 }
 ?>
