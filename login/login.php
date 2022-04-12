@@ -1,5 +1,5 @@
 <?php
-include_once ("/xampp/htdocs/CustomLandingPage/login/inc/header.php");
+include_once ("../login/inc/header.php");
 
 if(isset($_POST['but_submit']))
     {
