@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2022 at 11:33 AM
+-- Generation Time: Apr 12, 2022 at 03:05 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -48,9 +48,10 @@ INSERT INTO `tblaccount` (`id`, `name`, `email`, `pass`, `status`, `ucategory`, 
 (1, 'Jaren', 'jarenloydla@gmail.com', '$2y$12$4.GiSCWvibjcXbwg99nweuqt439gwPPh7TeAk6yJVeNExJveTXW.e', 'Inactive', 'Administrator', 'Yes', 'No', '', ''),
 (14, 'Jaren Heruela', 'jarenloydheruela@gmail.com', '$2y$12$DNIamupYUhvpfu3dwD6rHeguw.PYbkUhSgSTIkEf3Sb30T0v8dj.W', 'Active', 'Administrator', 'Yes', 'No', '', ''),
 (16, 'Admin', 'admin@gmail.com', '$2y$12$rBhHUN7rJbgbIgBFKHcr9O/D9ymes5sACQs7rvTROCOUEcr55g.nq', 'Active', 'Administrator', 'Yes', 'No', '', ''),
-(17, 'User', 'user@gmail.com', '$2y$12$ZTjDKMwr6w6.YkGVsIa1n.5ZfFAKGcCGoV4rpxLiliEk4WsyhrKDm', 'Active', 'User', 'Yes', 'No', '', ''),
+(17, 'User', 'user@gmail.com', '$2y$12$ZTjDKMwr6w6.YkGVsIa1n.5ZfFAKGcCGoV4rpxLiliEk4WsyhrKDm', 'Inactive', 'User', 'Yes', 'No', '', ''),
 (24, 'sample1', 'sample1@yahoo.com', '$2y$12$OSzAPoj6aPNX.6K4lbotk.aJAwc4dwzy3gW4hwo4BhmMaS0Y9ZmEa', 'Inactive', 'User', 'No', 'No', '', ''),
-(26, 'D. Saraswathi', 'DSaraswathi@gmail.com', '$2y$12$kTPKFchYVxf4KX0BnKjX5.dnNvG5GtdI1oCNsS2w4pPYQ1U6oLnzK', 'Active', 'User', 'Yes', '', '', '');
+(26, 'D. Saraswathi', 'DSaraswathi@gmail.com', '$2y$12$kTPKFchYVxf4KX0BnKjX5.dnNvG5GtdI1oCNsS2w4pPYQ1U6oLnzK', 'Active', 'User', 'Yes', '', '', ''),
+(27, 'geraldine rilles', 'geraldine@gmail.com', '$2y$12$.xOcw/0hNpSccQQUHQNZYu8r44nDSV3fLzPQEl7zNPNXdhjKLNJ8y', 'Active', 'User', 'Yes', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -115,6 +116,31 @@ CREATE TABLE `tblauthorredirect` (
   `title` varchar(200) NOT NULL,
   `date` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblcited`
+--
+
+CREATE TABLE `tblcited` (
+  `id` int(11) NOT NULL,
+  `table_type` varchar(100) NOT NULL,
+  `paper_id` varchar(100) NOT NULL,
+  `paper_title` varchar(200) NOT NULL,
+  `cited_byN` varchar(100) NOT NULL,
+  `cited_byE` varchar(100) NOT NULL,
+  `cited_date` varchar(100) NOT NULL,
+  `cited_byId` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblcited`
+--
+
+INSERT INTO `tblcited` (`id`, `table_type`, `paper_id`, `paper_title`, `cited_byN`, `cited_byE`, `cited_date`, `cited_byId`) VALUES
+(2, 'Research', '1', '', 'Admin', 'admin@gmail.com', '', '16'),
+(3, 'Research', '1', '', 'Admin', 'admin@gmail.com', 'April 11, 2022, 6:42 pm', '16');
 
 -- --------------------------------------------------------
 
@@ -190,6 +216,13 @@ CREATE TABLE `tblnews` (
   `views` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tblnews`
+--
+
+INSERT INTO `tblnews` (`id`, `name`, `mobile`, `email`, `author`, `tags`, `cites`, `views`) VALUES
+(1, 'sample1', ' sample1sample1sample1sample1', '2022-04-11', 'rtyuiutyuio', 'Basketball', '', '5');
+
 -- --------------------------------------------------------
 
 --
@@ -215,7 +248,7 @@ CREATE TABLE `tblresearch` (
 --
 
 INSERT INTO `tblresearch` (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `pdf_file`, `tagging`, `cites`, `views`) VALUES
-(1, 'A Collaborative Filtering Algorithm Based on User Activity Level', 'Collaborative Filtering Algorithm is one of the most \r\nsuccessful recommender technologies, and has been widely \r\nused in E-commerce. However, traditional Collaborative \r\nFiltering often focus on user-item ratings, but ignore the \r\ninformation implicated in user activity which means how and \r\nhow often a user makes operations in a system, so it misses \r\nsome important information to improve the prediction quality. \r\nTo solve this problem, we bring user activity factor into \r\ncollaborative filtering and propose a new collaborative filtering \r\nalgorithm based on user activity level (UACF) . Finally, \r\nexperiments have shown that our new algorithm UACF \r\nimproves the precision of traditional collaborative filtering', 'D. Saraswathi', 'Liang He, Guorong Li', '2022-04-04', 'Computer Studies', 'uploads/A Collaborative Filtering Algorithm Based on User Activity Level.pdf', '#K12, #edtech, #edreform', '', '');
+(1, 'A Collaborative Filtering Algorithm Based on User Activity Level', 'Collaborative Filtering Algorithm is one of the most \r\nsuccessful recommender technologies, and has been widely \r\nused in E-commerce. However, traditional Collaborative \r\nFiltering often focus on user-item ratings, but ignore the \r\ninformation implicated in user activity which means how and \r\nhow often a user makes operations in a system, so it misses \r\nsome important information to improve the prediction quality. \r\nTo solve this problem, we bring user activity factor into \r\ncollaborative filtering and propose a new collaborative filtering \r\nalgorithm based on user activity level (UACF) . Finally, \r\nexperiments have shown that our new algorithm UACF \r\nimproves the precision of traditional collaborative filtering', 'D. Saraswathi', 'Liang He, Guorong Li', '2022-04-04', 'Computer Studies', 'uploads/A Collaborative Filtering Algorithm Based on User Activity Level.pdf', '#K12, #edtech, #edreform', '3', '1');
 
 --
 -- Indexes for dumped tables
@@ -243,6 +276,12 @@ ALTER TABLE `tblauthor`
 -- Indexes for table `tblauthorredirect`
 --
 ALTER TABLE `tblauthorredirect`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tblcited`
+--
+ALTER TABLE `tblcited`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -277,7 +316,7 @@ ALTER TABLE `tblresearch`
 -- AUTO_INCREMENT for table `tblaccount`
 --
 ALTER TABLE `tblaccount`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `tblarticle`
@@ -298,6 +337,12 @@ ALTER TABLE `tblauthorredirect`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tblcited`
+--
+ALTER TABLE `tblcited`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tblevents`
 --
 ALTER TABLE `tblevents`
@@ -313,7 +358,7 @@ ALTER TABLE `tbljournal`
 -- AUTO_INCREMENT for table `tblnews`
 --
 ALTER TABLE `tblnews`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tblresearch`
