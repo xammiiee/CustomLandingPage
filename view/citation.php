@@ -1,7 +1,7 @@
 <?php
 header("Content-Type:application/json");
 
-include "/xampp/htdocs/CustomLandingPage/resource/config/db.php";
+include "../resource/config/db.php";
 // ============================VIEWS==============================//
 
 // Research
