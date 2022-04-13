@@ -5,16 +5,16 @@ if(isset($_POST['btnsubmit']))
 {
     //initiate the form
     $name = isset($_POST['name']) && $_POST['name']!="";
-    $email = isset($_POST['email']) && $_POST['email']!="";
+    $username = isset($_POST['username']) && $_POST['username']!="";
     $password = isset($_POST['password']) && $_POST['password']!="";
     $aumember = isset($_POST['aumember']) && $_POST['aumember']!="";
     
     //convert to post method for safety
-    if ($name && $email && $password && $aumember) 
+    if ($name && $username && $password && $aumember) 
     {   
         //value from db
         $name = $_POST['name'];
-        $email = $_POST['email'];
+        $username = $_POST['username'];
         $password = $_POST['password'];
         $aumember = $_POST['aumember'];
         
@@ -26,7 +26,7 @@ if(isset($_POST['btnsubmit']))
         }
         else
         {
-            $sql = "SELECT * FROM tblaccount WHERE email = '$email'";
+            $sql = "SELECT * FROM tblaccount WHERE username = '$username'";
             $result = mysqli_query($connect,$sql);
             $count = mysqli_fetch_array($result);
             // check email if exist
@@ -41,10 +41,10 @@ if(isset($_POST['btnsubmit']))
                 'cost' => 12,];
                 $hash_pass = password_hash("$password", PASSWORD_BCRYPT, $options);
                 //insert to db
-                $query = "INSERT INTO tblaccount VALUES ('','$name', '$email', '$hash_pass', 'Inactive', 'User','$aumember','','','')";
+                $query = "INSERT INTO tblaccount VALUES ('','$name', '$username','$hash_pass', 'Inactive', 'User','$aumember','','','')";
                 if(mysqli_query($connect, $query))
                 {
-                    echo "<script>alert('New account $email has successfully added.' );</script>";
+                    echo "<script>alert('New account $username has successfully added.' );</script>";
                     header("Location: ../index.php");
                 }
                 else
@@ -78,7 +78,7 @@ if(isset($_POST['btnsubmit']))
                   <input type="text" class="form-control" id="name" placeholder="Name" name="name">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                  <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
                 </div>
                 <div class="form-group">
                   <input type="password" class="form-control" id="password" placeholder="Password" name="password">

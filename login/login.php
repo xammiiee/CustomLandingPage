@@ -3,17 +3,17 @@ include_once ("../login/inc/header.php");
 
 if(isset($_POST['but_submit']))
     {
-      if(empty($_POST['email']) && empty($_POST['password']))
+      if(empty($_POST['username']) && empty($_POST['password']))
       {
         echo '<script>alert("Fill all Fields")</script>';
       }
       else
       {
         // username and password sent from form 
-      $email = mysqli_real_escape_string($connect,$_POST['email']);
+      $username = mysqli_real_escape_string($connect,$_POST['username']);
       $password = mysqli_real_escape_string($connect,$_POST['password']); 
       
-      $sql = "SELECT * FROM tblaccount WHERE email = '$email'";
+      $sql = "SELECT * FROM tblaccount WHERE username = '$username'";
       $result = mysqli_query($connect,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $count = mysqli_num_rows($result);
@@ -27,7 +27,7 @@ if(isset($_POST['but_submit']))
         $categ = $row['ucategory'];
 
        
-        if($_POST['email'] && password_verify($_POST['password'], $hash))
+        if($_POST['username'] && password_verify($_POST['password'], $hash))
         {
             if($status == "Active" || $status == "Inactive")
             {
@@ -82,10 +82,10 @@ if(isset($_POST['but_submit']))
             <h3 class="card-title text-center">Login</h3>
         <form action="" method="POST" name="Form" onsubmit="return validateForm()">
             <div class="md-form">
-              <input type="email" class="form-control validate"  
-              id="email"
-              name="email"
-              placeholder="Your Email">
+              <input type="text" class="form-control validate"  
+              id="username"
+              name="username"
+              placeholder="Your username">
               <label data-error="wrong" data-success="right"></label>
             </div>
 
