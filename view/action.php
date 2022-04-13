@@ -115,7 +115,9 @@ include "../admin/research/functions/functions.php";
           } 
           else 
           { 
-            header("Location: ../login/login.php");
+            ?>
+				<li><a href="../login/login.php">Sign In</a></li>
+				<?php
           }?>
         </ul>
       </nav><!-- .main-nav -->
@@ -125,9 +127,9 @@ include "../admin/research/functions/functions.php";
   <h3 hidden name="logged_id" hidden><?php echo $_SESSION['id'];?></h3>
 <?php
 
-if(empty($_SESSION['id']))
+if(!empty($_SESSION['id']))
 {
-	echo "Empty";
+
 }
 
 
@@ -169,7 +171,9 @@ if (!empty($_GET['id']))
 							<!-- change to.. -->
 							<span >Research</span>
 							</div>
-							<?php 
+							<?php
+							if(!empty($_SESSION['id']))
+							{
 							$logged_id = $_SESSION['id'];
 							$sql = "SELECT * FROM tblaccount WHERE id = '$logged_id'";
 							$result = mysqli_query($connect,$sql);
@@ -199,13 +203,19 @@ if (!empty($_GET['id']))
 										<?php
 									}
 								}
+							}
 								?>
 								<!--  -->
 								
 								<!--  -->
 								<div>
 									<h5 class="cls" id="<?php echo "$id";?>"></h5>
-									<h5 id="cited_byR" value="<?php echo $_SESSION['id'];?>"></h5>
+									<h5 id="cited_byR" value="<?php 
+									if(!empty($_SESSION['id']))
+									{
+										echo $_SESSION['id'];
+									}
+									?>"></h5>
 								<h2 class="text-left" style="margin-top:10px; font-family:'Lucida Sans';" id="r-title" ><b><?php echo $data['title']?></b></h2>
 								<ul class="list-inline" style="font-size: small;">
 									<li class="list-inline-item"><a href="author.php?u=r&author=<?php echo $data['main_author'];?>"><u><?php echo $data['main_author']?></u></a></li>
@@ -227,11 +237,13 @@ if (!empty($_GET['id']))
                      	<li class="list-inline-item" id="Cite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>
                               </ul>
 							<?php
-							if($status == "Active")
+							if(!empty($_SESSION['id'])){
+								if($status == "Active")
 							{
 								?>
 									<button type="button" class="btn btn-md badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#research-citing" id="r-citing"><span>Cite</span></button>
 								<?php
+							}
 							}
 							?>
 										
@@ -349,7 +361,9 @@ if (!empty($_GET['id']))
 							<!-- change to.. -->
 							<span >Journal</span>
 							</div>
-							<?php 
+							<?php
+							if(!empty($_SESSION['id']))
+							{
 							$logged_id = $_SESSION['id'];
 							$sql = "SELECT * FROM tblaccount WHERE id = '$logged_id'";
 							$result = mysqli_query($connect,$sql);
@@ -377,6 +391,7 @@ if (!empty($_GET['id']))
 										<?php
 									}
 								}
+							}
 								?>
 								<!--  -->
 								

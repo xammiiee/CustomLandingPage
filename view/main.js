@@ -146,5 +146,5 @@ $(document).ready(function (e) {
    // Journal
    // News
 
-   e.preventDefault();
+   // e.preventDefault();
 });

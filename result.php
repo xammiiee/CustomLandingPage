@@ -44,7 +44,7 @@
   
   if(empty($_SESSION['id']))
   {
-    header("Location: ./login/login.php");
+    // header("Location: ./login/login.php");
   }
 ?>
 
@@ -112,6 +112,12 @@
                   </li>
                   <?php
           }
+          else{
+            ?>
+            <li><a href="login/login.php">Sign In</a></li>
+            <?php
+          }
+          
         ?>
         </ul>
       </nav>
@@ -195,7 +201,9 @@
       <?php
       if(empty($_SESSION['id'])) 
       {
-        ?><a href="./login/login.php" class="btn-services scrollto">Login</a><?php
+        ?>
+        <!-- <a href="./login/login.php" class="btn-services scrollto">Login</a> -->
+        <?php
       }
       ?>
       <!-- ============================================ -->
@@ -326,7 +334,10 @@
                                     <li class="list-inline-item" value="<?php echo $data['fstudy'];?>"><b> * <span><?php echo $data['fstudy'];?></span></b></li>
                                     
                                  </ul>
-                                 <p class="description" value="<?php echo $data['decription'];?>"><span><?php echo $data['decription'];?></span></p>
+                                 <p class="description" value="
+                                 <?php 
+                                 echo $data['description'];
+                                 ?>"><?php echo $data['description'];?></p>
                                  <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                                     <li class="list-inline-item" id="jView<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
                                     <li class="list-inline-item" id="jCite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>

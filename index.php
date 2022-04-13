@@ -45,7 +45,7 @@ include "./admin/research/functions/Message.func.php";
   if (empty($_SESSION['id'])) 
   {
     // include "./"
-    header("Location: ./login/login.php");
+    // header("Location: ./login/login.php");
   }
 ?>
 
@@ -118,7 +118,7 @@ include "./admin/research/functions/Message.func.php";
           } 
           else 
           { 
-            header("Location: login/login.php");
+            // header("Location: login/login.php");
           }?>
         </ul>
       </nav>

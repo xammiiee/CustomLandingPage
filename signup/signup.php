@@ -15,6 +15,7 @@ if(isset($_POST['btnsubmit']))
         //value from db
         $name = $_POST['name'];
         $username = $_POST['username'];
+        $username = $_POST['username'];
         $password = $_POST['password'];
         $email = $_POST['email'];
         
@@ -53,12 +54,13 @@ if(isset($_POST['btnsubmit']))
                 }
             }
         }    
-    } 
+    }
+
     else
     {
       echo '<script>alert("Please provide all data on the form")</script>';
     }
-}
+  }
 ?>
 
 <section id="intro" class="clearfix">

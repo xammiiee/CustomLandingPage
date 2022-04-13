@@ -108,8 +108,8 @@ if ($result = mysqli_query($mysqli, $sql)) {
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="../profile/profile.php">Profile</a>
-                      <a class="dropdown-item" href="#aboutus">About Us</a>
+                      <!-- <a class="dropdown-item" href="../profile/profile.php">Profile</a>
+                      <a class="dropdown-item" href="#aboutus">About Us</a> -->
                       <a class="dropdown-item" href="../../signup/logout.php">Signout</a>
                     </div>
                   </li>

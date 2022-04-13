@@ -200,7 +200,7 @@ function get_journalaction($connect,$id){
 }
 
 function get_journalrelated($connect, $fstudy, $tags){
-	$sql = "SELECT * FROM tbljournal WHERE field_of_study ='$fstudy' OR tagging = '$tags'";
+	$sql = "SELECT * FROM tbljournal WHERE fstudy ='$fstudy' OR tagging = '$tags'";
 	$result1 = $connect->query($sql);
 		return $result1;
 }
@@ -217,7 +217,7 @@ function get_articleaction($connect,$id){
 }
 
 function get_articlerelated($connect, $fstudy, $tags){
-	$sql = "SELECT * FROM tblarticle WHERE field_of_study ='$fstudy' OR tagging = '$tags'";
+	$sql = "SELECT * FROM tblarticle WHERE tagging = '$tags'";
 	$result1 = $connect->query($sql);
 		return $result1;
 }
