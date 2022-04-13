@@ -12,9 +12,9 @@ if (isset($_SESSION['id']))
 }
 // including the database connection file
 
-include "/xampp/htdocs/CustomLandingPage/admin/research/inc/header.php";
-
 include_once("config.php");
+include "header.php";
+
 
 if(isset($_POST['update_events']))
 {	

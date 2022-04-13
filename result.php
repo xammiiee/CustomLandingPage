@@ -206,27 +206,41 @@
             <li class="list-inline-item" >
             <select class="custom-select d-inline" id="filter1" name="u" style="width:190px;" value="">
                <option>Sort by Relevance</option>
-               <option>Sort by Most Views</option>
-               <option>Sort by Citation Count</option>
+               <option value="1">Sort by Most Views</option>
+               <option value="2">Sort by Citation Count</option>
             </select>
             </li>
 
             <li class="list-inline-item" id="filtering1">
             <select class="custom-select d-inline" id="filter2" name="x" style="width:190px;" value="">
-               <option selected disabled>Field of Study</option>
-               <option>Art</option>
-               <option>Business</option>
-               <option>Computer Science</option>
-               <option>Education</option>
-               <option>Law</option>
-               <option>Medicine</option>
-               <option>Political Science</option>
-               <option>Psychology</option>
+              <option selected disabled>Field of Study</option>
+              <option value="1">Art</option>
+              <option value="2">Biology</option>
+              <option value="3">Business</option>
+              <option value="4">Computer Science</option>
+              <option value="5">Chemistry</option>
+              <option value="6">Economics</option>
+              <option value="7">Education</option>
+              <option value="8">Engineering</option>
+              <option value="9">Environmental Science</option>
+              <option value="10">Geography</option>
+              <option value="11">Geology</option>
+              <option value="12">History</option>
+              <option value="13">Law</option>
+              <option value="14">Linguistics</option>
+              <option value="15">Materials Science</option>
+              <option value="16">Mathematics</option>
+              <option value="17">Medicine</option>
+              <option value="18">Philosophy</option>
+              <option value="19">Physics</option>
+              <option value="20">Political Science</option>
+              <option value="21">Psychology</option>
+              <option value="22">Sociology</option>
             </select>
             </li>
          
-            <a href=""><button class="btn btn-primary btn-sm" id="filter-submit"><i class="fa fa-filter"></i>  Filter</button></a>
-            <a href=""><button class="btn btn-primary btn-sm" id="filter-reset"><i class="fa fa-refresh"></i>  Reset</button></a>
+            <button class="btn btn-primary btn-sm" id="filter-submit" name="filter-submit"><i class="fa fa-filter"></i>  Filter</button>
+            <button class="btn btn-primary btn-sm" id="filter-reset" name="filter-reset"><i class="fa fa-refresh"></i>  Reset</button>
           </ul>
 <!-------------------- End of Filtering Section ---------------------------->
         </header><br>
@@ -430,7 +444,12 @@
   ============================-->
 
   </main>
+<?php
+  // if(isset($_GET['filter-submit']))
+  // {
 
+  // }
+?>
 
   
   <!--==========================
@@ -475,8 +494,8 @@
   <!-- <script src="contactform/contactform.js"></script> -->
 
   <!-- Template Main Javascript File -->
-  <script src="./view/main.js"></script>
-  <script src="./view/filter.js"></script>
+  <script src="/view/main.js"></script>
+  <script src="../CustomLandingPage/view/filter.js"></script>
   <script src="./resource/js/main.js"></script>
 
 </body>

@@ -140,10 +140,10 @@ include "./admin/research/functions/Message.func.php";
         <div class="form-group">
           <input name="a" class="form-control form-control-lg d-inline" type="text" placeholder="Search Here!" aria-label=".form-control-lg example" style="width: 80%;" value="">
           <select class="custom-select-lg d-inline" id="search_type" name="u" style="width: 14%;">
-          <option selected>Researches</option>
-            <option>Journals</option>
-            <option>Articles</option>
-            <option>News</option>
+          <option selected value="r">Researches</option>
+            <option value="j">Journals</option>
+            <option value="a">Articles</option>
+            <option value="n">News</option>
           </select>
         </div>
         <div class="intro-info">    

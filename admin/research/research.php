@@ -242,11 +242,28 @@ if (isset($_GET['del'])) {
             <label class="label">Field of Study *</label><br>
             <select class="custom-select" id="fstudy" name="fstudy">
             <option hidden>Select... </option>
-            <option>Accounting and Finance</option>
-            <option>Business and Economics</option>
-            <option>Computer Studies</option>
-            <option>Hospitality</option>
-            <option>Nursing</option>
+            <option>Art</option>
+              <option> Biology</option>
+              <option> Business</option>
+              <option> Computer Science</option>
+              <option> Chemistry</option>
+              <option> Economics</option>
+              <option> Education</option>
+              <option> Engineering</option>
+              <option> Environmental Science</option>
+              <option> Geography</option>
+              <option> Geology</option>
+              <option> History</option>
+              <option> Law</option>
+              <option> Linguistics</option>
+              <option> Materials Science</option>
+              <option> Mathematics</option>
+              <option> Medicine</option>
+              <option> Philosophy</option>
+              <option> Physics</option>
+              <option> Political Science</option>
+              <option> Psychology</option>
+              <option> Sociology</option>
             </select>
           </div>
         </div>

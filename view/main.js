@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function (e) {
    //Override Clipboard
    // $(document).addEventListener('copy', function(e){
    //    var text = window.getSelection().toString().replace(/[\n\r]+/g, '');
@@ -10,15 +10,6 @@ $(document).ready(function () {
    $("#disabled-fullview-R").click(function () {
       alert("You must be Subscribe to View Fulltext")
    });
-   
-   $("#select_type").click(function () {
-      var filter_type = $('#select_type').val();
-      alert(filter_type);
-   });   
-   if (filter_type == "Articles" || filter_type == "News")
-   {
-      $("filtering1").hide();
-   }
    
    // Register View
    // Research
@@ -154,4 +145,6 @@ $(document).ready(function () {
    // Article
    // Journal
    // News
+
+   e.preventDefault();
 });
