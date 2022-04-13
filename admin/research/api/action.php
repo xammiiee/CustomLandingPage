@@ -281,7 +281,12 @@ if (!empty($_GET['id']))
 									</nav>
 									<!-- Body -->
 									<div class="input-group" id="r-cite-area">
-										<textarea class="form-control" aria-label="With textarea" id="">Hello world</textarea>
+									<textarea rows="7" cols="60"class="form-control" aria-label="With textarea" id="myInput" readonly><?php $result = explode(" ",$data['main_author']); echo $result[1];?>, <?php  echo  $result[0];?>. et.al. "<?php echo $data['title'];?>." <?php echo $data['field_of_study'];?> <?php $date = $data['date_publish'];echo "" .date("(Y)",strtotime($date));?> </textarea>
+									</div>
+
+									APA 
+									<div class="input-group" id="r-cite-area">
+									<textarea rows="7" cols="60"class="form-control" aria-label="With textarea" id="myInput" readonly><?php $result = explode(" ",$data['main_author']); echo $result[1];?>, <?php  echo  $result[0][0];?>. <?php echo $data['co_authors'];?>. <?php $date = $data['date_publish'];echo "" .date("(Y)",strtotime($date));?> <?php echo $data['title'];?>. <?php echo $data['field_of_study'];?>.</textarea>
 									</div>
 									<!-- <button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left"><span>Copy</span></button> -->
 
@@ -291,8 +296,7 @@ if (!empty($_GET['id']))
 							</div>
 		</div>
 		</div>
-	</div>
-	</div>
+	
 	
 	<!-- Related Studies -->
 	<br<br><br>

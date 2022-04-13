@@ -281,9 +281,12 @@ if (!empty($_GET['id']))
 									</nav>
 									<!-- Body -->
 									<div class="input-group" id="r-cite-area">
-										<textarea rows="7" cols="60"class="form-control" aria-label="With textarea" id="cite-textarea">
-										Author's Last name, First name. "Title of Source." Title of Container, Other Contributors, Version, Numbers, Publisher, Publication Date, Location. Title of Second Container, Other Contributors, Version, Number, Publisher, Publication Date, Location.	
-										</textarea>
+									<textarea rows="7" cols="60"class="form-control" aria-label="With textarea" id="myInput" readonly><?php $result = explode(" ",$data['main_author']); echo $result[1];?>, <?php  echo  $result[0];?>. et.al. "<?php echo $data['title'];?>." <?php echo $data['field_of_study'];?> <?php $date = $data['date_publish'];echo "" .date("(Y)",strtotime($date));?> </textarea>
+									</div>
+
+									APA 
+									<div class="input-group" id="r-cite-area">
+									<textarea rows="7" cols="60"class="form-control" aria-label="With textarea" id="myInput" readonly><?php $result = explode(" ",$data['main_author']); echo $result[1];?>, <?php  echo  $result[0][0];?>. <?php echo $data['co_authors'];?>. <?php $date = $data['date_publish'];echo "" .date("(Y)",strtotime($date));?> <?php echo $data['title'];?>. <?php echo $data['field_of_study'];?>.</textarea>
 									</div>
 									<button type="button" class="btn btn-md badge badge-info text-wrap cls" style="width: 7rem; padding:6px; float:left" id="id-copy-cite"><span>Copy Citation</span></button>
 
@@ -459,7 +462,7 @@ if (!empty($_GET['id']))
 									<p class="card-text"><small class="text-muted"><?php ?></small></p>
 								</div>
 							</div>
-							</div>
+							</div> 
 					<?php
 						}
 					}
