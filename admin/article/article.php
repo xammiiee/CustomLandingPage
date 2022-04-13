@@ -314,7 +314,7 @@ if(!empty($_POST["a_tagging"])) {
   <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
+  <!-- <footer id="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -366,4 +366,4 @@ if(!empty($_POST["a_tagging"])) {
         </div>
       </div>
       
-    </div>
+    </div> -->

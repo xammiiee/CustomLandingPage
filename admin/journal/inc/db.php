@@ -20,6 +20,6 @@ session_start();
 	  die();
   	}
 	  else{
-		  echo "Success";
+		//   echo "Success";
 	  }
 ?>

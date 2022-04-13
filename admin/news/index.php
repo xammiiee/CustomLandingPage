@@ -211,7 +211,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
            <input type="text" class="form-control" id="name" name="name" required>
            
          <div class="form-group">
-           <label for="author">Author *</label>
+           <label for="author">Editor *</label>
            <input type="text" class="form-control" id="author" name="author" required>
          </div>
 
@@ -363,7 +363,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
   <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
+  <!-- <footer id="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -416,7 +416,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
       </div>
     </div>
 
-  </footer><!-- #footer -->
+  </footer>#footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
