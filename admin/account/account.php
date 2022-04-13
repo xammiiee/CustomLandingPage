@@ -209,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <tr>
          <td><?php echo $data['id']?></td>
          <td><?php echo $data['name']?></a></td>
-         <td><?php echo $data['email']?></a></td>
+         <td><?php echo $data['username']?></a></td>
          <td><?php echo $data['status']?></td>
          <td><?php echo $data['ucategory']?></td>
          <td><?php echo $data['au_member']?></td>

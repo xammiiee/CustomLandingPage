@@ -6,23 +6,23 @@ if(isset($_POST['btnsubmit']))
     //initiate the form
     $name = isset($_POST['name']) && $_POST['name']!="";
     $username = isset($_POST['username']) && $_POST['username']!="";
+    $email = isset($_POST['email']) && $_POST['email']!="";
     $password = isset($_POST['password']) && $_POST['password']!="";
-    $aumember = isset($_POST['aumember']) && $_POST['aumember']!="";
     
     //convert to post method for safety
-    if ($name && $username && $password && $aumember) 
+    if ($name && $username && $password && $email) 
     {   
         //value from db
         $name = $_POST['name'];
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $aumember = $_POST['aumember'];
+        $email = $_POST['email'];
         
         // $id = date("YmdHis");
 
-        if($aumember == "Are you a member of Arellano Community?")
+        if($email == "")
         {
-          echo '<script>alert("Select if your a member of AU")</script>';
+          
         }
         else
         {
@@ -41,7 +41,7 @@ if(isset($_POST['btnsubmit']))
                 'cost' => 12,];
                 $hash_pass = password_hash("$password", PASSWORD_BCRYPT, $options);
                 //insert to db
-                $query = "INSERT INTO tblaccount VALUES ('','$name', '$username','$hash_pass', 'Inactive', 'User','$aumember','','','')";
+                $query = "INSERT INTO tblaccount VALUES ('','$name', '$username','$hash_pass','$email', 'Inactive', 'User','','','')";
                 if(mysqli_query($connect, $query))
                 {
                     echo "<script>alert('New account $username has successfully added.' );</script>";
@@ -78,21 +78,15 @@ if(isset($_POST['btnsubmit']))
                   <input type="text" class="form-control" id="name" placeholder="Name" name="name">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+                  <input type="text" class="form-control" id="username" placeholder="Username" name="username">
+                </div>
+                <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder="Email" name="email">
                 </div>
                 <div class="form-group">
                   <input type="password" class="form-control" id="password" placeholder="Password" name="password">
                 </div>
-                <div class="form-group">
-               <select class="browser-default custom-select"  id="aumember"
-                  class="form-control"
-                  name="aumember"
-                  value=" ">
-                  <option selected disabled>Are you a member of Arellano Community?</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-                </div>
+               
                 <button type="submit" class="btn btn-primary btn-block" name="btnsubmit">Register</button>
               <br>
               Are you already registered? <a href="../login/login.php">Login Now</a>
