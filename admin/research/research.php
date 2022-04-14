@@ -242,7 +242,7 @@ if (isset($_GET['del'])) {
             <label class="label">Field of Study *</label><br>
             <select class="custom-select" id="fstudy" name="fstudy">
             <option hidden>Select... </option>
-            <option>Art</option>
+              <option>Art</option>
               <option> Biology</option>
               <option> Business</option>
               <option> Computer Science</option>

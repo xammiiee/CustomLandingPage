@@ -385,13 +385,13 @@
                           <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
 
                           <div class="box">
-                            <h4 class="title"><a href="./view/action.php?u=a&id=<?php echo $data['id'];?>" class="cls" id="<?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                            <h4 class="title"><a href="./view/action.php?u=a&id=<?php echo $data['id'];?>" class="cls" id="<?php echo $data['id'];?>"><span><?php echo $data['a_title'];?></span></a></h4>
                               <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                                 <li class="list-inline-item" value="<?php echo $data['a_author'];?>"><b><u><span><?php echo $data['a_author'];?></span></u></b></li>
                                     
-                                <li class="list-inline-item" value="<?php echo $data['a_date_pub'];?>"><b> * Published <span><?php echo $data['a_date_pub'];?></span></b></li>
+                                <li class="list-inline-item" value="<?php echo $data['a_datepub'];?>"><b> * Published <span><?php echo $data['a_datepub'];?></span></b></li>
                                     
-                                <li class="list-inline-item" value="<?php echo $data['field_of_study'];?>"><b> * <span><?php echo $data['field_of_study'];?></span></b></li>
+                                <li class="list-inline-item" value="<?php //echo $data['field_of_study'];?>"><b>  <span><?php //echo $data['field_of_study'];?></span></b></li>
                               </ul>
                                  <p class="description" value="<?php echo $data['a_description'];?>"><span><?php echo $data['a_description'];?></span></p>
                                  <ul class="list-inline" style="padding-left: 40px; font-size: small;">

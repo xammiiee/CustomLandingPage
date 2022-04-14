@@ -203,8 +203,8 @@ function get_articleaction($connect,$id){
 	}
 }
 
-function get_articlerelated($connect, $fstudy, $tags){
-	$sql = "SELECT * FROM tblarticle WHERE tagging = '$tags'";
+function get_articlerelated($connect,$tags){
+	$sql = "SELECT * FROM tblarticle WHERE a_tagging = '$tags'";
 	$result1 = $connect->query($sql);
 		return $result1;
 }
