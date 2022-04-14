@@ -242,7 +242,7 @@ if (!empty($_GET['id']))
                               </ul>
 							<?php
 							if(!empty($_SESSION['id'])){
-								if($status == "Active")
+								if($_SESSION['status'] == "Active")
 							{
 								?>
 									<button type="button" class="btn btn-md badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#research-citing" id="r-citing"><span>Cite</span></button>
@@ -348,7 +348,7 @@ if (!empty($_GET['id']))
 			<!--View Research-->
 			<div class="container">
 		<div id="result">
-		<a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
+		<!-- <a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a> -->
 		</div>	
 	</div><br><br>
 			<div class="container">
@@ -420,8 +420,20 @@ if (!empty($_GET['id']))
 								</ul>
 							</div>
 							<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['description']); ?></p><br>
-							
-							<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#journal-citing"><span>Cite</span></button>
+							<ul class="list-inline" style="font-size: small;">
+                     	<li class="list-inline-item" id="View<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
+                     	<li class="list-inline-item" id="Cite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>
+                              </ul>
+										<?php
+							if(!empty($_SESSION['id'])){
+								if($_SESSION['status'] == "Active")
+							{
+								?>
+									<button type="button" class="btn btn-md badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#journal-citing" id="j-citing"><span>Cite</span></button>
+								<?php
+							}
+							}
+							?>
 
 							<!-- Modal for Citing -->
 							<div class="modal fade" id="journal-citing" tabindex="-1" role="dialog" aria-hidden="true">
@@ -492,7 +504,7 @@ if (!empty($_GET['id']))
 			<!--View Research-->
 			<div class="container">
 				<div id="result">
-				<a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
+				<!-- <a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a> -->
 				</div>	
 			</div><br><br>
 			<div class="container">
@@ -529,10 +541,10 @@ if (!empty($_GET['id']))
 								{
 									if($subscribe =="Yes")
 									{
-										echo $count['pdf_file'];
+										// echo $count['pdf_file'];
 										?>
 										<div>
-											<a href="../admin/article/<?php //echo $data['pdf_file'];?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View FullArticle PDF&nbsp;</i></button></a>
+											<!-- <a href="../admin/article/<?php //echo $data['pdf_file'];?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View FullArticle PDF&nbsp;</i></button></a> -->
 										</div>
 										<?php
 									}
@@ -558,10 +570,23 @@ if (!empty($_GET['id']))
 								</ul>
 							</div>
 							<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['a_description']); ?></p><br>
-							<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-bs-toggle="modal" data-bs-target="#modalciting"><span>Cite</span></button>
+							<ul class="list-inline" style="font-size: small;">
+                     	<li class="list-inline-item" id="View<?php echo $data['id'];?>" value="<?php echo $data['a_views'];?>"><b>Views: <?php echo $data['a_views'];?></b></li>
+                     	<li class="list-inline-item" id="Cite<?php echo $data['id'];?>" value="<?php echo $data['a_cites'];?>"><b>Cite: <?php echo $data['a_cites'];?></b></li>
+                              </ul>
+							<?php
+							if(!empty($_SESSION['id'])){
+								if($_SESSION['status'] == "Active")
+							{
+								?>
+									<button type="button" class="btn btn-md badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#article-citing" id="a-citing"><span>Cite</span></button>
+								<?php
+							}
+							}
+							?>
 
 							<!-- Citation Modal -->
-							<div class="modal fade" id="modalciting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="article-citing" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
@@ -586,7 +611,7 @@ if (!empty($_GET['id']))
 
 			<!-- Related Studies -->
 			<br<br><br>
-			<div class="container">
+			<div class="container" >
 				<h2>Related Studies</h2><br>
 				<!-- <div class="row"> -->
 				<div class="card-group">
@@ -603,7 +628,7 @@ if (!empty($_GET['id']))
 							<div class="card">
 								<div class="card-body">
 									<!-- change function to the designated function ofyouassign management -->
-									<a href="action.php?id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data1['title'];?></p></a>
+									<a href="action.php?u=a&id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data1['a_title'];?></p></a>
 									<p class="card-text"><small class="text-muted"><?php ?></small></p>
 								</div>
 							</div>
