@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2022 at 03:05 AM
+-- Generation Time: Apr 14, 2022 at 08:08 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -30,11 +30,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `tblaccount` (
   `id` int(100) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `email` varchar(200) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `pass` varchar(200) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `status` varchar(20) NOT NULL,
   `ucategory` varchar(20) NOT NULL,
-  `au_member` varchar(20) NOT NULL,
   `subcribe` varchar(20) NOT NULL,
   `datesub_start` varchar(20) NOT NULL,
   `datesub_end` varchar(20) NOT NULL
@@ -44,14 +44,10 @@ CREATE TABLE `tblaccount` (
 -- Dumping data for table `tblaccount`
 --
 
-INSERT INTO `tblaccount` (`id`, `name`, `email`, `pass`, `status`, `ucategory`, `au_member`, `subcribe`, `datesub_start`, `datesub_end`) VALUES
-(1, 'Jaren', 'jarenloydla@gmail.com', '$2y$12$4.GiSCWvibjcXbwg99nweuqt439gwPPh7TeAk6yJVeNExJveTXW.e', 'Inactive', 'Administrator', 'Yes', 'No', '', ''),
-(14, 'Jaren Heruela', 'jarenloydheruela@gmail.com', '$2y$12$DNIamupYUhvpfu3dwD6rHeguw.PYbkUhSgSTIkEf3Sb30T0v8dj.W', 'Active', 'Administrator', 'Yes', 'No', '', ''),
-(16, 'Admin', 'admin@gmail.com', '$2y$12$rBhHUN7rJbgbIgBFKHcr9O/D9ymes5sACQs7rvTROCOUEcr55g.nq', 'Active', 'Administrator', 'Yes', 'No', '', ''),
-(17, 'User', 'user@gmail.com', '$2y$12$ZTjDKMwr6w6.YkGVsIa1n.5ZfFAKGcCGoV4rpxLiliEk4WsyhrKDm', 'Inactive', 'User', 'Yes', 'No', '', ''),
-(24, 'sample1', 'sample1@yahoo.com', '$2y$12$OSzAPoj6aPNX.6K4lbotk.aJAwc4dwzy3gW4hwo4BhmMaS0Y9ZmEa', 'Inactive', 'User', 'No', 'No', '', ''),
-(26, 'D. Saraswathi', 'DSaraswathi@gmail.com', '$2y$12$kTPKFchYVxf4KX0BnKjX5.dnNvG5GtdI1oCNsS2w4pPYQ1U6oLnzK', 'Active', 'User', 'Yes', '', '', ''),
-(27, 'geraldine rilles', 'geraldine@gmail.com', '$2y$12$.xOcw/0hNpSccQQUHQNZYu8r44nDSV3fLzPQEl7zNPNXdhjKLNJ8y', 'Active', 'User', 'Yes', '', '', '');
+INSERT INTO `tblaccount` (`id`, `name`, `username`, `pass`, `email`, `status`, `ucategory`, `subcribe`, `datesub_start`, `datesub_end`) VALUES
+(16, 'Admin', 'admin', '$2y$12$rBhHUN7rJbgbIgBFKHcr9O/D9ymes5sACQs7rvTROCOUEcr55g.nq', '', 'Active', 'Administrator', 'Yes', '', ''),
+(17, 'User', 'user', '$2y$12$ZTjDKMwr6w6.YkGVsIa1n.5ZfFAKGcCGoV4rpxLiliEk4WsyhrKDm', '', 'Active', 'User', 'No', '', ''),
+(29, 'user1', 'user1', '$2y$12$fdW0dvA5/jHzKBzria53Eex1n0d2XZzL25daWs5KGGpmcJXt7yG1W', 'user1@gmail.com', 'Inactive', 'User', 'Yes', '', '');
 
 -- --------------------------------------------------------
 
@@ -72,6 +68,14 @@ CREATE TABLE `tblarticle` (
   `a_cites` varchar(20) NOT NULL,
   `a_views` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblarticle`
+--
+
+INSERT INTO `tblarticle` (`id`, `a_title`, `a_description`, `a_author`, `a_datepub`, `a_creator`, `a_created`, `a_tagging`, `a_pdf_file`, `a_cites`, `a_views`) VALUES
+(2, 'sample1', 'sampl2sampl2sampl2', 'D. Saraswathi', '2022-03-29', '16', 'Apr-14-22', '#learning,#edleadership', 'uploads/20', '', ''),
+(3, 'sample12', 'wertyui', 'trylang', '2022-03-17', '16', 'Apr-14-22', '#learning,#edleadership', 'uploads/20', '', '');
 
 -- --------------------------------------------------------
 
@@ -94,13 +98,9 @@ CREATE TABLE `tblauthor` (
 --
 
 INSERT INTO `tblauthor` (`id`, `name`, `email`, `profession`, `description`, `fstudy`, `created`) VALUES
-(1, 'Jaren Heruela', 'jarenloydheruela@gmail.com', 'Professor', 'dfgbn bf', 'Computer ', '1'),
-(2, 'D. Saraswathi', 'D. Saraswathi@gmail.com', 'Analyst', 'ghg', 'Analyst', '1'),
-(3, 'Ernest Hemmingway', 'ernest@gmail.com', 'Novelist', 'gnm,nhg', 'Novel', '1'),
-(4, 'Yongli Cui', 'Yongli Cui@gmail.com', 'Professor', 'fghm', 'Computer ', '1'),
-(5, 'Shubin Song', 'Shubin Song@gamail.com', 'Analyst', 'hmb ', 'Novel', '1'),
-(6, 'Liang He', 'Liang He', 'Analyst', 'eghjhgds', 'Computer Technology', '1'),
-(7, 'Guorong Li', 'Guorong Li@yahoo.com', 'Professor', 'dfbn ', 'Analyst', '1');
+(1, 'D. Saraswathi', 'D. Saraswathi@gmail.com', 'Professor', 'rtyureghj', 'Geography, Geology, History, Law', '16'),
+(2, 'trylang', 'trylang', 'Analyst', 'ghjktrefgnhmj', 'Business, Computer Science, Economics, Education', '16'),
+(3, 'William smith', 'smith@gmail.com', 'professor', 'qwertyui', 'Computer Science', '16');
 
 -- --------------------------------------------------------
 
@@ -139,8 +139,9 @@ CREATE TABLE `tblcited` (
 --
 
 INSERT INTO `tblcited` (`id`, `table_type`, `paper_id`, `paper_title`, `cited_byN`, `cited_byE`, `cited_date`, `cited_byId`) VALUES
-(2, 'Research', '1', '', 'Admin', 'admin@gmail.com', '', '16'),
-(3, 'Research', '1', '', 'Admin', 'admin@gmail.com', 'April 11, 2022, 6:42 pm', '16');
+(1, 'Research', '1', '', 'Admin', '', 'April 13, 2022, 5:09 am', '16'),
+(2, 'Research', '1', '', 'Admin', '', 'April 13, 2022, 7:01 am', '16'),
+(3, 'Research', '1', '', 'Admin', '', 'April 13, 2022, 9:14 am', '16');
 
 -- --------------------------------------------------------
 
@@ -155,6 +156,13 @@ CREATE TABLE `tblevents` (
   `date` varchar(20) NOT NULL,
   `time` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblevents`
+--
+
+INSERT INTO `tblevents` (`id`, `event_name`, `event_description`, `date`, `time`) VALUES
+(1, 'sample1', ' sample1sample1sample1sample1sample1', '2022-04-07', '16:00');
 
 -- --------------------------------------------------------
 
@@ -183,7 +191,9 @@ CREATE TABLE `tbljournal` (
 --
 
 INSERT INTO `tbljournal` (`id`, `title`, `description`, `author`, `datepub`, `creator`, `created`, `status`, `pdf_file`, `tagging`, `fstudy`, `cites`, `views`) VALUES
-(8, 'sample2', 'qwertyuioppoidsasdfghjk', 'Yongli Cui', '2022-04-29', '16', '2022-04-09', '', 'uploads/20090202_ismael_pena-lopez_personal_research_portal.pdf', '#scichat, #mathchat, #edreform', 'Agricultural and Foo', '', '');
+(1, 'sample1', 'The application of string similarity is very \r\nextensive, and the algorithm based on Levenshtein Distance is \r\nparticularly classic, but it is still insufficient in the aspect of \r\nuniversal applicability and accuracy of results. Combined with \r\nthe Longest Common Subsequence (LCS) and Longest Common \r\nSubstring (LCCS), similarity algorithm based on Levenshtein \r\nDistance is improved, and the string similarity result of the \r\nimproved algorithm is more distinct, reasonable and accurate, \r\nand also has a better universal applicability. What ′ s more in the \r\nprocess of similarity calculation, the Solving algorithm of the LD \r\nand LCS has been optimized in the data structure, reduce the \r\nspace complexity of the algorithm from the order of magnitude. \r\nAnd the experimental results are analyzed in detail, which proves \r\nthe feasibility and correctness of the results. ', 'trylang', '2022-04-06', '16', '2022-04-13', '', 'uploads/Cluster Algorithm for Search Engine Collator.pdf', '#mathchat, #edreform', 'Computer Science, En', '', ''),
+(2, 'sampl2', 'sampl2', 'William smith', '2022-04-06', '16', '2022-04-14', '', 'uploads/Code-Quality-Evaluation-methodology-using-the-ISOIEC-9126-Standard.pdf', '#edreform', 'Engineering', '', ''),
+(3, 'sample3', 'sampl2sampl2sampl2sampl2sampl2', 'D. Saraswathi', '2022-04-25', '16', '2022-04-14', '', 'uploads/Content Management System (CMS) _ SpringerLink.pdf', '#learning, #scichat', 'Economics', '', '');
 
 -- --------------------------------------------------------
 
@@ -221,7 +231,7 @@ CREATE TABLE `tblnews` (
 --
 
 INSERT INTO `tblnews` (`id`, `name`, `mobile`, `email`, `author`, `tags`, `cites`, `views`) VALUES
-(1, 'sample1', ' sample1sample1sample1sample1', '2022-04-11', 'rtyuiutyuio', 'Basketball', '', '5');
+(1, 'sample1', ' hdhcgvjbkntxtcfgvhjb', '2022-04-06', 'rtyuiutyuio', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -248,7 +258,9 @@ CREATE TABLE `tblresearch` (
 --
 
 INSERT INTO `tblresearch` (`id`, `title`, `abstract`, `main_author`, `co_authors`, `date_publish`, `field_of_study`, `pdf_file`, `tagging`, `cites`, `views`) VALUES
-(1, 'A Collaborative Filtering Algorithm Based on User Activity Level', 'Collaborative Filtering Algorithm is one of the most \r\nsuccessful recommender technologies, and has been widely \r\nused in E-commerce. However, traditional Collaborative \r\nFiltering often focus on user-item ratings, but ignore the \r\ninformation implicated in user activity which means how and \r\nhow often a user makes operations in a system, so it misses \r\nsome important information to improve the prediction quality. \r\nTo solve this problem, we bring user activity factor into \r\ncollaborative filtering and propose a new collaborative filtering \r\nalgorithm based on user activity level (UACF) . Finally, \r\nexperiments have shown that our new algorithm UACF \r\nimproves the precision of traditional collaborative filtering', 'D. Saraswathi', 'Liang He, Guorong Li', '2022-04-04', 'Computer Studies', 'uploads/A Collaborative Filtering Algorithm Based on User Activity Level.pdf', '#K12, #edtech, #edreform', '3', '1');
+(1, 'A Kind of Algorithm For Page Ranking \r\nBased on Classified Tree In Search Engine', 'Algorithm of page ranking is the core of search \r\nengine. This paper proposes a new type of algorithm of page \r\nranking by combining classified tree with static algorithm of \r\npage ranking-PageRank, which enables the classified tree to be \r\nconstructed according to a large number of users’ similar \r\nsearching results, and can obviously reduce the problem of \r\nTheme-Drift, caused by using PageRank only, and problem of \r\noutdated web pages. It improves the searching efficiency \r\nwithout reducing the searching speed, which provides the users \r\nwith the abundant expanded information relevant to searching \r\ncontent.', 'trylang', 'D. Saraswathi', '2021-02-12', 'Business and Economics', 'uploads/A Fast Tree-Based Search Algorithm for Cluster Search Engine.pdf', '#edchat, #K12, #learning, #edleadership', '3', '3'),
+(2, 'A FULLY ONLINE RESEARCH PORTAL FOR RESEARCH \r\nSTUDENTS AND RESEARCHERS', 'This paper describes the context, development, implementation, and the potential transferability of an integrated online research environment that allows its \r\nusers to conduct all aspects of research online.\r\nBackground While the content of most traditional courses can be delivered online and learning outcomes can be achieved by adopting equivalents to face-to-face pedagogic \r\napproaches, certain courses, such as those that require a substantial research \r\ncomponent, present significant constraints for delivery online. To overcome \r\nthese limitations, Australia’s largest university developed and implemented a \r\nResearch Portal', 'D. Saraswathi', 'trylang', '2022-04-01', 'Computer Studies', 'uploads/Afully ol rs for research student and researchers.pdf', '#scichat, #mathchat, #edreform', '0', '4'),
+(3, 'Research on String Similarity Algorithm based on \r\nLevenshtein Distance', 'The application of string similarity is very \r\nextensive, and the algorithm based on Levenshtein Distance is \r\nparticularly classic, but it is still insufficient in the aspect of \r\nuniversal applicability and accuracy of results. Combined with \r\nthe Longest Common Subsequence (LCS) and Longest Common \r\nSubstring (LCCS), similarity algorithm based on Levenshtein \r\nDistance is improved, and the string similarity result of the \r\nimproved algorithm is more distinct, reasonable and accurate, \r\nand also has a better universal applicability. What ′ s more in the \r\nprocess of similarity calculation, the Solving algorithm of the LD \r\nand LCS has been optimized in the data structure, reduce the \r\nspace complexity of the algorithm from the order of magnitude. \r\nAnd the experimental results are analyzed in detail, which proves \r\nthe feasibility and correctness of the results. ', 'D. Saraswathi', 'trylang', '2022-04-06', 'Computer Science', 'uploads/Paper Title (use style_ paper title).pdf', '#scichat, #mathchat, #edreform', '5', '1');
 
 --
 -- Indexes for dumped tables
@@ -316,19 +328,19 @@ ALTER TABLE `tblresearch`
 -- AUTO_INCREMENT for table `tblaccount`
 --
 ALTER TABLE `tblaccount`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `tblarticle`
 --
 ALTER TABLE `tblarticle`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tblauthor`
 --
 ALTER TABLE `tblauthor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tblauthorredirect`
@@ -346,13 +358,13 @@ ALTER TABLE `tblcited`
 -- AUTO_INCREMENT for table `tblevents`
 --
 ALTER TABLE `tblevents`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbljournal`
 --
 ALTER TABLE `tbljournal`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tblnews`
@@ -364,7 +376,7 @@ ALTER TABLE `tblnews`
 -- AUTO_INCREMENT for table `tblresearch`
 --
 ALTER TABLE `tblresearch`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
