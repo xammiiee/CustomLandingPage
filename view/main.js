@@ -1,10 +1,4 @@
 $(document).ready(function (e) {
-   //Override Clipboard
-   // $(document).addEventListener('copy', function(e){
-   //    var text = window.getSelection().toString().replace(/[\n\r]+/g, '');
-   //    e.clipboardData.setData('text/plain', text).delay(800);
-   //    e.preventDefault();
-   // });
 
    // Research
    $("#disabled-fullview-R").click(function () {
@@ -13,6 +7,7 @@ $(document).ready(function (e) {
    
    // Register View
    // Research
+   
    $('a.cls').click(function () {
       // alert("Click")
       var id_r = $(this).attr('id');

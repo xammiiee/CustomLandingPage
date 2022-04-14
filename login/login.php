@@ -38,6 +38,8 @@ if(isset($_POST['but_submit']))
                       $_SESSION['name'] = $row['name'];
                       $_SESSION['role'] = $row['ucategory'];
                       $_SESSION['status'] = $row['status'];
+                      $_SESSION['subscribe'] = $row['subcribe'];
+                      $_SESSION['email'] = $row['email'];
                     header("location: ../admin/index.php");
                 }
                 else
@@ -47,6 +49,8 @@ if(isset($_POST['but_submit']))
                       $_SESSION['name'] = $row['name'];
                       $_SESSION['role'] = $row['ucategory'];
                       $_SESSION['status'] = $row['status'];
+                      $_SESSION['subscribe'] = $row['subcribe'];
+                      $_SESSION['email'] = $row['email'];
                     header("location: ../index.php");
                 }
             }

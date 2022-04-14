@@ -195,7 +195,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
        <th scope="col">Email</th>
        <th scope="col">Status</th>
        <th scope="col">Category</th>
-       <th scope="col">Membership</th>
        <th scope="col">Subscription</th>
        <th scope="col" align="center">Action</th>
      </tr>
@@ -212,7 +211,6 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
          <td><?php echo $data['username']?></a></td>
          <td><?php echo $data['status']?></td>
          <td><?php echo $data['ucategory']?></td>
-         <td><?php echo $data['au_member']?></td>
          <td><?php echo $data['subcribe']?></td>
          <td><?php
         //  $user = get_user_data($connect,$data['creator']);

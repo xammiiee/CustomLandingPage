@@ -61,7 +61,7 @@ include "functions/functions.php";
   <header id="header" class="fixed-top">
     <div class="container">
       <div class="logo float-left">
-       <a href="../account.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
+       <a href="../index.php" class="scrollto"><img src="../../resource/img/logo.png" alt="" class="img-fluid" >&nbsp;<strong>AURESPOR</strong></a>
       </div>
       
       <nav class="main-nav float-right d-none d-lg-block" >

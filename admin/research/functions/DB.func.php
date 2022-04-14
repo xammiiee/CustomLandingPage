@@ -1,4 +1,4 @@
-<?php
+ <?php
 // ==========================================ACCOUNT SECTION FUNCTION===============================================//
 
 function get_users($connect){
@@ -173,19 +173,6 @@ function get_author_inside_research($connect,$author){
 		return $result;
 }
 
-function get_author_with_paper($connect, $a_id){
-	//ORDER BY deadline ASC
-	$sql = "SELECT * FROM tblauthorredirect WHERE author_id= '$a_id' ORDER BY id ASC";
-	$result = $connect->query($sql);
-		return $result;
-}
-
-function create_researchredirecting($connect,$a_id,$a_name, $r_id, $r_title){
-	//ORDER BY deadline ASC
-	$sql = "INSERT INTO tblauthorredirect (id, author_id, author, paper_id, title, date) VALUES ('','$a_id','$a_name','$r_id','$r_title','')";
-	$result = $connect->query($sql);
-		return $result;
-}
 
 // ================================================
 // Journal
@@ -237,6 +224,107 @@ function get_newsrelated($connect, $fstudy, $tags){
 	$sql = "SELECT * FROM tblnews WHERE field_of_study ='$fstudy' OR tagging = '$tags'";
 	$result1 = $connect->query($sql);
 		return $result1;
+}
+
+// ======================================================================
+function get_researchfilter($connect,$title,$req){
+	//value from db
+	$bsearch = $title;
+	//save the keyword from the url
+	$trim_search = trim($bsearch);
+
+	$display_words = "";
+	// seperate each of the keywords
+	$keywords = explode(' ', $trim_search); 
+	//loop to search 
+	foreach($keywords as $word)
+	{
+		if($req == "v"){
+			$sql_string = "SELECT * FROM tblresearch WHERE abstract LIKE '%" . $word . "%' OR title LIKE '%" . $word ."%' ORDER BY views DESC OR ";
+		}
+		else if($req == "c"){
+			$sql_string = "SELECT * FROM tblresearch WHERE abstract LIKE '%" . $word . "%' OR title LIKE '%" . $word ."%' ORDER BY cites DESC OR ";
+		}
+	}
+ 	$sql_string = substr($sql_string, 0, strlen($sql_string) - 3);
+	$result = $connect->query($sql_string);
+		return $result;
+}
+
+function get_journalfilter($connect,$title, $req){
+	//value from db
+	$bsearch = $title;
+	//save the keyword from the url
+	$trim_search = trim($bsearch);
+
+	$display_words = "";
+	// seperate each of the keywords
+	$keywords = explode(' ', $trim_search); 
+	//loop to search 
+	foreach($keywords as $word)
+	{
+		if($req == "v"){
+			$sql_string = "SELECT * FROM tbljournal WHERE description LIKE '%" . $word . "%' OR title LIKE '%" . $word ."%'  ORDER BY views DESCOR";
+		}
+		else if($req == "c"){
+			$sql_string = "SELECT * FROM tbljournal WHERE description LIKE '%" . $word . "%' OR title LIKE '%" . $word ."%'  ORDER BY cites DESCOR";
+		}
+	}
+
+ 	$sql_string = substr($sql_string, 0, strlen($sql_string) - 3);
+	$result = $connect->query($sql_string);
+		return $result;
+}
+
+function get_articlefilter($connect,$title, $req){
+	//value from db
+	$bsearch = $title;
+	//save the keyword from the url
+	$trim_search = trim($bsearch);
+
+	$display_words = "";
+	// seperate each of the keywords
+	$keywords = explode(' ', $trim_search); 
+	//loop to search 
+	foreach($keywords as $word)
+	{
+		if($req == "v"){
+			$sql_string = "SELECT * FROM tblarticle WHERE a_description LIKE '%" . $word . "%' OR a_title LIKE '%" . $word ."%' ORDER BY views DESC OR";
+		}
+		else if($req == "c"){
+			$sql_string = "SELECT * FROM tblarticle WHERE a_description LIKE '%" . $word . "%' OR a_title LIKE '%" . $word ."%' ORDER BY cites DESC OR";
+		}
+		
+	}
+
+ 	$sql_string = substr($sql_string, 0, strlen($sql_string) - 3);
+	$result = $connect->query($sql_string);
+		return $result;
+}
+
+function get_newsfilter($connect,$title, $req){
+	//value from db
+	$bsearch = $title;
+	//save the keyword from the url
+	$trim_search = trim($bsearch);
+
+	$display_words = "";
+	// seperate each of the keywords
+	$keywords = explode(' ', $trim_search); 
+	//loop to search 
+	foreach($keywords as $word)
+	{
+		if($req == "v"){
+			$sql_string = "SELECT * FROM tblarticle WHERE a_description LIKE '%" . $word . "%' OR a_title LIKE '%" . $word ."%' ORDER BY views DESC OR";
+		}
+		else if($req == "c"){
+			$sql_string = "SELECT * FROM tblarticle WHERE a_description LIKE '%" . $word . "%' OR a_title LIKE '%" . $word ."%' ORDER BY cites DESC OR";
+		}
+	}
+
+ 	$sql_string = substr($sql_string, 0, strlen($sql_string) - 3);
+	$result = $connect->query($sql_string);
+		return $result;
 }
 ?>
 

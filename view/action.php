@@ -106,8 +106,8 @@ include "../admin/research/functions/functions.php";
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="../../profile/profile.php">Profile</a>
-                      <a class="dropdown-item" href="#aboutus">About Us</a>
+                      <!-- <a class="dropdown-item" href="../../profile/profile.php">Profile</a>
+                      <a class="dropdown-item" href="#aboutus">About Us</a> -->
                       <a class="dropdown-item" href="../signup/logout.php">Signout</a>
                     </div>
                   </li>
@@ -123,13 +123,21 @@ include "../admin/research/functions/functions.php";
       </nav><!-- .main-nav -->
     </div>
   </header>
-
+<body >
   <h3 hidden name="logged_id" hidden><?php echo $_SESSION['id'];?></h3>
 <?php
 
-if(!empty($_SESSION['id']))
+if(empty($_SESSION['id']))
 {
-
+		?>
+		<style>
+			p{
+			text-overflow: ellipsis; 
+			overflow: hidden; 
+			white-space: nowrap;
+		}
+		</style>
+		<?php
 }
 
 
@@ -161,11 +169,7 @@ if (!empty($_GET['id']))
 					h2,p{
 						padding:0;
 						margin:0;
-						
 					}
-					/* .card{
-
-					} */
 				</style>
 							<div class="badge badge-info text-wrap" style="width: 5rem; padding:5px;" >
 							<!-- change to.. -->
@@ -231,7 +235,7 @@ if (!empty($_GET['id']))
 									<li class="list-inline-item">* <?php echo $data['field_of_study'];?></li>
 								</ul>
 							</div>
-							<p class="font-weight-normal text-left" style="width:80%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" maxlength="200"><?php echo ($data['abstract']);?></p><br>
+							<p class="font-weight-normal text-left" style="width:80%;" maxlength="200"><?php echo ($data['abstract']);?></p><br>
 							<ul class="list-inline" style="font-size: small;">
                      	<li class="list-inline-item" id="View<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
                      	<li class="list-inline-item" id="Cite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>
@@ -303,20 +307,24 @@ if (!empty($_GET['id']))
 				if ($result1->num_rows>0) {
 					while ($data1 = mysqli_fetch_array($result1))
 					{
-						if($data1['id'] != $_GET['id'])
-						{
-							?>
-							<div class="col-md-3 col-sm-5">
-								<div class="card">
-									<div class="card-body">
-										<!-- change function to the designated function ofyouassign management -->
-										<a href="action.php?id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data['title'];?></p></a>
-										<p class="card-text"><small class="text-muted"><?php ?></small></p>
+						if(!empty($_SESSION['id'])){
+							if($data1['id'] != $_GET['id'])
+							{
+								?>
+								<div class="col-md-3 col-sm-5">
+									<div class="card">
+										<div class="card-body">
+											<!-- change function to the designated function ofyouassign management -->
+											<a href="action.php?u=r&id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data['title'];?></p></a>
+											<p class="card-text"><small class="text-muted"><?php ?></small></p>
+										</div>
 									</div>
 								</div>
-							</div>
-					<?php
+						<?php
+							}
 						}
+						
+
 					}
 				}
 				?>
@@ -743,7 +751,7 @@ if (!empty($_GET['id']))
 	// change function to the designated function of your assign management
 }
 ?>
-
+	</body>
 <!-- #footer -->
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
@@ -772,6 +780,37 @@ if (!empty($_GET['id']))
   <script src="../resource/js/main.js"></script>
   <!-- <script src="../script/main.js"></script> -->
   <script src="main.js"></script>
+  <script>
+    $(document).ready(function () {
+    <?php
+     if(empty($_SESSION['id'])){
+        ?>
+          // Override Clipboard
+          $('p').bind('cut copy paste', function (e) {
+              alert('Cannot be Copied, Paste, Cut');
+              e.preventDefault();
+          });
+
+          // alert(sessionStorage.getItem("name"));
+        
+        <?php
+     }
+     else if(!empty($_SESSION['id'])){
+      if($_SESSION['subscribe'] == "No"){
+        ?>
+          // Override Clipboard
+          $('p').bind('cut copy paste', function (e) {
+              alert('Cannot be Copy, Paste, Cut');
+              e.preventDefault();
+          });
+
+          // alert(sessionStorage.getItem("SessionName"));
+        <?php
+       }
+     }
+     ?>
+     });
+  </script>
   
 
 
