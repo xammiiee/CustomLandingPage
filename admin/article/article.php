@@ -177,11 +177,11 @@ if ($_SERVER['REQUEST_METHOD'] =="POST") {
  </div>
 </div>
 <?php
-if(!empty($_POST["a_tagging"])) {
-    foreach($_POST['a_tagging'] as $tags) {
-        echo $tags;
-    }   
-}
+// if(!empty($_POST["a_tagging"])) {
+//     foreach($_POST['a_tagging'] as $tags) {
+//         echo $tags;
+//     }   
+// }
 ?>
 
 <!--Journal-->

@@ -106,8 +106,8 @@ include "../admin/research/functions/functions.php";
                   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>&nbsp;</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="../../profile/profile.php">Profile</a>
-                      <a class="dropdown-item" href="#aboutus">About Us</a>
+                      <!-- <a class="dropdown-item" href="../../profile/profile.php">Profile</a>
+                      <a class="dropdown-item" href="#aboutus">About Us</a> -->
                       <a class="dropdown-item" href="../signup/logout.php">Signout</a>
                     </div>
                   </li>
@@ -123,13 +123,21 @@ include "../admin/research/functions/functions.php";
       </nav><!-- .main-nav -->
     </div>
   </header>
-
+<body >
   <h3 hidden name="logged_id" hidden><?php echo $_SESSION['id'];?></h3>
 <?php
 
-if(!empty($_SESSION['id']))
+if(empty($_SESSION['id']))
 {
-
+		?>
+		<style>
+			p{
+			text-overflow: ellipsis; 
+			overflow: hidden; 
+			white-space: nowrap;
+		}
+		</style>
+		<?php
 }
 
 
@@ -161,11 +169,7 @@ if (!empty($_GET['id']))
 					h2,p{
 						padding:0;
 						margin:0;
-						
 					}
-					/* .card{
-
-					} */
 				</style>
 							<div class="badge badge-info text-wrap" style="width: 5rem; padding:5px;" >
 							<!-- change to.. -->
@@ -231,14 +235,14 @@ if (!empty($_GET['id']))
 									<li class="list-inline-item">* <?php echo $data['field_of_study'];?></li>
 								</ul>
 							</div>
-							<p class="font-weight-normal text-left" style="width:80%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" maxlength="200"><?php echo ($data['abstract']);?></p><br>
+							<p class="font-weight-normal text-left" style="width:80%;" maxlength="200"><?php echo ($data['abstract']);?></p><br>
 							<ul class="list-inline" style="font-size: small;">
                      	<li class="list-inline-item" id="View<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
                      	<li class="list-inline-item" id="Cite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>
                               </ul>
 							<?php
 							if(!empty($_SESSION['id'])){
-								if($status == "Active")
+								if($_SESSION['status'] == "Active")
 							{
 								?>
 									<button type="button" class="btn btn-md badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#research-citing" id="r-citing"><span>Cite</span></button>
@@ -308,20 +312,24 @@ if (!empty($_GET['id']))
 				if ($result1->num_rows>0) {
 					while ($data1 = mysqli_fetch_array($result1))
 					{
-						if($data1['id'] != $_GET['id'])
-						{
-							?>
-							<div class="col-md-3 col-sm-5">
-								<div class="card">
-									<div class="card-body">
-										<!-- change function to the designated function ofyouassign management -->
-										<a href="action.php?id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data['title'];?></p></a>
-										<p class="card-text"><small class="text-muted"><?php ?></small></p>
+						if(!empty($_SESSION['id'])){
+							if($data1['id'] != $_GET['id'])
+							{
+								?>
+								<div class="col-md-3 col-sm-5">
+									<div class="card">
+										<div class="card-body">
+											<!-- change function to the designated function ofyouassign management -->
+											<a href="action.php?u=r&id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data['title'];?></p></a>
+											<p class="card-text"><small class="text-muted"><?php ?></small></p>
+										</div>
 									</div>
 								</div>
-							</div>
-					<?php
+						<?php
+							}
 						}
+						
+
 					}
 				}
 				?>
@@ -345,7 +353,7 @@ if (!empty($_GET['id']))
 			<!--View Research-->
 			<div class="container">
 		<div id="result">
-		<a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
+		<!-- <a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a> -->
 		</div>	
 	</div><br><br>
 			<div class="container">
@@ -417,8 +425,20 @@ if (!empty($_GET['id']))
 								</ul>
 							</div>
 							<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['description']); ?></p><br>
-							
-							<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#journal-citing"><span>Cite</span></button>
+							<ul class="list-inline" style="font-size: small;">
+                     	<li class="list-inline-item" id="View<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
+                     	<li class="list-inline-item" id="Cite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>
+                              </ul>
+										<?php
+							if(!empty($_SESSION['id'])){
+								if($_SESSION['status'] == "Active")
+							{
+								?>
+									<button type="button" class="btn btn-md badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#journal-citing" id="j-citing"><span>Cite</span></button>
+								<?php
+							}
+							}
+							?>
 
 							<!-- Modal for Citing -->
 							<div class="modal fade" id="journal-citing" tabindex="-1" role="dialog" aria-hidden="true">
@@ -455,12 +475,11 @@ if (!empty($_GET['id']))
 						if($data1['id'] != $_GET['id'])
 						{
 						?>
-						
 							<div class="col-md-3 col-sm-5">
 							<div class="card">
 								<div class="card-body">
 									<!-- change function to the designated function ofyouassign management -->
-									<a href="action.php?id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data1['title'];?></p></a>
+									<a href="action.php?u=j&id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data1['title'];?></p></a>
 									<p class="card-text"><small class="text-muted"><?php ?></small></p>
 								</div>
 							</div>
@@ -484,13 +503,13 @@ if (!empty($_GET['id']))
 		// include "";
 		$pdf_file = $data['pdf_file'];
 		// $fstudy = $data['field_of_study'];
-		// $tags = $data['tagging'];
+		$tags = $data['a_tagging'];
 		?>
 			<br><br><br><br>
 			<!--View Research-->
 			<div class="container">
 				<div id="result">
-				<a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a>
+				<!-- <a href="../research.php"><button class="btn btn-dark btn-sm"  style="float:left">Back</button></a> -->
 				</div>	
 			</div><br><br>
 			<div class="container">
@@ -511,7 +530,9 @@ if (!empty($_GET['id']))
 							<!-- change to.. -->
 							<span >Article</span>
 							</div>
-							<?php 
+							<?php
+							if(!empty($_SESSION['id']))
+							{
 							$logged_id = $_SESSION['id'];
 							$sql = "SELECT * FROM tblaccount WHERE id = '$logged_id'";
 							$result = mysqli_query($connect,$sql);
@@ -525,10 +546,10 @@ if (!empty($_GET['id']))
 								{
 									if($subscribe =="Yes")
 									{
-										echo $count['pdf_file'];
+										// echo $count['pdf_file'];
 										?>
 										<div>
-											<a href="../admin/article/<?php //echo $data['pdf_file'];?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View FullArticle PDF&nbsp;</i></button></a>
+											<!-- <a href="../admin/article/<?php //echo $data['pdf_file'];?>"><button type ="button" class="btn btn-outline-primary btn-sm float-right" style="position:relative;bottom:40px;" name="btn-fullview"><i class="fa fa-file-text"> View FullArticle PDF&nbsp;</i></button></a> -->
 										</div>
 										<?php
 									}
@@ -540,6 +561,7 @@ if (!empty($_GET['id']))
 										<?php
 									}
 								}
+							}
 								?>
 								<!--  -->
 								
@@ -547,16 +569,29 @@ if (!empty($_GET['id']))
 								<div>
 								<h2 class="text-left" style="margin-top:10px; font-family:'Lucida Sans';" ><b><?php echo $data['a_title']?></b></h2>
 								<ul class="list-inline" style="font-size: small;">
-									<li class="list-inline-item"><a href="author.php?author=<?php echo $data['a_author'];?>"><u><?php echo $data['author']?></u></a></li>
+									<li class="list-inline-item"><a href="author.php?author=<?php echo $data['a_author'];?>"><u><?php echo $data['a_author']?></u></a></li>
 									<li class="list-inline-item ">* Published <?php echo $data['a_datepub'];?></li>
 									<li class="list-inline-item"><?php //echo $data['field_of_study'];?></li>
 								</ul>
 							</div>
 							<p class="font-weight-normal text-left" style="width:80%;"><?php echo ($data['a_description']); ?></p><br>
-							<button type="button" class="btn btn-sm badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-bs-toggle="modal" data-bs-target="#modalciting"><span>Cite</span></button>
+							<ul class="list-inline" style="font-size: small;">
+                     	<li class="list-inline-item" id="View<?php echo $data['id'];?>" value="<?php echo $data['a_views'];?>"><b>Views: <?php echo $data['a_views'];?></b></li>
+                     	<li class="list-inline-item" id="Cite<?php echo $data['id'];?>" value="<?php echo $data['a_cites'];?>"><b>Cite: <?php echo $data['a_cites'];?></b></li>
+                              </ul>
+							<?php
+							if(!empty($_SESSION['id'])){
+								if($_SESSION['status'] == "Active")
+							{
+								?>
+									<button type="button" class="btn btn-md badge badge-info text-wrap" style="width: 5rem; padding:6px; float:left" data-toggle="modal" data-target="#article-citing" id="a-citing"><span>Cite</span></button>
+								<?php
+							}
+							}
+							?>
 
 							<!-- Citation Modal -->
-							<div class="modal fade" id="modalciting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="article-citing" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
@@ -581,12 +616,12 @@ if (!empty($_GET['id']))
 
 			<!-- Related Studies -->
 			<br<br><br>
-			<div class="container">
+			<div class="container" >
 				<h2>Related Studies</h2><br>
 				<!-- <div class="row"> -->
 				<div class="card-group">
 				<?php
-				$result1 = get_articlerelated($connect,$fstudy,$tags);
+				$result1 = get_articlerelated($connect,$tags);
 				if ($result1->num_rows>0) {
 					while ($data1 = mysqli_fetch_array($result1))
 					{
@@ -598,7 +633,7 @@ if (!empty($_GET['id']))
 							<div class="card">
 								<div class="card-body">
 									<!-- change function to the designated function ofyouassign management -->
-									<a href="action.php?id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data1['title'];?></p></a>
+									<a href="action.php?u=a&id=<?php echo $data1['id'];?>"><p class="card-title"><?php echo $data1['a_title'];?></p></a>
 									<p class="card-text"><small class="text-muted"><?php ?></small></p>
 								</div>
 							</div>
@@ -649,6 +684,8 @@ if (!empty($_GET['id']))
 							<span >News</span>
 							</div>
 							<?php 
+							if(!empty($_SESSION['id']))
+							{
 							$logged_id = $_SESSION['id'];
 							$sql = "SELECT * FROM tblaccount WHERE id = '$logged_id'";
 							$result = mysqli_query($connect,$sql);
@@ -670,6 +707,7 @@ if (!empty($_GET['id']))
 										<?php
 									}
 								}
+							}
 								?>
 								<!--  -->
 								
@@ -748,7 +786,7 @@ if (!empty($_GET['id']))
 	// change function to the designated function of your assign management
 }
 ?>
-
+	</body>
 <!-- #footer -->
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
@@ -777,6 +815,37 @@ if (!empty($_GET['id']))
   <script src="../resource/js/main.js"></script>
   <!-- <script src="../script/main.js"></script> -->
   <script src="main.js"></script>
+  <script>
+    $(document).ready(function () {
+    <?php
+     if(empty($_SESSION['id'])){
+        ?>
+          // Override Clipboard
+          $('p').bind('cut copy paste', function (e) {
+              alert('Cannot be Copied, Paste, Cut');
+              e.preventDefault();
+          });
+
+          // alert(sessionStorage.getItem("name"));
+        
+        <?php
+     }
+     else if(!empty($_SESSION['id'])){
+      if($_SESSION['subscribe'] == "No"){
+        ?>
+          // Override Clipboard
+          $('p').bind('cut copy paste', function (e) {
+              alert('Cannot be Copy, Paste, Cut');
+              e.preventDefault();
+          });
+
+          // alert(sessionStorage.getItem("SessionName"));
+        <?php
+       }
+     }
+     ?>
+     });
+  </script>
   
 
 

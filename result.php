@@ -147,13 +147,25 @@
       position: relative;
       
      }
+     <?php
+     if(empty($_SESSION['id'])){
+       ?>
+       p{
+        text-overflow: ellipsis; 
+        overflow: hidden; 
+        white-space: nowrap;
+		    }
+       <?php
+     }
+     ?>
   </style>
+  <div class="container" style="padding-left: 10%;">
   <header class="section-header">
 <div id="header-one">
 <form action="" method="GET" onsubmit="">
         <div class="form-group">
-          <input name="a" class="form-control form-control-md d-inline" type="text" placeholder="<?php //echo $_GET['a'];?>" aria-label=".form-control-lg example" style="width: 35%;" value="<?php echo $_GET['a'];?>">
-          <select class="custom-select d-inline" id="search_type" name="u" style="width: 10%; margin-bottom:2.5px;">
+          <input name="a" class="form-control form-control-md d-inline" type="text" placeholder="<?php //echo $_GET['a'];?>" aria-label=".form-control-lg example" style="width: 35%;" value="<?php echo $_GET['a'];?>" id="txtsearch">
+          <select class="custom-select d-inline" id="search_type" name="u" style="width: 14%; margin-bottom:2.5px;">
           <?php
           if($_GET['u'] =="r")
           {
@@ -213,13 +225,13 @@
          <ul class="list-inline" id="filtering">
             <li class="list-inline-item" >
             <select class="custom-select d-inline" id="filter1" name="u" style="width:190px;" value="">
-               <option>Sort by Relevance</option>
+               <option value="0">Sort by Relevance</option>
                <option value="1">Sort by Most Views</option>
                <option value="2">Sort by Citation Count</option>
             </select>
             </li>
 
-            <li class="list-inline-item" id="filtering1">
+            <!-- <li class="list-inline-item" id="filtering1">
             <select class="custom-select d-inline" id="filter2" name="x" style="width:190px;" value="">
               <option selected disabled>Field of Study</option>
               <option value="1">Art</option>
@@ -245,15 +257,19 @@
               <option value="21">Psychology</option>
               <option value="22">Sociology</option>
             </select>
-            </li>
+            </li> -->
          
-            <button class="btn btn-primary btn-sm" id="filter-submit" name="filter-submit"><i class="fa fa-filter"></i>  Filter</button>
-            <button class="btn btn-primary btn-sm" id="filter-reset" name="filter-reset"><i class="fa fa-refresh"></i>  Reset</button>
+            <!-- <button class="btn btn-primary btn-sm" id="filter-submit" name="filter-submit"><i class="fa fa-filter"></i>  Filter</button>
+            <button class="btn btn-primary btn-sm" id="filter-reset" name="filter-reset"><i class="fa fa-refresh"></i>  Reset</button> -->
+            <!-- <button class="btn btn-primary btn-sm" id="filter1" name="filter1"><i class="fa fa-filter"></i>  Sort by Most View</button>
+            <button class="btn btn-primary btn-sm" id="filter2" name="filter2"><i class="fa fa-filter"></i>  Sort by Most Cited</button> -->
+
           </ul>
 <!-------------------- End of Filtering Section ---------------------------->
         </header><br>
+        </div>
 
-        <div class="row" id="rseult-tbl">
+        <div class="row" id="result-tbl">
 <!--=============================== Search Result Section ===============================-->
           <table id="table_id" class="display">
             <tbody id="tblresult">
@@ -293,7 +309,7 @@
                                     <li class="list-inline-item" value="<?php echo $data['field_of_study'];?>" id="display-fstudy"><b> * <span><?php echo $data['field_of_study'];?></span></b></li>
                                     
                                  </ul>
-                                 <p class="description" value="<?php echo $data['abstract'];?>"><span><?php echo $data['abstract'];?></span></p>
+                                 <p class="description" value="<?php //echo $data['abstract'];?>"><span><?php echo $data['abstract'];?></span></p>
                                  <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                                     <li class="list-inline-item" id="rView<?php echo $data['id'];?>" value="<?php echo $data['views'];?>"><b>Views: <?php echo $data['views'];?></b></li>
                                     <li class="list-inline-item" id="rCite<?php echo $data['id'];?>" value="<?php echo $data['cites'];?>"><b>Cite: <?php echo $data['cites'];?></b></li>
@@ -369,13 +385,13 @@
                           <div class="col-md-6 col-lg-10 offset-lg-1 wow bounceInUp" data-wow-duration="0.3s">
 
                           <div class="box">
-                            <h4 class="title"><a href="./view/action.php?u=a&id=<?php echo $data['id'];?>" class="cls" id="<?php echo $data['id'];?>"><span><?php echo $data['title'];?></span></a></h4>
+                            <h4 class="title"><a href="./view/action.php?u=a&id=<?php echo $data['id'];?>" class="cls" id="<?php echo $data['id'];?>"><span><?php echo $data['a_title'];?></span></a></h4>
                               <ul class="list-inline" style="padding-left: 40px; font-size: small;">
                                 <li class="list-inline-item" value="<?php echo $data['a_author'];?>"><b><u><span><?php echo $data['a_author'];?></span></u></b></li>
                                     
-                                <li class="list-inline-item" value="<?php echo $data['a_date_pub'];?>"><b> * Published <span><?php echo $data['a_date_pub'];?></span></b></li>
+                                <li class="list-inline-item" value="<?php echo $data['a_datepub'];?>"><b> * Published <span><?php echo $data['a_datepub'];?></span></b></li>
                                     
-                                <li class="list-inline-item" value="<?php echo $data['field_of_study'];?>"><b> * <span><?php echo $data['field_of_study'];?></span></b></li>
+                                <li class="list-inline-item" value="<?php //echo $data['field_of_study'];?>"><b>  <span><?php //echo $data['field_of_study'];?></span></b></li>
                               </ul>
                                  <p class="description" value="<?php echo $data['a_description'];?>"><span><?php echo $data['a_description'];?></span></p>
                                  <ul class="list-inline" style="padding-left: 40px; font-size: small;">
@@ -435,7 +451,7 @@
                         <?php
                      }
                   }
-              }
+                }
                 
               }
               else
@@ -546,9 +562,40 @@
   <!-- <script src="contactform/contactform.js"></script> -->
 
   <!-- Template Main Javascript File -->
-  <script src="/view/main.js"></script>
+  <script src="./view/main.js"></script>
   <script src="../CustomLandingPage/view/filter.js"></script>
   <script src="./resource/js/main.js"></script>
+  <script>
+    $(document).ready(function () {
+    <?php
+     if(empty($_SESSION['id'])){
+        ?>
+          // Override Clipboard
+          $('p').bind('cut copy paste', function (e) {
+              alert('Cannot be Copied, Paste, Cut');
+              e.preventDefault();
+          });
+
+          // alert(sessionStorage.getItem("name"));
+        
+        <?php
+     }
+     else if(!empty($_SESSION['id'])){
+      if($_SESSION['subscribe'] == "No"){
+        ?>
+          // Override Clipboard
+          $('p').bind('cut copy paste', function (e) {
+              alert('Cannot be Copy, Paste, Cut');
+              e.preventDefault();
+          });
+
+          // alert(sessionStorage.getItem("SessionName"));
+        <?php
+       }
+     }
+     ?>
+     });
+  </script>
 
 </body>
 </html>
