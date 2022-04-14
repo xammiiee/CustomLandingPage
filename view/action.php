@@ -264,7 +264,7 @@ if (!empty($_GET['id']))
 									</div>
 									<div class="modal-body">
 									<!-- Navigation -->
-									<nav class="navbar navbar-expand-md navbar-light bg-light">
+									<!-- <nav class="navbar navbar-expand-md navbar-light bg-light">
 										<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 											<span class="navbar-toggler-icon"></span>
 										</button>
@@ -278,18 +278,20 @@ if (!empty($_GET['id']))
 												</li>
 											</ul>
 										</div>
-									</nav>
+									</nav> -->
 									<!-- Body -->
+									MLA
 									<div class="input-group" id="r-cite-area">
 									<textarea rows="7" cols="60"class="form-control" aria-label="With textarea" id="myInput" readonly><?php $result = explode(" ",$data['main_author']); echo $result[1];?>, <?php  echo  $result[0];?>. et.al. "<?php echo $data['title'];?>." <?php echo $data['field_of_study'];?> <?php $date = $data['date_publish'];echo "" .date("(Y)",strtotime($date));?> </textarea>
 									</div>
-
+									<button type="button" class="btn btn-md badge badge-info text-wrap cls" style="width: 7rem; padding:6px; float:left" id="id-copy-cite"><span>Copy Citation</span></button>
+									<br>
+									<br>
 									APA 
 									<div class="input-group" id="r-cite-area">
 									<textarea rows="7" cols="60"class="form-control" aria-label="With textarea" id="myInput" readonly><?php $result = explode(" ",$data['main_author']); echo $result[1];?>, <?php  echo  $result[0][0];?>. <?php echo $data['co_authors'];?>. <?php $date = $data['date_publish'];echo "" .date("(Y)",strtotime($date));?> <?php echo $data['title'];?>. <?php echo $data['field_of_study'];?>.</textarea>
 									</div>
 									<button type="button" class="btn btn-md badge badge-info text-wrap cls" style="width: 7rem; padding:6px; float:left" id="id-copy-cite"><span>Copy Citation</span></button>
-
 									</div>
 								</div>
 							</div>
